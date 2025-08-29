@@ -1,0 +1,28 @@
+<Solution>
+  <Configurations>
+    <Platform Name="Any CPU" />
+    <Platform Name="x64" />
+    <Platform Name="x86" />
+  </Configurations>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path="CleanArchitecture.nuspec" />
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj" />
+    <Project Path="src/FormDesignerAPI.Infrastructure/FormDesignerAPI.Infrastructure.csproj" />
+    <Project Path="src/FormDesignerAPI.UseCases/FormDesignerAPI.UseCases.csproj" />
+    <Project Path="src/FormDesignerAPI.Web/FormDesignerAPI.Web.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/FormDesignerAPI.FunctionalTests/FormDesignerAPI.FunctionalTests.csproj">
+      <BuildDependency Project="src/FormDesignerAPI.Web/FormDesignerAPI.Web.csproj" />
+    </Project>
+    <Project Path="tests/FormDesignerAPI.IntegrationTests/FormDesignerAPI.IntegrationTests.csproj">
+      <BuildDependency Project="src/FormDesignerAPI.Infrastructure/FormDesignerAPI.Infrastructure.csproj" />
+    </Project>
+    <Project Path="tests/FormDesignerAPI.UnitTests/FormDesignerAPI.UnitTests.csproj" />
+  </Folder>
+</Solution>
