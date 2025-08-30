@@ -10,4 +10,11 @@
     <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Forms/Create/" />
+    <Folder Include="Forms/Delete/" />
+    <Folder Include="Forms/Get/" />
+    <Folder Include="Forms/Update/" />
+  </ItemGroup>
+
 </Project>
