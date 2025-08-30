@@ -7,5 +7,5 @@ namespace Projects;
 [global::System.Diagnostics.DebuggerDisplay("Type = {GetType().Name,nq}, ProjectPath = {ProjectPath}")]
 public class FormDesignerAPI_Web : global::Aspire.Hosting.IProjectMetadata
 {
-    public string ProjectPath => """/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.Web/FormDesignerAPI.Web.csproj""";
+    public string ProjectPath => """/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/FormDesignerAPI.Web.csproj""";
 }
