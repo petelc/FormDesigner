@@ -10,7 +10,7 @@ public class FakeListFormsQueryService : IListFormsQueryService
         IEnumerable<FormDTO> forms =
         [
             new FormDTO(
-                Guid.NewGuid(),
+                1,
                 "Form 1",
                 "Description 1",
                 "Category 1",
@@ -21,7 +21,7 @@ public class FakeListFormsQueryService : IListFormsQueryService
                 null
             ),
             new FormDTO(
-                Guid.NewGuid(),
+                2,
                 "Form 2",
                 "Description 2",
                 "Category 2",
