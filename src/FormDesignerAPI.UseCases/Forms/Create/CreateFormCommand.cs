@@ -10,10 +10,10 @@ namespace FormDesignerAPI.UseCases.Forms.Create;
 /// <param name="FormTitle"></param>
 public record CreateFormCommand(
     string FormNumber,
-    string? FormTitle
+    string? FormTitle = null
 ) : Ardalis.SharedKernel.ICommand<Result<int>>;
 
-public record CreateFormCommand2(string FormNumber) : FastEndpoints.ICommand<Result<int>>;
+public record CreateFormCommand2(string FormNumber, string? FormTitle = null) : FastEndpoints.ICommand<Result<int>>;
 
 public class CreateFormCommandHandler2 : CommandHandler<CreateFormCommand2, Result<int>>
 {

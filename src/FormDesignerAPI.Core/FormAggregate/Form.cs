@@ -11,6 +11,13 @@ public class Form : EntityBase, IAggregateRoot
         Status = FormStatus.NotSet;
     }
 
+    public Form(string formNumber, string formTitle)
+    {
+        UpdateFormNumber(formNumber);
+        SetTitle(formTitle);
+        Status = FormStatus.NotSet;
+    }
+
     public string FormNumber { get; private set; } = default!;
     public string FormTitle { get; private set; } = default!;
     public string Division { get; private set; } = default!;
