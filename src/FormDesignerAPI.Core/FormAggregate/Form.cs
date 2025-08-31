@@ -28,6 +28,12 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
+    public Form SetTitle(string title)
+    {
+        FormTitle = Guard.Against.NullOrEmpty(title, nameof(title));
+        return this;
+    }
+
     public Form SetOwner(string name, string email)
     {
         Owner = new Owner(name, email);
