@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireTests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7618da78df70e6701db83e7d16c7d893b28469fc")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f2f09367317174e4d48a91e092b9cd773a11b0a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
