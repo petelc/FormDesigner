@@ -47,6 +47,18 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
+    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newVersion, string newConfigurationPath)
+    {
+        UpdateFormNumber(newFormNumber);
+        SetTitle(newFormTitle);
+        Division = Guard.Against.NullOrEmpty(newDivision, nameof(newDivision));
+        SetOwner(newOwner, string.Empty); // Email is optional for now.
+        Version = Guard.Against.NullOrEmpty(newVersion, nameof(newVersion));
+        ConfigurationPath = newConfigurationPath; // Can be null or empty.
+        RevisedDate = DateTime.UtcNow;
+        return this;
+    }
+
 }
 
 public class Owner(string name, string email) : ValueObject
