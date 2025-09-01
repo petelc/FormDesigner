@@ -1,4 +1,5 @@
 ﻿using FormDesignerAPI.Core.ContributorAggregate;
+using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.Infrastructure.Data;
 
 namespace FormDesignerAPI.IntegrationTests.Data;
@@ -35,5 +36,10 @@ public abstract class BaseEfRepoTestFixture
   protected EfRepository<Contributor> GetRepository()
   {
     return new EfRepository<Contributor>(_dbContext);
+  }
+
+  protected EfRepository<Form> GetFormRepository()
+  {
+    return new EfRepository<Form>(_dbContext);
   }
 }
