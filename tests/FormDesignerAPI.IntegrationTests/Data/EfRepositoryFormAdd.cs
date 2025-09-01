@@ -7,17 +7,15 @@ public class EfRepositoryFormAdd : BaseEfRepoTestFixture
     [Fact]
     public async Task AddsFormAndSetsId()
     {
-        var testFormName = "testForm";
+        var testFormNumber = "XXX1000";
+        var testFormTitle = "Test Form";
         var repository = GetFormRepository();
-        // TODO: add the required properties
-        // TODO: add the set properties to the form aggregate
-        var form = new Form(testFormName)
-        {
-            Division = "Test Division",
-            Owner = new Owner("Test Owner", string.Empty),
-            Version = "1.0",
-            ConfigurationPath = "/path/to/config"
-        };
+
+        var form = new Form(testFormNumber, testFormTitle);
+        // .UpdateDivision("Test Division")
+        // .SetOwner("Test Owner", string.Empty)
+        // .UpdateVersion("1.0")
+        // .SetConfigurationPath("/path/to/config");
 
         await repository.AddAsync(form);
 
@@ -25,7 +23,7 @@ public class EfRepositoryFormAdd : BaseEfRepoTestFixture
                         .FirstOrDefault();
 
         newForm.ShouldNotBeNull();
-        testFormName.ShouldBe(newForm.FormNumber);
+        testFormNumber.ShouldBe(newForm.FormNumber);
         newForm.Id.ShouldBeGreaterThan(0);
     }
 }

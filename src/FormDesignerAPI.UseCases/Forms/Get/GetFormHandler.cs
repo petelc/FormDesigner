@@ -24,7 +24,7 @@ public class GetFormHandler
             entity.FormNumber,
             entity.FormTitle ?? "",
             entity.Division ?? "",
-            entity.Owner.Name ?? "",
+            entity.Owner!.Name ?? "",
             entity.Version ?? "",
             entity.CreatedDate,
             entity.RevisedDate,

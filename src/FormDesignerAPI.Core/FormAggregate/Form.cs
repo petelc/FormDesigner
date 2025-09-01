@@ -1,10 +1,9 @@
-using System;
-using System.Buffers;
-
 namespace FormDesignerAPI.Core.FormAggregate;
 
 public class Form : EntityBase, IAggregateRoot
 {
+    // TODO: Add value objects for FormNumber, FormTitle, Division, Version, ConfigurationPath
+    // ? How does a value object encapsulate its data and enforce invariants?
     public Form(string formNumber)
     {
         UpdateFormNumber(formNumber);
@@ -14,15 +13,15 @@ public class Form : EntityBase, IAggregateRoot
     public Form(string formNumber, string formTitle)
     {
         UpdateFormNumber(formNumber);
-        SetTitle(formTitle);
+        UpdateFormTitle(formTitle);
         Status = FormStatus.NotSet;
     }
 
     public string FormNumber { get; private set; } = default!;
     public string FormTitle { get; private set; } = default!;
-    public string Division { get; private set; } = default!;
-    public Owner Owner { get; private set; } = default!;
-    public string Version { get; private set; } = default!;
+    public string? Division { get; private set; } = default!;
+    public Owner? Owner { get; private set; } = default!;
+    public string? Version { get; private set; } = default!;
     public DateTime CreatedDate { get; private set; } = DateTime.UtcNow;
     public DateTime RevisedDate { get; private set; } = DateTime.UtcNow;
     public string? ConfigurationPath { get; set; }
@@ -35,9 +34,21 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
-    public Form SetTitle(string title)
+    public Form UpdateFormTitle(string title)
     {
         FormTitle = Guard.Against.NullOrEmpty(title, nameof(title));
+        return this;
+    }
+
+    public Form UpdateDivision(string division)
+    {
+        Division = Guard.Against.NullOrEmpty(division, nameof(division));
+        return this;
+    }
+
+    public Form UpdateVersion(string version)
+    {
+        Version = Guard.Against.NullOrEmpty(version, nameof(version));
         return this;
     }
 
@@ -47,14 +58,20 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
+    public Form SetConfigurationPath(string? configurationPath)
+    {
+        ConfigurationPath = configurationPath;
+        return this;
+    }
+
     public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newVersion, string newConfigurationPath)
     {
         UpdateFormNumber(newFormNumber);
-        SetTitle(newFormTitle);
-        Division = Guard.Against.NullOrEmpty(newDivision, nameof(newDivision));
+        UpdateFormTitle(newFormTitle);
+        UpdateDivision(newDivision);
         SetOwner(newOwner, string.Empty); // Email is optional for now.
-        Version = Guard.Against.NullOrEmpty(newVersion, nameof(newVersion));
-        ConfigurationPath = newConfigurationPath; // Can be null or empty.
+        UpdateVersion(newVersion);
+        SetConfigurationPath(newConfigurationPath); // Can be null or empty.
         RevisedDate = DateTime.UtcNow;
         return this;
     }
