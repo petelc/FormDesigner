@@ -2,7 +2,7 @@ namespace FormDesignerAPI.UseCases.Forms;
 
 public record FormDTO
 (
-    Guid Id,
+    int Id,
     string FormNumber,
     string FormTitle,
     string Division,
