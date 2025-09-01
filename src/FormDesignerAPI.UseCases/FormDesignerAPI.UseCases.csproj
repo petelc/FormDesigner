@@ -11,8 +11,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Forms/Delete/" />
-    <Folder Include="Forms/Get/" />
     <Folder Include="Forms/Update/" />
   </ItemGroup>
 

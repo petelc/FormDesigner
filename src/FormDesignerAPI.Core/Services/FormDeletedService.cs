@@ -10,9 +10,9 @@ namespace FormDesignerAPI.Core.Services;
 /// <param name="_formRepository"></param>
 /// <param name="_mediator"></param>
 /// <param name="logger"></param>
-public class FormDeletedService(IRepository<Form> _formRepository, IMediator _mediator, ILogger<FormDeletedService> logger) : IDeletedFormService
+public class FormDeletedService(IRepository<Form> _formRepository, IMediator _mediator, ILogger<FormDeletedService> logger) : IDeleteFormService
 {
-    public async Task<Result> DeleteForm(int formId)
+    public async Task<Result> DeleteFormAsync(int formId, CancellationToken cancellationToken)
     {
         logger.LogInformation("Deleting Form {formId}", formId);
         Form? aggregateToDelete = await _formRepository.GetByIdAsync(formId);
