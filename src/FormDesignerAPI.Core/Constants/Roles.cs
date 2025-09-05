@@ -1,8 +1,7 @@
-using System;
-
 namespace FormDesignerAPI.Core.Constants;
 
-public class Roles
+public abstract class Roles
 {
-
+    public const string FormDesignerAdminRole = "FormDesignerAdminRole";
+    public const string FormDesignerDevRole = "FormDesignerDevRole";
 }

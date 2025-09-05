@@ -1,8 +1,8 @@
-using System;
-
 namespace FormDesignerAPI.Core.Constants;
 
-public class Policies
+public abstract class Policies
 {
-
+    public const string FormDesignerRevisePolicy = "FormDesignerRevisePolicy";
+    public const string FormDesignerCreatePolicy = "FormDesignerCreatePolicy";
+    public const string FormDesignerAdminPolicy = "FormDesignerAdminPolicy";
 }
