@@ -5,10 +5,11 @@ namespace FormDesignerAPI.Web.Configurations;
 
 public static class OptionConfigs
 {
-  public static IServiceCollection AddOptionConfigs(this IServiceCollection services,
-                                                    IConfiguration configuration,
-                                                    Microsoft.Extensions.Logging.ILogger logger,
-                                                    WebApplicationBuilder builder)
+  public static IServiceCollection AddOptionConfigs(
+      this IServiceCollection services,
+      IConfiguration configuration,
+      Microsoft.Extensions.Logging.ILogger logger,
+      WebApplicationBuilder builder)
   {
     services.Configure<MailserverConfiguration>(configuration.GetSection("Mailserver"))
     // Configure Web Behavior
