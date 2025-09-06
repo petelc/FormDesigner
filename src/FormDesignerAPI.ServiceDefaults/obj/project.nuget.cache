@@ -1,14 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "rOZb9rn1uIo=",
+  "dgSpecHash": "f2HSiv0IuXI=",
   "success": false,
-  "projectFilePath": "/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.ServiceDefaults/FormDesignerAPI.ServiceDefaults.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.ServiceDefaults/FormDesignerAPI.ServiceDefaults.csproj",
+  "expectedPackageFiles": [
+    "/Users/pete/.nuget/packages/microsoft.netcore.app.ref/9.0.5/microsoft.netcore.app.ref.9.0.5.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.5/microsoft.aspnetcore.app.ref.9.0.5.nupkg.sha512"
+  ],
   "logs": [
     {
       "code": "NU1008",
       "level": "Error",
-      "message": "Projects that use central package version management should not define the version on the PackageReference items but on the PackageVersion items: Microsoft.AspNetCore.Identity.EntityFrameworkCore."
+      "message": "The following PackageReference items cannot define a value for Version: Microsoft.AspNetCore.Identity.EntityFrameworkCore. Projects using Central Package Management must define a Version value on a PackageVersion item. For more information, visit https://aka.ms/nuget/cpm/gettingstarted",
+      "projectPath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.ServiceDefaults/FormDesignerAPI.ServiceDefaults.csproj",
+      "filePath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.ServiceDefaults/FormDesignerAPI.ServiceDefaults.csproj",
+      "targetGraphs": []
     }
   ]
 }
