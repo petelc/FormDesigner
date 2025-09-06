@@ -1,7 +1,9 @@
 using FastEndpoints;
 namespace FormDesignerAPI.UseCases.Forms.List;
 
-public record ListFormsQueryService(int? Skip, int? Take) : IQuery<Result<IEnumerable<FormDTO>>>;
+public record ListFormsQuery(int? Skip, int? Take) : IQuery<Result<IEnumerable<FormDTO>>>;
+
+
 
 public record ListFormsQuery2(int? Skip, int? Take) : FastEndpoints.ICommand<Result<IEnumerable<FormDTO>>>;
 
