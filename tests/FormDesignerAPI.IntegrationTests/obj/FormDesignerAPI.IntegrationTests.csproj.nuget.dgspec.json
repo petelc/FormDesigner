@@ -79,6 +79,10 @@
               "version": "[12.5.0, )",
               "versionCentrallyManaged": true
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
             "Microsoft.Extensions.Logging.Abstractions": {
               "target": "Package",
               "version": "[9.0.6, )",
@@ -106,6 +110,7 @@
             "MailKit": "4.13.0",
             "MediatR": "12.5.0",
             "Microsoft.AspNetCore.Mvc.Testing": "9.0.6",
+            "Microsoft.EntityFrameworkCore": "9.0.8",
             "Microsoft.EntityFrameworkCore.Design": "9.0.6",
             "Microsoft.EntityFrameworkCore.InMemory": "9.0.6",
             "Microsoft.EntityFrameworkCore.Relational": "9.0.6",
@@ -231,6 +236,10 @@
               "version": "[12.5.0, )",
               "versionCentrallyManaged": true
             },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
             "Microsoft.EntityFrameworkCore.Relational": {
               "target": "Package",
               "version": "[9.0.6, )",
@@ -294,6 +303,7 @@
             "MailKit": "4.13.0",
             "MediatR": "12.5.0",
             "Microsoft.AspNetCore.Mvc.Testing": "9.0.6",
+            "Microsoft.EntityFrameworkCore": "9.0.8",
             "Microsoft.EntityFrameworkCore.Design": "9.0.6",
             "Microsoft.EntityFrameworkCore.InMemory": "9.0.6",
             "Microsoft.EntityFrameworkCore.Relational": "9.0.6",
@@ -405,6 +415,10 @@
               "target": "Package",
               "version": "[12.5.0, )",
               "versionCentrallyManaged": true
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
             }
           },
           "centralPackageVersions": {
@@ -428,6 +442,7 @@
             "MailKit": "4.13.0",
             "MediatR": "12.5.0",
             "Microsoft.AspNetCore.Mvc.Testing": "9.0.6",
+            "Microsoft.EntityFrameworkCore": "9.0.8",
             "Microsoft.EntityFrameworkCore.Design": "9.0.6",
             "Microsoft.EntityFrameworkCore.InMemory": "9.0.6",
             "Microsoft.EntityFrameworkCore.Relational": "9.0.6",
@@ -528,6 +543,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
             "Microsoft.AspNetCore.Mvc.Testing": {
               "target": "Package",
               "version": "[9.0.6, )",
@@ -584,6 +603,7 @@
             "MailKit": "4.13.0",
             "MediatR": "12.5.0",
             "Microsoft.AspNetCore.Mvc.Testing": "9.0.6",
+            "Microsoft.EntityFrameworkCore": "9.0.8",
             "Microsoft.EntityFrameworkCore.Design": "9.0.6",
             "Microsoft.EntityFrameworkCore.InMemory": "9.0.6",
             "Microsoft.EntityFrameworkCore.Relational": "9.0.6",
@@ -684,6 +704,10 @@
         "net9.0": {
           "targetAlias": "net9.0",
           "dependencies": {
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[9.0.8, )"
+            },
             "Microsoft.NET.Test.Sdk": {
               "target": "Package",
               "version": "[17.14.1, )",
@@ -745,6 +769,7 @@
             "MailKit": "4.13.0",
             "MediatR": "12.5.0",
             "Microsoft.AspNetCore.Mvc.Testing": "9.0.6",
+            "Microsoft.EntityFrameworkCore": "9.0.8",
             "Microsoft.EntityFrameworkCore.Design": "9.0.6",
             "Microsoft.EntityFrameworkCore.InMemory": "9.0.6",
             "Microsoft.EntityFrameworkCore.Relational": "9.0.6",

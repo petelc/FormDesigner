@@ -33,21 +33,39 @@ public class IdentityService : IIdentityService
     {
         var user = new ApplicationUser { UserName = userName, Email = userName };
         var result = await _userManager.CreateAsync(user, password);
-        return (result.ToArdalisResult(), user.Id);
+
+        return (result.ToApplicationResult(), user.Id);
+    }
+    public async Task<bool> IsInRoleAsync(string userId, string role)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        //if (user == null) return false;
+        return user != null && await _userManager.IsInRoleAsync(user, role);
     }
 
-    public Task<bool> AuthorizeAsync(string userId, string policyName)
+    public async Task<bool> AuthorizeAsync(string userId, string policyName)
     {
-        throw new NotImplementedException();
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return false;
+
+        var principal = await _userClaimsPrincipalFactory.CreateAsync(user);
+        var result = await _authorizationService.AuthorizeAsync(principal, policyName);
+
+        return result.Succeeded;
     }
 
-    public Task<bool> IsInRoleAsync(string userId, string role)
+    public async Task<Result> DeleteUserAsync(string userId)
     {
-        throw new NotImplementedException();
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var result = await _userManager.DeleteAsync(user);
+        return user != null ? await DeleteUserAsync(user) : Result.Success();
     }
 
-    public Task<Result> DeleteUserAsync(string userId)
+    public async Task<Result> DeleteUserAsync(ApplicationUser user)
     {
-        throw new NotImplementedException();
+        var result = await _userManager.DeleteAsync(user);
+        return result.ToApplicationResult();
     }
 }

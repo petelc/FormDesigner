@@ -1,12 +1,20 @@
 ﻿using FormDesignerAPI.Core.ContributorAggregate;
 using FormDesignerAPI.Core.FormAggregate;
+using FormDesignerAPI.Core.Interfaces;
+using FormDesignerAPI.Infrastructure.Identity;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace FormDesignerAPI.Infrastructure.Data;
 
-public class AppDbContext(DbContextOptions<AppDbContext> options,
-  IDomainEventDispatcher? dispatcher) : DbContext(options)
+public class AppDbContext : IdentityDbContext<ApplicationUser>
 {
-  private readonly IDomainEventDispatcher? _dispatcher = dispatcher;
+  private readonly IDomainEventDispatcher? _dispatcher;
+
+  public AppDbContext(DbContextOptions<AppDbContext> options, IDomainEventDispatcher? dispatcher) : base(options)
+  {
+    _dispatcher = dispatcher;
+  }
 
   public DbSet<Contributor> Contributors => Set<Contributor>();
 
