@@ -10,10 +10,22 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c540eeb6-e06b-4456-a539-be58dd8b88c7")]
+[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.0.0/tools/dc" +
+    "p"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.0.0/tools/ex" +
+    "t/"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.0.0/tools/ex" +
+    "t/bin/"))]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", ("/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesi" +
+    "gnerAPI.AspireHost"))]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "FormDesignerAPI.AspireHost.csproj")]
+[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/pete/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.0.0/tools/Aspire.Das" +
+    "hboard.dll"))]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+6e8930ee4c9bfbb85a6b0c2ae15bde704db1c32c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+98eec1a724f4c312e3de71cbe0d7c57dadcf6fef")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

@@ -1,6 +1,7 @@
 ﻿using FormDesignerAPI.Core.ContributorAggregate;
 using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.Infrastructure.Data;
+using FormDesignerAPI.Infrastructure.Identity;
 
 namespace FormDesignerAPI.IntegrationTests.Data;
 
@@ -42,4 +43,9 @@ public abstract class BaseEfRepoTestFixture
   {
     return new EfRepository<Form>(_dbContext);
   }
+
+  // protected EfRepository<ApplicationUser> GetUserRepository()
+  // {
+  //   return new EfRepository<ApplicationUser>(_dbContext);
+  // }
 }

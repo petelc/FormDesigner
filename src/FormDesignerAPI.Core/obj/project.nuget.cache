@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "4nf4RIrBwlg=",
-  "success": false,
+  "dgSpecHash": "SS+cjJ4JCaw=",
+  "success": true,
   "projectFilePath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj",
   "expectedPackageFiles": [
+    "/Users/pete/.nuget/packages/ardalis.guardclauses/5.0.0/ardalis.guardclauses.5.0.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.result/10.1.0/ardalis.result.10.1.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.sharedkernel/3.0.1/ardalis.sharedkernel.3.0.1.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.smartenum/8.2.0/ardalis.smartenum.8.2.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.specification/9.2.0/ardalis.specification.9.2.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/mediatr/12.5.0/mediatr.12.5.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.6/microsoft.extensions.dependencyinjection.abstractions.9.0.6.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.6/microsoft.extensions.logging.abstractions.9.0.6.nupkg.sha512",
     "/Users/pete/.nuget/packages/microsoft.netcore.app.ref/9.0.5/microsoft.netcore.app.ref.9.0.5.nupkg.sha512",
     "/Users/pete/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.5/microsoft.aspnetcore.app.ref.9.0.5.nupkg.sha512"
   ],
-  "logs": [
-    {
-      "code": "NU1008",
-      "level": "Error",
-      "message": "The following PackageReference items cannot define a value for Version: Microsoft.AspNetCore.Identity.EntityFrameworkCore. Projects using Central Package Management must define a Version value on a PackageVersion item. For more information, visit https://aka.ms/nuget/cpm/gettingstarted",
-      "projectPath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj",
-      "filePath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj",
-      "targetGraphs": []
-    }
-  ]
+  "logs": []
 }
