@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e05cb5bccbd3a36b6a90b3a54c410bac6e48990e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c60260a39c212861408ae2ea617f5e705ab404ee")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.ServiceDefaults")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
