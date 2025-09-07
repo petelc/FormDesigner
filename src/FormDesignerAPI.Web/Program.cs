@@ -1,4 +1,6 @@
-﻿using FormDesignerAPI.UseCases.Contributors.Create;
+﻿using FormDesignerAPI.Infrastructure;
+//using FormDesignerAPI.ServiceDefaults;
+using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +20,10 @@ var appLogger = new SerilogLoggerFactory(logger)
 builder.Services.AddOptionConfigs(builder.Configuration, appLogger, builder);
 builder.Services.AddServiceConfigs(appLogger, builder);
 
+// Register services from other projects
+builder.AddServiceDefaults();
+builder.Services.AddInfrastructureServices(builder.Configuration, appLogger);
+builder.Services.AddMediatrConfigs();
 
 builder.Services.AddFastEndpoints()
   .SwaggerDocument(o =>
@@ -30,9 +36,7 @@ builder.Services.AddFastEndpoints()
       });
 
 // wire up commands
-//builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2,Result<int>>, CreateContributorCommandHandler2>();
-
-builder.AddServiceDefaults();
+builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>();
 
 var app = builder.Build();
 
