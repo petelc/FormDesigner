@@ -8,5 +8,5 @@ namespace Projects;
 public class FormDesignerAPI_AspireHost
 {
     private FormDesignerAPI_AspireHost() { }
-    public static string ProjectPath => """/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.AspireHost""";
+    public static string ProjectPath => """/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.AspireHost""";
 }

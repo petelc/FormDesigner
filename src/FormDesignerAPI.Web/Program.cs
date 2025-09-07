@@ -20,14 +20,14 @@ builder.Services.AddServiceConfigs(appLogger, builder);
 
 
 builder.Services.AddFastEndpoints()
-                .SwaggerDocument(o =>
-                {
-                  o.ShortSchemaNames = true;
-                })
-                .AddCommandMiddleware(c =>
-                {
-                  c.Register(typeof(CommandLogger<,>));
-                });
+  .SwaggerDocument(o =>
+      {
+        o.ShortSchemaNames = true;
+      })
+      .AddCommandMiddleware(c =>
+      {
+        c.Register(typeof(CommandLogger<,>));
+      });
 
 // wire up commands
 //builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2,Result<int>>, CreateContributorCommandHandler2>();
