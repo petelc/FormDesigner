@@ -17,8 +17,18 @@ public class UpdateFormHandler(IRepository<Form> _repository)
 
     await _repository.UpdateAsync(existingForm, cancellationToken);
 
-    return new FormDTO(existingForm.Id,
-      existingForm.FormNumber, existingForm.FormTitle, existingForm.Division! ?? "", existingForm.Owner!.Name ?? "", existingForm.Version! ?? "", existingForm.CreatedDate, existingForm.RevisedDate, existingForm.ConfigurationPath);
+    return new FormDTO(
+      existingForm.Id,
+      existingForm.FormNumber,
+      existingForm.FormTitle,
+      existingForm.Division! ?? "",
+      existingForm.Owner!.Name ?? "",
+      existingForm.Version! ?? "",
+      existingForm.Status,
+      existingForm.CreatedDate,
+      existingForm.RevisedDate,
+      existingForm.ConfigurationPath
+      );
   }
 
 }

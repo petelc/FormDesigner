@@ -1,18 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "YST0lqhDuWk=",
+  "dgSpecHash": "SS+cjJ4JCaw=",
   "success": true,
-  "projectFilePath": "/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj",
+  "projectFilePath": "/Users/pete/Development/Projects/FormDesigner/Server/FormDesignerAPI/src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj",
   "expectedPackageFiles": [
-    "/Users/petercarroll/.nuget/packages/ardalis.guardclauses/5.0.0/ardalis.guardclauses.5.0.0.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/ardalis.result/10.1.0/ardalis.result.10.1.0.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/ardalis.sharedkernel/3.0.1/ardalis.sharedkernel.3.0.1.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/ardalis.smartenum/8.2.0/ardalis.smartenum.8.2.0.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/ardalis.specification/9.2.0/ardalis.specification.9.2.0.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/mediatr/12.5.0/mediatr.12.5.0.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.6/microsoft.extensions.dependencyinjection.abstractions.9.0.6.nupkg.sha512",
-    "/Users/petercarroll/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.6/microsoft.extensions.logging.abstractions.9.0.6.nupkg.sha512"
+    "/Users/pete/.nuget/packages/ardalis.guardclauses/5.0.0/ardalis.guardclauses.5.0.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.result/10.1.0/ardalis.result.10.1.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.sharedkernel/3.0.1/ardalis.sharedkernel.3.0.1.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.smartenum/8.2.0/ardalis.smartenum.8.2.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/ardalis.specification/9.2.0/ardalis.specification.9.2.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/mediatr/12.5.0/mediatr.12.5.0.nupkg.sha512",
+    "/Users/pete/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/9.0.6/microsoft.extensions.dependencyinjection.abstractions.9.0.6.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.6/microsoft.extensions.logging.abstractions.9.0.6.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.netcore.app.ref/9.0.5/microsoft.netcore.app.ref.9.0.5.nupkg.sha512",
+    "/Users/pete/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.5/microsoft.aspnetcore.app.ref.9.0.5.nupkg.sha512"
   ],
   "logs": []
 }
