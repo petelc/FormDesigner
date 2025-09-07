@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.UseCases")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c60260a39c212861408ae2ea617f5e705ab404ee")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c757fd0b68ec6568e50caff412405457a0df74bb")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.UseCases")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.UseCases")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
