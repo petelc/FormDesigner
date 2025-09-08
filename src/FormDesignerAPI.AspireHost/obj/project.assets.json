@@ -1649,6 +1649,7 @@
           }
         }
       },
+<<<<<<< HEAD
       "Semver/3.0.0": {
         "type": "package",
         "dependencies": {
@@ -1727,6 +1728,9 @@
         }
       },
       "System.Diagnostics.EventLog/9.0.7": {
+=======
+      "System.Diagnostics.EventLog/9.0.0": {
+>>>>>>> main
         "type": "package",
         "compile": {
           "lib/net9.0/System.Diagnostics.EventLog.dll": {
@@ -1760,12 +1764,18 @@
           }
         },
         "runtime": {
+<<<<<<< HEAD
           "lib/net9.0/System.IO.Hashing.dll": {
             "related": ".xml"
           }
         },
         "build": {
           "buildTransitive/net8.0/_._": {}
+=======
+          "lib/net8.0/System.IdentityModel.Tokens.Jwt.dll": {
+            "related": ".xml"
+          }
+>>>>>>> main
         }
       },
       "System.Threading.RateLimiting/8.0.0": {
@@ -4101,6 +4111,7 @@
         "polly.ratelimiting.nuspec"
       ]
     },
+<<<<<<< HEAD
     "Semver/3.0.0": {
       "sha512": "9jZCicsVgTebqkAujRWtC9J1A5EQVlu0TVKHcgoCuv345ve5DYf4D1MjhKEnQjdRZo6x/vdv6QQrYFs7ilGzLA==",
       "type": "package",
@@ -4121,6 +4132,10 @@
     },
     "StreamJsonRpc/2.22.11": {
       "sha512": "TQcqBFswLNpdSJANjhxZmIIe0Yl0kGqzjZ+uHLdhrkxntofvNu6C53XPEEYQ3Wkj8AorKumkuv/VMvTH4BHOZw==",
+=======
+    "System.Diagnostics.EventLog/9.0.0": {
+      "sha512": "qd01+AqPhbAG14KtdtIqFk+cxHQFZ/oqRSCoxU1F+Q6Kv0cl726sl7RzU9yLFGd4BUOKdN4XojXF0pQf/R6YeA==",
+>>>>>>> main
       "type": "package",
       "path": "streamjsonrpc/2.22.11",
       "files": [
@@ -4217,6 +4232,7 @@
     "System.IO.Hashing/9.0.7": {
       "sha512": "2sMrwd/AHYipeiOwYcoqD99c4U8F2x7GalonEYxkHUvTLNzE9Pxx2lz8ygS9cOqyDsruYARZAYL5pPVFh/s3lw==",
       "type": "package",
+<<<<<<< HEAD
       "path": "system.io.hashing/9.0.7",
       "files": [
         ".nupkg.metadata",
@@ -4240,6 +4256,26 @@
         "system.io.hashing.9.0.7.nupkg.sha512",
         "system.io.hashing.nuspec",
         "useSharedDesignerContext.txt"
+=======
+      "path": "system.identitymodel.tokens.jwt/7.1.2",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "lib/net461/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net461/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/net462/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net462/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/net472/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net472/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/net6.0/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net6.0/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/net8.0/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/net8.0/System.IdentityModel.Tokens.Jwt.xml",
+        "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.dll",
+        "lib/netstandard2.0/System.IdentityModel.Tokens.Jwt.xml",
+        "system.identitymodel.tokens.jwt.7.1.2.nupkg.sha512",
+        "system.identitymodel.tokens.jwt.nuspec"
+>>>>>>> main
       ]
     },
     "System.Threading.RateLimiting/8.0.0": {

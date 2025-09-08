@@ -7,14 +7,12 @@ public class Form : EntityBase, IAggregateRoot
     public Form(string formNumber)
     {
         UpdateFormNumber(formNumber);
-        Status = FormStatus.NotSet;
     }
 
     public Form(string formNumber, string formTitle)
     {
         UpdateFormNumber(formNumber);
         UpdateFormTitle(formTitle);
-        Status = FormStatus.NotSet;
     }
 
     public string FormNumber { get; private set; } = default!;
