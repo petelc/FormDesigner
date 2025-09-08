@@ -10,7 +10,6 @@ public record FormDTO
     string? Division,
     string? Owner,
     string? Version,
-    FormStatus Status,
     DateTime CreatedDate,
     DateTime RevisedDate,
     string? ConfigurationPath

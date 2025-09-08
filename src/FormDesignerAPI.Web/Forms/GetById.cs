@@ -39,7 +39,6 @@ public class GetById(IMediator _mediator)
                 result.Value.Division,
                 result.Value.Owner,
                 result.Value.Version,
-                result.Value.Status,
                 result.Value.CreatedDate,
                 result.Value.RevisedDate,
                 result.Value.ConfigurationPath

@@ -24,7 +24,6 @@ public class UpdateFormHandler(IRepository<Form> _repository)
       existingForm.Division! ?? "",
       existingForm.Owner!.Name ?? "",
       existingForm.Version! ?? "",
-      existingForm.Status,
       existingForm.CreatedDate,
       existingForm.RevisedDate,
       existingForm.ConfigurationPath

@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "tTMPbXwXToE=",
+  "dgSpecHash": "WWNZBWJp64o=",
   "success": true,
   "projectFilePath": "/Users/pete/Development/Projects/FormDesigner/tests/FormDesignerAPI.UnitTests/FormDesignerAPI.UnitTests.csproj",
   "expectedPackageFiles": [
@@ -44,5 +44,15 @@
     "/Users/pete/.nuget/packages/microsoft.netcore.app.ref/9.0.5/microsoft.netcore.app.ref.9.0.5.nupkg.sha512",
     "/Users/pete/.nuget/packages/microsoft.aspnetcore.app.ref/9.0.5/microsoft.aspnetcore.app.ref.9.0.5.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "message": "Problem reading the cache file /Users/pete/Development/Projects/FormDesigner/tests/FormDesignerAPI.UnitTests/obj/project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0.",
+      "projectPath": "/Users/pete/Development/Projects/FormDesigner/tests/FormDesignerAPI.UnitTests/FormDesignerAPI.UnitTests.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/pete/Development/Projects/FormDesigner/tests/FormDesignerAPI.UnitTests/FormDesignerAPI.UnitTests.csproj",
+      "targetGraphs": []
+    }
+  ]
 }

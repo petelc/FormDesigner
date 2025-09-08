@@ -38,9 +38,29 @@ builder.Services.AddFastEndpoints()
 // wire up commands
 builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>();
 
+
+
 var app = builder.Build();
 
+// Register all synchronous middleware here
+if (app.Environment.IsDevelopment())
+{
+  app.UseDeveloperExceptionPage();
+  // app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
+}
+else
+{
+  app.UseDefaultExceptionHandler(); // from FastEndpoints
+  app.UseHsts();
+}
+
+app.UseFastEndpoints();
+app.UseSwaggerGen(); // Includes AddFileServer and static files middleware
+app.UseHttpsRedirection(); // Note this will drop Authorization headers
+
+// Now run async startup tasks (database seeding)
 await app.UseAppMiddlewareAndSeedDatabase();
+
 
 app.Run();
 

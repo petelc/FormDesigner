@@ -5976,8 +5976,8 @@
           "Ardalis.SmartEnum": "8.2.0",
           "Ardalis.Specification": "9.2.0",
           "Ardalis.Specification.EntityFrameworkCore": "9.2.0",
-          "Aspire.Hosting.AppHost": "9.0.0",
-          "Aspire.Hosting.Testing": "9.0.0",
+          "Aspire.Hosting.AppHost": "9.4.1",
+          "Aspire.Hosting.Testing": "9.4.1",
           "Azure.Identity": "1.13.1",
           "coverlet.collector": "6.0.4",
           "FastEndpoints": "6.2.0",
@@ -6484,5 +6484,13 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/obj/project.nuget.cache : '<' is an invalid start of a property name. Expected a '\"'. Path: $ | LineNumber: 2 | BytePositionInLine: 0."
+    }
+  ]
 }
