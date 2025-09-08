@@ -1,72 +1,80 @@
-2025-09-08 04:09:08.689 -04:00 [INF] Registered 10 endpoints in 88 milliseconds.
-2025-09-08 04:09:09.206 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+2025-09-08 04:42:19.529 -04:00 [INF] Registered 10 endpoints in 75 milliseconds.
+2025-09-08 04:42:19.866 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
-2025-09-08 04:09:09.317 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+2025-09-08 04:42:19.977 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
 SELECT EXISTS (
     SELECT 1
     FROM "Contributors" AS "c")
-2025-09-08 04:09:09.488 -04:00 [INF] Now listening on: https://localhost:63549
-2025-09-08 04:09:09.488 -04:00 [INF] Application started. Press Ctrl+C to shut down.
-2025-09-08 04:09:09.488 -04:00 [INF] Hosting environment: Development
-2025-09-08 04:09:09.488 -04:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
-2025-09-08 04:09:47.854 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
-2025-09-08 04:09:47.876 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
-2025-09-08 04:09:47.874 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 22.6727ms
-2025-09-08 04:09:47.918 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 41.7982ms
-2025-09-08 04:09:47.921 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - null null
-2025-09-08 04:09:47.921 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - null null
-2025-09-08 04:09:47.921 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.css - null null
-2025-09-08 04:09:47.924 -04:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
-2025-09-08 04:09:47.924 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.css - 200 218 text/css 3.1173ms
-2025-09-08 04:09:47.926 -04:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
-2025-09-08 04:09:47.926 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - 200 154988 text/css 4.2655ms
-2025-09-08 04:09:47.932 -04:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
-2025-09-08 04:09:47.932 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - 200 1468327 text/javascript 10.9132ms
-2025-09-08 04:09:47.944 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - null null
-2025-09-08 04:09:47.945 -04:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
-2025-09-08 04:09:47.945 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - 200 229224 text/javascript 1.4054ms
-2025-09-08 04:09:48.058 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
-2025-09-08 04:09:48.060 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/favicon-32x32.png - null null
-2025-09-08 04:09:48.060 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
-2025-09-08 04:09:48.060 -04:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
-2025-09-08 04:09:48.060 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/favicon-32x32.png - 200 628 image/png 0.2757ms
-2025-09-08 04:09:48.269 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 211.1685ms
-2025-09-08 04:09:56.549 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
-2025-09-08 04:09:56.553 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
-2025-09-08 04:09:56.582 -04:00 [INF] Handling ListFormsQuery
-2025-09-08 04:09:56.582 -04:00 [INF] Property Skip : null
-2025-09-08 04:09:56.582 -04:00 [INF] Property Take : null
-2025-09-08 04:09:56.583 -04:00 [INF] Handling ListFormsQuery
-2025-09-08 04:09:56.583 -04:00 [INF] Property Skip : null
-2025-09-08 04:09:56.583 -04:00 [INF] Property Take : null
-2025-09-08 04:09:56.602 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
-2025-09-08 04:09:56.603 -04:00 [ERR] An unhandled exception has occurred while executing the request.
-System.InvalidOperationException: No suitable constructor was found for entity type 'FormDTO'. The following constructors had parameters that could not be bound to properties of the entity type: 
-    Cannot bind 'Status' in 'FormDTO(int Id, string FormNumber, string FormTitle, string Division, string Owner, string Version, FormStatus Status, DateTime CreatedDate, DateTime RevisedDate, string ConfigurationPath)'
-    Cannot bind 'original' in 'FormDTO(FormDTO original)'
-Note that only mapped properties can be bound to constructor parameters. Navigations to related entities, including references to owned types, cannot be bound.
-   at Microsoft.EntityFrameworkCore.Metadata.Internal.ConstructorBindingFactory.GetBindings[T](T type, Func`5 bindToProperty, Func`5 bind, InstantiationBinding& constructorBinding, InstantiationBinding& serviceOnlyBinding)
-   at Microsoft.EntityFrameworkCore.Metadata.Internal.ConstructorBindingFactory.GetBindings(IMutableEntityType entityType, InstantiationBinding& constructorBinding, InstantiationBinding& serviceOnlyBinding)
-   at Microsoft.EntityFrameworkCore.Metadata.Conventions.ConstructorBindingConvention.ProcessModelFinalizing(IConventionModelBuilder modelBuilder, IConventionContext`1 context)
-   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.ImmediateConventionScope.OnModelFinalizing(IConventionModelBuilder modelBuilder)
-   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.OnModelFinalizing(IConventionModelBuilder modelBuilder)
-   at Microsoft.EntityFrameworkCore.Metadata.Internal.Model.FinalizeModel()
-   at Microsoft.EntityFrameworkCore.ModelBuilder.FinalizeModel()
-   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.AddEntityType(Type clrType)
-   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.GetOrAddEntityType(Type clrType)
-   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQueryRaw[TResult](DatabaseFacade databaseFacade, String sql, Object[] parameters)
-   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQuery[TResult](DatabaseFacade databaseFacade, FormattableString sql)
-   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
-   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
-   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
-   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
-   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
-   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
-   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
-   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
-   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
-   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
-   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
-   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
-   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
-2025-09-08 04:09:56.614 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 64.7033ms
+2025-09-08 04:42:20.119 -04:00 [INF] Now listening on: https://localhost:57679
+2025-09-08 04:42:20.119 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-08 04:42:20.119 -04:00 [INF] Hosting environment: Development
+2025-09-08 04:42:20.119 -04:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-09-08 04:44:04.375 -04:00 [INF] Application is shutting down...
+2025-09-08 04:44:31.814 -04:00 [INF] Registered 10 endpoints in 84 milliseconds.
+2025-09-08 04:44:32.128 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-08 04:44:32.226 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-08 04:44:32.379 -04:00 [INF] Now listening on: https://localhost:51314
+2025-09-08 04:44:32.380 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-08 04:44:32.380 -04:00 [INF] Hosting environment: Development
+2025-09-08 04:44:32.380 -04:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-09-08 04:45:02.015 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-08 04:45:02.072 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 61.3462ms
+2025-09-08 04:45:02.194 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-08 04:45:02.196 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-08 04:45:02.422 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 228.1241ms
+2025-09-08 04:45:05.005 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-09-08 04:45:05.009 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-08 04:45:05.032 -04:00 [INF] Handling ListFormsQuery
+2025-09-08 04:45:05.033 -04:00 [INF] Property Skip : null
+2025-09-08 04:45:05.033 -04:00 [INF] Property Take : null
+2025-09-08 04:45:05.033 -04:00 [INF] Handling ListFormsQuery
+2025-09-08 04:45:05.033 -04:00 [INF] Property Skip : null
+2025-09-08 04:45:05.033 -04:00 [INF] Property Take : null
+2025-09-08 04:45:05.092 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-08 04:45:05.094 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 60 ms
+2025-09-08 04:45:05.094 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 60 ms
+2025-09-08 04:45:05.100 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-08 04:45:05.102 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 96.4608ms
+2025-09-08 04:48:04.914 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Forms - application/json 173
+2025-09-08 04:48:04.914 -04:00 [INF] Executing endpoint 'HTTP: POST /Forms'
+2025-09-08 04:48:04.940 -04:00 [INF] Executed endpoint 'HTTP: POST /Forms'
+2025-09-08 04:48:04.940 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Forms - 400 null application/problem+json; charset=utf-8 26.4387ms
+2025-09-08 04:48:34.194 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Forms - application/json 174
+2025-09-08 04:48:34.194 -04:00 [INF] Executing endpoint 'HTTP: POST /Forms'
+2025-09-08 04:48:34.197 -04:00 [INF] Executed endpoint 'HTTP: POST /Forms'
+2025-09-08 04:48:34.197 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Forms - 400 null application/problem+json; charset=utf-8 3.2366ms
+2025-09-08 04:50:15.549 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Forms - application/json 231
+2025-09-08 04:50:15.549 -04:00 [INF] Executing endpoint 'HTTP: POST /Forms'
+2025-09-08 04:50:15.562 -04:00 [INF] Handling CreateFormCommand
+2025-09-08 04:50:15.563 -04:00 [INF] Property FormNumber : FD-001
+2025-09-08 04:50:15.563 -04:00 [INF] Property FormTitle : Form Designer Initial Form
+2025-09-08 04:50:15.563 -04:00 [INF] Handling CreateFormCommand
+2025-09-08 04:50:15.563 -04:00 [INF] Property FormNumber : FD-001
+2025-09-08 04:50:15.563 -04:00 [INF] Property FormTitle : Form Designer Initial Form
+2025-09-08 04:50:15.663 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?', @p1='?' (DbType = DateTime), @p2='?', @p3='?' (Size = 6), @p4='?' (Size = 26), @p5='?' (DbType = DateTime), @p6='?' (DbType = Int32), @p7='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Forms" ("ConfigurationPath", "CreatedDate", "Division", "FormNumber", "FormTitle", "RevisedDate", "Status", "Version")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7)
+RETURNING "Id";
+2025-09-08 04:50:15.672 -04:00 [INF] Handled CreateFormCommand with Ardalis.Result.Result`1[System.Int32] in 108 ms
+2025-09-08 04:50:15.672 -04:00 [INF] Handled CreateFormCommand with Ardalis.Result.Result`1[System.Int32] in 109 ms
+2025-09-08 04:50:15.673 -04:00 [INF] Executed endpoint 'HTTP: POST /Forms'
+2025-09-08 04:50:15.673 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Forms - 200 null application/json; charset=utf-8 123.8294ms
+2025-09-08 04:50:27.537 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-09-08 04:50:27.537 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-08 04:50:27.538 -04:00 [INF] Handling ListFormsQuery
+2025-09-08 04:50:27.538 -04:00 [INF] Property Skip : null
+2025-09-08 04:50:27.538 -04:00 [INF] Property Take : null
+2025-09-08 04:50:27.538 -04:00 [INF] Handling ListFormsQuery
+2025-09-08 04:50:27.538 -04:00 [INF] Property Skip : null
+2025-09-08 04:50:27.538 -04:00 [INF] Property Take : null
+2025-09-08 04:50:27.548 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-08 04:50:27.550 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 11 ms
+2025-09-08 04:50:27.550 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 11 ms
+2025-09-08 04:50:27.551 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-08 04:50:27.552 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 14.7392ms
