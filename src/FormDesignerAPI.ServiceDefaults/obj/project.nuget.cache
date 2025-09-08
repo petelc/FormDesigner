@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "qnDSBteKUIw=",
+=======
   "dgSpecHash": "qGOHUG/xAgQ=",
+>>>>>>> main
   "success": true,
   "projectFilePath": "/Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.ServiceDefaults/FormDesignerAPI.ServiceDefaults.csproj",
   "expectedPackageFiles": [

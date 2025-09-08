@@ -18,14 +18,20 @@
     <Import Project="$(NuGetPackageRoot)microsoft.testplatform.testhost/17.14.1/build/net8.0/Microsoft.TestPlatform.TestHost.props" Condition="Exists('$(NuGetPackageRoot)microsoft.testplatform.testhost/17.14.1/build/net8.0/Microsoft.TestPlatform.TestHost.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.codecoverage/17.14.1/build/netstandard2.0/Microsoft.CodeCoverage.props" Condition="Exists('$(NuGetPackageRoot)microsoft.codecoverage/17.14.1/build/netstandard2.0/Microsoft.CodeCoverage.props')" />
     <Import Project="$(NuGetPackageRoot)microsoft.net.test.sdk/17.14.1/build/net8.0/Microsoft.NET.Test.Sdk.props" Condition="Exists('$(NuGetPackageRoot)microsoft.net.test.sdk/17.14.1/build/net8.0/Microsoft.NET.Test.Sdk.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions/9.6.0/buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions/9.6.0/buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.props')" />
-    <Import Project="$(NuGetPackageRoot)microsoft.extensions.configuration.usersecrets/9.0.0/buildTransitive/net8.0/Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.configuration.usersecrets/9.0.0/buildTransitive/net8.0/Microsoft.Extensions.Configuration.UserSecrets.props')" />
-    <Import Project="$(NuGetPackageRoot)aspire.dashboard.sdk.osx-arm64/9.0.0/buildTransitive/Aspire.Dashboard.Sdk.osx-arm64.props" Condition="Exists('$(NuGetPackageRoot)aspire.dashboard.sdk.osx-arm64/9.0.0/buildTransitive/Aspire.Dashboard.Sdk.osx-arm64.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions/9.7.0/buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.telemetry.abstractions/9.7.0/buildTransitive/net8.0/Microsoft.Extensions.Telemetry.Abstractions.props')" />
+    <Import Project="$(NuGetPackageRoot)microsoft.extensions.configuration.usersecrets/9.0.7/buildTransitive/net8.0/Microsoft.Extensions.Configuration.UserSecrets.props" Condition="Exists('$(NuGetPackageRoot)microsoft.extensions.configuration.usersecrets/9.0.7/buildTransitive/net8.0/Microsoft.Extensions.Configuration.UserSecrets.props')" />
+    <Import Project="$(NuGetPackageRoot)aspire.dashboard.sdk.osx-arm64/9.4.1/buildTransitive/Aspire.Dashboard.Sdk.osx-arm64.props" Condition="Exists('$(NuGetPackageRoot)aspire.dashboard.sdk.osx-arm64/9.4.1/buildTransitive/Aspire.Dashboard.Sdk.osx-arm64.props')" />
   </ImportGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
     <Pkgxunit_analyzers Condition=" '$(Pkgxunit_analyzers)' == '' ">/Users/pete/.nuget/packages/xunit.analyzers/1.18.0</Pkgxunit_analyzers>
+<<<<<<< HEAD
+    <PkgGrpc_Tools Condition=" '$(PkgGrpc_Tools)' == '' ">/Users/pete/.nuget/packages/grpc.tools/2.72.0</PkgGrpc_Tools>
+    <PkgAspire_Hosting_Orchestration_osx-arm64 Condition=" '$(PkgAspire_Hosting_Orchestration_osx-arm64)' == '' ">/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1</PkgAspire_Hosting_Orchestration_osx-arm64>
+    <PkgAspire_Dashboard_Sdk_osx-arm64 Condition=" '$(PkgAspire_Dashboard_Sdk_osx-arm64)' == '' ">/Users/pete/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.4.1</PkgAspire_Dashboard_Sdk_osx-arm64>
+=======
     <PkgGrpc_Tools Condition=" '$(PkgGrpc_Tools)' == '' ">/Users/pete/.nuget/packages/grpc.tools/2.67.0</PkgGrpc_Tools>
     <PkgAspire_Hosting_Orchestration_osx-arm64 Condition=" '$(PkgAspire_Hosting_Orchestration_osx-arm64)' == '' ">/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.0.0</PkgAspire_Hosting_Orchestration_osx-arm64>
     <PkgAspire_Dashboard_Sdk_osx-arm64 Condition=" '$(PkgAspire_Dashboard_Sdk_osx-arm64)' == '' ">/Users/pete/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.0.0</PkgAspire_Dashboard_Sdk_osx-arm64>
+>>>>>>> main
   </PropertyGroup>
 </Project>

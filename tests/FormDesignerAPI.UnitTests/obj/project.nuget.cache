@@ -1,6 +1,10 @@
 {
   "version": 2,
+<<<<<<< HEAD
+  "dgSpecHash": "WWNZBWJp64o=",
+=======
   "dgSpecHash": "tTMPbXwXToE=",
+>>>>>>> main
   "success": true,
   "projectFilePath": "/Users/pete/Development/Projects/FormDesigner/tests/FormDesignerAPI.UnitTests/FormDesignerAPI.UnitTests.csproj",
   "expectedPackageFiles": [

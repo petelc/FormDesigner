@@ -55,17 +55,17 @@
           "dependencies": {
             "Aspire.Dashboard.Sdk.osx-arm64": {
               "target": "Package",
-              "version": "[9.0.0, )",
+              "version": "[9.4.1, )",
               "autoReferenced": true
             },
             "Aspire.Hosting.AppHost": {
               "target": "Package",
-              "version": "[9.0.0, )",
+              "version": "[9.4.1, )",
               "versionCentrallyManaged": true
             },
             "Aspire.Hosting.Orchestration.osx-arm64": {
               "target": "Package",
-              "version": "[9.0.0, )",
+              "version": "[9.4.1, )",
               "autoReferenced": true
             }
           },
@@ -79,8 +79,8 @@
             "Ardalis.SmartEnum": "8.2.0",
             "Ardalis.Specification": "9.2.0",
             "Ardalis.Specification.EntityFrameworkCore": "9.2.0",
-            "Aspire.Hosting.AppHost": "9.0.0",
-            "Aspire.Hosting.Testing": "9.0.0",
+            "Aspire.Hosting.AppHost": "9.4.1",
+            "Aspire.Hosting.Testing": "9.4.1",
             "Azure.Identity": "1.13.1",
             "coverlet.collector": "6.0.4",
             "FastEndpoints": "6.2.0",
@@ -534,8 +534,8 @@
             "Ardalis.SmartEnum": "8.2.0",
             "Ardalis.Specification": "9.2.0",
             "Ardalis.Specification.EntityFrameworkCore": "9.2.0",
-            "Aspire.Hosting.AppHost": "9.0.0",
-            "Aspire.Hosting.Testing": "9.0.0",
+            "Aspire.Hosting.AppHost": "9.4.1",
+            "Aspire.Hosting.Testing": "9.4.1",
             "Azure.Identity": "1.13.1",
             "coverlet.collector": "6.0.4",
             "FastEndpoints": "6.2.0",
@@ -1090,7 +1090,7 @@
           "dependencies": {
             "Aspire.Hosting.Testing": {
               "target": "Package",
-              "version": "[9.0.0, )",
+              "version": "[9.4.1, )",
               "versionCentrallyManaged": true
             },
             "Microsoft.NET.Test.Sdk": {
@@ -1124,8 +1124,8 @@
             "Ardalis.SmartEnum": "8.2.0",
             "Ardalis.Specification": "9.2.0",
             "Ardalis.Specification.EntityFrameworkCore": "9.2.0",
-            "Aspire.Hosting.AppHost": "9.0.0",
-            "Aspire.Hosting.Testing": "9.0.0",
+            "Aspire.Hosting.AppHost": "9.4.1",
+            "Aspire.Hosting.Testing": "9.4.1",
             "Azure.Identity": "1.13.1",
             "coverlet.collector": "6.0.4",
             "FastEndpoints": "6.2.0",
