@@ -61,7 +61,6 @@ public class Update(IMediator _mediator)
                 dto.Division,
                 dto.Owner,
                 dto.Version,
-                dto.Status,
                 dto.CreatedDate,
                 dto.RevisedDate,
                 dto.ConfigurationPath

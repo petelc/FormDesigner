@@ -9,7 +9,6 @@ public record class FormRecord(
     string? Division,
     string? Owner,
     string? Version,
-    FormStatus Status,
     DateTime CreatedDate,
     DateTime RevisedDate,
     string? ConfigurationPath

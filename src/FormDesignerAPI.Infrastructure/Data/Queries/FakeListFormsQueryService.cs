@@ -18,7 +18,6 @@ public class FakeListFormsQueryService : IListFormsQueryService
                 "Category 1",
                 "Owner 1",
                 "Version 1",
-                Status: FormStatus.Draft,
                 DateTime.UtcNow,
                 DateTime.UtcNow,
                 "path/to/config1.json"
@@ -30,7 +29,6 @@ public class FakeListFormsQueryService : IListFormsQueryService
                 "Category 2",
                 "Owner 2",
                 "Version 2",
-                Status: FormStatus.Draft,
                 DateTime.UtcNow,
                 DateTime.UtcNow,
                 "path/to/config2.json"
