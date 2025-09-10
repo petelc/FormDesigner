@@ -7,6 +7,10 @@ public class CreateFormHandlerHandle
 {
     private readonly string _testFormNumber = "XXX-1234";
     private readonly string _testFormTitle = "Test Form";
+    private readonly string _testDivision = "Test Division";
+    private readonly Owner _testOwner = new Owner("Test Owner", "testownder@example.com");
+    private readonly string _testVersion = "1.0";
+    private readonly string _testConfigurationPath = "/path/to/config";
 
     private readonly IRepository<Form> _repository = Substitute.For<IRepository<Form>>();
 
@@ -21,6 +25,16 @@ public class CreateFormHandlerHandle
     private Form CreateForm()
     {
         return new Form(_testFormNumber);
+    }
+
+    private Form CreateFormWithTitle()
+    {
+        return new Form(_testFormNumber, _testFormTitle);
+    }
+
+    private Form CreateFullForm()
+    {
+        return new Form(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testConfigurationPath);
     }
 
     [Fact]
@@ -46,6 +60,20 @@ public class CreateFormHandlerHandle
 
         // Act
         var result = await _handler.Handle(new CreateFormCommand(_testFormNumber, _testFormTitle), CancellationToken.None);
+
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+    }
+
+    [Fact]
+    public async Task ReturnsSuccessGivenAllValidParameters()
+    {
+        // Arrange
+        _repository.AddAsync(Arg.Any<Form>(), Arg.Any<CancellationToken>())
+            .Returns(Task.FromResult(CreateFullForm()));
+
+        // Act
+        var result = await _handler.Handle(new CreateFormCommand(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testConfigurationPath), CancellationToken.None);
 
         // Assert
         result.IsSuccess.ShouldBeTrue();
