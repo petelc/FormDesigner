@@ -1,4 +1,5 @@
 ﻿using FormDesignerAPI.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FormDesignerAPI.FunctionalTests;
 
@@ -31,10 +32,11 @@ public class CustomWebApplicationFactory<TProgram> : WebApplicationFactory<TProg
 
       // Reset Sqlite database for each test run
       // If using a real database, you'll likely want to remove this step.
+
       db.Database.EnsureDeleted();
 
-      // Ensure the database is created.
-      db.Database.EnsureCreated();
+      // Apply migrations to create the database schema.
+      db.Database.Migrate();
 
       try
       {
