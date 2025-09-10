@@ -1,3 +1,4 @@
+using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.UseCases.Forms.Create;
 
 namespace FormDesignerAPI.Web.Forms;
@@ -20,7 +21,7 @@ public class Create(IMediator _mediator)
             // XML Docs are used by default but are overridden by these properties:
             //s.Summary = "Create a new Form.";
             //s.Description = "Create a new Form. A valid Form Number and Form Title are required.";
-            s.ExampleRequest = new CreateFormRequest { FormNumber = "Form Number", FormTitle = "Form Title" };
+            s.ExampleRequest = new CreateFormRequest { FormNumber = "Form Number", FormTitle = "Form Title", Division = "Division", Owner = new Owner("Owner Name", "owner@example.com"), Version = "1.0", ConfigurationPath = "/path/to/config" };
         });
     }
 
@@ -29,12 +30,12 @@ public class Create(IMediator _mediator)
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new CreateFormCommand(request.FormNumber!,
-        request.FormTitle!), cancellationToken);
+        request.FormTitle!, request.Division, request.Owner, request.Version, request.ConfigurationPath), cancellationToken);
 
         if (result.IsSuccess)
         {
             Response = new CreateFormResponse(result.Value, request.FormNumber!,
-                request.FormTitle!);
+                request.FormTitle!, request.Division, request.Owner, request.Version, request.ConfigurationPath);
             return;
         }
     }

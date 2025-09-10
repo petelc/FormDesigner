@@ -15,6 +15,22 @@ public class Form : EntityBase, IAggregateRoot
         UpdateFormTitle(formTitle);
     }
 
+    public Form(string formNumber, string formTitle, string division, Owner owner, string? version = null, string? configurationPath = null)
+    {
+        UpdateFormNumber(formNumber);
+        UpdateFormTitle(formTitle);
+        UpdateDivision(division);
+        SetOwner(owner.Name, owner.Email);
+        if (version is not null)
+        {
+            UpdateVersion(version);
+        }
+        if (configurationPath is not null)
+        {
+            SetConfigurationPath(configurationPath);
+        }
+    }
+
     public string FormNumber { get; private set; } = default!;
     public string FormTitle { get; private set; } = default!;
     public string? Division { get; private set; } = default!;
