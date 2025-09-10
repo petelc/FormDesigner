@@ -1,6 +1,7 @@
 ﻿using FormDesignerAPI.Infrastructure;
 //using FormDesignerAPI.ServiceDefaults;
 using FormDesignerAPI.UseCases.Contributors.Create;
+using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -37,6 +38,8 @@ builder.Services.AddFastEndpoints()
 
 // wire up commands
 builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>();
+
+builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>();
 
 
 

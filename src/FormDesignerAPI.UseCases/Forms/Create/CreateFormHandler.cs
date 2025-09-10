@@ -13,6 +13,29 @@ public class CreateFormHandler(IRepository<Form> _repository)
     {
       newForm.UpdateFormTitle(request.FormTitle);
     }
+
+    if (!string.IsNullOrEmpty(request.Division))
+    {
+      newForm.UpdateDivision(request.Division);
+    }
+
+
+    //var newOwner = new Owner(request.Owner!.Name, request.Owner.Email);
+    if (request.Owner is not null)
+    {
+      newForm.SetOwner(request.Owner!.Name, request.Owner.Email);
+    }
+
+    if (!string.IsNullOrEmpty(request.Version))
+    {
+      newForm.UpdateVersion(request.Version);
+    }
+
+    if (!string.IsNullOrEmpty(request.ConfigurationPath))
+    {
+      newForm.SetConfigurationPath(request.ConfigurationPath);
+    }
+
     var createdItem = await _repository.AddAsync(newForm, cancellationToken);
 
     return createdItem.Id;

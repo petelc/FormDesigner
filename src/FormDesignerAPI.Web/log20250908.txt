@@ -250,3 +250,4 @@ SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, Create
 2025-09-08 20:13:43.651 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 70 ms
 2025-09-08 20:13:43.659 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
 2025-09-08 20:13:43.659 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 93.4248ms
+2025-09-08 20:23:03.898 -04:00 [INF] Application is shutting down...
