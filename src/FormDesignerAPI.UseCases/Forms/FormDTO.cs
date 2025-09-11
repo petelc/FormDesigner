@@ -9,6 +9,7 @@ public record FormDTO
     string FormTitle,
     string? Division,
     string? Owner,
+    string? OwnerEmail,
     string? Version,
     DateTime CreatedDate,
     DateTime RevisedDate,

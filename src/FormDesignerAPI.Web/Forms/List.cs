@@ -32,6 +32,7 @@ public class List(IMediator _mediator) : EndpointWithoutRequest<FormListResponse
                     f.FormTitle,
                     f.Division ?? string.Empty,
                     f.Owner ?? string.Empty,
+                    f.OwnerEmail ?? string.Empty,
                     f.Version ?? string.Empty,
                     f.CreatedDate,
                     f.RevisedDate,

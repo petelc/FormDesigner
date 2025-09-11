@@ -15,21 +15,22 @@ public class GetFormHandler
     {
         var spec = new FormByIdSpec(request.FormId);
         var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
-        if (entity == null) return Result<FormDTO>.NotFound();
+        if (entity == null) return Result.NotFound();
 
 
 
-        var dto = new FormDTO(
+        return new FormDTO(
             entity.Id,
             entity.FormNumber,
             entity.FormTitle ?? "",
             entity.Division ?? "",
             entity.Owner!.Name ?? "",
+            entity.Owner!.Email ?? "",
             entity.Version ?? "",
             entity.CreatedDate,
             entity.RevisedDate,
             entity.ConfigurationPath ?? ""
         );
-        return Result<FormDTO>.Success(dto);
+        //return Result<FormDTO>.Success(dto);
     }
 }

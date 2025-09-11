@@ -13,7 +13,7 @@ public class UpdateFormHandler(IRepository<Form> _repository)
       return Result.NotFound();
     }
 
-    existingForm.UpdateDetails(request.newFormNumber, request.newFormTitle, request.newDivision, request.newOwner, request.newVersion, request.newConfigurationPath);
+    existingForm.UpdateDetails(request.newFormNumber, request.newFormTitle, request.newDivision, request.newOwnerName, request.newOwnerEmail, request.newVersion, request.newConfigurationPath);
 
     await _repository.UpdateAsync(existingForm, cancellationToken);
 
@@ -23,6 +23,7 @@ public class UpdateFormHandler(IRepository<Form> _repository)
       existingForm.FormTitle,
       existingForm.Division! ?? "",
       existingForm.Owner!.Name ?? "",
+      existingForm.Owner!.Email ?? "",
       existingForm.Version! ?? "",
       existingForm.CreatedDate,
       existingForm.RevisedDate,

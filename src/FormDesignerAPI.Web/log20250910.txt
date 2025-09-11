@@ -56,3 +56,207 @@ SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, Create
 2025-09-10 18:10:53.406 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
 2025-09-10 18:10:53.408 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:57598/Forms - 200 null application/json; charset=utf-8 102.4191ms
 2025-09-10 18:10:53.650 -04:00 [INF] Application is shutting down...
+2025-09-10 20:32:12.774 -04:00 [INF] Registered 10 endpoints in 118 milliseconds.
+2025-09-10 20:32:13.198 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-10 20:32:13.319 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-10 20:32:13.795 -04:00 [INF] Now listening on: https://localhost:58912
+2025-09-10 20:32:13.795 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-10 20:32:13.795 -04:00 [INF] Hosting environment: Development
+2025-09-10 20:32:13.795 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-10 20:32:14.694 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:58911/Contributors - null null
+2025-09-10 20:32:14.714 -04:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2025-09-10 20:32:14.735 -04:00 [INF] Handling ListContributorsQuery
+2025-09-10 20:32:14.735 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:14.735 -04:00 [INF] Property Take : null
+2025-09-10 20:32:14.735 -04:00 [INF] Handling ListContributorsQuery
+2025-09-10 20:32:14.735 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:14.735 -04:00 [INF] Property Take : null
+2025-09-10 20:32:14.770 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-10 20:32:14.772 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 36 ms
+2025-09-10 20:32:14.772 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 36 ms
+2025-09-10 20:32:14.774 -04:00 [INF] Handling ListContributorsQuery2
+2025-09-10 20:32:14.774 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:14.774 -04:00 [INF] Property Take : null
+2025-09-10 20:32:14.775 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-10 20:32:14.776 -04:00 [INF] Handled ListContributorsQuery2 with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 1 ms
+2025-09-10 20:32:14.791 -04:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2025-09-10 20:32:14.793 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:58911/Contributors - 200 null application/json; charset=utf-8 102.8939ms
+2025-09-10 20:32:15.060 -04:00 [INF] Application is shutting down...
+2025-09-10 20:32:19.154 -04:00 [INF] Registered 10 endpoints in 109 milliseconds.
+2025-09-10 20:32:19.517 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-10 20:32:19.637 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-10 20:32:20.019 -04:00 [INF] Now listening on: https://localhost:58966
+2025-09-10 20:32:20.019 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-10 20:32:20.019 -04:00 [INF] Hosting environment: Development
+2025-09-10 20:32:20.019 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-10 20:32:20.333 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:58965/Forms - null null
+2025-09-10 20:32:20.352 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:20.372 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:20.372 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:20.372 -04:00 [INF] Property Take : null
+2025-09-10 20:32:20.372 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:20.372 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:20.372 -04:00 [INF] Property Take : null
+2025-09-10 20:32:20.407 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-10 20:32:20.413 -04:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-10 20:32:20.414 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:20.415 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-10 20:32:20.424 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:58965/Forms - 500 null text/plain; charset=utf-8 95.4966ms
+2025-09-10 20:32:21.128 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:58965/Forms - null null
+2025-09-10 20:32:21.128 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:21.129 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:21.129 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:21.129 -04:00 [INF] Property Take : null
+2025-09-10 20:32:21.129 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:21.129 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:21.129 -04:00 [INF] Property Take : null
+2025-09-10 20:32:21.159 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-10 20:32:21.160 -04:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-10 20:32:21.160 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:21.160 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-10 20:32:21.161 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:58965/Forms - 500 null text/plain; charset=utf-8 33.8485ms
+2025-09-10 20:32:23.406 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:58965/Forms - null null
+2025-09-10 20:32:23.406 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:23.410 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:23.410 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:23.410 -04:00 [INF] Property Take : null
+2025-09-10 20:32:23.410 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:23.410 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:23.410 -04:00 [INF] Property Take : null
+2025-09-10 20:32:23.415 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-10 20:32:23.416 -04:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-10 20:32:23.416 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:23.417 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-10 20:32:23.418 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:58965/Forms - 500 null text/plain; charset=utf-8 13.8857ms
+2025-09-10 20:32:27.971 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:58965/Forms - null null
+2025-09-10 20:32:27.971 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:27.972 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:27.972 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:27.972 -04:00 [INF] Property Take : null
+2025-09-10 20:32:27.972 -04:00 [INF] Handling ListFormsQuery
+2025-09-10 20:32:27.972 -04:00 [INF] Property Skip : null
+2025-09-10 20:32:27.972 -04:00 [INF] Property Take : null
+2025-09-10 20:32:27.974 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-10 20:32:27.974 -04:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-09-10 20:32:27.976 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-10 20:32:27.976 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The required column 'OwnerEmail' was not present in the results of a 'FromSql' operation.
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.BuildIndexMap(IReadOnlyList`1 columnNames, DbDataReader dataReader)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-10 20:32:27.978 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:58965/Forms - 500 null text/plain; charset=utf-8 6.9942ms
+2025-09-10 20:32:28.229 -04:00 [INF] Application is shutting down...

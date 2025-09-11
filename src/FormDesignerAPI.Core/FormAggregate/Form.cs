@@ -78,12 +78,12 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
-    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newVersion, string newConfigurationPath)
+    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newOwnerEmail, string newVersion, string newConfigurationPath)
     {
         UpdateFormNumber(newFormNumber);
         UpdateFormTitle(newFormTitle);
         UpdateDivision(newDivision);
-        SetOwner(newOwner, string.Empty); // Email is optional for now.
+        SetOwner(newOwner, newOwnerEmail);
         UpdateVersion(newVersion);
         SetConfigurationPath(newConfigurationPath); // Can be null or empty.
         RevisedDate = DateTime.UtcNow;

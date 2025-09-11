@@ -28,9 +28,13 @@ public class UpdateFormValidator : Validator<UpdateFormRequest>
             .NotEmpty()
             .WithMessage("Division is required.");
 
-        RuleFor(x => x.Owner)
+        RuleFor(x => x.OwnerName)
             .NotEmpty()
-            .WithMessage("Owner is required.");
+            .WithMessage("OwnerName is required.");
+
+        RuleFor(x => x.OwnerEmail)
+            .NotEmpty()
+            .WithMessage("OwnerEmail is required.");
 
         RuleFor(x => x.Version)
             .NotEmpty()

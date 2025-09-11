@@ -29,7 +29,8 @@ public class Update(IMediator _mediator)
             request.FormNumber!,
             request.FormTitle!,
             request.Division!,
-            request.Owner!,
+            request.OwnerName!,
+            request.OwnerEmail!,
             request.Version!,
             request.RevisedDate ?? DateTime.UtcNow,
             request.ConfigurationPath!
@@ -60,6 +61,7 @@ public class Update(IMediator _mediator)
                 dto.FormTitle,
                 dto.Division,
                 dto.Owner,
+                dto.OwnerEmail,
                 dto.Version,
                 dto.CreatedDate,
                 dto.RevisedDate,

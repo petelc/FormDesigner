@@ -16,7 +16,8 @@ public class UpdateFormRequest
     public string? FormNumber { get; set; }
     public string? FormTitle { get; set; }
     public string? Division { get; set; }
-    public string? Owner { get; set; }
+    public string? OwnerName { get; set; }
+    public string? OwnerEmail { get; set; }
     public string? Version { get; set; }
     public string? Status { get; set; } // I don't know if this will work
     public DateTime? CreatedDate { get; set; }
