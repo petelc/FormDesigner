@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "DlaldvNqk68=",
+  "dgSpecHash": "3EqRC6DEElA=",
   "success": true,
   "projectFilePath": "/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/tests/FormDesignerAPI.IntegrationTests/FormDesignerAPI.IntegrationTests.csproj",
   "expectedPackageFiles": [
@@ -24,6 +24,9 @@
     "/Users/petercarroll/.nuget/packages/mailkit/4.13.0/mailkit.4.13.0.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/mediatr/12.5.0/mediatr.12.5.0.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/mediatr.contracts/2.0.1/mediatr.contracts.2.0.1.nupkg.sha512",
+    "/Users/petercarroll/.nuget/packages/microsoft.aspnetcore.cryptography.internal/9.0.6/microsoft.aspnetcore.cryptography.internal.9.0.6.nupkg.sha512",
+    "/Users/petercarroll/.nuget/packages/microsoft.aspnetcore.cryptography.keyderivation/9.0.6/microsoft.aspnetcore.cryptography.keyderivation.9.0.6.nupkg.sha512",
+    "/Users/petercarroll/.nuget/packages/microsoft.aspnetcore.identity.entityframeworkcore/9.0.6/microsoft.aspnetcore.identity.entityframeworkcore.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.aspnetcore.mvc.testing/9.0.6/microsoft.aspnetcore.mvc.testing.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.aspnetcore.testhost/9.0.6/microsoft.aspnetcore.testhost.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.bcl.asyncinterfaces/6.0.0/microsoft.bcl.asyncinterfaces.6.0.0.nupkg.sha512",
@@ -60,6 +63,8 @@
     "/Users/petercarroll/.nuget/packages/microsoft.extensions.filesystemglobbing/9.0.6/microsoft.extensions.filesystemglobbing.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.extensions.hosting/9.0.6/microsoft.extensions.hosting.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.extensions.hosting.abstractions/9.0.6/microsoft.extensions.hosting.abstractions.9.0.6.nupkg.sha512",
+    "/Users/petercarroll/.nuget/packages/microsoft.extensions.identity.core/9.0.6/microsoft.extensions.identity.core.9.0.6.nupkg.sha512",
+    "/Users/petercarroll/.nuget/packages/microsoft.extensions.identity.stores/9.0.6/microsoft.extensions.identity.stores.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.extensions.logging/9.0.6/microsoft.extensions.logging.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.extensions.logging.abstractions/9.0.6/microsoft.extensions.logging.abstractions.9.0.6.nupkg.sha512",
     "/Users/petercarroll/.nuget/packages/microsoft.extensions.logging.configuration/9.0.6/microsoft.extensions.logging.configuration.9.0.6.nupkg.sha512",

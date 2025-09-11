@@ -1,6 +1,8 @@
 ﻿using Ardalis.SharedKernel;
 using FormDesignerAPI.Core.ContributorAggregate;
+using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.UseCases.Contributors.Create;
+using FormDesignerAPI.UseCases.Forms.Create;
 using MediatR;
 using System.Reflection;
 
@@ -13,7 +15,9 @@ public static class MediatrConfigs
     var mediatRAssemblies = new[]
       {
         Assembly.GetAssembly(typeof(Contributor)), // Core
-        Assembly.GetAssembly(typeof(CreateContributorCommand)) // UseCases
+        Assembly.GetAssembly(typeof(CreateContributorCommand)), // UseCases
+        Assembly.GetAssembly(typeof (Form)), // Core
+        Assembly.GetAssembly(typeof(CreateFormCommand)) // UseCases
       };
 
     services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))
