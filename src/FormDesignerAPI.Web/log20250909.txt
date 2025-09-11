@@ -385,3 +385,177 @@ SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, Create
 2025-09-09 20:05:46.867 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
 2025-09-09 20:05:46.868 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 93.8084ms
 2025-09-09 20:06:25.913 -04:00 [INF] Application is shutting down...
+2025-09-09 20:24:35.538 -04:00 [INF] Registered 10 endpoints in 114 milliseconds.
+2025-09-09 20:24:35.947 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-09 20:24:36.069 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-09 20:24:36.510 -04:00 [INF] Now listening on: https://localhost:54469
+2025-09-09 20:24:36.510 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-09 20:24:36.510 -04:00 [INF] Hosting environment: Development
+2025-09-09 20:24:36.510 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-09 20:24:36.692 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:54468/Contributors - null null
+2025-09-09 20:24:36.709 -04:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2025-09-09 20:24:36.729 -04:00 [INF] Handling ListContributorsQuery
+2025-09-09 20:24:36.729 -04:00 [INF] Property Skip : null
+2025-09-09 20:24:36.729 -04:00 [INF] Property Take : null
+2025-09-09 20:24:36.729 -04:00 [INF] Handling ListContributorsQuery
+2025-09-09 20:24:36.730 -04:00 [INF] Property Skip : null
+2025-09-09 20:24:36.730 -04:00 [INF] Property Take : null
+2025-09-09 20:24:36.762 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-09 20:24:36.764 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 34 ms
+2025-09-09 20:24:36.764 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 35 ms
+2025-09-09 20:24:36.767 -04:00 [INF] Handling ListContributorsQuery2
+2025-09-09 20:24:36.767 -04:00 [INF] Property Skip : null
+2025-09-09 20:24:36.767 -04:00 [INF] Property Take : null
+2025-09-09 20:24:36.768 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-09 20:24:36.768 -04:00 [INF] Handled ListContributorsQuery2 with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 0 ms
+2025-09-09 20:24:36.783 -04:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2025-09-09 20:24:36.785 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:54468/Contributors - 200 null application/json; charset=utf-8 97.6234ms
+2025-09-09 20:24:37.055 -04:00 [INF] Application is shutting down...
+2025-09-09 20:24:41.671 -04:00 [INF] Registered 10 endpoints in 108 milliseconds.
+2025-09-09 20:24:42.164 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-09 20:24:42.287 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-09 20:24:42.662 -04:00 [INF] Now listening on: https://localhost:54515
+2025-09-09 20:24:42.662 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-09 20:24:42.662 -04:00 [INF] Hosting environment: Development
+2025-09-09 20:24:42.662 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-09 20:24:42.866 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:54514/Forms - null null
+2025-09-09 20:24:42.884 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-09 20:24:42.905 -04:00 [INF] Handling ListFormsQuery
+2025-09-09 20:24:42.906 -04:00 [INF] Property Skip : null
+2025-09-09 20:24:42.906 -04:00 [INF] Property Take : null
+2025-09-09 20:24:42.906 -04:00 [INF] Handling ListFormsQuery
+2025-09-09 20:24:42.906 -04:00 [INF] Property Skip : null
+2025-09-09 20:24:42.906 -04:00 [INF] Property Take : null
+2025-09-09 20:24:42.940 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-09 20:24:42.944 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 38 ms
+2025-09-09 20:24:42.944 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 38 ms
+2025-09-09 20:24:42.963 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-09 20:24:42.965 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:54514/Forms - 200 null application/json; charset=utf-8 102.4985ms
+2025-09-09 20:24:43.202 -04:00 [INF] Application is shutting down...
+2025-09-09 20:32:57.374 -04:00 [INF] Registered 10 endpoints in 112 milliseconds.
+2025-09-09 20:32:57.776 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-09 20:32:57.897 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-09 20:32:58.315 -04:00 [INF] Now listening on: https://localhost:54672
+2025-09-09 20:32:58.315 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-09 20:32:58.315 -04:00 [INF] Hosting environment: Development
+2025-09-09 20:32:58.315 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-09 20:32:59.210 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:54671/Contributors - null null
+2025-09-09 20:32:59.229 -04:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2025-09-09 20:32:59.250 -04:00 [INF] Handling ListContributorsQuery
+2025-09-09 20:32:59.250 -04:00 [INF] Property Skip : null
+2025-09-09 20:32:59.250 -04:00 [INF] Property Take : null
+2025-09-09 20:32:59.250 -04:00 [INF] Handling ListContributorsQuery
+2025-09-09 20:32:59.251 -04:00 [INF] Property Skip : null
+2025-09-09 20:32:59.251 -04:00 [INF] Property Take : null
+2025-09-09 20:32:59.286 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-09 20:32:59.288 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 37 ms
+2025-09-09 20:32:59.288 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 37 ms
+2025-09-09 20:32:59.291 -04:00 [INF] Handling ListContributorsQuery2
+2025-09-09 20:32:59.291 -04:00 [INF] Property Skip : null
+2025-09-09 20:32:59.291 -04:00 [INF] Property Take : null
+2025-09-09 20:32:59.292 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-09 20:32:59.292 -04:00 [INF] Handled ListContributorsQuery2 with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 1 ms
+2025-09-09 20:32:59.307 -04:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2025-09-09 20:32:59.309 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:54671/Contributors - 200 null application/json; charset=utf-8 103.9318ms
+2025-09-09 20:32:59.577 -04:00 [INF] Application is shutting down...
+2025-09-09 20:33:03.073 -04:00 [INF] Registered 10 endpoints in 103 milliseconds.
+2025-09-09 20:33:03.453 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-09 20:33:03.574 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-09 20:33:03.952 -04:00 [INF] Now listening on: https://localhost:54731
+2025-09-09 20:33:03.952 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-09 20:33:03.952 -04:00 [INF] Hosting environment: Development
+2025-09-09 20:33:03.952 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-09 20:33:04.682 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:54730/Forms - null null
+2025-09-09 20:33:04.700 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-09 20:33:04.721 -04:00 [INF] Handling ListFormsQuery
+2025-09-09 20:33:04.721 -04:00 [INF] Property Skip : null
+2025-09-09 20:33:04.721 -04:00 [INF] Property Take : null
+2025-09-09 20:33:04.721 -04:00 [INF] Handling ListFormsQuery
+2025-09-09 20:33:04.721 -04:00 [INF] Property Skip : null
+2025-09-09 20:33:04.722 -04:00 [INF] Property Take : null
+2025-09-09 20:33:04.757 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-09 20:33:04.761 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 39 ms
+2025-09-09 20:33:04.761 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 39 ms
+2025-09-09 20:33:04.779 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-09 20:33:04.781 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:54730/Forms - 200 null application/json; charset=utf-8 103.518ms
+2025-09-09 20:33:05.016 -04:00 [INF] Application is shutting down...
+2025-09-09 20:35:19.127 -04:00 [INF] Registered 10 endpoints in 116 milliseconds.
+2025-09-09 20:35:19.555 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-09 20:35:19.686 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-09 20:35:20.115 -04:00 [INF] Now listening on: https://localhost:54856
+2025-09-09 20:35:20.116 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-09 20:35:20.116 -04:00 [INF] Hosting environment: Development
+2025-09-09 20:35:20.116 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-09 20:35:21.423 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:54855/Contributors - null null
+2025-09-09 20:35:21.445 -04:00 [INF] Executing endpoint 'HTTP: GET /Contributors'
+2025-09-09 20:35:21.467 -04:00 [INF] Handling ListContributorsQuery
+2025-09-09 20:35:21.467 -04:00 [INF] Property Skip : null
+2025-09-09 20:35:21.467 -04:00 [INF] Property Take : null
+2025-09-09 20:35:21.468 -04:00 [INF] Handling ListContributorsQuery
+2025-09-09 20:35:21.468 -04:00 [INF] Property Skip : null
+2025-09-09 20:35:21.468 -04:00 [INF] Property Take : null
+2025-09-09 20:35:21.504 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-09 20:35:21.506 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 38 ms
+2025-09-09 20:35:21.506 -04:00 [INF] Handled ListContributorsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 38 ms
+2025-09-09 20:35:21.509 -04:00 [INF] Handling ListContributorsQuery2
+2025-09-09 20:35:21.509 -04:00 [INF] Property Skip : null
+2025-09-09 20:35:21.509 -04:00 [INF] Property Take : null
+2025-09-09 20:35:21.509 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, Name, PhoneNumber_Number AS PhoneNumber FROM Contributors
+2025-09-09 20:35:21.510 -04:00 [INF] Handled ListContributorsQuery2 with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Contributors.ContributorDTO]] in 0 ms
+2025-09-09 20:35:21.525 -04:00 [INF] Executed endpoint 'HTTP: GET /Contributors'
+2025-09-09 20:35:21.529 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:54855/Contributors - 200 null application/json; charset=utf-8 110.6328ms
+2025-09-09 20:35:21.802 -04:00 [INF] Application is shutting down...
+2025-09-09 20:35:26.506 -04:00 [INF] Registered 10 endpoints in 100 milliseconds.
+2025-09-09 20:35:26.870 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-09 20:35:26.985 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-09 20:35:27.399 -04:00 [INF] Now listening on: https://localhost:54909
+2025-09-09 20:35:27.399 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-09 20:35:27.399 -04:00 [INF] Hosting environment: Development
+2025-09-09 20:35:27.399 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-09 20:35:27.857 -04:00 [INF] Request starting HTTP/1.1 GET https://localhost:54908/Forms - null null
+2025-09-09 20:35:27.875 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-09-09 20:35:27.895 -04:00 [INF] Handling ListFormsQuery
+2025-09-09 20:35:27.896 -04:00 [INF] Property Skip : null
+2025-09-09 20:35:27.896 -04:00 [INF] Property Take : null
+2025-09-09 20:35:27.896 -04:00 [INF] Handling ListFormsQuery
+2025-09-09 20:35:27.896 -04:00 [INF] Property Skip : null
+2025-09-09 20:35:27.896 -04:00 [INF] Property Take : null
+2025-09-09 20:35:27.932 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-09-09 20:35:27.935 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 38 ms
+2025-09-09 20:35:27.935 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 39 ms
+2025-09-09 20:35:27.953 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-09-09 20:35:27.956 -04:00 [INF] Request finished HTTP/1.1 GET https://localhost:54908/Forms - 200 null application/json; charset=utf-8 102.9624ms
+2025-09-09 20:35:28.190 -04:00 [INF] Application is shutting down...
