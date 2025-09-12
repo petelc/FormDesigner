@@ -1,33 +1,27 @@
 using FormDesignerAPI.Core.FormAggregate;
+using FormDesignerAPI.Core.Interfaces;
+using MediatR;
+
 
 namespace FormDesignerAPI.UseCases.Forms.Update;
 
-public class UpdateFormHandler(IRepository<Form> _repository)
-  : ICommandHandler<UpdateFormCommand, Result<FormDTO>>
+public class UpdateFormHandler(IFormUpdateService service)
+  : IRequestHandler<UpdateFormCommand, Result>
 {
-  public async Task<Result<FormDTO>> Handle(UpdateFormCommand request, CancellationToken cancellationToken)
+  public async Task<Result> Handle(UpdateFormCommand request, CancellationToken cancellationToken)
   {
-    var existingForm = await _repository.GetByIdAsync(request.FormId, cancellationToken);
-    if (existingForm == null)
-    {
-      return Result.NotFound();
-    }
-
-    existingForm.UpdateDetails(request.newFormNumber, request.newFormTitle, request.newDivision, request.newOwner, request.newVersion, request.newConfigurationPath);
-
-    await _repository.UpdateAsync(existingForm, cancellationToken);
-
-    return new FormDTO(
-      existingForm.Id,
-      existingForm.FormNumber,
-      existingForm.FormTitle,
-      existingForm.Division! ?? "",
-      existingForm.Owner!.Name ?? "",
-      existingForm.Version! ?? "",
-      existingForm.CreatedDate,
-      existingForm.RevisedDate,
-      existingForm.ConfigurationPath
-      );
+    var form = new FormUpdateDto
+    (
+      request.FormId,
+      request.newFormNumber,
+      request.newFormTitle,
+      request.newDivision,
+      request.newOwner,
+      request.newVersion,
+      request.RevisedDate,
+      request.newConfigurationPath
+    );
+    return await service.UpdateFormAsync(form.Id, form, cancellationToken);
   }
 
 }

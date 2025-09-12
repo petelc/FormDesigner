@@ -1,4 +1,3 @@
-using FormDesignerAPI.UseCases.Forms;
 using FormDesignerAPI.UseCases.Forms.Get;
 using FormDesignerAPI.UseCases.Forms.Update;
 
@@ -9,10 +8,9 @@ namespace FormDesignerAPI.Web.Forms;
 /// </summary>
 /// <remarks>
 /// Update an existing Form by providing a fully defined replacement set of values.
-/// See: https://stackoverflow.com/questions/60761955/rest-update-best-practice-put-collection-id-without-id-in-body-vs-put-collecti
 /// </remarks>
 public class Update(IMediator _mediator)
-  : Endpoint<UpdateFormRequest, UpdateFormResponse>
+  : Endpoint<UpdateFormRequest>
 {
     public override void Configure()
     {
@@ -24,16 +22,17 @@ public class Update(IMediator _mediator)
       UpdateFormRequest request,
       CancellationToken cancellationToken)
     {
-        var result = await _mediator.Send(new UpdateFormCommand(
-            request.Id,
-            request.FormNumber!,
-            request.FormTitle!,
-            request.Division!,
-            request.Owner!,
-            request.Version!,
+        var command = new UpdateFormCommand(
+            request.FormId,
+            request.FormNumber ?? string.Empty,
+            request.FormTitle ?? string.Empty,
+            request.Division ?? string.Empty,
+            request.Owner ?? string.Empty,
+            request.Version ?? string.Empty,
             request.RevisedDate ?? DateTime.UtcNow,
-            request.ConfigurationPath!
-            ), cancellationToken);
+            request.ConfigurationPath ?? string.Empty
+        );
+        var result = await _mediator.Send(command, cancellationToken);
 
         if (result.Status == ResultStatus.NotFound)
         {
@@ -41,31 +40,16 @@ public class Update(IMediator _mediator)
             return;
         }
 
-        var query = new GetFormQuery(request.Id);
-
-        var queryResult = await _mediator.Send(query, cancellationToken);
-
-        if (queryResult.Status == ResultStatus.NotFound)
+        if (result.IsSuccess)
         {
-            await SendNotFoundAsync(cancellationToken);
-            return;
-        }
+            var getQuery = new GetFormQuery(request.FormId);
+            var getResult = await _mediator.Send(getQuery, cancellationToken);
 
-        if (queryResult.IsSuccess)
-        {
-            var dto = queryResult.Value;
-            Response = new UpdateFormResponse(new FormRecord(
-                dto.Id,
-                dto.FormNumber,
-                dto.FormTitle,
-                dto.Division,
-                dto.Owner,
-                dto.Version,
-                dto.CreatedDate,
-                dto.RevisedDate,
-                dto.ConfigurationPath
-            ));
-            return;
+            if (getResult.IsSuccess)
+            {
+                await SendOkAsync(getResult.Value, cancellationToken);
+                return;
+            }
         }
     }
 }

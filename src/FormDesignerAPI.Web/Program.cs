@@ -2,6 +2,7 @@
 //using FormDesignerAPI.ServiceDefaults;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
+using FormDesignerAPI.UseCases.Forms.Update;
 using FormDesignerAPI.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
