@@ -83,9 +83,9 @@ public class Form : EntityBase, IAggregateRoot
         UpdateFormNumber(newFormNumber);
         UpdateFormTitle(newFormTitle);
         UpdateDivision(newDivision);
-        SetOwner(newOwner, string.Empty); // Email is optional for now.
+        SetOwner(newOwner, string.Empty); // Email is not provided in this context
         UpdateVersion(newVersion);
-        SetConfigurationPath(newConfigurationPath); // Can be null or empty.
+        SetConfigurationPath(newConfigurationPath);
         RevisedDate = DateTime.UtcNow;
         return this;
     }

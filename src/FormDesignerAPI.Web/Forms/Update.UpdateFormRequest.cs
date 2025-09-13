@@ -19,7 +19,7 @@ public class UpdateFormRequest
     public string? Owner { get; set; }
     public string? Version { get; set; }
     public string? Status { get; set; } // I don't know if this will work
-    public DateTime? CreatedDate { get; set; }
+    //public DateTime? CreatedDate { get; set; }
     public DateTime? RevisedDate { get; set; } = DateTime.UtcNow;
     public string? ConfigurationPath { get; set; }
 }
