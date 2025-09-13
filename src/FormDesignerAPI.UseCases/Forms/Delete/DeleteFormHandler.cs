@@ -7,6 +7,6 @@ public class DeleteFormHandler(IDeleteFormService service) : ICommandHandler<Del
     // This Approach: Keep Domain Events in the Domain Model / Core project; this becomes a pass-through
     public async Task<Result> Handle(DeleteFormCommand request, CancellationToken cancellationToken)
     {
-        return await service.DeleteFormAsync(request.FormId, cancellationToken);
+        return await service.DeleteFormAsync(request.FormId);
     }
 }
