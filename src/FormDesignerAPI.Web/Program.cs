@@ -1,8 +1,8 @@
-﻿using FormDesignerAPI.Infrastructure;
-//using FormDesignerAPI.ServiceDefaults;
+﻿using FormDesignerAPI.Core.Interfaces;
+using FormDesignerAPI.Core.Services;
+using FormDesignerAPI.Infrastructure;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
-using FormDesignerAPI.UseCases.Forms.Update;
 using FormDesignerAPI.Web.Configurations;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -42,6 +42,7 @@ builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<
 
 builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>();
 
+builder.Services.AddTransient<IFormUpdateService, FormUpdateService>();
 
 
 var app = builder.Build();
