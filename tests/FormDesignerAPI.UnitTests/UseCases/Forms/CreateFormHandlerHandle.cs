@@ -10,6 +10,8 @@ public class CreateFormHandlerHandle
     private readonly string _testDivision = "Test Division";
     private readonly Owner _testOwner = new Owner("Test Owner", "testownder@example.com");
     private readonly string _testVersion = "1.0";
+    private readonly DateTime _testCreatedDate = DateTime.UtcNow;
+    private readonly DateTime _testRevisedDate = DateTime.UtcNow;
     private readonly string _testConfigurationPath = "/path/to/config";
 
     private readonly IRepository<Form> _repository = Substitute.For<IRepository<Form>>();
@@ -21,7 +23,9 @@ public class CreateFormHandlerHandle
         _handler = new CreateFormHandler(_repository);
     }
 
-    // TODO: Implement form construtor that takes in both parameters
+
+    /// ///TODO: Implement form construtor that takes in both parameters
+
     private Form CreateForm()
     {
         return new Form(_testFormNumber);
@@ -34,7 +38,7 @@ public class CreateFormHandlerHandle
 
     private Form CreateFullForm()
     {
-        return new Form(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testConfigurationPath);
+        return new Form(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testCreatedDate, _testRevisedDate, _testConfigurationPath);
     }
 
     [Fact]
@@ -73,7 +77,7 @@ public class CreateFormHandlerHandle
             .Returns(Task.FromResult(CreateFullForm()));
 
         // Act
-        var result = await _handler.Handle(new CreateFormCommand(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testConfigurationPath), CancellationToken.None);
+        var result = await _handler.Handle(new CreateFormCommand(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testCreatedDate, _testRevisedDate, _testConfigurationPath), CancellationToken.None);
 
         // Assert
         result.IsSuccess.ShouldBeTrue();
