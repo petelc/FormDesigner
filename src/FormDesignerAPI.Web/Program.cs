@@ -1,9 +1,11 @@
-﻿using FormDesignerAPI.Core.Interfaces;
+﻿using Ardalis.ListStartupServices;
+using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.Web.Configurations;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,13 +47,14 @@ builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, 
 builder.Services.AddTransient<IFormUpdateService, FormUpdateService>();
 
 
+
 var app = builder.Build();
 
 // Register all synchronous middleware here
 if (app.Environment.IsDevelopment())
 {
   app.UseDeveloperExceptionPage();
-  // app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
+  app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
 }
 else
 {

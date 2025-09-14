@@ -14,3 +14,9 @@ What do I need to do:
 
 In the UseCases Project:
 **\_\_\_** Update the handler to call the service from the Core project.
+
+### Registering Update Form Service
+
+~~Currently the FormUpdateService is registered in the Program class of the Web project. I should move it to the Infrastructure Service Extensions.~~
+
+Ok rethinking this, I am going to move the update form service registration to the Services Config.

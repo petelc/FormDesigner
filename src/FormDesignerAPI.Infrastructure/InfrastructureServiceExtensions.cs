@@ -3,6 +3,7 @@ using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
 using FormDesignerAPI.UseCases.Contributors.List;
+using FormDesignerAPI.UseCases.Forms.List;
 
 
 namespace FormDesignerAPI.Infrastructure;
@@ -24,8 +25,8 @@ public static class InfrastructureServiceExtensions
         .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
         .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
         .AddScoped<IDeleteContributorService, DeleteContributorService>()
-        .AddScoped<FormDesignerAPI.UseCases.Forms.List.IListFormsQueryService, FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService>()
-        .AddScoped<FormDesignerAPI.Core.Interfaces.IDeleteFormService, FormDesignerAPI.Core.Services.FormDeletedService>();
+        .AddScoped<IListFormsQueryService, ListFormsQueryService>()
+        .AddScoped<IDeleteFormService, FormDeletedService>();
 
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
