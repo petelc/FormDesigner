@@ -18,10 +18,12 @@ public record CreateFormCommand(
     string? Division = null,
     Owner? Owner = null,
     string? Version = null,
+    DateTime? CreatedDate = null,
+    DateTime? RevisedDate = null,
     string? ConfigurationPath = null
 ) : Ardalis.SharedKernel.ICommand<Result<int>>;
 
-public record CreateFormCommand2(string FormNumber, string? FormTitle = null, string? Division = null, Owner? Owner = null, string? Version = null, string? ConfigurationPath = null) : FastEndpoints.ICommand<Result<int>>;
+public record CreateFormCommand2(string FormNumber, string? FormTitle = null, string? Division = null, Owner? Owner = null, string? Version = null, DateTime? RevisedDate = null, DateTime? CreatedDate = null, string? ConfigurationPath = null) : FastEndpoints.ICommand<Result<int>>;
 
 public class CreateFormCommandHandler2 : CommandHandler<CreateFormCommand2, Result<int>>
 {
@@ -39,7 +41,10 @@ public class CreateFormCommandHandler2 : CommandHandler<CreateFormCommand2, Resu
             request.Division ?? string.Empty,
             request.Owner ?? new Owner("Default Owner", "default@example"),
             request.Version ?? string.Empty,
+            request.CreatedDate ?? DateTime.UtcNow,
+            request.RevisedDate ?? DateTime.UtcNow,
             request.ConfigurationPath ?? string.Empty);
+
         var createdItem = await _repository.AddAsync(newForm, cancellationToken);
 
         Console.WriteLine($"<<<<<<<Created form with ID: {createdItem.Id}");

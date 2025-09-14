@@ -15,7 +15,7 @@ public class Form : EntityBase, IAggregateRoot
         UpdateFormTitle(formTitle);
     }
 
-    public Form(string formNumber, string formTitle, string division, Owner owner, string? version = null, string? configurationPath = null)
+    public Form(string formNumber, string formTitle, string division, Owner owner, string? version = null, DateTime? createdDate = null, DateTime? revisedDate = null, string? configurationPath = null)
     {
         UpdateFormNumber(formNumber);
         UpdateFormTitle(formTitle);
@@ -25,6 +25,17 @@ public class Form : EntityBase, IAggregateRoot
         {
             UpdateVersion(version);
         }
+
+        if (createdDate is not null)
+        {
+            SetCreatedDate(createdDate.Value);
+        }
+
+        if (revisedDate is not null)
+        {
+            SetRevisedDate(revisedDate.Value);
+        }
+
         if (configurationPath is not null)
         {
             SetConfigurationPath(configurationPath);
@@ -36,8 +47,8 @@ public class Form : EntityBase, IAggregateRoot
     public string? Division { get; private set; } = default!;
     public Owner? Owner { get; private set; } = default!;
     public string? Version { get; private set; } = default!;
-    public DateTime CreatedDate { get; private set; } = DateTime.UtcNow;
-    public DateTime RevisedDate { get; private set; } = DateTime.UtcNow;
+    public DateTime? CreatedDate { get; private set; }
+    public DateTime? RevisedDate { get; private set; }
     public string? ConfigurationPath { get; set; }
 
     public FormStatus Status { get; private set; } = FormStatus.NotSet;
@@ -72,13 +83,25 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
+    public Form SetCreatedDate(DateTime createdDate)
+    {
+        CreatedDate = createdDate;
+        return this;
+    }
+
+    public Form SetRevisedDate(DateTime revisedDate)
+    {
+        RevisedDate = revisedDate;
+        return this;
+    }
+
     public Form SetConfigurationPath(string? configurationPath)
     {
         ConfigurationPath = configurationPath;
         return this;
     }
 
-    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newVersion, string newConfigurationPath)
+    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newVersion, DateTime newRevisionDate, string newConfigurationPath)
     {
         UpdateFormNumber(newFormNumber);
         UpdateFormTitle(newFormTitle);
@@ -86,7 +109,8 @@ public class Form : EntityBase, IAggregateRoot
         SetOwner(newOwner, string.Empty); // Email is not provided in this context
         UpdateVersion(newVersion);
         SetConfigurationPath(newConfigurationPath);
-        RevisedDate = DateTime.UtcNow;
+        //SetCreatedDate(DateTime.UtcNow);
+        SetRevisedDate(newRevisionDate);
         return this;
     }
 

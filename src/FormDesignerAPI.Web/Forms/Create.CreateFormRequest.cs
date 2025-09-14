@@ -16,6 +16,8 @@ public class CreateFormRequest
     public string? Division { get; set; }
     public Owner? Owner { get; set; }
     public string? Version { get; set; }
+    public DateTime? CreatedDate { get; set; }
+    public DateTime? RevisedDate { get; set; }
     public string? ConfigurationPath { get; set; }
 
 }

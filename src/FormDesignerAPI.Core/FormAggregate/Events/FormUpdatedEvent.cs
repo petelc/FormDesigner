@@ -10,7 +10,7 @@ public class FormUpdatedEvent(Form form) : DomainEventBase
     public string? Division { get; init; } = form.Division;
     public string? Owner { get; init; } = form.Owner?.Name;
     public string? Version { get; init; } = form.Version;
-    public DateTime CreatedDate { get; init; } = form.CreatedDate;
-    public DateTime RevisedDate { get; init; } = form.RevisedDate;
+    public DateTime? CreatedDate { get; init; } = form.CreatedDate;
+    public DateTime? RevisedDate { get; init; } = form.RevisedDate;
     public string? ConfigurationPath { get; init; } = form.ConfigurationPath;
 }

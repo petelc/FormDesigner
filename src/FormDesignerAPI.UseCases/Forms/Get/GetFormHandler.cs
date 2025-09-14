@@ -26,8 +26,8 @@ public class GetFormHandler
             entity.Division ?? "",
             entity.Owner!.Name ?? "",
             entity.Version ?? "",
-            entity.CreatedDate,
-            entity.RevisedDate,
+            entity.CreatedDate ?? DateTime.MinValue,
+            entity.RevisedDate ?? DateTime.MinValue,
             entity.ConfigurationPath ?? ""
         );
         return Result<FormDTO>.Success(dto);
