@@ -127,3 +127,4 @@ SELECT EXISTS (
 2025-09-14 16:21:20.235 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/favicon.ico - null null
 2025-09-14 16:21:20.236 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/favicon.ico - 404 0 null 1.2795ms
 2025-09-14 16:21:20.238 -04:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/favicon.ico, Response status code: 404
+2025-09-14 17:53:08.932 -04:00 [INF] Application is shutting down...
