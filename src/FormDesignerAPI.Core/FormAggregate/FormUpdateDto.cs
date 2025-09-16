@@ -8,6 +8,7 @@ public record FormUpdateDto
     string? Division,
     string? Owner,
     string? Version,
-    DateTime RevisedDate,
+    //DateTime? CreatedDate,
+    DateTime? RevisedDate,
     string? ConfigurationPath
 );

@@ -21,7 +21,7 @@ public class Create(IMediator _mediator)
             // XML Docs are used by default but are overridden by these properties:
             //s.Summary = "Create a new Form.";
             //s.Description = "Create a new Form. A valid Form Number and Form Title are required.";
-            s.ExampleRequest = new CreateFormRequest { FormNumber = "Form Number", FormTitle = "Form Title", Division = "Division", Owner = new Owner("Owner Name", "owner@example.com"), Version = "1.0", ConfigurationPath = "/path/to/config" };
+            s.ExampleRequest = new CreateFormRequest { FormNumber = "Form Number", FormTitle = "Form Title", Division = "Division", Owner = new Owner("Owner Name", "owner@example.com"), Version = "1.0", CreatedDate = DateTime.UtcNow, RevisedDate = DateTime.UtcNow, ConfigurationPath = "/path/to/config" };
         });
     }
 
@@ -30,7 +30,7 @@ public class Create(IMediator _mediator)
         CancellationToken cancellationToken)
     {
         var result = await _mediator.Send(new CreateFormCommand(request.FormNumber!,
-        request.FormTitle!, request.Division, request.Owner, request.Version, request.ConfigurationPath), cancellationToken);
+        request.FormTitle!, request.Division, request.Owner, request.Version, request.CreatedDate, request.RevisedDate, request.ConfigurationPath), cancellationToken);
 
         if (result.IsSuccess)
         {
