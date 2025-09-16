@@ -27,7 +27,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+414bc1ed49fb8933a26112052660d806a6541708")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fd71ad891b9af132261a43947e9a6fa2c977ab10")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
