@@ -8,8 +8,11 @@ public static class ServiceConfigs
 {
   public static IServiceCollection AddServiceConfigs(this IServiceCollection services, Microsoft.Extensions.Logging.ILogger logger, WebApplicationBuilder builder)
   {
-    services.AddInfrastructureServices(builder.Configuration, logger)
-            .AddMediatrConfigs();
+    services.AddMediatrConfigs();
+
+    // Add authentication and authorization
+    builder.Services.AddAuthentication();
+    builder.Services.AddAuthorization();
 
 
     if (builder.Environment.IsDevelopment())

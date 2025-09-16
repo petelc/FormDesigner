@@ -2,8 +2,10 @@
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
+using FormDesignerAPI.Infrastructure.Identity;
 using FormDesignerAPI.UseCases.Contributors.List;
 using FormDesignerAPI.UseCases.Forms.List;
+using Microsoft.AspNetCore.Identity;
 
 
 namespace FormDesignerAPI.Infrastructure;
@@ -20,6 +22,10 @@ public static class InfrastructureServiceExtensions
 
     services.AddDbContext<AppDbContext>(options =>
       options.UseSqlite(connectionString));
+
+    services.AddIdentity<ApplicationUser, IdentityRole>()
+      .AddEntityFrameworkStores<AppDbContext>()
+      .AddDefaultTokenProviders();
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
         .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
