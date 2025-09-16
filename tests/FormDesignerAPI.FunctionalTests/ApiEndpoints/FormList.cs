@@ -3,7 +3,7 @@ using FormDesignerAPI.Web.Forms;
 
 namespace FormDesignerAPI.FunctionalTests.ApiEndpoints;
 
-//[Collection("Sequential")]
+[Collection("Sequential")]
 public class FormList(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
 {
     private readonly HttpClient _client = factory.CreateClient();

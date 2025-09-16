@@ -5,7 +5,6 @@ using FormDesignerAPI.Infrastructure;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.Web.Configurations;
-using Microsoft.AspNetCore.Mvc.ModelBinding.Binders;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -61,6 +60,10 @@ else
   app.UseDefaultExceptionHandler(); // from FastEndpoints
   app.UseHsts();
 }
+
+// Add authentication and authorization middleware
+// app.UseAuthentication();
+// app.UseAuthorization();
 
 app.UseFastEndpoints();
 app.UseSwaggerGen(); // Includes AddFileServer and static files middleware
