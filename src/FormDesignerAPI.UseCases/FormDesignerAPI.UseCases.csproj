@@ -1,6 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <ItemGroup>
+    <Compile Remove="Identity/Register/RegisterUserCommand.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Ardalis.Result" />
     <PackageReference Include="FastEndpoints" />
     <PackageReference Include="MediatR" />
@@ -8,6 +12,19 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Identity/Authorized/" />
+    <Folder Include="Identity/Delete/" />
+    <Folder Include="Identity/Get/" />
+    <Folder Include="Identity/Login/" />
+    <Folder Include="Identity/Logout/" />
+    <Folder Include="Identity/Role/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Identity/Register/RegisterUserCommand.cs" />
   </ItemGroup>
 
 </Project>
