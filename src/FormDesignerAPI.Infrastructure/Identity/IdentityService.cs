@@ -56,6 +56,12 @@ public class IdentityService : IIdentityService
         return Result.Success();
     }
 
+    public async Task LogoutAsync()
+    {
+        await _signInManager.SignOutAsync();
+        _logger.LogInformation("User logged out successfully");
+    }
+
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = await _userManager.FindByIdAsync(userId);

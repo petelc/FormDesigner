@@ -16,7 +16,6 @@
     <Folder Include="Identity/Authorized/" />
     <Folder Include="Identity/Delete/" />
     <Folder Include="Identity/Get/" />
-    <Folder Include="Identity/Logout/" />
     <Folder Include="Identity/Role/" />
   </ItemGroup>
 

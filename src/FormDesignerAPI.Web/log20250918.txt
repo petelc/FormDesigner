@@ -19,3 +19,23 @@ SELECT EXISTS (
 2025-09-18 18:58:05.740 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
 2025-09-18 18:58:05.991 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 256.9592ms
 2025-09-18 18:59:13.860 -04:00 [INF] Application is shutting down...
+2025-09-18 19:25:19.129 -04:00 [INF] Registered 13 endpoints in 120 milliseconds.
+2025-09-18 19:25:19.516 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-18 19:25:19.633 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-18 19:25:19.645 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-18 19:25:20.120 -04:00 [INF] Now listening on: https://localhost:55894
+2025-09-18 19:25:20.121 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-18 19:25:20.121 -04:00 [INF] Hosting environment: Development
+2025-09-18 19:25:20.121 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-18 19:25:30.713 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-09-18 19:25:30.738 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-18 19:25:30.736 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 28.4022ms
+2025-09-18 19:25:30.776 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 37.7787ms
+2025-09-18 19:25:30.878 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-18 19:25:30.882 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-18 19:25:31.141 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 263.2153ms
+2025-09-18 19:26:20.726 -04:00 [INF] Application is shutting down...
