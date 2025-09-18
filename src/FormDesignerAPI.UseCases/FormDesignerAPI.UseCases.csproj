@@ -1,8 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <ItemGroup>
-    <Compile Remove="Identity/Register/RegisterUserCommand.cs" />
-  </ItemGroup>
+  <!-- Removed explicit Compile Include for Identity/Register/RegisterUserCommand.cs to avoid duplicate compile error -->
 
   <ItemGroup>
     <PackageReference Include="Ardalis.Result" />

@@ -1,18 +1,31 @@
+
+using Ardalis.SharedKernel;
+using System.Threading.Tasks;
 using FormDesignerAPI.UseCases.Interfaces;
-using Ardalis.Result;
+using FastEndpoints;
 
 namespace FormDesignerAPI.UseCases.Identity.Register;
 
-public class RegisterUserHandler(IIdentityService identityService) : ICommandHandler<RegisterUserCommand, Result<string>>
+public class RegisterUserHandler : FastEndpoints.ICommandHandler<RegisterUserCommand, Ardalis.Result.Result<string>>
 {
+    private readonly IIdentityService identityService;
 
-    public Task<Result<string>> Handle(RegisterUserCommand request, CancellationToken cancellationToken)
+    public RegisterUserHandler(IIdentityService identityService)
     {
-        string userName = request.UserName ?? throw new ArgumentNullException(nameof(request.UserName));
-
-        string password = request.Password ?? throw new ArgumentNullException(nameof(request.Password));
-
-        return identityService.CreateUserAsync(userName, password);
+        this.identityService = identityService;
     }
 
+    public async Task<Ardalis.Result.Result<string>> ExecuteAsync(RegisterUserCommand request, CancellationToken cancellationToken)
+    {
+        string userName = request.UserName ?? throw new ArgumentNullException(nameof(request.UserName));
+        string password = request.Password ?? throw new ArgumentNullException(nameof(request.Password));
+
+        var (result, userId) = await identityService.CreateUserAsync(userName, password);
+        if (result.IsSuccess)
+        {
+            return Ardalis.Result.Result<string>.Success(userId);
+        }
+        return Ardalis.Result.Result<string>.Error(string.Join("; ", result.Errors));
+    }
 }
+
