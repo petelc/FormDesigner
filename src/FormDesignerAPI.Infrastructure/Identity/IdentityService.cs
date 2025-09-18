@@ -8,17 +8,23 @@ namespace FormDesignerAPI.Infrastructure.Identity;
 public class IdentityService : IIdentityService
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IAuthorizationService _authorizationService;
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
+    private readonly ILogger<IdentityService> _logger;
 
     public IdentityService(
       UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager,
       IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-      IAuthorizationService authorizationService
+      IAuthorizationService authorizationService,
+        ILogger<IdentityService> logger
       )
     {
         _userManager = userManager;
+        _signInManager = signInManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
+        _logger = logger;
         _authorizationService = authorizationService;
     }
 
@@ -36,6 +42,20 @@ public class IdentityService : IIdentityService
 
         return (result.ToApplicationResult(), user.Id);
     }
+
+    public async Task<Result> LoginAsync(string userName, string password)
+    {
+        var result = await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
+        if (!result.Succeeded)
+        {
+            _logger.LogWarning("Login failed for user {UserName}", userName);
+            return Result.Unauthorized();
+        }
+
+        _logger.LogInformation("User {UserName} logged in successfully", userName);
+        return Result.Success();
+    }
+
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = await _userManager.FindByIdAsync(userId);
