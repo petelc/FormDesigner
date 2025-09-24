@@ -18,9 +18,5 @@ public class Login(IMediator mediator) : Endpoint<LoginUserRequest, LoginUserRes
         {
             await SendAsync(new LoginUserResponse { Success = true }, cancellation: ct);
         }
-        // else
-        // {
-        //     await SendAsync(new LoginUserResponse { Success = false, Error = result?.Equals(Ardalis.Result.Result.Unauthorized()) }, cancellation: ct);
-        // }
     }
 }

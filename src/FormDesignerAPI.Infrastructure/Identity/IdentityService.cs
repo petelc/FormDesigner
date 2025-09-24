@@ -28,7 +28,7 @@ public class IdentityService : IIdentityService
         _authorizationService = authorizationService;
     }
 
-    public async Task<string?> GetUserNameAsync(string userId)
+    public async Task<Result<string?>> GetUserNameAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
 
@@ -67,6 +67,43 @@ public class IdentityService : IIdentityService
         var user = await _userManager.FindByIdAsync(userId);
         //if (user == null) return false;
         return user != null && await _userManager.IsInRoleAsync(user, role);
+    }
+
+    public async Task<List<string>> GetUserRolesAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return new List<string>();
+
+        var roles = await _userManager.GetRolesAsync(user);
+        return roles.ToList();
+    }
+
+    public async Task<Result> AddUserToRoleAsync(string userId, string role)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var result = await _userManager.AddToRoleAsync(user, role);
+        return result.ToApplicationResult();
+    }
+
+    public async Task<Result> RemoveUserFromRoleAsync(string userId, string role)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var result = await _userManager.RemoveFromRoleAsync(user, role);
+        return result.ToApplicationResult();
+    }
+
+    public async Task<Result> RemoveUserFromAllRolesAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var roles = await _userManager.GetRolesAsync(user);
+        var result = await _userManager.RemoveFromRolesAsync(user, roles);
+        return result.ToApplicationResult();
     }
 
     public async Task<bool> AuthorizeAsync(string userId, string policyName)
