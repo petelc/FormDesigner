@@ -1,4 +1,6 @@
+using MediatR;
+
 namespace FormDesignerAPI.UseCases.Identity.Login;
 
-public record LoginUserCommand(string UserName, string Password) : FastEndpoints.ICommand<Ardalis.Result.Result>;
+public record LoginUserCommand(string UserName, string Password) : FastEndpoints.ICommand<Ardalis.Result.Result>, IRequest<Ardalis.Result.Result>;
 

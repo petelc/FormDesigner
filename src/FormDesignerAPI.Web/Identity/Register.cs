@@ -18,20 +18,14 @@ public class Register(IMediator mediator) : Endpoint<RegisterUserRequest, Regist
         AllowAnonymous();
     }
 
-    public async Task<RegisterUserResponse> HandleAsync(RegisterUserRequest request)
+    public override async Task HandleAsync(RegisterUserRequest request, CancellationToken ct)
     {
-        // var user = new ApplicationUser
-        // {
-        //     UserName = request.UserName,
-        //     Email = request.Email,
-        //     Password = request.Password
-        // };
         var user = request.UserName ?? throw new ArgumentNullException(nameof(request.UserName));
         var password = request.Password ?? throw new ArgumentNullException(nameof(request.Password));
 
-        var result = await mediator.Send(new RegisterUserCommand(user, password)) as Result;
+        var result = await mediator.Send(new RegisterUserCommand(user, password)) as Ardalis.Result.Result<string>;
 
-        return new RegisterUserResponse
+        Response = new RegisterUserResponse
         {
             Success = result != null && result.IsSuccess,
             Error = result != null && result.IsSuccess ? null : result?.Errors.FirstOrDefault()
