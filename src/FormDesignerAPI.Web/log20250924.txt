@@ -1,0 +1,312 @@
+2025-09-24 17:25:08.728 -04:00 [INF] Registered 14 endpoints in 116 milliseconds.
+2025-09-24 17:25:09.202 -04:00 [INF] Executed DbCommand (22ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-24 17:25:09.374 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-24 17:25:09.388 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-24 17:25:09.943 -04:00 [INF] Now listening on: https://localhost:62106
+2025-09-24 17:25:09.943 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 17:25:09.943 -04:00 [INF] Hosting environment: Development
+2025-09-24 17:25:09.943 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-24 17:26:49.898 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-09-24 17:26:49.922 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-24 17:26:49.920 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 26.296ms
+2025-09-24 17:26:49.963 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 40.6348ms
+2025-09-24 17:26:50.065 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-24 17:26:50.069 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-24 17:26:50.314 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 249.269ms
+2025-09-24 17:27:28.778 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Register - application/json 64
+2025-09-24 17:27:28.784 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:27:28.841 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:27:28.841 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.NotImplementedException: The method or operation is not implemented.
+   at FastEndpoints.Endpoint`2.HandleAsync(TRequest req, CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:27:28.848 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Register - 500 null text/plain; charset=utf-8 70.4108ms
+2025-09-24 17:36:28.230 -04:00 [INF] Application is shutting down...
+2025-09-24 17:36:37.857 -04:00 [INF] Registered 14 endpoints in 108 milliseconds.
+2025-09-24 17:36:38.253 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-24 17:36:38.375 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-24 17:36:38.387 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-24 17:36:38.941 -04:00 [INF] Now listening on: https://localhost:62502
+2025-09-24 17:36:38.941 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 17:36:38.941 -04:00 [INF] Hosting environment: Development
+2025-09-24 17:36:38.941 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-24 17:36:45.565 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-24 17:36:45.628 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 68.8777ms
+2025-09-24 17:36:45.760 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-24 17:36:45.764 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-24 17:36:45.765 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/favicon-32x32.png - null null
+2025-09-24 17:36:45.769 -04:00 [INF] The file /favicon-32x32.png was not modified
+2025-09-24 17:36:45.771 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/favicon-32x32.png - 304 null image/png 5.8204ms
+2025-09-24 17:36:46.020 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 260.0196ms
+2025-09-24 17:37:16.860 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Register - application/json 64
+2025-09-24 17:37:16.865 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:37:16.918 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:37:16.919 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: RegisterUserCommand does not implement IRequest (Parameter 'request')
+   at MediatR.Mediator.<>c.<Send>b__9_0(Type requestType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MediatR.Mediator.Send(Object request, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.Register.HandleAsync(RegisterUserRequest request, CancellationToken ct) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/Register.cs:line 26
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:37:16.926 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Register - 500 null text/plain; charset=utf-8 66.0572ms
+2025-09-24 17:40:45.993 -04:00 [INF] Application is shutting down...
+2025-09-24 17:40:56.576 -04:00 [INF] Registered 14 endpoints in 107 milliseconds.
+2025-09-24 17:40:56.981 -04:00 [INF] Executed DbCommand (7ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-24 17:40:57.096 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-24 17:40:57.107 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-24 17:40:57.807 -04:00 [INF] Now listening on: https://localhost:62651
+2025-09-24 17:40:57.808 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 17:40:57.808 -04:00 [INF] Hosting environment: Development
+2025-09-24 17:40:57.808 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-24 17:41:16.787 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-24 17:41:16.850 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 68.1059ms
+2025-09-24 17:41:16.927 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-24 17:41:16.931 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-24 17:41:17.174 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 246.996ms
+2025-09-24 17:41:49.373 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Register - application/json 64
+2025-09-24 17:41:49.383 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:41:49.438 -04:00 [INF] Handling RegisterUserCommand
+2025-09-24 17:41:49.438 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:41:49.438 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:41:49.438 -04:00 [INF] Handling RegisterUserCommand
+2025-09-24 17:41:49.438 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:41:49.438 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:41:49.440 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:41:49.440 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'MediatR.IRequestHandler`2[FormDesignerAPI.UseCases.Identity.Register.RegisterUserCommand,Ardalis.Result.Result`1[System.String]]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.Register.HandleAsync(RegisterUserRequest request, CancellationToken ct) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/Register.cs:line 26
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:41:49.449 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Register - 500 null text/plain; charset=utf-8 77.7344ms
+2025-09-24 17:43:57.554 -04:00 [INF] Application is shutting down...
+2025-09-24 17:44:07.052 -04:00 [INF] Registered 14 endpoints in 97 milliseconds.
+2025-09-24 17:44:07.406 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-24 17:44:07.524 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-24 17:44:07.536 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-24 17:44:08.246 -04:00 [INF] Now listening on: https://localhost:62781
+2025-09-24 17:44:08.246 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 17:44:08.246 -04:00 [INF] Hosting environment: Development
+2025-09-24 17:44:08.246 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-24 17:44:11.424 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-24 17:44:11.485 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 65.9071ms
+2025-09-24 17:44:11.558 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-24 17:44:11.562 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-24 17:44:11.827 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 268.8796ms
+2025-09-24 17:44:39.740 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Register - application/json 64
+2025-09-24 17:44:39.760 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:44:39.815 -04:00 [INF] Handling RegisterUserCommand
+2025-09-24 17:44:39.815 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:44:39.816 -04:00 [INF] Property Password : P@ssWord!
+2025-09-24 17:44:39.816 -04:00 [INF] Handling RegisterUserCommand
+2025-09-24 17:44:39.816 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:44:39.816 -04:00 [INF] Property Password : P@ssWord!
+2025-09-24 17:44:39.829 -04:00 [INF] Handled RegisterUserCommand with Ardalis.Result.Result`1[System.String] in 12 ms
+2025-09-24 17:44:39.829 -04:00 [INF] Handled RegisterUserCommand with Ardalis.Result.Result`1[System.String] in 13 ms
+2025-09-24 17:44:39.837 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:44:39.838 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Register - 200 null application/json; charset=utf-8 99.4475ms
+2025-09-24 17:44:56.201 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Register - application/json 64
+2025-09-24 17:44:56.204 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:44:56.206 -04:00 [INF] Handling RegisterUserCommand
+2025-09-24 17:44:56.206 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:44:56.206 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:44:56.206 -04:00 [INF] Handling RegisterUserCommand
+2025-09-24 17:44:56.206 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:44:56.206 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:44:56.337 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Email", "a"."EmailConfirmed", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."SecurityStamp", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-09-24 17:44:56.406 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 36), @p1='?' (DbType = Int32), @p2='?' (Size = 36), @p3='?' (Size = 17), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 17), @p8='?' (Size = 17), @p9='?' (Size = 84), @p10='?', @p11='?' (DbType = Boolean), @p12='?' (Size = 32), @p13='?' (DbType = Boolean), @p14='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "AspNetUsers" ("Id", "AccessFailedCount", "ConcurrencyStamp", "Email", "EmailConfirmed", "LockoutEnabled", "LockoutEnd", "NormalizedEmail", "NormalizedUserName", "PasswordHash", "PhoneNumber", "PhoneNumberConfirmed", "SecurityStamp", "TwoFactorEnabled", "UserName")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14);
+2025-09-24 17:44:56.410 -04:00 [INF] Handled RegisterUserCommand with Ardalis.Result.Result`1[System.String] in 203 ms
+2025-09-24 17:44:56.410 -04:00 [INF] Handled RegisterUserCommand with Ardalis.Result.Result`1[System.String] in 203 ms
+2025-09-24 17:44:56.410 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-09-24 17:44:56.411 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Register - 200 null application/json; charset=utf-8 210.2881ms
+2025-09-24 17:45:11.263 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Identity/GetUser?userId=1 - null null
+2025-09-24 17:45:11.264 -04:00 [INF] Executing endpoint 'HTTP: GET /Identity/GetUser'
+2025-09-24 17:45:11.282 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetUser'
+2025-09-24 17:45:11.283 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: GetUserCommand does not implement IRequest (Parameter 'request')
+   at MediatR.Mediator.<>c.<Send>b__9_0(Type requestType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MediatR.Mediator.Send(Object request, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.GetUser.HandleAsync(GetUserRequest req, CancellationToken ct) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/GetUser.cs:line 15
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:45:11.299 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetUser?userId=1 - 500 null text/plain; charset=utf-8 36.7013ms
+2025-09-24 17:46:16.352 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Identity/GetUser?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - null null
+2025-09-24 17:46:16.355 -04:00 [INF] Executing endpoint 'HTTP: GET /Identity/GetUser'
+2025-09-24 17:46:16.358 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetUser'
+2025-09-24 17:46:16.358 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: GetUserCommand does not implement IRequest (Parameter 'request')
+   at MediatR.Mediator.<>c.<Send>b__9_0(Type requestType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MediatR.Mediator.Send(Object request, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.GetUser.HandleAsync(GetUserRequest req, CancellationToken ct) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/GetUser.cs:line 15
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:46:16.362 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetUser?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - 500 null text/plain; charset=utf-8 12.4315ms
+2025-09-24 17:48:31.068 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Login - application/json 64
+2025-09-24 17:48:31.069 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Login'
+2025-09-24 17:48:31.082 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Login'
+2025-09-24 17:48:31.083 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: LoginUserCommand does not implement IRequest (Parameter 'request')
+   at MediatR.Mediator.<>c.<Send>b__9_0(Type requestType)
+   at System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd(TKey key, Func`2 valueFactory)
+   at MediatR.Mediator.Send(Object request, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.Login.HandleAsync(LoginUserRequest req, CancellationToken ct) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/Login.cs:line 15
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:48:31.086 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Login - 500 null text/plain; charset=utf-8 18.343ms
+2025-09-24 17:51:44.406 -04:00 [INF] Application is shutting down...
+2025-09-24 17:51:53.451 -04:00 [INF] Registered 14 endpoints in 96 milliseconds.
+2025-09-24 17:51:53.796 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-24 17:51:53.905 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-24 17:51:53.917 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-24 17:51:54.266 -04:00 [INF] Now listening on: https://localhost:62950
+2025-09-24 17:51:54.266 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 17:51:54.266 -04:00 [INF] Hosting environment: Development
+2025-09-24 17:51:54.266 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-24 17:52:10.553 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-24 17:52:10.614 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 65.4696ms
+2025-09-24 17:52:10.691 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-24 17:52:10.696 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-24 17:52:10.930 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 239.6333ms
+2025-09-24 17:52:18.093 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Login - application/json 64
+2025-09-24 17:52:18.105 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Login'
+2025-09-24 17:52:18.154 -04:00 [INF] Handling LoginUserCommand
+2025-09-24 17:52:18.154 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:52:18.155 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:52:18.155 -04:00 [INF] Handling LoginUserCommand
+2025-09-24 17:52:18.155 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:52:18.155 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:52:18.157 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Login'
+2025-09-24 17:52:18.157 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'MediatR.IRequestHandler`2[FormDesignerAPI.UseCases.Identity.Login.LoginUserCommand,Ardalis.Result.Result]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.Login.HandleAsync(LoginUserRequest req, CancellationToken ct) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/Login.cs:line 15
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-09-24 17:52:18.164 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Login - 500 null text/plain; charset=utf-8 71.7623ms
+2025-09-24 17:53:32.375 -04:00 [INF] Application is shutting down...
+2025-09-24 17:53:40.494 -04:00 [INF] Registered 14 endpoints in 97 milliseconds.
+2025-09-24 17:53:40.840 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-24 17:53:40.958 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-24 17:53:40.969 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-24 17:53:41.314 -04:00 [INF] Now listening on: https://localhost:63047
+2025-09-24 17:53:41.315 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-24 17:53:41.315 -04:00 [INF] Hosting environment: Development
+2025-09-24 17:53:41.315 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-24 17:53:58.767 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-24 17:53:58.825 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 63.9166ms
+2025-09-24 17:53:58.886 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-24 17:53:58.891 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-24 17:53:59.128 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 242.6312ms
+2025-09-24 17:54:05.984 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/Login - application/json 64
+2025-09-24 17:54:06.002 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/Login'
+2025-09-24 17:54:06.040 -04:00 [INF] Handling LoginUserCommand
+2025-09-24 17:54:06.041 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:54:06.041 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:54:06.041 -04:00 [INF] Handling LoginUserCommand
+2025-09-24 17:54:06.041 -04:00 [INF] Property UserName : admin@example.com
+2025-09-24 17:54:06.041 -04:00 [INF] Property Password : P@ssW0rd!
+2025-09-24 17:54:06.105 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__normalizedUserName_0='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Email", "a"."EmailConfirmed", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."SecurityStamp", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-09-24 17:54:06.199 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__user_Id_0='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."ClaimType", "a"."ClaimValue", "a"."UserId"
+FROM "AspNetUserClaims" AS "a"
+WHERE "a"."UserId" = @__user_Id_0
+2025-09-24 17:54:06.208 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__userId_0='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a0"."Name"
+FROM "AspNetUserRoles" AS "a"
+INNER JOIN "AspNetRoles" AS "a0" ON "a"."RoleId" = "a0"."Id"
+WHERE "a"."UserId" = @__userId_0
+2025-09-24 17:54:06.210 -04:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-09-24 17:54:06.210 -04:00 [INF] User admin@example.com logged in successfully
+2025-09-24 17:54:06.211 -04:00 [INF] Handled LoginUserCommand with Ardalis.Result.Result in 169 ms
+2025-09-24 17:54:06.211 -04:00 [INF] Handled LoginUserCommand with Ardalis.Result.Result in 169 ms
+2025-09-24 17:54:06.211 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/Login'
+2025-09-24 17:54:06.213 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/Login - 204 null null 229.0515ms
+2025-09-24 17:54:51.721 -04:00 [INF] Application is shutting down...

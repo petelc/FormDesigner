@@ -10,24 +10,10 @@
 using System;
 using System.Reflection;
 
-[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c540eeb6-e06b-4456-a539-be58dd8b88c7")]
-[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
-    "tools/dcp"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
-    "tools/ext/"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
-    "tools/ext/bin/"))]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", ("/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/sr" +
-    "c/FormDesignerAPI.AspireHost"))]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "FormDesignerAPI.AspireHost.csproj")]
-[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/petercarroll/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.4.1/tools/As" +
-    "pire.Dashboard.dll"))]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", ("/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/sr" +
-    "c/FormDesignerAPI.AspireHost/obj/"))]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fbba5d21702141efca387dd4ff854ad49dbaa553")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a4d330c1581e78376d761927a6d8aebabb369abb")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
