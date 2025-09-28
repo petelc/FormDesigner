@@ -1,8 +1,10 @@
+using FormDesignerAPI.Web.Common;
+
 namespace FormDesignerAPI.Web.Identity;
 
-public class LoginUserRequest
+public class LoginRequest : BaseRequest
 {
-    public const string Route = "/Identity/Login";
+    //public const string Route = "/Identity/Login";
 
     public string? UserName { get; set; }
     public string? Password { get; set; }
