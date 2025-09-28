@@ -11,7 +11,6 @@ using System;
 using System.Reflection;
 
 [assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c540eeb6-e06b-4456-a539-be58dd8b88c7")]
-<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
     "tools/dcp"))]
 [assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
@@ -28,24 +27,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+ee3f7ca08c51dbe8522752fab6045638a9bce06a")]
-=======
-[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/tools/dc" +
-    "p"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/tools/ex" +
-    "t/"))]
-[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/pete/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/tools/ex" +
-    "t/bin/"))]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", "/Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.AspireHost")]
-[assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "FormDesignerAPI.AspireHost.csproj")]
-[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/pete/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.4.1/tools/Aspire.Das" +
-    "hboard.dll"))]
-[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", "/Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.AspireHost/obj/")]
-[assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireHost")]
-[assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
-[assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+510ea28b5731cd97f21c7cd5b5ad055aad2a5b52")]
->>>>>>> f74e04ce877a9ef0fbc38f805c2c9c664cc900c7
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fcbbeb5105a82d374e4384adbd4d63220b59c5bc")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
