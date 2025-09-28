@@ -14,10 +14,10 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+bd297a7a3d64c14133e4e0190534637ca64d2e8b")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8d28114d541ac288d39a2f43fc788b0dd0304b87")]
 =======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0bf1b049547bdd34bdf2fbcd6b3adbfdadc6aecb")]
->>>>>>> 992bb868cd278f71a990bccba3a8fc79d89627e0
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c56b0b083e13693e424af9e76fa52d8f62111ebc")]
+>>>>>>> 23b5ed3cb6d9cc58677c0a93141de79af92f1c9b
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireTests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireTests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

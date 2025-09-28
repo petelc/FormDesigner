@@ -1,4 +1,7 @@
-﻿using Ardalis.ListStartupServices;
+﻿// ...existing code...
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Ardalis.ListStartupServices;
 using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
@@ -10,7 +13,10 @@ using FormDesignerAPI.UseCases.Interfaces;
 using FormDesignerAPI.Web.Configurations;
 using FormDesignerAPI.Web.Identity;
 
+
 var builder = WebApplication.CreateBuilder(args);
+// Register AuthSettings for options pattern
+builder.Services.Configure<AuthSettings>(builder.Configuration.GetSection("Auth"));
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
