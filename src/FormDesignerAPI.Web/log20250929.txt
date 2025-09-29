@@ -1,0 +1,20 @@
+2025-09-29 19:47:50.488 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-29 19:47:50.508 -04:00 [INF] Registered 16 endpoints in 189 milliseconds.
+2025-09-29 19:47:51.129 -04:00 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-29 19:47:51.455 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-29 19:47:52.199 -04:00 [INF] Now listening on: https://localhost:57306
+2025-09-29 19:47:52.201 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-29 19:47:52.201 -04:00 [INF] Hosting environment: Development
+2025-09-29 19:47:52.201 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-29 19:48:05.544 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-09-29 19:48:05.578 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-29 19:48:05.576 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 37.6065ms
+2025-09-29 19:48:05.620 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 41.7103ms
+2025-09-29 19:48:05.728 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-29 19:48:05.733 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-29 19:48:06.003 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 274.8255ms
+2025-09-29 19:48:36.895 -04:00 [INF] Application is shutting down...
