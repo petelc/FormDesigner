@@ -43,6 +43,11 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
+    Task<Result> IIdentityService.CreateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<Result> LoginAsync(string userName, string password)
     {
         var result = await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
