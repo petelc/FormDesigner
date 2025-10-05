@@ -34,4 +34,3 @@ public class RegisterUserHandler : FastEndpoints.ICommandHandler<RegisterUserCom
         return Ardalis.Result.Result<string>.Error(string.Join("; ", result.Errors));
     }
 }
-
