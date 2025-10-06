@@ -1,0 +1,56 @@
+2025-10-06 18:04:51.083 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-06 18:04:51.104 -04:00 [INF] Registered 16 endpoints in 199 milliseconds.
+2025-10-06 18:04:51.480 -04:00 [INF] Executed DbCommand (11ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-06 18:04:51.632 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-06 18:04:52.078 -04:00 [INF] Now listening on: https://localhost:57372
+2025-10-06 18:04:52.078 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-06 18:04:52.078 -04:00 [INF] Hosting environment: Development
+2025-10-06 18:04:52.078 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-10-06 18:05:23.597 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-10-06 18:05:23.622 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-06 18:05:23.620 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 27.1555ms
+2025-10-06 18:05:23.662 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 40.3593ms
+2025-10-06 18:05:23.761 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-06 18:05:23.765 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-06 18:05:24.022 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 261.3117ms
+2025-10-06 18:06:53.803 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/UserProfile - application/json 218
+2025-10-06 18:06:53.807 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/UserProfile'
+2025-10-06 18:06:53.856 -04:00 [INF] Handling UserProfileCommand
+2025-10-06 18:06:53.857 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-06 18:06:53.857 -04:00 [INF] Property FirstName : Joe
+2025-10-06 18:06:53.857 -04:00 [INF] Property LastName : Smith
+2025-10-06 18:06:53.857 -04:00 [INF] Property Division : BITS
+2025-10-06 18:06:53.857 -04:00 [INF] Property JobTitle : Infrastructure Manager 1
+2025-10-06 18:06:53.857 -04:00 [INF] Property Supervisor : Bill
+2025-10-06 18:06:53.857 -04:00 [INF] Property ProfileImageUrl : string
+2025-10-06 18:06:53.857 -04:00 [INF] Handling UserProfileCommand
+2025-10-06 18:06:53.857 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-06 18:06:53.857 -04:00 [INF] Property FirstName : Joe
+2025-10-06 18:06:53.857 -04:00 [INF] Property LastName : Smith
+2025-10-06 18:06:53.857 -04:00 [INF] Property Division : BITS
+2025-10-06 18:06:53.857 -04:00 [INF] Property JobTitle : Infrastructure Manager 1
+2025-10-06 18:06:53.857 -04:00 [INF] Property Supervisor : Bill
+2025-10-06 18:06:53.857 -04:00 [INF] Property ProfileImageUrl : string
+2025-10-06 18:06:53.939 -04:00 [INF] Executed DbCommand (4ms) [Parameters=[@__p_0='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."Id" = @__p_0
+LIMIT 1
+2025-10-06 18:06:53.986 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-10-06 18:06:54.029 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@p20='?' (Size = 36), @p0='?' (DbType = Int32), @p1='?' (Size = 36), @p21='?' (Size = 36), @p2='?' (Size = 4), @p3='?' (Size = 17), @p4='?' (DbType = Boolean), @p5='?' (Size = 3), @p6='?' (Size = 24), @p7='?' (Size = 5), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 17), @p11='?' (Size = 17), @p12='?' (Size = 84), @p13='?', @p14='?' (DbType = Boolean), @p15='?' (Size = 6), @p16='?' (Size = 32), @p17='?' (Size = 4), @p18='?' (DbType = Boolean), @p19='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Division" = @p2, "Email" = @p3, "EmailConfirmed" = @p4, "FirstName" = @p5, "JobTitle" = @p6, "LastName" = @p7, "LockoutEnabled" = @p8, "LockoutEnd" = @p9, "NormalizedEmail" = @p10, "NormalizedUserName" = @p11, "PasswordHash" = @p12, "PhoneNumber" = @p13, "PhoneNumberConfirmed" = @p14, "ProfileImageUrl" = @p15, "SecurityStamp" = @p16, "Supervisor" = @p17, "TwoFactorEnabled" = @p18, "UserName" = @p19
+WHERE "Id" = @p20 AND "ConcurrencyStamp" = @p21
+RETURNING 1;
+2025-10-06 18:06:54.034 -04:00 [INF] Handled UserProfileCommand with Ardalis.Result.Result in 176 ms
+2025-10-06 18:06:54.034 -04:00 [INF] Handled UserProfileCommand with Ardalis.Result.Result in 177 ms
+2025-10-06 18:06:54.042 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/UserProfile'
+2025-10-06 18:06:54.043 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/UserProfile - 200 null application/json; charset=utf-8 240.9562ms
+2025-10-06 18:11:11.114 -04:00 [INF] Application is shutting down...
