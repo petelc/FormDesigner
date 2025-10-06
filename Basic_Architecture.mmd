@@ -1,0 +1,40 @@
+---
+references:
+  - "File: /src"
+  - "File: /src/FormDesignerAPI.Web/FormDesignerAPI.Web.csproj"
+  - "File: /src/FormDesignerAPI.Core/FormDesignerAPI.Core.csproj"
+  - "File: /src/FormDesignerAPI.UseCases/FormDesignerAPI.UseCases.csproj"
+  - "File:
+    /src/FormDesignerAPI.Infrastructure/FormDesignerAPI.Infrastructure.csproj"
+  - "File: /src/FormDesignerAPI.AspireHost/FormDesignerAPI.AspireHost.csproj"
+generationTime: 2025-10-02T10:06:29.866Z
+---
+flowchart TD
+    
+    subgraph AspireHost
+        AH[FormDesignerAPI.AspireHost]
+    end
+    subgraph Web
+        WEB[FormDesignerAPI.Web]
+    end
+    subgraph Infrastructure
+        INF[FormDesignerAPI.Infrastructure]
+    end
+    subgraph UseCases
+        UC[FormDesignerAPI.UseCases]
+    end
+    subgraph Core
+        CORE[FormDesignerAPI.Core]
+    end
+    subgraph ServiceDefaults
+        SD[FormDesignerAPI.ServiceDefaults]
+    end
+
+    AH --> WEB
+    AH --> SD
+    WEB --> INF
+    WEB --> UC
+    WEB --> SD
+    INF --> CORE
+    INF --> UC
+    UC --> CORE
