@@ -1,0 +1,32 @@
+2025-09-30 17:25:23.765 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-09-30 17:25:23.788 -04:00 [INF] Registered 16 endpoints in 184 milliseconds.
+2025-09-30 17:25:24.138 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-09-30 17:25:24.262 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-09-30 17:25:24.626 -04:00 [INF] Now listening on: https://localhost:49320
+2025-09-30 17:25:24.626 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-09-30 17:25:24.626 -04:00 [INF] Hosting environment: Development
+2025-09-30 17:25:24.626 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-09-30 17:26:01.023 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-09-30 17:26:01.045 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-09-30 17:26:01.043 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 24.6695ms
+2025-09-30 17:26:01.085 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 39.9372ms
+2025-09-30 17:26:01.091 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - null null
+2025-09-30 17:26:01.091 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.css - null null
+2025-09-30 17:26:01.091 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - null null
+2025-09-30 17:26:01.091 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - null null
+2025-09-30 17:26:01.097 -04:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-09-30 17:26:01.097 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.css - 200 218 text/css 6.2769ms
+2025-09-30 17:26:01.100 -04:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-09-30 17:26:01.100 -04:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-09-30 17:26:01.100 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - 200 154988 text/css 9.4877ms
+2025-09-30 17:26:01.100 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - 200 229224 text/javascript 9.4164ms
+2025-09-30 17:26:01.109 -04:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-09-30 17:26:01.110 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - 200 1468327 text/javascript 18.6705ms
+2025-09-30 17:26:01.190 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-09-30 17:26:01.193 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-09-30 17:26:01.452 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 262.7855ms
+2025-09-30 17:34:12.503 -04:00 [INF] Application is shutting down...
