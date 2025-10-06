@@ -2,11 +2,17 @@
 using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
+using FormDesignerAPI.Infrastructure.Identity;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
+using FormDesignerAPI.UseCases.Identity.Register;
+using FormDesignerAPI.UseCases.Interfaces;
 using FormDesignerAPI.Web.Configurations;
 
+
 var builder = WebApplication.CreateBuilder(args);
+// Register AuthSettings for options pattern
+builder.Services.Configure<AuthSettings>(builder.Configuration.GetSection("Auth"));
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
@@ -44,6 +50,10 @@ builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<
 builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>();
 
 builder.Services.AddTransient<IFormUpdateService, FormUpdateService>();
+
+builder.Services.AddTransient<ICommandHandler<RegisterUserCommand, Result<string>>, RegisterUserHandler>();
+
+builder.Services.AddTransient<IIdentityService, IdentityService>();
 
 
 

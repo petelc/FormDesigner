@@ -1,0 +1,20 @@
+architecture-beta
+    group api(cloud)[API]
+
+    
+    service server1(icon:azure:api-management-services)[AspireHost] in api
+    service host(icon:azure:app-services)[Web] in api
+    service server2(icon:azure:digital-twins)[ServiceDefaults] in api
+    service server3(icon:azure:host-groups)[Infrastructure] in api
+    service server4(icon:azure:resource-groups)[UseCases] in api
+    service server5(icon:azure:virtual-enclaves)[Core] in api
+
+    host:T -- B:server1
+    host:L -- R:server2
+    server1:B -- T:server2
+    
+    host:R -- L:server3
+    host:B -- T:server4
+    server3:B -- T:server4
+    server3:T -- B:server5
+    server4:R -- L:server5

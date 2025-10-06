@@ -1,5 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
+  <!-- Removed explicit Compile Include for Identity/Register/RegisterUserCommand.cs to avoid duplicate compile error -->
+
   <ItemGroup>
     <PackageReference Include="Ardalis.Result" />
     <PackageReference Include="FastEndpoints" />
@@ -8,6 +10,15 @@
 
   <ItemGroup>
     <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Identity/Authorized/" />
+    <Folder Include="Identity/Role/" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Identity/Register/RegisterUserCommand.cs" />
   </ItemGroup>
 
 </Project>
