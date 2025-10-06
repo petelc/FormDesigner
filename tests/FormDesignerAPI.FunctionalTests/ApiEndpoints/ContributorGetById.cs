@@ -4,7 +4,7 @@ using FormDesignerAPI.Web.Contributors;
 
 namespace FormDesignerAPI.FunctionalTests.ApiEndpoints;
 
-[Collection("Sequential")]
+//[Collection("Sequential")]
 public class ContributorGetById(CustomWebApplicationFactory<Program> factory) : IClassFixture<CustomWebApplicationFactory<Program>>
 {
   private readonly HttpClient _client = factory.CreateClient();
