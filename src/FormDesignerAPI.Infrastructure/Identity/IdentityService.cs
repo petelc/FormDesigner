@@ -122,6 +122,12 @@ public class IdentityService : IIdentityService
         return result.ToApplicationResult();
     }
 
+    /// <summary>
+    /// Check if a user meets the requirements of a specific policy
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="policyName"></param>
+    /// <returns></returns>
     public async Task<bool> AuthorizeAsync(string userId, string policyName)
     {
         var user = await _userManager.FindByIdAsync(userId);

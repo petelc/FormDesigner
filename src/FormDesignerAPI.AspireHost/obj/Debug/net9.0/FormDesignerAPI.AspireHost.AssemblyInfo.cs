@@ -10,18 +10,24 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("c540eeb6-e06b-4456-a539-be58dd8b88c7")]
+[assembly: System.Reflection.AssemblyMetadata("dcpclipath", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
+    "tools/dcp"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpextensionpaths", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
+    "tools/ext/"))]
+[assembly: System.Reflection.AssemblyMetadata("dcpbinpath", ("/Users/petercarroll/.nuget/packages/aspire.hosting.orchestration.osx-arm64/9.4.1/" +
+    "tools/ext/bin/"))]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectpath", ("/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/sr" +
+    "c/FormDesignerAPI.AspireHost"))]
+[assembly: System.Reflection.AssemblyMetadata("apphostprojectname", "FormDesignerAPI.AspireHost.csproj")]
+[assembly: System.Reflection.AssemblyMetadata("aspiredashboardpath", ("/Users/petercarroll/.nuget/packages/aspire.dashboard.sdk.osx-arm64/9.4.1/tools/As" +
+    "pire.Dashboard.dll"))]
+[assembly: System.Reflection.AssemblyMetadataAttribute("apphostprojectbaseintermediateoutputpath", ("/Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/sr" +
+    "c/FormDesignerAPI.AspireHost/obj/"))]
 [assembly: System.Reflection.AssemblyCompanyAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+af2412e76769102fe20aeea0509bf31574a70b8f")]
-=======
-<<<<<<< HEAD
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+c08e4da5b36454c80b767e75b7c6759df6299832")]
-=======
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e0d7f121495ec6433a079b7830c277e02aeb2225")]
->>>>>>> main
->>>>>>> main
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+3b48a2bf07b815fc89d75c8eaa68400cbc40b2a7")]
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.AspireHost")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
