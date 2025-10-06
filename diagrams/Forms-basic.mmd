@@ -1,0 +1,21 @@
+---
+references:
+  - "File: /src/FormDesignerAPI.Core/FormAggregate/Form.cs"
+generationTime: 2025-10-02T00:51:42.011Z
+---
+erDiagram
+    FORM {
+        string FormNumber PK
+        string FormTitle
+        string Division
+        string Version
+        DateTime CreatedDate
+        DateTime RevisedDate
+        string ConfigurationPath
+        FormStatus Status
+    }
+    OWNER {
+        string Name
+        string Email
+    }
+    FORM ||--o| OWNER : has
