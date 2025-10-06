@@ -117,6 +117,11 @@ public class IdentityService : IIdentityService
         return result.Succeeded;
     }
 
+
+    //** TODO: I should also remove a deleted user from any roles they are in
+    /*and possibly clean up any related data depending on the application's requirements.
+    /* This is a basic implementation and might need to be expanded based on specific needs.
+    */
     public async Task<Result> DeleteUserAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);

@@ -1,7 +1,4 @@
-﻿// ...existing code...
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Ardalis.ListStartupServices;
+﻿using Ardalis.ListStartupServices;
 using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
@@ -11,7 +8,6 @@ using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.UseCases.Identity.Register;
 using FormDesignerAPI.UseCases.Interfaces;
 using FormDesignerAPI.Web.Configurations;
-using FormDesignerAPI.Web.Identity;
 
 
 var builder = WebApplication.CreateBuilder(args);
