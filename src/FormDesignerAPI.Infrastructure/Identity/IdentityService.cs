@@ -43,6 +43,22 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
+    Task<Result> IIdentityService.UpdateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
+    {
+        var user = _userManager.FindByIdAsync(userId).Result;
+        if (user == null) return Task.FromResult(Result.NotFound());
+
+        user.FirstName = firstName;
+        user.LastName = lastName;
+        user.Division = division;
+        user.JobTitle = jobTitle;
+        user.Supervisor = supervisor;
+        user.ProfileImageUrl = profileImageUrl;
+
+        var result = _userManager.UpdateAsync(user).Result;
+        return Task.FromResult(result.ToApplicationResult());
+    }
+
     public async Task<Result> LoginAsync(string userName, string password)
     {
         var result = await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
