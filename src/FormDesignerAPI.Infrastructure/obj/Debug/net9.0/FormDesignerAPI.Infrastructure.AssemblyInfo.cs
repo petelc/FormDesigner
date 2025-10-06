@@ -14,6 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
 <<<<<<< HEAD
+<<<<<<< HEAD
 [assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+fa558cabf53ed1293dc9b7313f6fb7e924de1b15")]
 =======
 <<<<<<< HEAD
@@ -26,6 +27,9 @@ using System.Reflection;
 >>>>>>> main
 >>>>>>> main
 >>>>>>> a8bc3c54189cbff28bd46653fd0e03fe0f224c28
+=======
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b3699482375964fae37e874e19409c9463c63b71")]
+>>>>>>> main
 [assembly: System.Reflection.AssemblyProductAttribute("FormDesignerAPI.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("FormDesignerAPI.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
