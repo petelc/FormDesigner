@@ -8,9 +8,11 @@ using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.UseCases.Identity.Register;
 using FormDesignerAPI.UseCases.Interfaces;
 using FormDesignerAPI.Web.Configurations;
-using FormDesignerAPI.Web.Identity;
+
 
 var builder = WebApplication.CreateBuilder(args);
+// Register AuthSettings for options pattern
+builder.Services.Configure<AuthSettings>(builder.Configuration.GetSection("Auth"));
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()

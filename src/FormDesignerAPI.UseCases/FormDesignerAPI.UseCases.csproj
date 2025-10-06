@@ -14,8 +14,9 @@
 
   <ItemGroup>
     <Folder Include="Identity/Authorized/" />
-    <Folder Include="Identity/Delete/" />
-    <Folder Include="Identity/Role/" />
+    <Folder Include="Identity/Role/DeleteUser/" />
+    <Folder Include="Identity/Role/GetUserRoles/" />
+    <Folder Include="Identity/Role/List/" />
   </ItemGroup>
 
   <ItemGroup>
