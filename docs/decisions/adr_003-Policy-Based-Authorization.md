@@ -2,7 +2,7 @@
 # Configuration for the Jekyll template "Just the Docs"
 parent: Decisions
 nav_order: 100
-title: ADR-002-Indentity Framework Adoption
+title: ADR-003-Policy-Based-Authorization
 # These are optional elements. Feel free to remove any of them.
 status: proposed
 date: 2025-10-12
@@ -15,7 +15,7 @@ has_toc: true
 <!-- we need to disable MD025, because we use the different heading "ADR Template" in the homepage (see above) than it is foreseen in the template -->
 <!-- markdownlint-disable-next-line MD025 -->
 
-**Title:** ADR-002-Identity Framework Adoption  
+**Title:** ADR-003-Policy Based Authorization
 **Problem:** User Authentication and Authorization  
 **Solution:** Microsoft IdentityFrameworkCore
 
@@ -32,32 +32,34 @@ has_toc: true
 
 ## Context and Problem Statement
 
-The application needs to provide a framework to authenticate users and also through the use of Roles, authorize users
+{Describe the context and problem statement, e.g., in free form using two to three sentences or in the form of an illustrative story. You may want to articulate the problem in form of a question and add links to collaboration boards or issue management systems.}
 
 <!-- This is an optional element. Feel free to remove. -->
 
 ## Decision Drivers
 
-- Security
-- Solid solution to security
-- Roles
+- {decision driver 1, e.g., a force, facing concern, …}
+- {decision driver 2, e.g., a force, facing concern, …}
+- … <!-- numbers of drivers can vary -->
 
 ## Considered Options
 
-- IdentityFrameworkCore
-- Windows Authentication
-- Extenal Providers
+- {title of option 1}
+- {title of option 2}
+- {title of option 3}
+- … <!-- numbers of options can vary -->
 
 ## Decision Outcome
 
-Chosen option: IdentityFrameworkCore, because only option, which meets k.o. criterion decision driver.
+Chosen option: "{title of option 1}", because {justification. e.g., only option, which meets k.o. criterion decision driver | which resolves force {force} | … | comes out best (see below)}.
 
 <!-- This is an optional element. Feel free to remove. -->
 
 ### Consequences
 
-- Good, because the framework provides a solid, proven system that fully integrates with AspNetCore applications.
-- Bad, because forced database design
+- Good, because {positive consequence, e.g., improvement of one or more desired qualities, …}
+- Bad, because {negative consequence, e.g., compromising one or more desired qualities, …}
+- … <!-- numbers of consequences can vary -->
 
 <!-- This is an optional element. Feel free to remove. -->
 
