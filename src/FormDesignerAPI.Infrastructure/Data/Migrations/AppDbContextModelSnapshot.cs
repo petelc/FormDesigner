@@ -45,7 +45,7 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<string>("ConfigurationPath")
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("CreatedDate")
+                    b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Division")
@@ -62,7 +62,7 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("TEXT");
 
-                    b.Property<DateTime>("RevisedDate")
+                    b.Property<DateTime?>("RevisedDate")
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")
@@ -89,12 +89,24 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Division")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -119,7 +131,13 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ProfileImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Supervisor")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("TwoFactorEnabled")

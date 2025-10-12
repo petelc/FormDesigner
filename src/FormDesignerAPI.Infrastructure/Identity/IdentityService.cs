@@ -8,21 +8,27 @@ namespace FormDesignerAPI.Infrastructure.Identity;
 public class IdentityService : IIdentityService
 {
     private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
     private readonly IAuthorizationService _authorizationService;
     private readonly IUserClaimsPrincipalFactory<ApplicationUser> _userClaimsPrincipalFactory;
+    private readonly ILogger<IdentityService> _logger;
 
     public IdentityService(
       UserManager<ApplicationUser> userManager,
+        SignInManager<ApplicationUser> signInManager,
       IUserClaimsPrincipalFactory<ApplicationUser> userClaimsPrincipalFactory,
-      IAuthorizationService authorizationService
+      IAuthorizationService authorizationService,
+        ILogger<IdentityService> logger
       )
     {
         _userManager = userManager;
+        _signInManager = signInManager;
         _userClaimsPrincipalFactory = userClaimsPrincipalFactory;
+        _logger = logger;
         _authorizationService = authorizationService;
     }
 
-    public async Task<string?> GetUserNameAsync(string userId)
+    public async Task<Result<string?>> GetUserNameAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
 
@@ -36,6 +42,42 @@ public class IdentityService : IIdentityService
 
         return (result.ToApplicationResult(), user.Id);
     }
+
+    Task<Result> IIdentityService.UpdateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
+    {
+        var user = _userManager.FindByIdAsync(userId).Result;
+        if (user == null) return Task.FromResult(Result.NotFound());
+
+        user.FirstName = firstName;
+        user.LastName = lastName;
+        user.Division = division;
+        user.JobTitle = jobTitle;
+        user.Supervisor = supervisor;
+        user.ProfileImageUrl = profileImageUrl;
+
+        var result = _userManager.UpdateAsync(user).Result;
+        return Task.FromResult(result.ToApplicationResult());
+    }
+
+    public async Task<Result> LoginAsync(string userName, string password)
+    {
+        var result = await _signInManager.PasswordSignInAsync(userName, password, isPersistent: false, lockoutOnFailure: false);
+        if (!result.Succeeded)
+        {
+            _logger.LogWarning("Login failed for user {UserName}", userName);
+            return Result.Unauthorized();
+        }
+
+        _logger.LogInformation("User {UserName} logged in successfully", userName);
+        return Result.Success();
+    }
+
+    public async Task LogoutAsync()
+    {
+        await _signInManager.SignOutAsync();
+        _logger.LogInformation("User logged out successfully");
+    }
+
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -43,6 +85,49 @@ public class IdentityService : IIdentityService
         return user != null && await _userManager.IsInRoleAsync(user, role);
     }
 
+    public async Task<List<string>> GetUserRolesAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return new List<string>();
+
+        var roles = await _userManager.GetRolesAsync(user);
+        return roles.ToList();
+    }
+
+    public async Task<Result> AddUserToRoleAsync(string userId, string role)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var result = await _userManager.AddToRoleAsync(user, role);
+        return result.ToApplicationResult();
+    }
+
+    public async Task<Result> RemoveUserFromRoleAsync(string userId, string role)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var result = await _userManager.RemoveFromRoleAsync(user, role);
+        return result.ToApplicationResult();
+    }
+
+    public async Task<Result> RemoveUserFromAllRolesAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
+
+        var roles = await _userManager.GetRolesAsync(user);
+        var result = await _userManager.RemoveFromRolesAsync(user, roles);
+        return result.ToApplicationResult();
+    }
+
+    /// <summary>
+    /// Check if a user meets the requirements of a specific policy
+    /// </summary>
+    /// <param name="userId"></param>
+    /// <param name="policyName"></param>
+    /// <returns></returns>
     public async Task<bool> AuthorizeAsync(string userId, string policyName)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -54,6 +139,11 @@ public class IdentityService : IIdentityService
         return result.Succeeded;
     }
 
+
+    //** TODO: I should also remove a deleted user from any roles they are in
+    /*and possibly clean up any related data depending on the application's requirements.
+    /* This is a basic implementation and might need to be expanded based on specific needs.
+    */
     public async Task<Result> DeleteUserAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);

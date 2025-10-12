@@ -14,3 +14,25 @@ What do I need to do:
 
 In the UseCases Project:
 **\_\_\_** Update the handler to call the service from the Core project.
+
+### Registering Update Form Service
+
+~~Currently the FormUpdateService is registered in the Program class of the Web project. I should move it to the Infrastructure Service Extensions.~~
+
+Ok rethinking this, I am going to move the update form service registration to the Services Config.
+
+---
+
+So resolve the login not returning a token I need to do the following:
+
+-[] Create an IdentityTokenClaimService that implements ITokenClaimService (Infrastructure Project)
+-[] Create the ITokenClaimService in the Core Project
+-[] Create required AuthEnpoints (create folder in Web project?)
+-[] AuthenticateEndpoint.AuthenticateRequest
+-[] AuthenticateEndpoint.AuthenticateResponse
+-[] AuthenticateEndpoint.ClaimValue
+-[] AuthenticateEndpoint.UserInfo
+-[] AuthenticateEndpoint
+-[] Create RoleManagementEndpoints
+-[] Create RoleMembershipEndpoints
+-[] Create UserManagementEndpoints

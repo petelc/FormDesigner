@@ -36,6 +36,8 @@ public class CreateFormHandler(IRepository<Form> _repository)
       newForm.SetConfigurationPath(request.ConfigurationPath);
     }
 
+    newForm.SetCreatedDate(DateTime.UtcNow);
+
     var createdItem = await _repository.AddAsync(newForm, cancellationToken);
 
     return createdItem.Id;
