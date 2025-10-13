@@ -1,5 +1,6 @@
 using Ardalis.Result;
-using FormDesignerAPI.UseCases.Interfaces;
+using FormDesignerAPI.Core.Entities;
+using FormDesignerAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
@@ -36,10 +37,22 @@ public class IdentityService : IIdentityService
         return user?.UserName;
     }
 
-    public async Task<Result<List<ApplicationUser>>> GetAllUsersAsync()
+    public async Task<Result<List<UserDto>>> GetAllUsersAsync()
     {
         var users = await _userManager.Users.ToListAsync();
-        return Result<List<ApplicationUser>>.Success(users);
+        return Result<List<UserDto>>.Success(users.Select(u => new UserDto
+        {
+            Id = u.Id,
+            UserName = u.UserName,
+            Email = u.Email,
+            FirstName = u.FirstName,
+            LastName = u.LastName,
+            Division = u.Division,
+            JobTitle = u.JobTitle,
+            Supervisor = u.Supervisor,
+            PhoneNumber = u.PhoneNumber,
+            ProfileImageUrl = u.ProfileImageUrl
+        }).ToList());
     }
 
     public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
@@ -50,10 +63,10 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
-    Task<Result> IIdentityService.UpdateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
+    public async Task<Result> UpdateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
     {
-        var user = _userManager.FindByIdAsync(userId).Result;
-        if (user == null) return Task.FromResult(Result.NotFound());
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
 
         user.FirstName = firstName;
         user.LastName = lastName;
@@ -62,8 +75,8 @@ public class IdentityService : IIdentityService
         user.Supervisor = supervisor;
         user.ProfileImageUrl = profileImageUrl;
 
-        var result = _userManager.UpdateAsync(user).Result;
-        return Task.FromResult(result.ToApplicationResult());
+        var result = await _userManager.UpdateAsync(user);
+        return result.ToApplicationResult();
     }
 
     public async Task<Result> LoginAsync(string userName, string password)

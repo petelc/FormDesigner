@@ -1,4 +1,4 @@
-using FormDesignerAPI.UseCases.Interfaces;
+using FormDesignerAPI.Core.Interfaces;
 using MediatR;
 
 namespace FormDesignerAPI.UseCases.Identity.Get;

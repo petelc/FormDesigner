@@ -1,6 +1,7 @@
 using System.Reflection;
 using FormDesignerAPI.UseCases.Attributes;
 using FormDesignerAPI.UseCases.Exceptions;
+using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.UseCases.Interfaces;
 using MediatR;
 
