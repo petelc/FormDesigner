@@ -28,11 +28,18 @@ public class IdentityService : IIdentityService
         _authorizationService = authorizationService;
     }
 
+    #region User Management
     public async Task<Result<string?>> GetUserNameAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
 
         return user?.UserName;
+    }
+
+    public async Task<Result<List<ApplicationUser>>> GetAllUsersAsync()
+    {
+        var users = await _userManager.Users.ToListAsync();
+        return Result<List<ApplicationUser>>.Success(users);
     }
 
     public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
@@ -77,7 +84,9 @@ public class IdentityService : IIdentityService
         await _signInManager.SignOutAsync();
         _logger.LogInformation("User logged out successfully");
     }
+    #endregion
 
+    #region User Roles
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -121,6 +130,7 @@ public class IdentityService : IIdentityService
         var result = await _userManager.RemoveFromRolesAsync(user, roles);
         return result.ToApplicationResult();
     }
+    #endregion
 
     /// <summary>
     /// Check if a user meets the requirements of a specific policy
@@ -139,11 +149,11 @@ public class IdentityService : IIdentityService
         return result.Succeeded;
     }
 
+    #region DeleteUser
+    //* TODO: I should also remove a deleted user from any roles they are in and possibly 
+    //* clean up any related data depending on the application's requirements.
+    //* This is a basic implementation and might need to be expanded based on specific needs. 
 
-    //** TODO: I should also remove a deleted user from any roles they are in
-    /*and possibly clean up any related data depending on the application's requirements.
-    /* This is a basic implementation and might need to be expanded based on specific needs.
-    */
     public async Task<Result> DeleteUserAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -158,4 +168,7 @@ public class IdentityService : IIdentityService
         var result = await _userManager.DeleteAsync(user);
         return result.ToApplicationResult();
     }
+
+
+    #endregion
 }

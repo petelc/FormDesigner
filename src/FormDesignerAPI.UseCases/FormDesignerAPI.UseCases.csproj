@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- <ProjectReference Include="../FormDesignerAPI.Infrastructure/FormDesignerAPI.Infrastructure.csproj" /> -->
     <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
   </ItemGroup>
 

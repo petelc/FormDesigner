@@ -36,3 +36,45 @@ So resolve the login not returning a token I need to do the following:
 -[] Create RoleManagementEndpoints
 -[] Create RoleMembershipEndpoints
 -[] Create UserManagementEndpoints
+
+---
+
+Getting a list of users
+
+```csharp
+// existing using statements here //
+using Microsoft.eShopWeb.Infrastructure.Identity;
+using Microsoft.eShopWeb.PublicApi.Extensions;
+
+namespace Microsoft.eShopWeb.PublicApi.UserManagementEndpoints;
+
+public class UserListEndpoint(UserManager<ApplicationUser> userManager):EndpointWithoutRequest<UserListResponse>
+{
+
+    public override void Configure()
+    {
+        Get("api/users");
+        Roles(BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS);
+        AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
+        Description(d => d.Produces<UserListResponse>()
+        .WithTags("UserManagementEndpoints"));
+    }
+
+    public override async Task<UserListResponse> ExecuteAsync(CancellationToken ct)
+    {
+        await Task.Delay(1000, ct);
+        var response = new UserListResponse();
+        var users = userManager.Users.ToList();
+        foreach ( var user in users)
+        {
+            response.Users.Add(user.ToUserDto());
+        }
+        return response;
+    }
+}
+```
+
+so this method of getting the users directly access the user manager instead of using the mediator pattern.
+This is similiar to the way the login was implemented. My question is does this follow the clean architecture
+concept? And if I want it implemented using the mediator pattern how do I do that since I don't have access to the
+application user?

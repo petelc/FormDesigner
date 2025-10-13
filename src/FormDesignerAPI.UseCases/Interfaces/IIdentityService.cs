@@ -5,6 +5,7 @@ namespace FormDesignerAPI.UseCases.Interfaces;
 public interface IIdentityService
 {
     Task<Result<string?>> GetUserNameAsync(string userId);
+    //Task<Result<List<string>>> GetAllUsersAsync();
     Task<bool> IsInRoleAsync(string userId, string role);
     Task<bool> AuthorizeAsync(string userId, string policyName);
     Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
