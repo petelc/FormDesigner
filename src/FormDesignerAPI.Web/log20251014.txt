@@ -141,3 +141,4 @@ FROM "AspNetUsers" AS "a"
 2025-10-14 17:59:26.268 -04:00 [INF] Handled GetAllUsersCommand with Ardalis.Result.Result`1[System.Collections.Generic.List`1[FormDesignerAPI.Core.Entities.UserDto]] in 68 ms
 2025-10-14 17:59:26.279 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetAllUsers'
 2025-10-14 17:59:26.281 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetAllUsers - 200 null application/json; charset=utf-8 125.2712ms
+2025-10-14 18:06:26.659 -04:00 [INF] Application is shutting down...
