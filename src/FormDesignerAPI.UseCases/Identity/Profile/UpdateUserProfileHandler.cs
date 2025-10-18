@@ -3,16 +3,16 @@ using MediatR;
 
 namespace FormDesignerAPI.UseCases.Identity.Profile;
 
-public class UserProfileHandler : IRequestHandler<UserProfileCommand, Ardalis.Result.Result>
+public class UpdateUserProfileHandler : IRequestHandler<UpdateUserProfileCommand, Ardalis.Result.Result>
 {
     private readonly IIdentityService identityService;
 
-    public UserProfileHandler(IIdentityService identityService)
+    public UpdateUserProfileHandler(IIdentityService identityService)
     {
         this.identityService = identityService;
     }
 
-    public async Task<Ardalis.Result.Result> Handle(UserProfileCommand request, CancellationToken cancellationToken)
+    public async Task<Ardalis.Result.Result> Handle(UpdateUserProfileCommand request, CancellationToken cancellationToken)
     {
         return await identityService.UpdateUserProfileAsync(
             request.UserId,

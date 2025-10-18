@@ -1,0 +1,79 @@
+2025-10-16 17:09:35.443 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-16 17:09:35.464 -04:00 [INF] Registered 20 endpoints in 187 milliseconds.
+2025-10-16 17:09:36.526 -04:00 [INF] Executed DbCommand (12ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-16 17:09:36.744 -04:00 [INF] Executed DbCommand (3ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-16 17:09:37.362 -04:00 [INF] Now listening on: https://localhost:57873
+2025-10-16 17:09:37.362 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-16 17:09:37.362 -04:00 [INF] Hosting environment: Development
+2025-10-16 17:09:37.362 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-10-16 17:09:58.269 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-10-16 17:09:58.295 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 30.2107ms
+2025-10-16 17:09:58.297 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-16 17:09:58.338 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 41.2767ms
+2025-10-16 17:09:58.348 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - null null
+2025-10-16 17:09:58.348 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - null null
+2025-10-16 17:09:58.347 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.css - null null
+2025-10-16 17:09:58.348 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - null null
+2025-10-16 17:09:58.352 -04:00 [INF] The file /swagger-ui-standalone-preset.js was not modified
+2025-10-16 17:09:58.352 -04:00 [INF] The file /swagger-ui-bundle.js was not modified
+2025-10-16 17:09:58.352 -04:00 [INF] The file /index.css was not modified
+2025-10-16 17:09:58.352 -04:00 [INF] The file /swagger-ui.css was not modified
+2025-10-16 17:09:58.353 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.css - 304 null text/css 5.4124ms
+2025-10-16 17:09:58.353 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - 304 null text/javascript 5.373ms
+2025-10-16 17:09:58.353 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - 304 null text/javascript 5.1304ms
+2025-10-16 17:09:58.353 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - 304 null text/css 5.4859ms
+2025-10-16 17:09:58.420 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-16 17:09:58.429 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-16 17:09:58.724 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 304.277ms
+2025-10-16 17:12:50.374 -04:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Identity/UserProfile - application/json 214
+2025-10-16 17:12:50.383 -04:00 [INF] Executing endpoint 'HTTP: POST /Identity/UserProfile'
+2025-10-16 17:12:50.442 -04:00 [INF] Handling UserProfileCommand
+2025-10-16 17:12:50.442 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-16 17:12:50.442 -04:00 [INF] Property FirstName : Johnny
+2025-10-16 17:12:50.443 -04:00 [INF] Property LastName : Goode
+2025-10-16 17:12:50.443 -04:00 [INF] Property Division : BITS
+2025-10-16 17:12:50.443 -04:00 [INF] Property JobTitle : Manager
+2025-10-16 17:12:50.443 -04:00 [INF] Property Supervisor : Jimmy Vallenes
+2025-10-16 17:12:50.443 -04:00 [INF] Property ProfileImageUrl : string
+2025-10-16 17:12:50.443 -04:00 [INF] Handling UserProfileCommand
+2025-10-16 17:12:50.443 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-16 17:12:50.443 -04:00 [INF] Property FirstName : Johnny
+2025-10-16 17:12:50.443 -04:00 [INF] Property LastName : Goode
+2025-10-16 17:12:50.443 -04:00 [INF] Property Division : BITS
+2025-10-16 17:12:50.443 -04:00 [INF] Property JobTitle : Manager
+2025-10-16 17:12:50.443 -04:00 [INF] Property Supervisor : Jimmy Vallenes
+2025-10-16 17:12:50.443 -04:00 [INF] Property ProfileImageUrl : string
+2025-10-16 17:12:50.536 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[@__p_0='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."Id" = @__p_0
+LIMIT 1
+2025-10-16 17:12:50.581 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[@__normalizedUserName_0='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."NormalizedUserName" = @__normalizedUserName_0
+LIMIT 1
+2025-10-16 17:12:50.623 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[@p20='?' (Size = 36), @p0='?' (DbType = Int32), @p1='?' (Size = 36), @p21='?' (Size = 36), @p2='?' (Size = 4), @p3='?' (Size = 17), @p4='?' (DbType = Boolean), @p5='?' (Size = 6), @p6='?' (Size = 7), @p7='?' (Size = 5), @p8='?' (DbType = Boolean), @p9='?' (DbType = DateTimeOffset), @p10='?' (Size = 17), @p11='?' (Size = 17), @p12='?' (Size = 84), @p13='?', @p14='?' (DbType = Boolean), @p15='?' (Size = 6), @p16='?' (Size = 32), @p17='?' (Size = 14), @p18='?' (DbType = Boolean), @p19='?' (Size = 17)], CommandType='"Text"', CommandTimeout='30']
+UPDATE "AspNetUsers" SET "AccessFailedCount" = @p0, "ConcurrencyStamp" = @p1, "Division" = @p2, "Email" = @p3, "EmailConfirmed" = @p4, "FirstName" = @p5, "JobTitle" = @p6, "LastName" = @p7, "LockoutEnabled" = @p8, "LockoutEnd" = @p9, "NormalizedEmail" = @p10, "NormalizedUserName" = @p11, "PasswordHash" = @p12, "PhoneNumber" = @p13, "PhoneNumberConfirmed" = @p14, "ProfileImageUrl" = @p15, "SecurityStamp" = @p16, "Supervisor" = @p17, "TwoFactorEnabled" = @p18, "UserName" = @p19
+WHERE "Id" = @p20 AND "ConcurrencyStamp" = @p21
+RETURNING 1;
+2025-10-16 17:12:50.629 -04:00 [INF] Handled UserProfileCommand with Ardalis.Result.Result in 185 ms
+2025-10-16 17:12:50.629 -04:00 [INF] Handled UserProfileCommand with Ardalis.Result.Result in 185 ms
+2025-10-16 17:12:50.636 -04:00 [INF] Executed endpoint 'HTTP: POST /Identity/UserProfile'
+2025-10-16 17:12:50.637 -04:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Identity/UserProfile - 200 null application/json; charset=utf-8 263.9619ms
+2025-10-16 17:13:06.144 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Identity/GetAllUsers - null null
+2025-10-16 17:13:06.151 -04:00 [INF] Executing endpoint 'HTTP: GET /Identity/GetAllUsers'
+2025-10-16 17:13:06.156 -04:00 [INF] Handling GetAllUsersCommand
+2025-10-16 17:13:06.156 -04:00 [INF] Handling GetAllUsersCommand
+2025-10-16 17:13:06.200 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+2025-10-16 17:13:06.201 -04:00 [INF] Handled GetAllUsersCommand with Ardalis.Result.Result`1[System.Collections.Generic.List`1[FormDesignerAPI.Core.Entities.UserDto]] in 44 ms
+2025-10-16 17:13:06.201 -04:00 [INF] Handled GetAllUsersCommand with Ardalis.Result.Result`1[System.Collections.Generic.List`1[FormDesignerAPI.Core.Entities.UserDto]] in 44 ms
+2025-10-16 17:13:06.206 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetAllUsers'
+2025-10-16 17:13:06.206 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetAllUsers - 200 null application/json; charset=utf-8 63.8204ms
+2025-10-16 17:57:47.880 -04:00 [INF] Application is shutting down...

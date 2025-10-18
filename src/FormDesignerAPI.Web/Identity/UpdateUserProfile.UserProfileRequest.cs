@@ -1,6 +1,6 @@
 namespace FormDesignerAPI.Web.Identity;
 
-public class UserProfileRequest
+public class UpdateUserProfileRequest
 {
     public const string Route = "/Identity/UserProfile";
 

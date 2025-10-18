@@ -2,18 +2,18 @@ using FormDesignerAPI.UseCases.Identity.Profile;
 
 namespace FormDesignerAPI.Web.Identity;
 
-public class UserProfile(IMediator _mediator) : Endpoint<UserProfileRequest, UserProfileResponse>
+public class UpdateUserProfile(IMediator _mediator) : Endpoint<UpdateUserProfileRequest, UpdateUserProfileResponse>
 {
     public override void Configure()
     {
-        Post(UserProfileRequest.Route);
+        Post(UpdateUserProfileRequest.Route);
         AllowAnonymous();
     }
 
-    public override async Task HandleAsync(UserProfileRequest req, CancellationToken ct)
+    public override async Task HandleAsync(UpdateUserProfileRequest req, CancellationToken ct)
     {
-        var response = new UserProfileResponse();
-        var command = new UserProfileCommand(
+        var response = new UpdateUserProfileResponse();
+        var command = new UpdateUserProfileCommand(
             req.UserId ?? string.Empty,
             req.FirstName ?? string.Empty,
             req.LastName ?? string.Empty,
