@@ -37,6 +37,28 @@ public class IdentityService : IIdentityService
         return user?.UserName;
     }
 
+    public async Task<Result<UserDto>> GetUserProfileAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result<UserDto>.NotFound();
+
+        var userDto = new UserDto
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Division = user.Division,
+            JobTitle = user.JobTitle,
+            Supervisor = user.Supervisor,
+            PhoneNumber = user.PhoneNumber,
+            ProfileImageUrl = user.ProfileImageUrl
+        };
+
+        return Result<UserDto>.Success(userDto);
+    }
+
     public async Task<Result<List<UserDto>>> GetAllUsersAsync()
     {
         var users = await _userManager.Users.ToListAsync();
