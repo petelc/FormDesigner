@@ -1,0 +1,62 @@
+2025-10-20 17:39:52.917 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-20 17:39:52.952 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 40.1297ms
+2025-10-20 17:39:53.144 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-20 17:39:53.147 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 3.9147ms
+2025-10-20 17:39:59.871 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Identity/GetUserProfile?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - null null
+2025-10-20 17:39:59.908 -04:00 [INF] Executing endpoint 'HTTP: GET /Identity/GetUserProfile'
+2025-10-20 17:39:59.983 -04:00 [INF] Handling GetUserProfileCommand
+2025-10-20 17:39:59.983 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-20 17:39:59.984 -04:00 [INF] Handling GetUserProfileCommand
+2025-10-20 17:39:59.988 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-20 17:39:59.999 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetUserProfile'
+2025-10-20 17:40:00.000 -04:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No service for type 'MediatR.IRequestHandler`2[FormDesignerAPI.UseCases.Identity.GetUserProfile.GetUserProfileCommand,Ardalis.Result.Result`1[FormDesignerAPI.Core.Entities.UserDto]]' has been registered.
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService(IServiceProvider provider, Type serviceType)
+   at Microsoft.Extensions.DependencyInjection.ServiceProviderServiceExtensions.GetRequiredService[T](IServiceProvider provider)
+   at MediatR.Wrappers.RequestHandlerWrapperImpl`2.<>c__DisplayClass1_0.<Handle>g__Handler|0(CancellationToken t)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Identity.GetUserProfile.HandleAsync(GetUserProfileRequest request, CancellationToken cancellationToken) in /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web/Identity/GetUserProfile.cs:line 19
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-10-20 17:40:00.008 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetUserProfile?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - 500 null text/plain; charset=utf-8 139.8268ms
+2025-10-20 17:40:32.022 -04:00 [INF] Application is shutting down...
+2025-10-20 17:40:49.200 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-20 17:40:49.221 -04:00 [INF] Registered 21 endpoints in 209 milliseconds.
+2025-10-20 17:40:49.562 -04:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-20 17:40:49.681 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-20 17:40:50.297 -04:00 [INF] Now listening on: https://localhost:49855
+2025-10-20 17:40:50.298 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-20 17:40:50.298 -04:00 [INF] Hosting environment: Development
+2025-10-20 17:40:50.298 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-10-20 17:41:03.097 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-20 17:41:03.164 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 72.3392ms
+2025-10-20 17:41:03.261 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-20 17:41:03.267 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-20 17:41:03.536 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 275.5384ms
+2025-10-20 17:41:08.470 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Identity/GetUserProfile?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - null null
+2025-10-20 17:41:08.475 -04:00 [INF] Executing endpoint 'HTTP: GET /Identity/GetUserProfile'
+2025-10-20 17:41:08.517 -04:00 [INF] Handling GetUserProfileCommand
+2025-10-20 17:41:08.517 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-20 17:41:08.517 -04:00 [INF] Handling GetUserProfileCommand
+2025-10-20 17:41:08.517 -04:00 [INF] Property UserId : 098e7ded-3c9b-4952-bf31-c727dabeee5f
+2025-10-20 17:41:08.580 -04:00 [INF] Executed DbCommand (2ms) [Parameters=[@__p_0='?' (Size = 36)], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+WHERE "a"."Id" = @__p_0
+LIMIT 1
+2025-10-20 17:41:08.614 -04:00 [INF] Handled GetUserProfileCommand with Ardalis.Result.Result`1[FormDesignerAPI.Core.Entities.UserDto] in 96 ms
+2025-10-20 17:41:08.614 -04:00 [INF] Handled GetUserProfileCommand with Ardalis.Result.Result`1[FormDesignerAPI.Core.Entities.UserDto] in 96 ms
+2025-10-20 17:41:08.624 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetUserProfile'
+2025-10-20 17:41:08.625 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetUserProfile?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - 200 null application/json; charset=utf-8 155.8715ms
+2025-10-20 17:41:56.774 -04:00 [INF] Application is shutting down...
