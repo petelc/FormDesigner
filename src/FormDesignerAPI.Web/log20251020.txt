@@ -60,3 +60,37 @@ LIMIT 1
 2025-10-20 17:41:08.624 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetUserProfile'
 2025-10-20 17:41:08.625 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetUserProfile?userId=098e7ded-3c9b-4952-bf31-c727dabeee5f - 200 null application/json; charset=utf-8 155.8715ms
 2025-10-20 17:41:56.774 -04:00 [INF] Application is shutting down...
+2025-10-20 17:49:12.503 -04:00 [INF] User profile is available. Using '/Users/petercarroll/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-20 17:49:12.525 -04:00 [INF] Registered 21 endpoints in 189 milliseconds.
+2025-10-20 17:49:12.872 -04:00 [INF] Executed DbCommand (8ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-20 17:49:12.996 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-20 17:49:13.890 -04:00 [INF] Now listening on: https://localhost:50143
+2025-10-20 17:49:13.891 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-20 17:49:13.891 -04:00 [INF] Hosting environment: Development
+2025-10-20 17:49:13.891 -04:00 [INF] Content root path: /Users/petercarroll/Development/MyProjects/Advanced_Form_Designer/FormDesigner/src/FormDesignerAPI.Web
+2025-10-20 17:49:30.836 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-10-20 17:49:30.863 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 31.1253ms
+2025-10-20 17:49:30.866 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-20 17:49:30.908 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 42.091ms
+2025-10-20 17:49:30.999 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-20 17:49:31.008 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-20 17:49:31.290 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 290.9287ms
+2025-10-20 17:52:40.605 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-10-20 17:52:40.609 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-10-20 17:52:40.639 -04:00 [INF] Handling ListFormsQuery
+2025-10-20 17:52:40.640 -04:00 [INF] Property Skip : null
+2025-10-20 17:52:40.640 -04:00 [INF] Property Take : null
+2025-10-20 17:52:40.640 -04:00 [INF] Handling ListFormsQuery
+2025-10-20 17:52:40.640 -04:00 [INF] Property Skip : null
+2025-10-20 17:52:40.640 -04:00 [INF] Property Take : null
+2025-10-20 17:52:40.692 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-10-20 17:52:40.696 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 55 ms
+2025-10-20 17:52:40.696 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 56 ms
+2025-10-20 17:52:40.714 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-10-20 17:52:40.716 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 111.8582ms
+2025-10-20 17:56:34.880 -04:00 [INF] Application is shutting down...
