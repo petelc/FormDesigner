@@ -1,5 +1,3 @@
-using System;
-
 namespace FormDesignerAPI.Core.FormAggregate;
 
 public class FormStatus : SmartEnum<FormStatus>
