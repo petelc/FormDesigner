@@ -1,9 +1,10 @@
 using FormDesignerAPI.Core.Entities;
 using FormDesignerAPI.Core.Interfaces;
+using MediatR;
 
 namespace FormDesignerAPI.UseCases.Identity.GetUserProfile;
 
-public class GetUserProfileHandler : FastEndpoints.ICommandHandler<GetUserProfileCommand, Ardalis.Result.Result<UserDto?>>
+public class GetUserProfileHandler : FastEndpoints.ICommandHandler<GetUserProfileCommand, Ardalis.Result.Result<UserDto?>>, IRequestHandler<GetUserProfileCommand, Ardalis.Result.Result<UserDto?>>
 {
     private readonly IIdentityService _identityService;
 
