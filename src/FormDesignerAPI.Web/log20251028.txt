@@ -1,0 +1,44 @@
+2025-10-28 06:54:38.208 -04:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-28 06:54:38.224 -04:00 [INF] Registered 21 endpoints in 148 milliseconds.
+2025-10-28 06:54:38.583 -04:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-28 06:54:38.749 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-28 06:54:38.988 -04:00 [INF] Now listening on: https://localhost:52818
+2025-10-28 06:54:38.988 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-28 06:54:38.988 -04:00 [INF] Hosting environment: Development
+2025-10-28 06:54:38.988 -04:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-10-28 06:55:17.939 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-10-28 06:55:17.964 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-28 06:55:17.962 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 27.5337ms
+2025-10-28 06:55:17.999 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 34.908ms
+2025-10-28 06:55:18.076 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-28 06:55:18.079 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-28 06:55:18.292 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 215.9415ms
+2025-10-28 06:55:26.190 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Identity/GetAllUsers - null null
+2025-10-28 06:55:26.193 -04:00 [INF] Executing endpoint 'HTTP: GET /Identity/GetAllUsers'
+2025-10-28 06:55:26.220 -04:00 [INF] Handling GetAllUsersCommand
+2025-10-28 06:55:26.220 -04:00 [INF] Handling GetAllUsersCommand
+2025-10-28 06:55:26.254 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "a"."Id", "a"."AccessFailedCount", "a"."ConcurrencyStamp", "a"."Division", "a"."Email", "a"."EmailConfirmed", "a"."FirstName", "a"."JobTitle", "a"."LastName", "a"."LockoutEnabled", "a"."LockoutEnd", "a"."NormalizedEmail", "a"."NormalizedUserName", "a"."PasswordHash", "a"."PhoneNumber", "a"."PhoneNumberConfirmed", "a"."ProfileImageUrl", "a"."SecurityStamp", "a"."Supervisor", "a"."TwoFactorEnabled", "a"."UserName"
+FROM "AspNetUsers" AS "a"
+2025-10-28 06:55:26.284 -04:00 [INF] Handled GetAllUsersCommand with Ardalis.Result.Result`1[System.Collections.Generic.List`1[FormDesignerAPI.Core.Entities.UserDto]] in 63 ms
+2025-10-28 06:55:26.284 -04:00 [INF] Handled GetAllUsersCommand with Ardalis.Result.Result`1[System.Collections.Generic.List`1[FormDesignerAPI.Core.Entities.UserDto]] in 63 ms
+2025-10-28 06:55:26.289 -04:00 [INF] Executed endpoint 'HTTP: GET /Identity/GetAllUsers'
+2025-10-28 06:55:26.290 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Identity/GetAllUsers - 200 null application/json; charset=utf-8 100.2053ms
+2025-10-28 06:55:51.429 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-10-28 06:55:51.431 -04:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-10-28 06:55:51.444 -04:00 [INF] Handling ListFormsQuery
+2025-10-28 06:55:51.445 -04:00 [INF] Property Skip : null
+2025-10-28 06:55:51.445 -04:00 [INF] Property Take : null
+2025-10-28 06:55:51.445 -04:00 [INF] Handling ListFormsQuery
+2025-10-28 06:55:51.445 -04:00 [INF] Property Skip : null
+2025-10-28 06:55:51.445 -04:00 [INF] Property Take : null
+2025-10-28 06:55:51.499 -04:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-10-28 06:55:51.501 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 55 ms
+2025-10-28 06:55:51.501 -04:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 55 ms
+2025-10-28 06:55:51.506 -04:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-10-28 06:55:51.506 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 76.96ms
