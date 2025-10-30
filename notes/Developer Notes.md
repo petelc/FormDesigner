@@ -78,3 +78,5 @@ so this method of getting the users directly access the user manager instead of 
 This is similiar to the way the login was implemented. My question is does this follow the clean architecture
 concept? And if I want it implemented using the mediator pattern how do I do that since I don't have access to the
 application user?
+
+for the form definition json string and handling the database table and also building the C# classes i need to look for the content tag for each child, which have an id so that may help.
