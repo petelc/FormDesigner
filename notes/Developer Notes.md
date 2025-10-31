@@ -79,4 +79,16 @@ This is similiar to the way the login was implemented. My question is does this 
 concept? And if I want it implemented using the mediator pattern how do I do that since I don't have access to the
 application user?
 
-for the form definition json string and handling the database table and also building the C# classes i need to look for the content tag for each child, which have an id so that may help.
+### Form Definition
+
+For the form definition json string and handling the database table and also building the C# classes i need to look for the content tag for each child, which have an id so that may help.
+
+In order to create the table and the fields with the proper names each input field whether an text field, text area, checkbox etc has to have a id field with the proper name. or a name field.
+
+The data will also have to have a type such as text, numeric etc so we can set the datatype and have a characters property for the data size. This will be needed for both the database and the C# classes created.
+
+so when handling the json string do the flatten json part then move the objects or arrays part and look for the children key.
+
+the children key is holding the array of objects that define the layout and content ie the form elements that are part of the container.
+
+So once we have the children array we loop through each object and find the content key which is a string. then we parse the string by tags for example \<textarea> \</textarea> and pull the attributes for the tag.
