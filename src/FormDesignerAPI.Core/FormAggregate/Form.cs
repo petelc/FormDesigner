@@ -1,20 +1,45 @@
 namespace FormDesignerAPI.Core.FormAggregate;
 
+
+/// <summary>
+/// Represents a form entity within the Form Designer API.
+/// This representation is base properties of a form and does not include the form's fields or layout.
+/// </summary>
 public class Form : EntityBase, IAggregateRoot
 {
     // TODO: Add value objects for FormNumber, FormTitle, Division, Version, ConfigurationPath
     // ? How does a value object encapsulate its data and enforce invariants?
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Form"/> class with the specified form number.
+    /// </summary>
+    /// <param name="formNumber"></param>
     public Form(string formNumber)
     {
         UpdateFormNumber(formNumber);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Form"/> class with the specified form number and title.
+    /// </summary>
+    /// <param name="formNumber"></param>
+    /// <param name="formTitle"></param>
     public Form(string formNumber, string formTitle)
     {
         UpdateFormNumber(formNumber);
         UpdateFormTitle(formTitle);
     }
 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="Form"/> class with the specified properties.
+    /// </summary>
+    /// <param name="formNumber"></param>
+    /// <param name="formTitle"></param>
+    /// <param name="division"></param>
+    /// <param name="owner"></param>
+    /// <param name="version"></param>
+    /// <param name="createdDate"></param>
+    /// <param name="revisedDate"></param>
+    /// <param name="configurationPath"></param>
     public Form(string formNumber, string formTitle, string division, Owner owner, string? version = null, DateTime? createdDate = null, DateTime? revisedDate = null, string? configurationPath = null)
     {
         UpdateFormNumber(formNumber);
