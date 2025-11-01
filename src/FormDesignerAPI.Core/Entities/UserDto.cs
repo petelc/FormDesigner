@@ -1,14 +1,16 @@
-namespace FormDesignerAPI.Web.Identity;
+namespace FormDesignerAPI.Core.Entities;
 
-public class UserProfileRequest
+public class UserDto
 {
-    public const string Route = "/Identity/UserProfile";
+    public string? Id { get; set; }
+    public string? UserName { get; set; }
+    public string? Email { get; set; }
 
-    public string? UserId { get; set; }
     public string? FirstName { get; set; }
     public string? LastName { get; set; }
     public string? Division { get; set; }
     public string? JobTitle { get; set; }
     public string? Supervisor { get; set; }
+    public string? PhoneNumber { get; set; }
     public string? ProfileImageUrl { get; set; }
 }

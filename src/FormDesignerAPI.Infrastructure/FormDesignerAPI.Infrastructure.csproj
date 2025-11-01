@@ -23,4 +23,8 @@
     <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
     <ProjectReference Include="..\FormDesignerAPI.UseCases\FormDesignerAPI.UseCases.csproj" />
   </ItemGroup>
+  
+  <ItemGroup>
+    <Folder Include="Interfaces/" />
+  </ItemGroup>
 </Project>

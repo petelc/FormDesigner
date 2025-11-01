@@ -1,0 +1,19 @@
+2025-10-13 06:21:32.501 -04:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-10-13 06:21:32.518 -04:00 [INF] Registered 19 endpoints in 152 milliseconds.
+2025-10-13 06:21:32.885 -04:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-10-13 06:21:33.000 -04:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-10-13 06:21:33.161 -04:00 [INF] Now listening on: https://localhost:52443
+2025-10-13 06:21:33.161 -04:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-10-13 06:21:33.161 -04:00 [INF] Hosting environment: Development
+2025-10-13 06:21:33.161 -04:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-10-13 06:21:49.165 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-10-13 06:21:49.188 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-10-13 06:21:49.186 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 25.0563ms
+2025-10-13 06:21:49.221 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 33.4985ms
+2025-10-13 06:21:49.311 -04:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-10-13 06:21:49.314 -04:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-10-13 06:21:49.520 -04:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 208.4547ms

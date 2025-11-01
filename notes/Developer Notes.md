@@ -36,3 +36,60 @@ So resolve the login not returning a token I need to do the following:
 -[] Create RoleManagementEndpoints
 -[] Create RoleMembershipEndpoints
 -[] Create UserManagementEndpoints
+
+---
+
+Getting a list of users
+
+```csharp
+// existing using statements here //
+using Microsoft.eShopWeb.Infrastructure.Identity;
+using Microsoft.eShopWeb.PublicApi.Extensions;
+
+namespace Microsoft.eShopWeb.PublicApi.UserManagementEndpoints;
+
+public class UserListEndpoint(UserManager<ApplicationUser> userManager):EndpointWithoutRequest<UserListResponse>
+{
+
+    public override void Configure()
+    {
+        Get("api/users");
+        Roles(BlazorShared.Authorization.Constants.Roles.ADMINISTRATORS);
+        AuthSchemes(JwtBearerDefaults.AuthenticationScheme);
+        Description(d => d.Produces<UserListResponse>()
+        .WithTags("UserManagementEndpoints"));
+    }
+
+    public override async Task<UserListResponse> ExecuteAsync(CancellationToken ct)
+    {
+        await Task.Delay(1000, ct);
+        var response = new UserListResponse();
+        var users = userManager.Users.ToList();
+        foreach ( var user in users)
+        {
+            response.Users.Add(user.ToUserDto());
+        }
+        return response;
+    }
+}
+```
+
+so this method of getting the users directly access the user manager instead of using the mediator pattern.
+This is similiar to the way the login was implemented. My question is does this follow the clean architecture
+concept? And if I want it implemented using the mediator pattern how do I do that since I don't have access to the
+application user?
+
+---
+
+### Form Definition Service
+
+What am I thinking that this service provides?
+
+-[] Based on the Form Number it should create a folder to store the files in. This folder should also be tagged with the date it is created.
+-[] Reading the JSON string and creating the SQL Create Table Scripts and save to disk
+-[] Any other required SQL scripts as needed.
+-[] Create the C# model and save to disk
+-[] Create the Endpoint code to be used in the api controller.
+-[] Any other C# classes as needed by DocuHub's architecture.
+
+I think that I should separate out the IO functionality to a FileService.

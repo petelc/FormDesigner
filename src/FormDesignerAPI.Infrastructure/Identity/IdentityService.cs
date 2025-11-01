@@ -1,5 +1,6 @@
 using Ardalis.Result;
-using FormDesignerAPI.UseCases.Interfaces;
+using FormDesignerAPI.Core.Entities;
+using FormDesignerAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 
@@ -28,11 +29,52 @@ public class IdentityService : IIdentityService
         _authorizationService = authorizationService;
     }
 
+    #region User Management
     public async Task<Result<string?>> GetUserNameAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
 
         return user?.UserName;
+    }
+
+    public async Task<Result<UserDto>> GetUserProfileAsync(string userId)
+    {
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result<UserDto>.NotFound();
+
+        var userDto = new UserDto
+        {
+            Id = user.Id,
+            UserName = user.UserName,
+            Email = user.Email,
+            FirstName = user.FirstName,
+            LastName = user.LastName,
+            Division = user.Division,
+            JobTitle = user.JobTitle,
+            Supervisor = user.Supervisor,
+            PhoneNumber = user.PhoneNumber,
+            ProfileImageUrl = user.ProfileImageUrl
+        };
+
+        return Result<UserDto>.Success(userDto);
+    }
+
+    public async Task<Result<List<UserDto>>> GetAllUsersAsync()
+    {
+        var users = await _userManager.Users.ToListAsync();
+        return Result<List<UserDto>>.Success(users.Select(u => new UserDto
+        {
+            Id = u.Id,
+            UserName = u.UserName,
+            Email = u.Email,
+            FirstName = u.FirstName,
+            LastName = u.LastName,
+            Division = u.Division,
+            JobTitle = u.JobTitle,
+            Supervisor = u.Supervisor,
+            PhoneNumber = u.PhoneNumber,
+            ProfileImageUrl = u.ProfileImageUrl
+        }).ToList());
     }
 
     public async Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password)
@@ -43,10 +85,10 @@ public class IdentityService : IIdentityService
         return (result.ToApplicationResult(), user.Id);
     }
 
-    Task<Result> IIdentityService.UpdateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
+    public async Task<Result> UpdateUserProfileAsync(string userId, string firstName, string lastName, string division, string jobTitle, string supervisor, string? profileImageUrl)
     {
-        var user = _userManager.FindByIdAsync(userId).Result;
-        if (user == null) return Task.FromResult(Result.NotFound());
+        var user = await _userManager.FindByIdAsync(userId);
+        if (user == null) return Result.NotFound();
 
         user.FirstName = firstName;
         user.LastName = lastName;
@@ -55,8 +97,8 @@ public class IdentityService : IIdentityService
         user.Supervisor = supervisor;
         user.ProfileImageUrl = profileImageUrl;
 
-        var result = _userManager.UpdateAsync(user).Result;
-        return Task.FromResult(result.ToApplicationResult());
+        var result = await _userManager.UpdateAsync(user);
+        return result.ToApplicationResult();
     }
 
     public async Task<Result> LoginAsync(string userName, string password)
@@ -77,7 +119,9 @@ public class IdentityService : IIdentityService
         await _signInManager.SignOutAsync();
         _logger.LogInformation("User logged out successfully");
     }
+    #endregion
 
+    #region User Roles
     public async Task<bool> IsInRoleAsync(string userId, string role)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -121,6 +165,7 @@ public class IdentityService : IIdentityService
         var result = await _userManager.RemoveFromRolesAsync(user, roles);
         return result.ToApplicationResult();
     }
+    #endregion
 
     /// <summary>
     /// Check if a user meets the requirements of a specific policy
@@ -139,11 +184,11 @@ public class IdentityService : IIdentityService
         return result.Succeeded;
     }
 
+    #region DeleteUser
+    //* TODO: I should also remove a deleted user from any roles they are in and possibly 
+    //* clean up any related data depending on the application's requirements.
+    //* This is a basic implementation and might need to be expanded based on specific needs. 
 
-    //** TODO: I should also remove a deleted user from any roles they are in
-    /*and possibly clean up any related data depending on the application's requirements.
-    /* This is a basic implementation and might need to be expanded based on specific needs.
-    */
     public async Task<Result> DeleteUserAsync(string userId)
     {
         var user = await _userManager.FindByIdAsync(userId);
@@ -158,4 +203,7 @@ public class IdentityService : IIdentityService
         var result = await _userManager.DeleteAsync(user);
         return result.ToApplicationResult();
     }
+
+
+    #endregion
 }

@@ -1,10 +1,13 @@
+using Ardalis.Result;
+using FormDesignerAPI.Core.Entities;
 
-
-namespace FormDesignerAPI.UseCases.Interfaces;
+namespace FormDesignerAPI.Core.Interfaces;
 
 public interface IIdentityService
 {
     Task<Result<string?>> GetUserNameAsync(string userId);
+    Task<Result<UserDto>> GetUserProfileAsync(string userId);
+    Task<Result<List<UserDto>>> GetAllUsersAsync();
     Task<bool> IsInRoleAsync(string userId, string role);
     Task<bool> AuthorizeAsync(string userId, string policyName);
     Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
