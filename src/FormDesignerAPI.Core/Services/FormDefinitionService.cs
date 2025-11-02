@@ -16,36 +16,38 @@ public class FormDefinitionService(ILogger<FormDefinitionService> logger) : IFor
             FlattenJsonAdvanced(doc.RootElement, "", flat);
 
             // Infer types for root object
-            var columnDefs = flat.Select(kvp => $"[{kvp.Key}] {InferSqlTypeAdvanced(kvp.Value)}").ToArray();
+            //var columnDefs = flat.Select(kvp => $"[{kvp.Key}] {InferSqlTypeAdvanced(kvp.Value)}").ToArray(); // I do not need to infer types here
             // This needs to be more generic in a real implementation
-            string createTableSql = $"CREATE TABLE [User] ({string.Join(", ", columnDefs)});";
-            Console.WriteLine("Root Table:");
-            Console.WriteLine(createTableSql);
+            // string createTableSql = $"CREATE TABLE [User] ({string.Join(", ", columnDefs)});";
+            // Console.WriteLine("Root Table:");
+            // Console.WriteLine(createTableSql);
 
-            // Handle arrays of objects (e.g., "projects")
+            // Handle arrays of objects (e.g., "children")
             // This needs to be more generic in a real implementation
-            if (doc.RootElement.TryGetProperty("projects", out var projectsElement) && projectsElement.ValueKind == JsonValueKind.Array)
+            if (doc.RootElement.TryGetProperty("children", out var childrenElements) && childrenElements.ValueKind == JsonValueKind.Array)
             {
-                var projectColumns = new Dictionary<string, List<JsonElement>>();
-                foreach (var project in projectsElement.EnumerateArray())
+                var childrenColumns = new Dictionary<string, List<JsonElement>>();
+                // Loop over the child array
+                foreach (var child in childrenElements.EnumerateArray())
                 {
-                    foreach (var prop in project.EnumerateObject())
+
+                    foreach (var prop in child.EnumerateObject())
                     {
-                        if (!projectColumns.ContainsKey(prop.Name))
-                            projectColumns[prop.Name] = new List<JsonElement>();
-                        projectColumns[prop.Name].Add(prop.Value);
+                        if (!childrenColumns.ContainsKey(prop.Name))
+                            childrenColumns[prop.Name] = new List<JsonElement>();
+                        childrenColumns[prop.Name].Add(prop.Value);
                     }
                 }
                 // Add a foreign key column to link to the parent table
                 // This assumes the parent table is called "User" and has a primary key "Id"
                 // this needs to be more generic in a real implementation
-                projectColumns["UserId"] = new List<JsonElement>();
-                var projectColumnDefs = projectColumns.Select(kvp =>
+                childrenColumns["UserId"] = new List<JsonElement>();
+                var childrenColumnDefs = childrenColumns.Select(kvp =>
                     $"[{kvp.Key}] {(kvp.Key == "UserId" ? "NVARCHAR(MAX)" : InferSqlTypeAdvanced(kvp.Value))}"
                 ).ToArray();
-                string createProjectsTableSql = $"CREATE TABLE [Projects] ({string.Join(", ", projectColumnDefs)});";
-                Console.WriteLine("\nProjects Table:"); // Fixed: Was \\n instead of \n
-                Console.WriteLine(createProjectsTableSql);
+                string createChildrenTableSql = $"CREATE TABLE [Children] ({string.Join(", ", childrenColumnDefs)});";
+                Console.WriteLine("\nChildren Table:"); // Fixed: Was \\n instead of \n
+                Console.WriteLine(createChildrenTableSql);
                 // this is where the sql file is created and saved to disk
             }
 
