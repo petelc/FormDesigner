@@ -79,22 +79,6 @@ This is similiar to the way the login was implemented. My question is does this 
 concept? And if I want it implemented using the mediator pattern how do I do that since I don't have access to the
 application user?
 
-<<<<<<< HEAD
----
-
-### Form Definition Service
-
-What am I thinking that this service provides?
-
--[] Based on the Form Number it should create a folder to store the files in. This folder should also be tagged with the date it is created.
--[] Reading the JSON string and creating the SQL Create Table Scripts and save to disk
--[] Any other required SQL scripts as needed.
--[] Create the C# model and save to disk
--[] Create the Endpoint code to be used in the api controller.
--[] Any other C# classes as needed by DocuHub's architecture.
-
-I think that I should separate out the IO functionality to a FileService.
-=======
 ### Form Definition
 
 For the form definition json string and handling the database table and also building the C# classes i need to look for the content tag for each child, which have an id so that may help.
@@ -108,4 +92,3 @@ so when handling the json string do the flatten json part then move the objects 
 the children key is holding the array of objects that define the layout and content ie the form elements that are part of the container.
 
 So once we have the children array we loop through each object and find the content key which is a string. then we parse the string by tags for example \<textarea> \</textarea> and pull the attributes for the tag.
->>>>>>> 332957db503e0b6804bddae7a33fc9fa36782db3
