@@ -19,7 +19,7 @@
       "y": 0,
       "w": 4,
       "h": 3,
-      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 1<br> <button onclick=\"alert('clicked!')\">Press me</button><div>text area</div><div><textarea></textarea></div><div>Input Field</div><input type=\"text\"><div contenteditable=\"true\">Editable Div</div><div class=\"no-drag\">no drag</div>",
+      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 1<br> <button onclick=\"alert('clicked!')\">Press me</button><div>text area</div><div><textarea name=\"textArea\" type=\"text\"></textarea></div><div>Input Field</div><input name=\"inputField\" type=\"text\"><div contenteditable=\"true\">Editable Div</div><div class=\"no-drag\">no drag</div>",
       "id": "1"
     },
     {
