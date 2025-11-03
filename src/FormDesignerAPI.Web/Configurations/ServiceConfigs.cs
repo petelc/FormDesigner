@@ -1,4 +1,5 @@
 ﻿using FormDesignerAPI.Core.Interfaces;
+using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
 using FormDesignerAPI.Infrastructure.Email;
 
@@ -29,6 +30,9 @@ public static class ServiceConfigs
     {
       services.AddScoped<IEmailSender, MimeKitEmailSender>();
     }
+
+    services.AddScoped<IFormDefinitionService, FormDefinitionService>();
+    services.AddScoped<IHtmlFormElementParser, HtmlFormElementParser>();
 
     logger.LogInformation("{Project} services registered", "Mediatr and Email Sender");
 
