@@ -1,0 +1,77 @@
+erDiagram
+    APPLICATIONUSER {
+        string Id PK
+        boolean EmailConfirmed
+        boolean LockoutEnabled
+        boolean PhoneNumberConfirmed
+        boolean TwoFactorEnabled
+        datetime LockoutEnd
+        int AccessFailedCount
+        string ConcurrencyStamp
+        string Email
+        string NormalizedEmail
+        string NormalizedUserName
+        string PasswordHash
+        string PhoneNumber
+        string SecurityStamp
+        string UserName
+    }
+    CONTRIBUTOR {
+        int Id PK
+        datetime CreatedDate
+        datetime ModifiedDate
+        string Email
+        string Name
+        string Status
+    }
+    FORM {
+        int Id PK
+        int ContributorId FK
+        datetime CreatedDate
+        datetime ModifiedDate
+        string Description
+        string FormSchema
+        string Name
+        string Status
+    }
+    ASPNETUSERROLES {
+        string RoleId PK, FK
+        string UserId PK, FK
+    }
+    ASPNETROLES {
+        string Id PK
+        string ConcurrencyStamp
+        string Name
+        string NormalizedName
+    }
+    ASPNETUSERCLAIMS {
+        int Id PK
+        string UserId FK
+        string ClaimType
+        string ClaimValue
+    }
+    ASPNETUSERLOGINS {
+        string LoginProvider PK
+        string ProviderKey PK
+        string UserId FK
+        string ProviderDisplayName
+    }
+    ASPNETUSERTOKENS {
+        string UserId PK, FK
+        string LoginProvider PK
+        string Name PK
+        string Value
+    }
+    ASPNETROLECLAIMS {
+        int Id PK
+        string RoleId FK
+        string ClaimType
+        string ClaimValue
+    }
+    APPLICATIONUSER ||--o{ ASPNETUSERCLAIMS : has
+    APPLICATIONUSER ||--o{ ASPNETUSERLOGINS : uses
+    APPLICATIONUSER ||--o{ ASPNETUSERROLES : assigned
+    APPLICATIONUSER ||--o{ ASPNETUSERTOKENS : owns
+    ASPNETROLES ||--o{ ASPNETROLECLAIMS : has
+    ASPNETROLES ||--o{ ASPNETUSERROLES : contains
+    CONTRIBUTOR ||--o{ FORM : creates
