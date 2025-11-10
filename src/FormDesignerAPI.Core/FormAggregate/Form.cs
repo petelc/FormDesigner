@@ -5,10 +5,8 @@ namespace FormDesignerAPI.Core.FormAggregate;
 /// Represents a form entity within the Form Designer API.
 /// This representation is base properties of a form and does not include the form's fields or layout.
 /// </summary>
-public class Form : EntityBase, IAggregateRoot
+public class Form : EntityBase<Guid>, IAggregateRoot
 {
-    // TODO: Add value objects for FormNumber, FormTitle, Division, Version, ConfigurationPath
-    // ? How does a value object encapsulate its data and enforce invariants?
     /// <summary>
     /// Initializes a new instance of the <see cref="Form"/> class with the specified form number.
     /// </summary>
@@ -40,7 +38,7 @@ public class Form : EntityBase, IAggregateRoot
     /// <param name="createdDate"></param>
     /// <param name="revisedDate"></param>
     /// <param name="configurationPath"></param>
-    public Form(string formNumber, string formTitle, string division, Owner owner, string? version = null, DateTime? createdDate = null, DateTime? revisedDate = null, string? configurationPath = null)
+    public Form(string formNumber, string formTitle, string division, Owner owner, Version? version = null, DateTime? createdDate = null, DateTime? revisedDate = null, string? configurationPath = null)
     {
         UpdateFormNumber(formNumber);
         UpdateFormTitle(formTitle);
@@ -67,11 +65,12 @@ public class Form : EntityBase, IAggregateRoot
         }
     }
 
+    public Guid FormId { get; private set; } = Guid.NewGuid();
     public string FormNumber { get; private set; } = default!;
     public string FormTitle { get; private set; } = default!;
     public string? Division { get; private set; } = default!;
-    public Owner? Owner { get; private set; } = default!;
-    public string? Version { get; private set; } = default!;
+    public Owner? Owner { get; private set; } = default!; // Value Object representing the owner of the form
+    public Version? Version { get; private set; } = default!;
     public DateTime? CreatedDate { get; private set; }
     public DateTime? RevisedDate { get; private set; }
     public string? ConfigurationPath { get; set; }
@@ -96,9 +95,9 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
-    public Form UpdateVersion(string version)
+    public Form UpdateVersion(Version version)
     {
-        Version = Guard.Against.NullOrEmpty(version, nameof(version));
+        Version = Guard.Against.Null(version, nameof(version));
         return this;
     }
 
@@ -126,7 +125,7 @@ public class Form : EntityBase, IAggregateRoot
         return this;
     }
 
-    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, string newVersion, DateTime newRevisionDate, string newConfigurationPath)
+    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, Version newVersion, DateTime newRevisionDate, string newConfigurationPath)
     {
         UpdateFormNumber(newFormNumber);
         UpdateFormTitle(newFormTitle);
