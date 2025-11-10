@@ -11,6 +11,8 @@ title: adr_004-Form-Definition-Domain-Model
 # informed: {list everyone who is kept up-to-date on progress; and with whom there is a one-way communication}
 ---
 
+<!-- Reference Notion: Notes under the FormDesignerAPI project for help documenting this adr -->
+
 <!-- we need to disable MD025, because we use the different heading "ADR Template" in the homepage (see above) than it is foreseen in the template -->
 <!-- markdownlint-disable-next-line MD025 -->
 

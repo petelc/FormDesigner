@@ -3,66 +3,28 @@ namespace FormDesignerAPI.Core.FormAggregate;
 
 /// <summary>
 /// Represents a form entity within the Form Designer API.
-/// This representation is base properties of a form and does not include the form's fields or layout.
+/// This representation is base properties of a form domain model. Each form can have multiple versions and each version can have its own form definition.
 /// </summary>
 public class Form : EntityBase<Guid>, IAggregateRoot
 {
     /// <summary>
-    /// Initializes a new instance of the <see cref="Form"/> class with the specified form number.
+    /// Private constructor - use Form.CreateBuilder() to create new instances
     /// </summary>
-    /// <param name="formNumber"></param>
-    public Form(string formNumber)
+    internal Form(string formNumber)
     {
-        UpdateFormNumber(formNumber);
+        FormId = Guid.NewGuid();
+        FormNumber = Guard.Against.NullOrEmpty(formNumber, nameof(formNumber));
+        Status = FormStatus.NotSet;
     }
 
     /// <summary>
-    /// Initializes a new instance of the <see cref="Form"/> class with the specified form number and title.
+    /// Creates a new Form builder for fluent construction
     /// </summary>
-    /// <param name="formNumber"></param>
-    /// <param name="formTitle"></param>
-    public Form(string formNumber, string formTitle)
+    /// <param name="formNumber">The required form number</param>
+    /// <returns>A FormBuilder instance</returns>
+    public static FormBuilder CreateBuilder(string formNumber)
     {
-        UpdateFormNumber(formNumber);
-        UpdateFormTitle(formTitle);
-    }
-
-    /// <summary>
-    /// Initializes a new instance of the <see cref="Form"/> class with the specified properties.
-    /// </summary>
-    /// <param name="formNumber"></param>
-    /// <param name="formTitle"></param>
-    /// <param name="division"></param>
-    /// <param name="owner"></param>
-    /// <param name="version"></param>
-    /// <param name="createdDate"></param>
-    /// <param name="revisedDate"></param>
-    /// <param name="configurationPath"></param>
-    public Form(string formNumber, string formTitle, string division, Owner owner, Version? version = null, DateTime? createdDate = null, DateTime? revisedDate = null, string? configurationPath = null)
-    {
-        UpdateFormNumber(formNumber);
-        UpdateFormTitle(formTitle);
-        UpdateDivision(division);
-        SetOwner(owner.Name, owner.Email);
-        if (version is not null)
-        {
-            UpdateVersion(version);
-        }
-
-        if (createdDate is not null)
-        {
-            SetCreatedDate(createdDate.Value);
-        }
-
-        if (revisedDate is not null)
-        {
-            SetRevisedDate(revisedDate.Value);
-        }
-
-        if (configurationPath is not null)
-        {
-            SetConfigurationPath(configurationPath);
-        }
+        return new FormBuilder(formNumber);
     }
 
     public Guid FormId { get; private set; } = Guid.NewGuid();
@@ -70,10 +32,12 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     public string FormTitle { get; private set; } = default!;
     public string? Division { get; private set; } = default!;
     public Owner? Owner { get; private set; } = default!; // Value Object representing the owner of the form
-    public Version? Version { get; private set; } = default!;
     public DateTime? CreatedDate { get; private set; }
     public DateTime? RevisedDate { get; private set; }
-    public string? ConfigurationPath { get; set; }
+
+    // Collection of versions - each form can have multiple versions
+    private readonly List<Version> _versions = new();
+    public IReadOnlyCollection<Version> Versions => _versions.AsReadOnly();
 
     public FormStatus Status { get; private set; } = FormStatus.NotSet;
 
@@ -95,10 +59,116 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         return this;
     }
 
-    public Form UpdateVersion(Version version)
+    public Form AddVersion(Version version)
     {
-        Version = Guard.Against.Null(version, nameof(version));
+        Guard.Against.Null(version, nameof(version));
+
+        // Set version status to Draft by default if not already set
+        if (version.Status == FormStatus.NotSet)
+        {
+            version.Status = FormStatus.Draft;
+        }
+
+        _versions.Add(version);
+
+        // Update form status if this is the first version
+        if (_versions.Count == 1 && Status == FormStatus.NotSet)
+        {
+            Status = FormStatus.Draft;
+        }
+
         return this;
+    }
+
+    public Version? GetCurrentVersion()
+    {
+        return _versions.OrderByDescending(v => v.VersionDate).FirstOrDefault();
+    }
+
+    public Version? GetPublishedVersion()
+    {
+        return _versions.FirstOrDefault(v => v.Status == FormStatus.Published);
+    }
+
+    /// <summary>
+    /// Publishes a version, ensuring only one version can be published at a time.
+    /// If another version is currently published, it will be archived.
+    /// </summary>
+    /// <param name="versionToPublish">The version to publish</param>
+    /// <param name="publishDate">The date to publish the version (optional, defaults to UtcNow)</param>
+    /// <returns>The form instance for method chaining</returns>
+    /// <exception cref="InvalidOperationException">Thrown when the version doesn't belong to this form</exception>
+    public Form PublishVersion(Version versionToPublish, DateTime? publishDate = null)
+    {
+        Guard.Against.Null(versionToPublish, nameof(versionToPublish));
+
+        // Ensure the version belongs to this form
+        if (!_versions.Contains(versionToPublish))
+        {
+            throw new InvalidOperationException("Cannot publish a version that doesn't belong to this form.");
+        }
+
+        var releaseDate = publishDate ?? DateTime.UtcNow;
+
+        // Archive the currently published version (if any)
+        var currentlyPublished = GetPublishedVersion();
+        if (currentlyPublished != null && currentlyPublished != versionToPublish)
+        {
+            currentlyPublished.Status = FormStatus.Archived;
+        }
+
+        // Publish the new version
+        versionToPublish.PublishVersion(releaseDate);
+
+        // Update the form's overall status to Published
+        Status = FormStatus.Published;
+        SetRevisedDate(releaseDate);
+
+        return this;
+    }
+
+    /// <summary>
+    /// Archives the currently published version, setting the form status to Draft
+    /// </summary>
+    /// <returns>The form instance for method chaining</returns>
+    public Form ArchivePublishedVersion()
+    {
+        var publishedVersion = GetPublishedVersion();
+        if (publishedVersion != null)
+        {
+            publishedVersion.Status = FormStatus.Archived;
+
+            // If no other versions are published, set form status to Draft
+            if (!_versions.Any(v => v.Status == FormStatus.Published))
+            {
+                Status = FormStatus.Draft;
+            }
+        }
+
+        return this;
+    }
+
+    /// <summary>
+    /// Gets all versions with a specific status
+    /// </summary>
+    /// <param name="status">The status to filter by</param>
+    /// <returns>Collection of versions with the specified status</returns>
+    public IEnumerable<Version> GetVersionsByStatus(FormStatus status)
+    {
+        return _versions.Where(v => v.Status == status);
+    }
+
+    /// <summary>
+    /// Checks if the form can have a new version published
+    /// </summary>
+    /// <returns>True if a new version can be published</returns>
+    public bool CanPublishVersion()
+    {
+        // You can add business rules here, e.g.:
+        // - Must have at least one version
+        // - Form must not be archived
+        // - etc.
+        return _versions.Any() && Status != FormStatus.Archived;
     }
 
     public Form SetOwner(string name, string email)
@@ -119,35 +189,15 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         return this;
     }
 
-    public Form SetConfigurationPath(string? configurationPath)
-    {
-        ConfigurationPath = configurationPath;
-        return this;
-    }
-
-    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwner, Version newVersion, DateTime newRevisionDate, string newConfigurationPath)
+    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwnerName, string newOwnerEmail, Version newVersion, DateTime newRevisionDate)
     {
         UpdateFormNumber(newFormNumber);
         UpdateFormTitle(newFormTitle);
         UpdateDivision(newDivision);
-        SetOwner(newOwner, string.Empty); // Email is not provided in this context
-        UpdateVersion(newVersion);
-        SetConfigurationPath(newConfigurationPath);
-        //SetCreatedDate(DateTime.UtcNow);
+        SetOwner(newOwnerName, newOwnerEmail);
+        AddVersion(newVersion);
         SetRevisedDate(newRevisionDate);
         return this;
     }
 
-}
-
-public class Owner(string name, string email) : ValueObject
-{
-    public string Name { get; private set; } = name;
-    public string Email { get; private set; } = email;
-
-    protected override IEnumerable<object> GetEqualityComponents()
-    {
-        yield return Name;
-        yield return Email;
-    }
 }
