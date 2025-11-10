@@ -9,14 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <!-- <ProjectReference Include="../FormDesignerAPI.Infrastructure/FormDesignerAPI.Infrastructure.csproj" /> -->
     <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Identity/Authorized/" />
-    <Folder Include="Identity/Role/DeleteUser/" />
-    <Folder Include="Identity/Role/GetUserRoles/" />
-    <Folder Include="Identity/Role/List/" />
+    <Folder Include="Identity/Role/GetAllRoles/" />
   </ItemGroup>
 
   <ItemGroup>

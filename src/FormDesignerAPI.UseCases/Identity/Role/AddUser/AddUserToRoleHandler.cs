@@ -1,4 +1,4 @@
-using FormDesignerAPI.UseCases.Interfaces;
+using FormDesignerAPI.Core.Interfaces;
 
 namespace FormDesignerAPI.UseCases.Identity.Role.AddUser;
 

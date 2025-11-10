@@ -26,6 +26,7 @@
     <ProjectReference Include="..\FormDesignerAPI.Infrastructure\FormDesignerAPI.Infrastructure.csproj" />
     <ProjectReference Include="..\FormDesignerAPI.UseCases\FormDesignerAPI.UseCases.csproj" />
     <ProjectReference Include="..\FormDesignerAPI.ServiceDefaults\FormDesignerAPI.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\FormDesignerAPI.Core\FormDesignerAPI.Core.csproj" />
   </ItemGroup>
 
 </Project>

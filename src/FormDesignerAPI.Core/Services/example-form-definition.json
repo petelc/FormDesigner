@@ -1,0 +1,45 @@
+{
+  "minRow": 1,
+  "float": true,
+  "draggable": {
+    "cancel": ".no-drag"
+  },
+  "cellHeight": 80,
+  "children": [
+    {
+      "x": 0,
+      "y": 0,
+      "w": 2,
+      "h": 2,
+      "id": "0",
+      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 0<br> "
+    },
+    {
+      "x": 2,
+      "y": 0,
+      "w": 4,
+      "h": 3,
+      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 1<br> <button onclick=\"alert('clicked!')\">Press me</button><div>text area</div><div><textarea name=\"textArea\" type=\"text\"></textarea></div><div>Input Field</div><input name=\"inputField\" type=\"text\"><div contenteditable=\"true\">Editable Div</div><div class=\"no-drag\">no drag</div>",
+      "id": "1"
+    },
+    {
+      "x": 0,
+      "y": 2,
+      "id": "3",
+      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 3<br> "
+    },
+    {
+      "x": 1,
+      "y": 2,
+      "id": "2",
+      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 2<br> "
+    },
+    {
+      "x": 0,
+      "y": 3,
+      "w": 6,
+      "id": "4",
+      "content": "<button onclick=\"removeWidget(this.parentElement.parentElement)\">X</button><br> 4<br> "
+    }
+  ]
+}

@@ -3,6 +3,7 @@ using FormDesignerAPI.Core.ContributorAggregate;
 using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
+using FormDesignerAPI.UseCases.Identity.GetUserProfile;
 using MediatR;
 using System.Reflection;
 
@@ -17,7 +18,8 @@ public static class MediatrConfigs
         Assembly.GetAssembly(typeof(Contributor)), // Core
         Assembly.GetAssembly(typeof(CreateContributorCommand)), // UseCases
         Assembly.GetAssembly(typeof (Form)), // Core
-        Assembly.GetAssembly(typeof(CreateFormCommand)) // UseCases
+        Assembly.GetAssembly(typeof(CreateFormCommand)),
+        Assembly.GetAssembly(typeof(GetUserProfileCommand)), // UseCases
       };
 
     services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))
