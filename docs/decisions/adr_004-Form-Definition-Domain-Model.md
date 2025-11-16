@@ -11,6 +11,8 @@ title: adr_004-Form-Definition-Domain-Model
 # informed: {list everyone who is kept up-to-date on progress; and with whom there is a one-way communication}
 ---
 
+<!-- Reference Notion: Notes under the FormDesignerAPI project for help documenting this adr -->
+
 <!-- we need to disable MD025, because we use the different heading "ADR Template" in the homepage (see above) than it is foreseen in the template -->
 <!-- markdownlint-disable-next-line MD025 -->
 
@@ -85,3 +87,7 @@ Chosen option: "{title of option 1}", because {justification. e.g., only option,
 ## More Information
 
 {You might want to provide additional evidence/confidence for the decision outcome here and/or document the team agreement on the decision and/or define when/how this decision the decision should be realized and if/when it should be re-visited. Links to other decisions and resources might appear here as well.}
+
+#### Diagrans
+
+![Form Definition Domain Model](image.png)
