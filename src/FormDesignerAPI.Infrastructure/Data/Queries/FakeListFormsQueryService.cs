@@ -12,26 +12,24 @@ public class FakeListFormsQueryService : IListFormsQueryService
         IEnumerable<FormDTO> forms =
         [
             new FormDTO(
-                1,
+                new Guid(),
                 "Form 1",
                 "Description 1",
                 "Category 1",
                 "Owner 1",
-                "Version 1",
+                Core.FormAggregate.Version.Create(1,0,0, new FormDefinition("/path/to/config"))!,
                 DateTime.UtcNow,
-                DateTime.UtcNow,
-                "path/to/config1.json"
+                DateTime.UtcNow
             ),
             new FormDTO(
-                2,
+                new Guid(),
                 "Form 2",
                 "Description 2",
                 "Category 2",
                 "Owner 2",
-                "Version 2",
+                Core.FormAggregate.Version.Create(1,0,1, new FormDefinition("/path/to/config"))!,
                 DateTime.UtcNow,
-                DateTime.UtcNow,
-                "path/to/config2.json"
+                DateTime.UtcNow
             )];
         return Task.FromResult(forms);
     }

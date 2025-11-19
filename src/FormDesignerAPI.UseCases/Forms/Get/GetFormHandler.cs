@@ -1,11 +1,12 @@
+using Ardalis.SharedKernel;
 using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.Core.FormAggregate.Specifications;
 
 namespace FormDesignerAPI.UseCases.Forms.Get;
 
 /// <summary>
-/// Queries don't necessarily need to use repository methods, but they can if it's convenient
-/// </summary>
+/// Handler for retrieving a form by its ID.
+/// Maps the Form aggregate to a FormDTO for the query response.
 /// </summary>
 public class GetFormHandler
 (IReadRepository<Form> _repository)
@@ -14,22 +15,26 @@ public class GetFormHandler
     public async Task<Result<FormDTO>> Handle(GetFormQuery request, CancellationToken cancellationToken)
     {
         var spec = new FormByIdSpec(request.FormId);
-        var entity = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
-        if (entity == null) return Result<FormDTO>.NotFound();
+        var form = await _repository.FirstOrDefaultAsync(spec, cancellationToken);
 
+        if (form == null)
+        {
+            return Result<FormDTO>.NotFound();
+        }
 
-
+        // Map Form aggregate to FormDTO
         var dto = new FormDTO(
-            entity.Id,
-            entity.FormNumber,
-            entity.FormTitle ?? "",
-            entity.Division ?? "",
-            entity.Owner!.Name ?? "",
-            entity.Version ?? "",
-            entity.CreatedDate ?? DateTime.MinValue,
-            entity.RevisedDate ?? DateTime.MinValue,
-            entity.ConfigurationPath ?? ""
+            form.FormId,
+            form.FormNumber,
+            form.FormTitle ?? string.Empty,
+            form.Division,
+            form.Owner?.Name,
+            form.GetCurrentVersion(),
+            form.CreatedDate ?? DateTime.UtcNow,
+            form.RevisedDate ?? DateTime.UtcNow
         );
+
         return Result<FormDTO>.Success(dto);
     }
 }
+

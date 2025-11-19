@@ -4,13 +4,12 @@ namespace FormDesignerAPI.UseCases.Forms;
 
 public record FormDTO
 (
-    int Id,
+    Guid Id,
     string FormNumber,
     string FormTitle,
     string? Division,
     string? Owner,
-    string? Version,
+    Core.FormAggregate.Version? Version,
     DateTime CreatedDate,
-    DateTime RevisedDate,
-    string? ConfigurationPath
+    DateTime RevisedDate
 );

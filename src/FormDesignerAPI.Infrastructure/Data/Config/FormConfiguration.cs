@@ -29,13 +29,12 @@ public class FormConfiguration : IEntityTypeConfiguration<Form>
                 .IsRequired();
         });
 
-        builder.Property(f => f.Version)
+        builder.Property(f => f.GetCurrentVersion()!)
             .HasMaxLength(DataSchemaConstants.DEFAULT_FORM_NUMBER_LENGTH);
 
         builder.Property(f => f.CreatedDate);
 
         builder.Property(f => f.RevisedDate);
-        builder.Property(f => f.ConfigurationPath);
 
         builder.Property(f => f.Status)
             .HasConversion(

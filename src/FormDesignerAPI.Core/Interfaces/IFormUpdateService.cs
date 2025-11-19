@@ -4,5 +4,5 @@ namespace FormDesignerAPI.Core.Interfaces;
 
 public interface IFormUpdateService
 {
-    public Task<Result> UpdateFormAsync(int formId, FormUpdateDto formUpdateDto, CancellationToken cancellationToken);
+    public Task<Result> UpdateFormAsync(Guid formId, FormUpdateDto formUpdateDto, CancellationToken cancellationToken);
 }

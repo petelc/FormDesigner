@@ -5,8 +5,8 @@ namespace FormDesignerAPI.Core.FormAggregate.Events;
 /// The DeletedFormService is used to dispatch this event.
 /// </summary>
 /// <param name="formId"></param>
-internal sealed class FormDeletedEvent(int formId) : DomainEventBase
+internal sealed class FormDeletedEvent(Guid formId) : DomainEventBase
 {
-    public int FormId { get; init; } = formId;
+    public Guid FormId { get; init; } = formId;
 
 }

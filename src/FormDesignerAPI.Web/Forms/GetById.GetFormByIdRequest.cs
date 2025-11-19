@@ -4,8 +4,8 @@ namespace FormDesignerAPI.Web.Forms;
 
 public class GetFormByIdRequest
 {
-    public const string Route = "/Forms/{FormId:int}";
-    public static string BuildRoute(int formId) => Route.Replace("{FormId:int}", formId.ToString());
+    public const string Route = "/Forms/{FormId:Guid}";
+    public static string BuildRoute(Guid formId) => Route.Replace("{FormId:Guid}", formId.ToString());
 
-    public int FormId { get; set; }
+    public Guid FormId { get; set; }
 }

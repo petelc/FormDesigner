@@ -6,7 +6,7 @@ namespace FormDesignerAPI.Core.Services;
 
 public class FormUpdateService(IRepository<Form> _formRepository, IMediator _mediator, ILogger<FormUpdateService> logger) : IFormUpdateService
 {
-    public async Task<Result> UpdateFormAsync(int formId, FormUpdateDto formUpdateDto, CancellationToken cancellationToken)
+    public async Task<Result> UpdateFormAsync(Guid formId, FormUpdateDto formUpdateDto, CancellationToken cancellationToken)
     {
         logger.LogInformation("Updating Form {formId}", formId);
         var form = await _formRepository.GetByIdAsync(formId, cancellationToken);
@@ -20,10 +20,10 @@ public class FormUpdateService(IRepository<Form> _formRepository, IMediator _med
             formUpdateDto.FormTitle,
             formUpdateDto.Division ?? string.Empty,
             formUpdateDto.Owner ?? string.Empty,
-            formUpdateDto.Version ?? string.Empty,
+            formUpdateDto.OwnerEmail ?? string.Empty,
+            formUpdateDto.Version ?? form.GetCurrentVersion()!,
             //formUpdateDto.CreatedDate,
-            formUpdateDto.RevisedDate ?? DateTime.UtcNow,
-            formUpdateDto.ConfigurationPath ?? string.Empty
+            formUpdateDto.RevisedDate ?? DateTime.UtcNow
         );
 
         await _formRepository.UpdateAsync(form, cancellationToken);

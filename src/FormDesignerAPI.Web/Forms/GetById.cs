@@ -40,8 +40,7 @@ public class GetById(IMediator _mediator)
                 result.Value.Owner,
                 result.Value.Version,
                 result.Value.CreatedDate,
-                result.Value.RevisedDate,
-                result.Value.ConfigurationPath
+                result.Value.RevisedDate
                 );
         }
     }

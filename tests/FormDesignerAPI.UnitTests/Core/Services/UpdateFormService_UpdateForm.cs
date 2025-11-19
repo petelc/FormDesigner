@@ -1,8 +1,12 @@
+using Ardalis.Result;
 using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.Core.Services;
 
 namespace FormDesignerAPI.UnitTests.Core.Services;
 
+/// <summary>
+/// Tests for the FormUpdateService.UpdateFormAsync method.
+/// </summary>
 public class UpdateFormService_UpdateForm
 {
     private readonly IRepository<Form> _repository = Substitute.For<IRepository<Form>>();
@@ -20,7 +24,13 @@ public class UpdateFormService_UpdateForm
     public async Task UpdateForm_ValidRequest_UpdatesForm()
     {
         // Arrange
-        var formId = 1;
+        var formId = Guid.NewGuid();
+        var revisedDate = DateTime.UtcNow;
+
+        // Create a version for the DTO
+        var formDefinition = new FormDefinition("path/to/definition.json");
+        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 0, 0, formDefinition);
+
         var formUpdateDto = new FormUpdateDto
         (
             formId,
@@ -28,26 +38,138 @@ public class UpdateFormService_UpdateForm
             "New Form Title",
             "New Division",
             "New Owner",
-            "New Version",
-            DateTime.UtcNow,
-            "New Configuration Path"
+            "newowner@example.com",
+            version,
+            revisedDate
         );
 
-        var existingForm = new Form
-        (
-            "Old Form Number",
-            "Old Form Title",
-            "Old Division",
-            new Owner("Old Owner", "oldowner@example.com"),
-            "Old Version",
-            DateTime.UtcNow.AddMonths(-1),
-            DateTime.UtcNow,
-            "Old Configuration Path"
-        );
+        // Create an existing form using FormBuilder
+        var existingForm = Form.CreateBuilder("Old Form Number")
+            .WithTitle("Old Form Title")
+            .WithDivision("Old Division")
+            .WithOwner("Old Owner", "oldowner@example.com")
+            .WithCreatedDate(DateTime.UtcNow.AddMonths(-1))
+            .WithRevisedDate(DateTime.UtcNow)
+            .Build();
 
-        _repository.GetByIdAsync(formId).Returns(existingForm);
+        // Configure the repository mock
+        _repository.GetByIdAsync(formId, Arg.Any<CancellationToken>())
+            .Returns(existingForm);
+
+        _repository.UpdateAsync(Arg.Any<Form>(), Arg.Any<CancellationToken>())
+            .Returns(Task.CompletedTask);
+
+        // Act
         var result = await _service.UpdateFormAsync(formId, formUpdateDto, CancellationToken.None);
-        result.Status.ShouldBe(Ardalis.Result.ResultStatus.Ok);
+
+        // Assert
+        result.Status.ShouldBe(ResultStatus.Ok);
+        result.IsSuccess.ShouldBeTrue();
     }
 
+    [Fact]
+    public async Task UpdateForm_FormNotFound_ReturnsNotFound()
+    {
+        // Arrange
+        var formId = Guid.NewGuid();
+        var formDefinition = new FormDefinition("path/to/definition.json");
+        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 0, 0, formDefinition);
+
+        var formUpdateDto = new FormUpdateDto
+        (
+            formId,
+            "New Form Number",
+            "New Form Title",
+            "New Division",
+            "New Owner",
+            "newowner@example.com",
+            version,
+            DateTime.UtcNow
+        );
+
+        // Configure repository to return null (form not found)
+        _repository.GetByIdAsync(formId, Arg.Any<CancellationToken>())
+            .Returns((Form?)null);
+
+        // Act
+        var result = await _service.UpdateFormAsync(formId, formUpdateDto, CancellationToken.None);
+
+        // Assert
+        result.Status.ShouldBe(ResultStatus.NotFound);
+    }
+
+    [Fact]
+    public async Task UpdateForm_ValidRequest_PublishesDomainEvent()
+    {
+        // Arrange
+        var formId = Guid.NewGuid();
+        var formDefinition = new FormDefinition("path/to/definition.json");
+        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 0, 0, formDefinition);
+
+        var formUpdateDto = new FormUpdateDto
+        (
+            formId,
+            "New Form Number",
+            "New Form Title",
+            "New Division",
+            "New Owner",
+            "newowner@example.com",
+            version,
+            DateTime.UtcNow
+        );
+
+        var existingForm = Form.CreateBuilder("Old Form Number")
+            .WithTitle("Old Form Title")
+            .Build();
+
+        _repository.GetByIdAsync(formId, Arg.Any<CancellationToken>())
+            .Returns(existingForm);
+
+        _repository.UpdateAsync(Arg.Any<Form>(), Arg.Any<CancellationToken>())
+            .Returns(Task.CompletedTask);
+
+        // Act
+        await _service.UpdateFormAsync(formId, formUpdateDto, CancellationToken.None);
+
+        // Assert
+        await _mediator.Received(1).Publish(Arg.Any<object>(), Arg.Any<CancellationToken>());
+    }
+
+    [Fact]
+    public async Task UpdateForm_ValidRequest_CallsRepositoryUpdateAsync()
+    {
+        // Arrange
+        var formId = Guid.NewGuid();
+        var formDefinition = new FormDefinition("path/to/definition.json");
+        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 0, 0, formDefinition);
+
+        var formUpdateDto = new FormUpdateDto
+        (
+            formId,
+            "New Form Number",
+            "New Form Title",
+            "New Division",
+            "New Owner",
+            "newowner@example.com",
+            version,
+            DateTime.UtcNow
+        );
+
+        var existingForm = Form.CreateBuilder("Old Form Number")
+            .WithTitle("Old Form Title")
+            .Build();
+
+        _repository.GetByIdAsync(formId, Arg.Any<CancellationToken>())
+            .Returns(existingForm);
+
+        _repository.UpdateAsync(Arg.Any<Form>(), Arg.Any<CancellationToken>())
+            .Returns(Task.CompletedTask);
+
+        // Act
+        await _service.UpdateFormAsync(formId, formUpdateDto, CancellationToken.None);
+
+        // Assert
+        await _repository.Received(1).UpdateAsync(Arg.Any<Form>(), Arg.Any<CancellationToken>());
+    }
 }
+

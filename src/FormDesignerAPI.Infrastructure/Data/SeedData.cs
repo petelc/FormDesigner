@@ -8,15 +8,21 @@ public static class SeedData
   public static readonly Contributor Contributor1 = new Contributor("Ardalis");
   public static readonly Contributor Contributor2 = new Contributor("Snowfrog");
 
-  public static readonly Form Form1 = new Form("FD-001", "Form Designer Initial Form")
-    .UpdateDivision("Engineering")
-    .UpdateVersion("1.0")
-    .SetOwner("John Doe", "john.doe@example.com");
+  public static readonly Form Form1 = Form.CreateBuilder("FD-001")
+    .WithTitle("Form Designer Initial Form")
+    .WithDivision("Engineering")
+    .WithOwner("John Doe", "john.doe@example.com")
+    .WithCreatedDate(DateTime.UtcNow)
+    .WithRevisedDate(DateTime.UtcNow)
+    .Build();
 
-  public static readonly Form Form2 = new Form("FD-002", "Form Designer Second Form")
-    .UpdateDivision("Marketing")
-    .UpdateVersion("1.0")
-    .SetOwner("Jane Smith", "jane.smith@example.com");
+  public static readonly Form Form2 = Form.CreateBuilder("FD-002")
+    .WithTitle("Form Designer Second Form")
+    .WithDivision("Marketing")
+    .WithOwner("Jane Smith", "jane.smith@example.com")
+    .WithCreatedDate(DateTime.UtcNow)
+    .WithRevisedDate(DateTime.UtcNow)
+    .Build();
 
   public static async Task InitializeAsync(AppDbContext dbContext)
   {
@@ -33,3 +39,4 @@ public static class SeedData
     await dbContext.SaveChangesAsync();
   }
 }
+

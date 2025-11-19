@@ -1,45 +1,58 @@
+using Ardalis.Result;
+using FastEndpoints;
 using FormDesignerAPI.Core.FormAggregate;
+using MediatR;
 
 namespace FormDesignerAPI.UseCases.Forms.Create;
 
+/// <summary>
+/// Handler for creating a new form using the FormBuilder pattern.
+/// Implements both FastEndpoints.ICommandHandler and MediatR.IRequestHandler for form creation.
+/// </summary>
 public class CreateFormHandler(IRepository<Form> _repository)
-  : ICommandHandler<CreateFormCommand, Result<int>>
+  : FastEndpoints.ICommandHandler<CreateFormCommand, Result<Guid>>, IRequestHandler<CreateFormCommand, Result<Guid>>
 {
-  public async Task<Result<int>> Handle(CreateFormCommand request,
-    CancellationToken cancellationToken)
+  public async Task<Result<Guid>> ExecuteAsync(CreateFormCommand request, CancellationToken cancellationToken)
   {
-    var newForm = new Form(request.FormNumber);
+    return await Handle(request, cancellationToken);
+  }
+
+  public async Task<Result<Guid>> Handle(CreateFormCommand request, CancellationToken cancellationToken)
+  {
+    // Create a new form using the FormBuilder pattern
+    var formBuilder = Form.CreateBuilder(request.FormNumber);
+
+    // Configure the form with optional properties
     if (!string.IsNullOrEmpty(request.FormTitle))
     {
-      newForm.UpdateFormTitle(request.FormTitle);
+      formBuilder.WithTitle(request.FormTitle);
     }
 
     if (!string.IsNullOrEmpty(request.Division))
     {
-      newForm.UpdateDivision(request.Division);
+      formBuilder.WithDivision(request.Division);
     }
 
-
-    //var newOwner = new Owner(request.Owner!.Name, request.Owner.Email);
     if (request.Owner is not null)
     {
-      newForm.SetOwner(request.Owner!.Name, request.Owner.Email);
+      formBuilder.WithOwner(request.Owner);
     }
 
-    if (!string.IsNullOrEmpty(request.Version))
-    {
-      newForm.UpdateVersion(request.Version);
-    }
+    // Set creation date
+    var createdDate = request.CreatedDate ?? DateTime.UtcNow;
+    formBuilder.WithCreatedDate(createdDate);
 
-    if (!string.IsNullOrEmpty(request.ConfigurationPath))
-    {
-      newForm.SetConfigurationPath(request.ConfigurationPath);
-    }
+    // Set revision date if provided, otherwise use creation date
+    var revisedDate = request.RevisedDate ?? createdDate;
+    formBuilder.WithRevisedDate(revisedDate);
 
-    newForm.SetCreatedDate(DateTime.UtcNow);
+    // Build the form aggregate
+    var newForm = formBuilder.Build();
 
+    // Persist the form
     var createdItem = await _repository.AddAsync(newForm, cancellationToken);
 
-    return createdItem.Id;
+    return Result.Success(createdItem.FormId);
   }
 }
+

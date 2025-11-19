@@ -47,7 +47,7 @@ builder.Services.AddFastEndpoints()
 // wire up commands
 builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>();
 
-builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>();
+builder.Services.AddTransient<ICommandHandler<CreateFormCommand, Result<Guid>>, CreateFormHandler>();
 
 builder.Services.AddTransient<IFormUpdateService, FormUpdateService>();
 

@@ -10,8 +10,8 @@ public class DeleteFormValidator : Validator<DeleteFormRequest>
     public DeleteFormValidator()
     {
         // Add some validation rules here in the future.
-        RuleFor(x => x.FormId)
-            .GreaterThan(0);
+        // RuleFor(x => x.FormId)
+        //     .GreaterThan(0);
     }
 }
 

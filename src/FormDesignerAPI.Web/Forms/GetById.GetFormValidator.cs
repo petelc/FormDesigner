@@ -6,7 +6,7 @@ public class GetFormValidator : Validator<GetFormByIdRequest>
 {
     public GetFormValidator()
     {
-        RuleFor(x => x.FormId)
-        .GreaterThan(0);
+        // RuleFor(x => x.FormId)
+        // .GreaterThan(0);
     }
 }

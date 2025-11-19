@@ -1,8 +1,12 @@
+using Ardalis.Result;
 using FormDesignerAPI.Core.FormAggregate;
 using FormDesignerAPI.Core.Services;
 
 namespace FormDesignerAPI.UnitTests.Core.Services;
 
+/// <summary>
+/// Tests for the FormDeletedService.DeleteFormAsync method.
+/// </summary>
 public class DeleteFormService_DeleteForm
 {
     private readonly IRepository<Form> _repository = Substitute.For<IRepository<Form>>();
@@ -19,8 +23,70 @@ public class DeleteFormService_DeleteForm
     [Fact]
     public async Task ReturnsNotFoundGivenCantFindForm()
     {
-        var result = await _service.DeleteFormAsync(0);
+        // Arrange
+        var formId = Guid.NewGuid();
+        _repository.GetByIdAsync(formId).Returns((Form?)null);
 
-        result.Status.ShouldBe(Ardalis.Result.ResultStatus.NotFound);
+        // Act
+        var result = await _service.DeleteFormAsync(formId);
+
+        // Assert
+        result.Status.ShouldBe(ResultStatus.NotFound);
+    }
+
+    [Fact]
+    public async Task ReturnsSuccessWhenFormIsDeleted()
+    {
+        // Arrange
+        var formId = Guid.NewGuid();
+        var form = Form.CreateBuilder("FD-001").Build();
+
+        _repository.GetByIdAsync(formId).Returns(form);
+        _repository.DeleteAsync(Arg.Any<Form>()).Returns(Task.CompletedTask);
+        _repository.SaveChangesAsync().Returns(Task.CompletedTask);
+
+        // Act
+        var result = await _service.DeleteFormAsync(formId);
+
+        // Assert
+        result.IsSuccess.ShouldBeTrue();
+        await _repository.Received(1).DeleteAsync(Arg.Is<Form>(f => f.FormId == form.FormId));
+    }
+
+    [Fact]
+    public async Task PublishesDomainEventWhenFormIsDeleted()
+    {
+        // Arrange
+        var formId = Guid.NewGuid();
+        var form = Form.CreateBuilder("FD-001").Build();
+
+        _repository.GetByIdAsync(formId).Returns(form);
+        _repository.DeleteAsync(Arg.Any<Form>()).Returns(Task.CompletedTask);
+        _repository.SaveChangesAsync().Returns(Task.CompletedTask);
+
+        // Act
+        await _service.DeleteFormAsync(formId);
+
+        // Assert
+        await _mediator.Received(1).Publish(Arg.Any<object>());
+    }
+
+    [Fact]
+    public async Task CallsSaveChangesAsyncAfterDelete()
+    {
+        // Arrange
+        var formId = Guid.NewGuid();
+        var form = Form.CreateBuilder("FD-001").Build();
+
+        _repository.GetByIdAsync(formId).Returns(form);
+        _repository.DeleteAsync(Arg.Any<Form>()).Returns(Task.CompletedTask);
+        _repository.SaveChangesAsync().Returns(Task.CompletedTask);
+
+        // Act
+        await _service.DeleteFormAsync(formId);
+
+        // Assert
+        await _repository.Received(1).SaveChangesAsync();
     }
 }
+

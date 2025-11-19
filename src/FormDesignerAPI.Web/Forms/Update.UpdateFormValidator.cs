@@ -3,16 +3,17 @@ using FormDesignerAPI.Infrastructure.Data.Config;
 
 namespace FormDesignerAPI.Web.Forms;
 
+/// <summary>
+/// Validator for UpdateFormRequest.
+/// Version parameters and FormDefinitionPath are optional - if not provided, current values are retained.
+/// </summary>
 public class UpdateFormValidator : Validator<UpdateFormRequest>
 {
     public UpdateFormValidator()
     {
         RuleFor(x => x.FormId)
-            .Must((args, formId) => args.Id == formId)
-            .WithMessage("Route and body Ids must match; cannot update Id of an existing resource.");
-
-        // RuleFor(x => x.Id)
-        //     .GreaterThan(0).WithMessage("Id must be greater than 0.");
+            .NotEmpty()
+            .WithMessage("FormId is required.");
 
         RuleFor(x => x.FormNumber)
             .NotEmpty()
@@ -32,13 +33,40 @@ public class UpdateFormValidator : Validator<UpdateFormRequest>
             .NotEmpty()
             .WithMessage("Owner is required.");
 
-        RuleFor(x => x.Version)
+        RuleFor(x => x.OwnerEmail)
             .NotEmpty()
-            .WithMessage("Version is required.");
+            .WithMessage("OwnerEmail is required.")
+            .EmailAddress()
+            .WithMessage("OwnerEmail must be a valid email address.");
 
-        RuleFor(x => x.Status)
-            .NotEmpty()
-            .WithMessage("Status is required.");
+        // Version parameters are optional - if provided, all three must be present and valid
+        When(x => x.VersionMajor.HasValue || x.VersionMinor.HasValue || x.VersionPatch.HasValue, () =>
+        {
+            RuleFor(x => x.VersionMajor)
+                .NotNull()
+                .WithMessage("VersionMajor is required when providing version parameters.")
+                .GreaterThan(0)
+                .WithMessage("VersionMajor must be greater than 0.");
+
+            RuleFor(x => x.VersionMinor)
+                .NotNull()
+                .WithMessage("VersionMinor is required when providing version parameters.")
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("VersionMinor must be greater than or equal to 0.");
+
+            RuleFor(x => x.VersionPatch)
+                .NotNull()
+                .WithMessage("VersionPatch is required when providing version parameters.")
+                .GreaterThanOrEqualTo(0)
+                .WithMessage("VersionPatch must be greater than or equal to 0.");
+        });
+
+        // FormDefinitionPath is optional
+        RuleFor(x => x.FormDefinitionPath)
+            .MaximumLength(500)
+            .WithMessage("FormDefinitionPath must not exceed 500 characters.")
+            .When(x => !string.IsNullOrEmpty(x.FormDefinitionPath));
     }
 }
+
 

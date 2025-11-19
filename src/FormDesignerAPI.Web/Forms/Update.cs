@@ -7,7 +7,9 @@ namespace FormDesignerAPI.Web.Forms;
 /// Update an existing Form.
 /// </summary>
 /// <remarks>
-/// Update an existing Form by providing a fully defined replacement set of values.
+/// Update an existing Form by providing form details and optionally new version parameters.
+/// If version parameters (Major, Minor, Patch) are not provided, the current version is retained.
+/// If FormDefinitionPath is not provided, the current form definition is retained.
 /// </remarks>
 public class Update(IMediator _mediator)
   : Endpoint<UpdateFormRequest>
@@ -28,10 +30,14 @@ public class Update(IMediator _mediator)
             request.FormTitle ?? string.Empty,
             request.Division ?? string.Empty,
             request.Owner ?? string.Empty,
-            request.Version ?? string.Empty,
-            request.RevisedDate ?? DateTime.UtcNow,
-            request.ConfigurationPath ?? string.Empty
+            request.OwnerEmail ?? string.Empty,
+            request.VersionMajor,
+            request.VersionMinor,
+            request.VersionPatch,
+            request.FormDefinitionPath,
+            request.RevisedDate ?? DateTime.UtcNow
         );
+
         var result = await _mediator.Send(command, cancellationToken);
 
         if (result.Status == ResultStatus.NotFound)
