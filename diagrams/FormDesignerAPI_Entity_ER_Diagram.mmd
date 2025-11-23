@@ -1,0 +1,80 @@
+---
+query: Here are the files requested
+references:
+  - "File:
+    /src/FormDesignerAPI.Infrastructure/Data/Config/ContributorConfiguration.cs"
+  - "File: /src/FormDesignerAPI.Infrastructure/Data/Config/FormConfiguration.cs"
+  - "File:
+    /src/FormDesignerAPI.Infrastructure/Data/Config/FormDefinitionConfiguration\
+    .cs"
+  - "File:
+    /src/FormDesignerAPI.Infrastructure/Data/Config/VersionConfiguration.cs"
+  - "File: /src/FormDesignerAPI.Infrastructure/Identity/ApplicationUser.cs"
+  - "File:
+    /Users/pete/.vscode/extensions/ms-azuretools.vscode-azure-github-copilot-1.\
+    0.137-darwin-arm64/resources/azureRules/azure.instructions.md"
+  - |-
+    Reference: Here is a list of instruction files that contain rules for modifying or creating new code.
+    These files are important for ensuring that the code is modified or created correctly.
+    Please make sure to follow the rules specified in these files when working with the codebase.
+    If the file is not already available as attachment, use the `read_file` tool to acquire it.
+    Make sure to acquire the instructions before making any changes to the code.
+    | File | Applies To | Description |
+    | ------- | --------- | ----------- |
+    | '/Users/pete/.vscode/extensions/ms-azuretools.vscode-azure-github-copilot-1.0.137-darwin-arm64/resources/azureRules/azure.instructions.md' | ** | Azure best practices and guidelines for Copilot |
+generationTime: 2025-11-23T13:03:39.215Z
+---
+erDiagram
+    APPLICATION-USER ||--o{ CONTRIBUTOR : manages
+    APPLICATION-USER ||--o{ FORM : creates
+    FORM ||--o{ VERSION : contains
+    VERSION ||--|| FORM-DEFINITION : has
+    
+    APPLICATION-USER {
+        string Id PK
+        string Email UK
+        string NormalizedEmail
+        string UserName UK
+        string NormalizedUserName
+        string FirstName
+        string LastName
+        string Division
+        string JobTitle
+        string Supervisor
+        string ProfileImageUrl
+    }
+    
+    FORM {
+        guid Id PK
+        string FormNumber UK
+        string FormTitle
+        string Division
+        string OwnerName
+        string OwnerEmail
+        datetime CreatedDate
+        datetime RevisedDate
+        formStatus Status
+    }
+    
+    VERSION {
+        guid VersionId PK
+        guid FormId FK
+        int Major
+        int Minor
+        int Patch
+        datetime VersionDate
+        datetime ReleasedDate
+        formStatus Status
+    }
+    
+    FORM-DEFINITION {
+        guid FormDefinitionId PK
+        string ConfigurationPath
+    }
+    
+    CONTRIBUTOR {
+        guid Id PK
+        string Name
+        string PhoneNumber
+        contributorStatus Status
+    }

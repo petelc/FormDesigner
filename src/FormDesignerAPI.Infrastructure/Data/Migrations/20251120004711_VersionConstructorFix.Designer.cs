@@ -3,6 +3,7 @@ using System;
 using FormDesignerAPI.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -10,9 +11,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace FormDesignerAPI.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    partial class AppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20251120004711_VersionConstructorFix")]
+    partial class VersionConstructorFix
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
@@ -45,7 +48,7 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("CurrentVersionId")
+                    b.Property<Guid>("CurrentVersionId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Division")
@@ -74,6 +77,9 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .HasDefaultValue(4);
 
                     b.HasKey("Id");
+
+                    b.HasIndex("CurrentVersionId")
+                        .IsUnique();
 
                     b.ToTable("Forms");
                 });
@@ -380,6 +386,12 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Form", b =>
                 {
+                    b.HasOne("FormDesignerAPI.Core.FormAggregate.Version", "CurrentVersion")
+                        .WithOne()
+                        .HasForeignKey("FormDesignerAPI.Core.FormAggregate.Form", "CurrentVersionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.OwnsOne("FormDesignerAPI.Core.FormAggregate.Owner", "Owner", b1 =>
                         {
                             b1.Property<Guid>("FormId")
@@ -402,6 +414,8 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                             b1.WithOwner()
                                 .HasForeignKey("FormId");
                         });
+
+                    b.Navigation("CurrentVersion");
 
                     b.Navigation("Owner");
                 });

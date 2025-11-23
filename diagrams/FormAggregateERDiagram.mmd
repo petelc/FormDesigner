@@ -1,0 +1,47 @@
+---
+references:
+  - "File: /src/FormDesignerAPI.Core/FormAggregate/Version.cs"
+  - "File: /src/FormDesignerAPI.Core/FormAggregate/FormDefinition.cs"
+  - "File: /src/FormDesignerAPI.Core/FormAggregate/FormBuilder.cs"
+  - "File: /src/FormDesignerAPI.Core/FormAggregate/Owner.cs"
+  - "File: /src/FormDesignerAPI.Core/FormAggregate/FormStatus.cs"
+  - "File:
+    /Users/pete/.vscode/extensions/ms-azuretools.vscode-azure-github-copilot-1.\
+    0.137-darwin-arm64/resources/azureRules/azure.instructions.md"
+  - |-
+    Reference: Here is a list of instruction files that contain rules for modifying or creating new code.
+    These files are important for ensuring that the code is modified or created correctly.
+    Please make sure to follow the rules specified in these files when working with the codebase.
+    If the file is not already available as attachment, use the `read_file` tool to acquire it.
+    Make sure to acquire the instructions before making any changes to the code.
+    | File | Applies To | Description |
+    | ------- | --------- | ----------- |
+    | '/Users/pete/.vscode/extensions/ms-azuretools.vscode-azure-github-copilot-1.0.137-darwin-arm64/resources/azureRules/azure.instructions.md' | ** | Azure best practices and guidelines for Copilot |
+generationTime: 2025-11-23T12:50:57.187Z
+---
+erDiagram
+    FORM ||--o{ VERSION : contains
+    VERSION ||--|| FORM-DEFINITION : has
+    FORM {
+        guid Id PK
+        string FormNumber UK
+        string Title
+        string Division
+        owner Owner
+        datetime CreatedDate
+        datetime RevisedDate
+    }
+    VERSION {
+        guid VersionId PK
+        guid FormId FK
+        int Major
+        int Minor
+        int Patch
+        datetime VersionDate
+        datetime ReleasedDate
+        formStatus Status
+    }
+    FORM-DEFINITION {
+        guid FormDefinitionId PK
+        string ConfigurationPath
+    }

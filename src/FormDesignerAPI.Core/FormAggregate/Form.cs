@@ -34,6 +34,8 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     public Owner? Owner { get; private set; } = default!; // Value Object representing the owner of the form
     public DateTime? CreatedDate { get; private set; }
     public DateTime? RevisedDate { get; private set; }
+    // public Version? CurrentVersion { get; private set; }  // Not tracked by EF Core to avoid circular dependency
+    public Guid? CurrentVersionId { get; private set; }
 
     // Collection of versions - each form can have multiple versions
     private readonly List<Version> _versions = new();
@@ -75,6 +77,8 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         if (_versions.Count == 1 && Status == FormStatus.NotSet)
         {
             Status = FormStatus.Draft;
+            // Set CurrentVersionId to the first version added
+            CurrentVersionId = version.VersionId;
         }
 
         return this;
@@ -124,7 +128,8 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         Status = FormStatus.Published;
         SetRevisedDate(releaseDate);
 
-        return this;
+        // Set this version as the current version
+        CurrentVersionId = versionToPublish.VersionId; return this;
     }
 
     /// <summary>

@@ -21,6 +21,10 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
     base.OnModelCreating(modelBuilder);
+
+    // Exclude SmartEnum types from being discovered as entity types
+    modelBuilder.Ignore<FormStatus>();
+
     modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
   }
 

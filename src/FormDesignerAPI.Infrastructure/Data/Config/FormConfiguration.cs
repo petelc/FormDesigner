@@ -29,8 +29,20 @@ public class FormConfiguration : IEntityTypeConfiguration<Form>
                 .IsRequired();
         });
 
-        builder.Property(f => f.GetCurrentVersion()!)
-            .HasMaxLength(DataSchemaConstants.DEFAULT_FORM_NUMBER_LENGTH);
+        // Each form has one current version (without loading the navigation - use FK only)
+        // builder.HasOne(f => f.CurrentVersion)
+        //     .WithOne()
+        //     .HasForeignKey<Core.FormAggregate.Form>(f => f.CurrentVersionId)
+        //     .IsRequired();
+
+        // builder.Property(f => f.GetCurrentVersion()!)
+        //     .HasMaxLength(DataSchemaConstants.DEFAULT_FORM_NUMBER_LENGTH);
+
+        // each form can have many previous versions
+        builder.HasMany(f => f.Versions)
+            .WithOne()
+            .HasForeignKey(v => v.FormId)
+            .IsRequired();
 
         builder.Property(f => f.CreatedDate);
 
@@ -39,6 +51,8 @@ public class FormConfiguration : IEntityTypeConfiguration<Form>
         builder.Property(f => f.Status)
             .HasConversion(
                 x => x.Value,
-                x => FormStatus.FromValue(x));
+                x => FormStatus.FromValue(x))
+            .HasDefaultValue(FormStatus.NotSet)
+            .IsRequired();
     }
 }

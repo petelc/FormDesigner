@@ -73,11 +73,11 @@ public class FormConstructor
     }
 
     [Fact]
-    public void FormHasInitialDraftStatus()
+    public void FormHasInitialNotSetStatus()
     {
         _testForm = CreateMinimalForm();
 
-        _testForm.Status.ShouldBe(FormStatus.Draft);
+        _testForm.Status.ShouldBe(FormStatus.NotSet);
     }
 
     [Fact]

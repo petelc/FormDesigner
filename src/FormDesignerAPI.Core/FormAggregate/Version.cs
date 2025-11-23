@@ -15,6 +15,13 @@ public class Version : EntityBase<Guid>
     // Each version has exactly one form definition
     public FormDefinition FormDefinition { get; private set; } = default!;
 
+    public Guid FormId { get; set; }
+
+    // Constructor for EF Core
+    protected Version()
+    {
+    }
+
     private Version(int major, int minor, int patch, FormDefinition formDefinition)
     {
         VersionId = Guid.NewGuid();

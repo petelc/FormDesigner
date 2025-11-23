@@ -1,0 +1,42 @@
+---
+query: Can you generate a ER Diagram from the solution file
+references:
+  - "File: /FormDesignerAPI.slnx"
+  - "File:
+    /Users/pete/.vscode/extensions/ms-azuretools.vscode-azure-github-copilot-1.\
+    0.137-darwin-arm64/resources/azureRules/azure.instructions.md"
+  - |-
+    Reference: Here is a list of instruction files that contain rules for modifying or creating new code.
+    These files are important for ensuring that the code is modified or created correctly.
+    Please make sure to follow the rules specified in these files when working with the codebase.
+    If the file is not already available as attachment, use the `read_file` tool to acquire it.
+    Make sure to acquire the instructions before making any changes to the code.
+    | File | Applies To | Description |
+    | ------- | --------- | ----------- |
+    | '/Users/pete/.vscode/extensions/ms-azuretools.vscode-azure-github-copilot-1.0.137-darwin-arm64/resources/azureRules/azure.instructions.md' | ** | Azure best practices and guidelines for Copilot |
+generationTime: 2025-11-23T12:55:42.757Z
+---
+architecture-beta
+    group src(cloud)[Source Projects]
+    group tests(cloud)[Test Projects]
+    
+    service aspire(server)[AspireHost] in src
+    service defaults(server)[ServiceDefaults] in src
+    service core(database)[Core] in src
+    service infra(disk)[Infrastructure] in src
+    service usecases(disk)[UseCases] in src
+    service web(internet)[Web API] in src
+    
+    service functional(server)[FunctionalTests] in tests
+    service integration(server)[IntegrationTests] in tests
+    service unit(server)[UnitTests] in tests
+    
+    core:R --> L:usecases
+    usecases:R --> L:web
+    infra:T --> B:usecases
+    defaults:T --> B:web
+    aspire:B --> T:web
+    
+    functional:L --> R:web
+    integration:L --> R:infra
+    unit:L --> R:core
