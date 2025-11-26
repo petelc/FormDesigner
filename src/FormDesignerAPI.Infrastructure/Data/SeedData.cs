@@ -18,9 +18,9 @@ public static class SeedData
       if (_form1 == null)
       {
         var formDef1 = new FormDefinition("/forms/fd-001/form-definition.json");
-        var version1 = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 1, 1, formDef1);
+        var revision1 = FormDesignerAPI.Core.FormAggregate.Revision.Create(1, 1, 1, formDef1);
         var formDef3 = new FormDefinition("/forms/fd-001/form-definition-v2.json");
-        var version2 = FormDesignerAPI.Core.FormAggregate.Version.Create(2, 1, 1, formDef3);
+        var revision2 = FormDesignerAPI.Core.FormAggregate.Revision.Create(2, 1, 1, formDef3);
 
         _form1 = Form.CreateBuilder("FD-001")
           .WithTitle("Form Designer Initial Form")
@@ -28,7 +28,7 @@ public static class SeedData
           .WithOwner("John Doe", "john.doe@example.com")
           .WithCreatedDate(DateTime.UtcNow.AddDays(-30))
           .WithRevisedDate(DateTime.UtcNow.AddDays(-30))
-          .WithVersions(version1, version2)
+          .WithRevisions(revision1, revision2)
           .Build();
       }
       return _form1;
@@ -42,7 +42,7 @@ public static class SeedData
       if (_form2 == null)
       {
         var formDef2 = new FormDefinition("/forms/fd-002/form-definition.json");
-        var version1 = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 1, 1, formDef2);
+        var revision1 = FormDesignerAPI.Core.FormAggregate.Revision.Create(1, 1, 1, formDef2);
 
         _form2 = Form.CreateBuilder("FD-002")
           .WithTitle("Form Designer Second Form")
@@ -50,7 +50,7 @@ public static class SeedData
           .WithOwner("Jane Smith", "jane.smith@example.com")
           .WithCreatedDate(DateTime.UtcNow.AddDays(-15))
           .WithRevisedDate(DateTime.UtcNow.AddDays(-15))
-          .WithVersion(version1)
+          .WithRevision(revision1)
           .Build();
       }
       return _form2;

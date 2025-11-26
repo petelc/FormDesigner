@@ -1,5 +1,3 @@
-using FormDesignerAPI.Core.FormAggregate;
-
 namespace FormDesignerAPI.Web.Forms;
 
 public record class FormRecord(
@@ -8,7 +6,7 @@ public record class FormRecord(
     string FormTitle,
     string? Division,
     string? Owner,
-    Core.FormAggregate.Version? Version,
+    string? Revision,
     DateTime CreatedDate,
     DateTime RevisedDate
     );

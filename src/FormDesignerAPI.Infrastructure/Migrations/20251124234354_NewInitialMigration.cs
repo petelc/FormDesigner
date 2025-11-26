@@ -3,10 +3,10 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace FormDesignerAPI.Infrastructure.Data.Migrations
+namespace FormDesignerAPI.Infrastructure.Migrations
 {
     /// <inheritdoc />
-    public partial class InitialMigration : Migration
+    public partial class NewInitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -30,6 +30,12 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<string>(type: "TEXT", nullable: false),
+                    FirstName = table.Column<string>(type: "TEXT", nullable: true),
+                    LastName = table.Column<string>(type: "TEXT", nullable: true),
+                    Division = table.Column<string>(type: "TEXT", nullable: true),
+                    JobTitle = table.Column<string>(type: "TEXT", nullable: true),
+                    Supervisor = table.Column<string>(type: "TEXT", nullable: true),
+                    ProfileImageUrl = table.Column<string>(type: "TEXT", nullable: true),
                     UserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "TEXT", maxLength: 256, nullable: true),
@@ -51,21 +57,51 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Forms",
+                name: "Contributors",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
+                    Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false),
+                    PhoneNumber_CountryCode = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber_Number = table.Column<string>(type: "TEXT", nullable: true),
+                    PhoneNumber_Extension = table.Column<string>(type: "TEXT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Contributors", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "FormDefinition",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FormDefinitionId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    ConfigurationPath = table.Column<string>(type: "TEXT", maxLength: 500, nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FormDefinition", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Forms",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    FormId = table.Column<Guid>(type: "TEXT", nullable: false),
                     FormNumber = table.Column<string>(type: "TEXT", maxLength: 8, nullable: false),
                     FormTitle = table.Column<string>(type: "TEXT", maxLength: 100, nullable: false),
                     Division = table.Column<string>(type: "TEXT", maxLength: 10, nullable: true),
                     Owner_Name = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
                     Owner_Email = table.Column<string>(type: "TEXT", maxLength: 100, nullable: true),
-                    Version = table.Column<string>(type: "TEXT", maxLength: 8, nullable: true),
-                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    RevisedDate = table.Column<DateTime>(type: "TEXT", nullable: false),
-                    ConfigurationPath = table.Column<string>(type: "TEXT", nullable: true),
-                    Status = table.Column<int>(type: "INTEGER", nullable: false)
+                    CreatedDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    RevisedDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    CurrentRevisionId = table.Column<Guid>(type: "TEXT", nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 4),
+                    Revision = table.Column<string>(type: "TEXT", maxLength: 8, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -178,6 +214,37 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Revision",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "TEXT", nullable: false),
+                    RevisionId = table.Column<Guid>(type: "TEXT", nullable: false),
+                    Major = table.Column<int>(type: "INTEGER", nullable: false),
+                    Minor = table.Column<int>(type: "INTEGER", nullable: false),
+                    Patch = table.Column<int>(type: "INTEGER", nullable: false),
+                    RevisionDate = table.Column<DateTime>(type: "TEXT", nullable: false),
+                    ReleasedDate = table.Column<DateTime>(type: "TEXT", nullable: true),
+                    Status = table.Column<int>(type: "INTEGER", nullable: false, defaultValue: 4),
+                    FormId = table.Column<Guid>(type: "TEXT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Revision", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Revision_FormDefinition_RevisionId",
+                        column: x => x.RevisionId,
+                        principalTable: "FormDefinition",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_Revision_Forms_FormId",
+                        column: x => x.FormId,
+                        principalTable: "Forms",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -214,6 +281,17 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Revision_FormId",
+                table: "Revision",
+                column: "FormId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Revision_RevisionId",
+                table: "Revision",
+                column: "RevisionId",
+                unique: true);
         }
 
         /// <inheritdoc />
@@ -235,13 +313,22 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "Forms");
+                name: "Contributors");
+
+            migrationBuilder.DropTable(
+                name: "Revision");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "FormDefinition");
+
+            migrationBuilder.DropTable(
+                name: "Forms");
         }
     }
 }

@@ -21,7 +21,7 @@ public class FormUpdateService(IRepository<Form> _formRepository, IMediator _med
             formUpdateDto.Division ?? string.Empty,
             formUpdateDto.Owner ?? string.Empty,
             formUpdateDto.OwnerEmail ?? string.Empty,
-            formUpdateDto.Version ?? form.GetCurrentVersion()!,
+            formUpdateDto.Revision ?? form.GetCurrentRevision()!,
             //formUpdateDto.CreatedDate,
             formUpdateDto.RevisedDate ?? DateTime.UtcNow
         );

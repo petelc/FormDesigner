@@ -27,9 +27,9 @@ public class UpdateFormService_UpdateForm
         var formId = Guid.NewGuid();
         var revisedDate = DateTime.UtcNow;
 
-        // Create a version for the DTO
+        // Create a revision for the DTO
         var formDefinition = new FormDefinition("path/to/definition.json");
-        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 1, 1, formDefinition);
+        var version = FormDesignerAPI.Core.FormAggregate.Revision.Create(1, 1, 1, formDefinition);
 
         var formUpdateDto = new FormUpdateDto
         (
@@ -73,7 +73,7 @@ public class UpdateFormService_UpdateForm
         // Arrange
         var formId = Guid.NewGuid();
         var formDefinition = new FormDefinition("path/to/definition.json");
-        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 1, 1, formDefinition);
+        var version = FormDesignerAPI.Core.FormAggregate.Revision.Create(1, 1, 1, formDefinition);
 
         var formUpdateDto = new FormUpdateDto
         (
@@ -104,7 +104,7 @@ public class UpdateFormService_UpdateForm
         // Arrange
         var formId = Guid.NewGuid();
         var formDefinition = new FormDefinition("path/to/definition.json");
-        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 1, 1, formDefinition);
+        var version = FormDesignerAPI.Core.FormAggregate.Revision.Create(1, 1, 1, formDefinition);
 
         var formUpdateDto = new FormUpdateDto
         (
@@ -141,7 +141,7 @@ public class UpdateFormService_UpdateForm
         // Arrange
         var formId = Guid.NewGuid();
         var formDefinition = new FormDefinition("path/to/definition.json");
-        var version = FormDesignerAPI.Core.FormAggregate.Version.Create(1, 1, 1, formDefinition);
+        var version = FormDesignerAPI.Core.FormAggregate.Revision.Create(1, 1, 1, formDefinition);
 
         var formUpdateDto = new FormUpdateDto
         (

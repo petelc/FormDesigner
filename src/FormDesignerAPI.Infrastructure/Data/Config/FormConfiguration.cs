@@ -29,24 +29,29 @@ public class FormConfiguration : IEntityTypeConfiguration<Form>
                 .IsRequired();
         });
 
-        // Each form has one current version (without loading the navigation - use FK only)
-        // builder.HasOne(f => f.CurrentVersion)
+        // Each form has one current revision (without loading the navigation - use FK only)
+        // builder.HasOne(f => f.CurrentRevision)
         //     .WithOne()
-        //     .HasForeignKey<Core.FormAggregate.Form>(f => f.CurrentVersionId)
+        //     .HasForeignKey<Core.FormAggregate.Form>(f => f.CurrentRevisionId)
         //     .IsRequired();
 
-        // builder.Property(f => f.GetCurrentVersion()!)
+        // builder.Property(f => f.GetCurrentRevision()!)
         //     .HasMaxLength(DataSchemaConstants.DEFAULT_FORM_NUMBER_LENGTH);
 
-        // each form can have many previous versions
-        builder.HasMany(f => f.Versions)
+        // each form can have many previous revisions
+        builder.HasMany(f => f.Revisions)
             .WithOne()
-            .HasForeignKey(v => v.FormId)
+            .HasForeignKey(r => r.FormId)
             .IsRequired();
 
         builder.Property(f => f.CreatedDate);
 
         builder.Property(f => f.RevisedDate);
+
+        // Shadow property for storing revision string from database
+        builder.Property<string>("Revision")
+            .HasMaxLength(DataSchemaConstants.DEFAULT_FORM_NUMBER_LENGTH)
+            .IsRequired(false);
 
         builder.Property(f => f.Status)
             .HasConversion(

@@ -5,7 +5,7 @@
 namespace FormDesignerAPI.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
-    public partial class FormMigration : Migration
+    public partial class InitialMigration : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)

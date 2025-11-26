@@ -38,14 +38,14 @@ public class UpdateFormHandler : FastEndpoints.ICommandHandler<UpdateFormCommand
     // Determine the version to use:
     // If version parameters are provided, create a new version
     // Otherwise, keep the current version
-    Core.FormAggregate.Version? versionToUse = null;
+    Core.FormAggregate.Revision? versionToUse = null;
 
     if (request.VersionMajor.HasValue && request.VersionMinor.HasValue && request.VersionPatch.HasValue)
     {
       // Create a new version with provided parameters
       var formDefinitionPath = request.FormDefinitionPath ?? "default.json";
       var formDefinition = new FormDefinition(formDefinitionPath);
-      versionToUse = Core.FormAggregate.Version.Create(
+      versionToUse = Core.FormAggregate.Revision.Create(
         request.VersionMajor.Value,
         request.VersionMinor.Value,
         request.VersionPatch.Value,
@@ -55,29 +55,29 @@ public class UpdateFormHandler : FastEndpoints.ICommandHandler<UpdateFormCommand
     else if (request.FormDefinitionPath != null)
     {
       // Update the form definition path of the current version
-      var currentVersion = existingForm.GetCurrentVersion();
-      if (currentVersion != null)
+      var currentRevision = existingForm.GetCurrentRevision();
+      if (currentRevision != null)
       {
-        currentVersion.UpdateVersion(
-          currentVersion.Major,
-          currentVersion.Minor,
-          currentVersion.Patch,
+        currentRevision.UpdateRevision(
+          currentRevision.Major,
+          currentRevision.Minor,
+          currentRevision.Patch,
           new FormDefinition(request.FormDefinitionPath)
         );
-        versionToUse = currentVersion;
+        versionToUse = currentRevision;
       }
     }
     else
     {
       // Keep the current version
-      versionToUse = existingForm.GetCurrentVersion();
+      versionToUse = existingForm.GetCurrentRevision();
     }
 
     // If no version exists and none was provided, create a default version
     if (versionToUse == null)
     {
       var formDefinition = new FormDefinition("default.json");
-      versionToUse = Core.FormAggregate.Version.Create(1, 0, 0, formDefinition);
+      versionToUse = Core.FormAggregate.Revision.Create(1, 0, 0, formDefinition);
     }
 
     var formUpdateDto = new FormUpdateDto(

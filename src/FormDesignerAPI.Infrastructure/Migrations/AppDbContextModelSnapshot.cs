@@ -3,19 +3,16 @@ using System;
 using FormDesignerAPI.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FormDesignerAPI.Infrastructure.Data.Migrations
+namespace FormDesignerAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20251120011604_RemoveCurrentVersionNavigation")]
-    partial class RemoveCurrentVersionNavigation
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        /// <inheritdoc />
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
@@ -48,7 +45,7 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<Guid?>("CurrentVersionId")
+                    b.Property<Guid?>("CurrentRevisionId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("Division")
@@ -69,6 +66,10 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("RevisedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Revision")
+                        .HasMaxLength(8)
                         .HasColumnType("TEXT");
 
                     b.Property<int>("Status")
@@ -100,7 +101,7 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.ToTable("FormDefinition");
                 });
 
-            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Version", b =>
+            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Revision", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
@@ -121,25 +122,25 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<DateTime?>("ReleasedDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<DateTime>("RevisionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("RevisionId")
+                        .HasColumnType("TEXT");
+
                     b.Property<int>("Status")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("INTEGER")
                         .HasDefaultValue(4);
 
-                    b.Property<DateTime>("VersionDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<Guid>("VersionId")
-                        .HasColumnType("TEXT");
-
                     b.HasKey("Id");
 
                     b.HasIndex("FormId");
 
-                    b.HasIndex("VersionId")
+                    b.HasIndex("RevisionId")
                         .IsUnique();
 
-                    b.ToTable("Version");
+                    b.ToTable("Revision");
                 });
 
             modelBuilder.Entity("FormDesignerAPI.Infrastructure.Identity.ApplicationUser", b =>
@@ -409,17 +410,17 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Navigation("Owner");
                 });
 
-            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Version", b =>
+            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Revision", b =>
                 {
                     b.HasOne("FormDesignerAPI.Core.FormAggregate.Form", null)
-                        .WithMany("Versions")
+                        .WithMany("Revisions")
                         .HasForeignKey("FormId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("FormDesignerAPI.Core.FormAggregate.FormDefinition", "FormDefinition")
                         .WithOne()
-                        .HasForeignKey("FormDesignerAPI.Core.FormAggregate.Version", "VersionId")
+                        .HasForeignKey("FormDesignerAPI.Core.FormAggregate.Revision", "RevisionId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -479,7 +480,7 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Form", b =>
                 {
-                    b.Navigation("Versions");
+                    b.Navigation("Revisions");
                 });
 #pragma warning restore 612, 618
         }

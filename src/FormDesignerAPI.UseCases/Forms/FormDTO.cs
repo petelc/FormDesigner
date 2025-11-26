@@ -1,5 +1,3 @@
-using FormDesignerAPI.Core.FormAggregate;
-
 namespace FormDesignerAPI.UseCases.Forms;
 
 public record FormDTO
@@ -9,7 +7,7 @@ public record FormDTO
     string FormTitle,
     string? Division,
     string? Owner,
-    Core.FormAggregate.Version? Version,
+    string? Revision,
     DateTime CreatedDate,
     DateTime RevisedDate
 );

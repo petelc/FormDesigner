@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace FormDesignerAPI.Infrastructure.Data.Migrations
+namespace FormDesignerAPI.Infrastructure.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20250915235043_SecondMigration")]
-    partial class SecondMigration
+    [Migration("20251124234354_NewInitialMigration")]
+    partial class NewInitialMigration
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -41,18 +41,21 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Form", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("ConfigurationPath")
                         .HasColumnType("TEXT");
 
                     b.Property<DateTime?>("CreatedDate")
                         .HasColumnType("TEXT");
 
+                    b.Property<Guid?>("CurrentRevisionId")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Division")
                         .HasMaxLength(10)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("FormId")
                         .HasColumnType("TEXT");
 
                     b.Property<string>("FormNumber")
@@ -68,16 +71,79 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<DateTime?>("RevisedDate")
                         .HasColumnType("TEXT");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
-
-                    b.Property<string>("Version")
+                    b.Property<string>("Revision")
                         .HasMaxLength(8)
                         .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(4);
 
                     b.HasKey("Id");
 
                     b.ToTable("Forms");
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.FormDefinition", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("ConfigurationPath")
+                        .IsRequired()
+                        .HasMaxLength(500)
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("FormDefinitionId")
+                        .HasColumnType("TEXT");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("FormDefinition");
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Revision", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Major")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Minor")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<int>("Patch")
+                        .HasColumnType("INTEGER");
+
+                    b.Property<DateTime?>("ReleasedDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<DateTime>("RevisionDate")
+                        .HasColumnType("TEXT");
+
+                    b.Property<Guid>("RevisionId")
+                        .HasColumnType("TEXT");
+
+                    b.Property<int>("Status")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INTEGER")
+                        .HasDefaultValue(4);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("FormId");
+
+                    b.HasIndex("RevisionId")
+                        .IsUnique();
+
+                    b.ToTable("Revision");
                 });
 
             modelBuilder.Entity("FormDesignerAPI.Infrastructure.Identity.ApplicationUser", b =>
@@ -92,12 +158,24 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("Division")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("INTEGER");
+
+                    b.Property<string>("FirstName")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("JobTitle")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("LastName")
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("INTEGER");
@@ -122,7 +200,13 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("INTEGER");
 
+                    b.Property<string>("ProfileImageUrl")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("SecurityStamp")
+                        .HasColumnType("TEXT");
+
+                    b.Property<string>("Supervisor")
                         .HasColumnType("TEXT");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -305,8 +389,8 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 {
                     b.OwnsOne("FormDesignerAPI.Core.FormAggregate.Owner", "Owner", b1 =>
                         {
-                            b1.Property<int>("FormId")
-                                .HasColumnType("INTEGER");
+                            b1.Property<Guid>("FormId")
+                                .HasColumnType("TEXT");
 
                             b1.Property<string>("Email")
                                 .IsRequired()
@@ -327,6 +411,23 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         });
 
                     b.Navigation("Owner");
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Revision", b =>
+                {
+                    b.HasOne("FormDesignerAPI.Core.FormAggregate.Form", null)
+                        .WithMany("Revisions")
+                        .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("FormDesignerAPI.Core.FormAggregate.FormDefinition", "FormDefinition")
+                        .WithOne()
+                        .HasForeignKey("FormDesignerAPI.Core.FormAggregate.Revision", "RevisionId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FormDefinition");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -378,6 +479,11 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Form", b =>
+                {
+                    b.Navigation("Revisions");
                 });
 #pragma warning restore 612, 618
         }

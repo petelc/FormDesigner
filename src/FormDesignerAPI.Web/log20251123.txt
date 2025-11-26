@@ -1,0 +1,97 @@
+2025-11-23 08:13:35.473 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-23 08:13:35.489 -05:00 [INF] Registered 21 endpoints in 153 milliseconds.
+2025-11-23 08:13:35.519 -05:00 [INF] Starting database seeding process...
+2025-11-23 08:13:35.521 -05:00 [INF] Applying pending migrations...
+2025-11-23 08:13:35.841 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-23 08:13:35.855 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-23 08:13:35.857 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-23 13:13:35.856946+00:00');
+SELECT changes();
+2025-11-23 08:13:35.881 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-23 08:13:35.887 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-23 08:13:35.889 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-23 08:13:35.892 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-23 08:13:35.893 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-23 08:13:35.894 -05:00 [INF] Migrations applied successfully.
+2025-11-23 08:13:35.894 -05:00 [INF] Ensuring database is created...
+2025-11-23 08:13:35.895 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-23 08:13:35.895 -05:00 [INF] Database created/verified.
+2025-11-23 08:13:35.895 -05:00 [INF] Seeding database with initial data...
+2025-11-23 08:13:35.982 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-23 08:13:35.983 -05:00 [INF] Database seeded successfully.
+2025-11-23 08:13:36.217 -05:00 [INF] Now listening on: https://localhost:61198
+2025-11-23 08:13:36.217 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-23 08:13:36.217 -05:00 [INF] Hosting environment: Development
+2025-11-23 08:13:36.217 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-23 08:14:38.861 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-11-23 08:14:38.892 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-23 08:14:38.890 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 33.6018ms
+2025-11-23 08:14:38.931 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 39.4001ms
+2025-11-23 08:14:38.937 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - null null
+2025-11-23 08:14:38.937 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.css - null null
+2025-11-23 08:14:38.937 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - null null
+2025-11-23 08:14:38.937 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - null null
+2025-11-23 08:14:38.942 -05:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-11-23 08:14:38.943 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.css - 200 218 text/css 5.3879ms
+2025-11-23 08:14:38.948 -05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-11-23 08:14:38.948 -05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-11-23 08:14:38.948 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui.css - 200 154988 text/css 11.1085ms
+2025-11-23 08:14:38.949 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-standalone-preset.js - 200 229224 text/javascript 11.0212ms
+2025-11-23 08:14:38.954 -05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-11-23 08:14:38.954 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/swagger-ui-bundle.js - 200 1468327 text/javascript 16.9529ms
+2025-11-23 08:14:39.037 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-23 08:14:39.042 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-23 08:14:39.349 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 312.7333ms
+2025-11-23 08:14:46.371 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-23 08:14:46.374 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-23 08:14:46.392 -05:00 [INF] Handling ListFormsQuery
+2025-11-23 08:14:46.392 -05:00 [INF] Property Skip : null
+2025-11-23 08:14:46.392 -05:00 [INF] Property Take : null
+2025-11-23 08:14:46.393 -05:00 [INF] Handling ListFormsQuery
+2025-11-23 08:14:46.393 -05:00 [INF] Property Skip : null
+2025-11-23 08:14:46.393 -05:00 [INF] Property Take : null
+2025-11-23 08:14:46.412 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-23 08:14:46.412 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No suitable constructor was found for entity type 'FormDTO'. The following constructors had parameters that could not be bound to properties of the entity type: 
+    Cannot bind 'Version' in 'FormDTO(Guid Id, string FormNumber, string FormTitle, string Division, string Owner, Version Version, DateTime CreatedDate, DateTime RevisedDate)'
+    Cannot bind 'original' in 'FormDTO(FormDTO original)'
+Note that only mapped properties can be bound to constructor parameters. Navigations to related entities, including references to owned types, cannot be bound.
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.ConstructorBindingFactory.GetBindings[T](T type, Func`5 bindToProperty, Func`5 bind, InstantiationBinding& constructorBinding, InstantiationBinding& serviceOnlyBinding)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.ConstructorBindingFactory.GetBindings(IMutableEntityType entityType, InstantiationBinding& constructorBinding, InstantiationBinding& serviceOnlyBinding)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.ConstructorBindingConvention.ProcessModelFinalizing(IConventionModelBuilder modelBuilder, IConventionContext`1 context)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.ImmediateConventionScope.OnModelFinalizing(IConventionModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.OnModelFinalizing(IConventionModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.Model.FinalizeModel()
+   at Microsoft.EntityFrameworkCore.ModelBuilder.FinalizeModel()
+   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.AddEntityType(Type clrType)
+   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.GetOrAddEntityType(Type clrType)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQueryRaw[TResult](DatabaseFacade databaseFacade, String sql, Object[] parameters)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQuery[TResult](DatabaseFacade databaseFacade, FormattableString sql)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-23 08:14:46.424 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 53.0616ms

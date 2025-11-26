@@ -38,7 +38,7 @@ public class GetById(IMediator _mediator)
                 result.Value.FormTitle,
                 result.Value.Division,
                 result.Value.Owner,
-                result.Value.Version,
+                result.Value.Revision,
                 result.Value.CreatedDate,
                 result.Value.RevisedDate
                 );

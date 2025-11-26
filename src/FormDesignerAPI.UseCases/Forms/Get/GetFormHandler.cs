@@ -23,13 +23,15 @@ public class GetFormHandler
         }
 
         // Map Form aggregate to FormDTO
+        var currentRevision = form.GetCurrentRevision();
+
         var dto = new FormDTO(
-            form.FormId,
+            form.Id,
             form.FormNumber,
             form.FormTitle ?? string.Empty,
             form.Division,
             form.Owner?.Name,
-            form.GetCurrentVersion(),
+            currentRevision?.ToString(),
             form.CreatedDate ?? DateTime.UtcNow,
             form.RevisedDate ?? DateTime.UtcNow
         );

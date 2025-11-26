@@ -19,7 +19,7 @@ public record CreateFormCommand(
     string? FormTitle = null,
     string? Division = null,
     Owner? Owner = null,
-    Core.FormAggregate.Version? Version = null,
+    Core.FormAggregate.Revision? Revision = null,
     DateTime? CreatedDate = null,
     DateTime? RevisedDate = null
 ) : FastEndpoints.ICommand<Result<Guid>>, IRequest<Result<Guid>>;

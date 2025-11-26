@@ -8,6 +8,6 @@ public record FormUpdateDto
     string? Division,
     string? Owner,
     string? OwnerEmail,
-    Version Version,
+    Revision Revision,
     DateTime? RevisedDate
 );

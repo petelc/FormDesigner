@@ -1,0 +1,1107 @@
+2025-11-24 17:11:43.019 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 17:11:43.036 -05:00 [INF] Registered 21 endpoints in 150 milliseconds.
+2025-11-24 17:11:43.067 -05:00 [INF] Starting database seeding process...
+2025-11-24 17:11:43.070 -05:00 [INF] Applying pending migrations...
+2025-11-24 17:11:43.371 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 17:11:43.387 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 17:11:43.390 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 22:11:43.388989+00:00');
+SELECT changes();
+2025-11-24 17:11:43.416 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 17:11:43.422 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 17:11:43.424 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 17:11:43.427 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 17:11:43.428 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 17:11:43.429 -05:00 [INF] Migrations applied successfully.
+2025-11-24 17:11:43.429 -05:00 [INF] Ensuring database is created...
+2025-11-24 17:11:43.430 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 17:11:43.430 -05:00 [INF] Database created/verified.
+2025-11-24 17:11:43.430 -05:00 [INF] Seeding database with initial data...
+2025-11-24 17:11:43.522 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 17:11:43.522 -05:00 [INF] Database seeded successfully.
+2025-11-24 17:11:43.777 -05:00 [INF] Now listening on: https://localhost:51158
+2025-11-24 17:11:43.778 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 17:11:43.778 -05:00 [INF] Hosting environment: Development
+2025-11-24 17:11:43.778 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 17:11:53.899 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger - null null
+2025-11-24 17:11:53.926 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 17:11:53.924 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger - 302 0 null 28.9157ms
+2025-11-24 17:11:53.959 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 32.5124ms
+2025-11-24 17:11:54.055 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 17:11:54.058 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-24 17:11:54.387 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 331.535ms
+2025-11-24 17:11:58.336 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 17:11:58.340 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 17:11:58.360 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 17:11:58.360 -05:00 [INF] Property Skip : null
+2025-11-24 17:11:58.360 -05:00 [INF] Property Take : null
+2025-11-24 17:11:58.360 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 17:11:58.361 -05:00 [INF] Property Skip : null
+2025-11-24 17:11:58.361 -05:00 [INF] Property Take : null
+2025-11-24 17:11:58.379 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 17:11:58.379 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: No suitable constructor was found for entity type 'FormDTO'. The following constructors had parameters that could not be bound to properties of the entity type: 
+    Cannot bind 'Version' in 'FormDTO(Guid Id, string FormNumber, string FormTitle, string Division, string Owner, Version Version, DateTime CreatedDate, DateTime RevisedDate, string ConfigurationPath)'
+    Cannot bind 'original' in 'FormDTO(FormDTO original)'
+Note that only mapped properties can be bound to constructor parameters. Navigations to related entities, including references to owned types, cannot be bound.
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.ConstructorBindingFactory.GetBindings[T](T type, Func`5 bindToProperty, Func`5 bind, InstantiationBinding& constructorBinding, InstantiationBinding& serviceOnlyBinding)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.ConstructorBindingFactory.GetBindings(IMutableEntityType entityType, InstantiationBinding& constructorBinding, InstantiationBinding& serviceOnlyBinding)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.ConstructorBindingConvention.ProcessModelFinalizing(IConventionModelBuilder modelBuilder, IConventionContext`1 context)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.ImmediateConventionScope.OnModelFinalizing(IConventionModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Conventions.Internal.ConventionDispatcher.OnModelFinalizing(IConventionModelBuilder modelBuilder)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.Model.FinalizeModel()
+   at Microsoft.EntityFrameworkCore.ModelBuilder.FinalizeModel()
+   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.AddEntityType(Type clrType)
+   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.GetOrAddEntityType(Type clrType)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQueryRaw[TResult](DatabaseFacade databaseFacade, String sql, Object[] parameters)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQuery[TResult](DatabaseFacade databaseFacade, FormattableString sql)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-24 17:11:58.388 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 52.0404ms
+2025-11-24 17:46:08.665 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 17:46:08.685 -05:00 [INF] Registered 21 endpoints in 176 milliseconds.
+2025-11-24 17:46:08.770 -05:00 [INF] Starting database seeding process...
+2025-11-24 17:46:08.774 -05:00 [INF] Applying pending migrations...
+2025-11-24 17:46:09.154 -05:00 [ERR] An error occurred seeding the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Configurations/MiddlewareConfig.cs:line 29
+2025-11-24 17:51:17.414 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 17:51:17.437 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 17:51:17.440 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 22:51:17.439711+00:00');
+SELECT changes();
+2025-11-24 17:51:17.462 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 17:51:17.464 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 17:51:17.465 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 17:51:17.468 -05:00 [INF] Applying migration '20251124225055_RevisionMigration'.
+2025-11-24 17:51:17.479 -05:00 [WRN] The migration operation 'PRAGMA foreign_keys = 0;
+' from migration 'RevisionMigration' cannot be executed in a transaction. If the app is terminated or an unrecoverable error occurs while this operation is being executed then the migration will be left in a partially applied state and would need to be reverted manually before it can be applied again. Create a separate migration that contains just this operation.
+2025-11-24 17:51:17.480 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP INDEX "IX_Version_FormId";
+2025-11-24 17:51:17.480 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Forms" RENAME COLUMN "CurrentVersionId" TO "CurrentRevisionId";
+2025-11-24 17:51:17.480 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Revision" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_Revision" PRIMARY KEY,
+    "RevisionId" TEXT NOT NULL,
+    "Major" INTEGER NOT NULL,
+    "Minor" INTEGER NOT NULL,
+    "Patch" INTEGER NOT NULL,
+    "RevisionDate" TEXT NOT NULL,
+    "ReleasedDate" TEXT NULL,
+    "Status" INTEGER NOT NULL DEFAULT 4,
+    "FormId" TEXT NOT NULL,
+    CONSTRAINT "FK_Revision_FormDefinition_RevisionId" FOREIGN KEY ("RevisionId") REFERENCES "FormDefinition" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_Revision_Forms_FormId" FOREIGN KEY ("FormId") REFERENCES "Forms" ("Id") ON DELETE CASCADE
+);
+2025-11-24 17:51:17.480 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Revision_FormId" ON "Revision" ("FormId");
+2025-11-24 17:51:17.480 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Revision_RevisionId" ON "Revision" ("RevisionId");
+2025-11-24 17:51:17.481 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "ef_temp_Version" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_Version" PRIMARY KEY,
+    "FormId" TEXT NOT NULL,
+    "Major" INTEGER NOT NULL,
+    "Minor" INTEGER NOT NULL,
+    "Patch" INTEGER NOT NULL,
+    "ReleasedDate" TEXT NULL,
+    "Status" INTEGER NOT NULL DEFAULT 4,
+    "VersionDate" TEXT NOT NULL,
+    "VersionId" TEXT NOT NULL,
+    CONSTRAINT "FK_Version_FormDefinition_VersionId" FOREIGN KEY ("VersionId") REFERENCES "FormDefinition" ("Id") ON DELETE CASCADE
+);
+2025-11-24 17:51:17.481 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "ef_temp_Version" ("Id", "FormId", "Major", "Minor", "Patch", "ReleasedDate", "Status", "VersionDate", "VersionId")
+SELECT "Id", "FormId", "Major", "Minor", "Patch", "ReleasedDate", "Status", "VersionDate", "VersionId"
+FROM "Version";
+2025-11-24 17:51:17.481 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA foreign_keys = 0;
+2025-11-24 17:51:17.481 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "Version";
+2025-11-24 17:51:17.482 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "ef_temp_Version" RENAME TO "Version";
+2025-11-24 17:51:17.482 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA foreign_keys = 1;
+2025-11-24 17:51:17.482 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Version_VersionId" ON "Version" ("VersionId");
+2025-11-24 17:51:17.482 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251124225055_RevisionMigration', '9.0.6');
+2025-11-24 17:51:17.483 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 17:51:27.068 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 17:51:27.086 -05:00 [INF] Registered 21 endpoints in 145 milliseconds.
+2025-11-24 17:51:27.118 -05:00 [INF] Starting database seeding process...
+2025-11-24 17:51:27.120 -05:00 [INF] Applying pending migrations...
+2025-11-24 17:51:27.426 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 17:51:27.440 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 17:51:27.443 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 22:51:27.442169+00:00');
+SELECT changes();
+2025-11-24 17:51:27.467 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 17:51:27.472 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 17:51:27.474 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 17:51:27.477 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 17:51:27.478 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 17:51:27.479 -05:00 [INF] Migrations applied successfully.
+2025-11-24 17:51:27.480 -05:00 [INF] Ensuring database is created...
+2025-11-24 17:51:27.481 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 17:51:27.481 -05:00 [INF] Database created/verified.
+2025-11-24 17:51:27.481 -05:00 [INF] Seeding database with initial data...
+2025-11-24 17:51:27.567 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 17:51:27.568 -05:00 [INF] Database seeded successfully.
+2025-11-24 17:51:27.857 -05:00 [INF] Now listening on: https://localhost:57679
+2025-11-24 17:51:27.857 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 17:51:27.857 -05:00 [INF] Hosting environment: Development
+2025-11-24 17:51:27.857 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 17:52:43.789 -05:00 [INF] Application is shutting down...
+2025-11-24 17:53:15.901 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 17:53:15.919 -05:00 [INF] Registered 21 endpoints in 154 milliseconds.
+2025-11-24 17:53:15.949 -05:00 [INF] Starting database seeding process...
+2025-11-24 17:53:15.951 -05:00 [INF] Applying pending migrations...
+2025-11-24 17:53:16.285 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 17:53:16.306 -05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 17:53:16.308 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 22:53:16.307633+00:00');
+SELECT changes();
+2025-11-24 17:53:16.332 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 17:53:16.337 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 17:53:16.339 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 17:53:16.342 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 17:53:16.342 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 17:53:16.344 -05:00 [INF] Migrations applied successfully.
+2025-11-24 17:53:16.344 -05:00 [INF] Ensuring database is created...
+2025-11-24 17:53:16.345 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 17:53:16.345 -05:00 [INF] Database created/verified.
+2025-11-24 17:53:16.345 -05:00 [INF] Seeding database with initial data...
+2025-11-24 17:53:16.428 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 17:53:16.428 -05:00 [INF] Database seeded successfully.
+2025-11-24 17:53:16.669 -05:00 [INF] Now listening on: https://localhost:57815
+2025-11-24 17:53:16.669 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 17:53:16.669 -05:00 [INF] Hosting environment: Development
+2025-11-24 17:53:16.669 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 17:53:33.070 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 17:53:33.129 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 64.6356ms
+2025-11-24 17:53:33.202 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 17:53:33.205 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-24 17:53:33.205 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/favicon-32x32.png - null null
+2025-11-24 17:53:33.209 -05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-11-24 17:53:33.210 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/favicon-32x32.png - 200 628 image/png 4.0775ms
+2025-11-24 17:53:33.432 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 229.4347ms
+2025-11-24 17:53:38.225 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 17:53:38.228 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 2.9003ms
+2025-11-24 17:53:38.278 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 17:53:38.279 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 0.6896ms
+2025-11-24 17:53:40.094 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 17:53:40.096 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 17:53:40.114 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 17:53:40.114 -05:00 [INF] Property Skip : null
+2025-11-24 17:53:40.114 -05:00 [INF] Property Take : null
+2025-11-24 17:53:40.114 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 17:53:40.114 -05:00 [INF] Property Skip : null
+2025-11-24 17:53:40.114 -05:00 [INF] Property Take : null
+2025-11-24 17:53:40.153 -05:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT FormId AS Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version AS Revision, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-11-24 17:53:40.160 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Version'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Version'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-11-24 17:53:40.161 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 17:53:40.162 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Version'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-24 17:53:40.168 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 74.7681ms
+2025-11-24 18:00:58.050 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 18:00:58.068 -05:00 [INF] Registered 21 endpoints in 139 milliseconds.
+2025-11-24 18:00:58.093 -05:00 [INF] Starting database seeding process...
+2025-11-24 18:00:58.095 -05:00 [INF] Applying pending migrations...
+2025-11-24 18:00:58.406 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:00:58.420 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:00:58.422 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:00:58.421391+00:00');
+SELECT changes();
+2025-11-24 18:00:58.445 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:00:58.450 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:00:58.452 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:00:58.455 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 18:00:58.455 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:00:58.456 -05:00 [INF] Migrations applied successfully.
+2025-11-24 18:00:58.456 -05:00 [INF] Ensuring database is created...
+2025-11-24 18:00:58.457 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 18:00:58.457 -05:00 [INF] Database created/verified.
+2025-11-24 18:00:58.457 -05:00 [INF] Seeding database with initial data...
+2025-11-24 18:00:58.538 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 18:00:58.538 -05:00 [INF] Database seeded successfully.
+2025-11-24 18:00:58.754 -05:00 [INF] Now listening on: https://localhost:59009
+2025-11-24 18:00:58.754 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 18:00:58.754 -05:00 [INF] Hosting environment: Development
+2025-11-24 18:00:58.754 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 18:01:06.977 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 18:01:07.036 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 65.745ms
+2025-11-24 18:01:07.085 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 18:01:07.088 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-24 18:01:07.338 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 252.4969ms
+2025-11-24 18:01:09.149 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 18:01:09.156 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 18:01:09.178 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:01:09.179 -05:00 [INF] Property Skip : null
+2025-11-24 18:01:09.179 -05:00 [INF] Property Take : null
+2025-11-24 18:01:09.179 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:01:09.179 -05:00 [INF] Property Skip : null
+2025-11-24 18:01:09.179 -05:00 [INF] Property Take : null
+2025-11-24 18:01:09.197 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 18:01:09.198 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentException: The specified type 'System.ValueTuple`8[System.Int32,System.String,System.String,System.String,System.String,System.String,System.DateTime,System.ValueTuple`2[System.DateTime,System.String]]' must be a non-interface reference type to be used as an entity type.
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.EntityType..ctor(Type type, Model model, Boolean owned, ConfigurationSource configurationSource)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.Model.AddEntityType(Type type, Boolean owned, ConfigurationSource configurationSource)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder.Entity(TypeIdentity& type, ConfigurationSource configurationSource, Nullable`1 shouldBeOwned)
+   at Microsoft.EntityFrameworkCore.Metadata.Internal.InternalModelBuilder.Entity(Type type, ConfigurationSource configurationSource, Nullable`1 shouldBeOwned)
+   at Microsoft.EntityFrameworkCore.ModelBuilder.Entity(Type type)
+   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.AddEntityType(Type clrType)
+   at Microsoft.EntityFrameworkCore.Metadata.AdHocMapper.GetOrAddEntityType(Type clrType)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQueryRaw[TResult](DatabaseFacade databaseFacade, String sql, Object[] parameters)
+   at Microsoft.EntityFrameworkCore.RelationalDatabaseFacadeExtensions.SqlQuery[TResult](DatabaseFacade databaseFacade, FormattableString sql)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 11
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-24 18:01:09.206 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 57.1769ms
+2025-11-24 18:05:14.041 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 18:05:14.057 -05:00 [INF] Registered 21 endpoints in 150 milliseconds.
+2025-11-24 18:05:14.083 -05:00 [INF] Starting database seeding process...
+2025-11-24 18:05:14.085 -05:00 [INF] Applying pending migrations...
+2025-11-24 18:05:14.390 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:05:14.404 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:05:14.406 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:05:14.405652+00:00');
+SELECT changes();
+2025-11-24 18:05:14.431 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:05:14.436 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:05:14.437 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:05:14.441 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 18:05:14.442 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:05:14.443 -05:00 [INF] Migrations applied successfully.
+2025-11-24 18:05:14.443 -05:00 [INF] Ensuring database is created...
+2025-11-24 18:05:14.444 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 18:05:14.444 -05:00 [INF] Database created/verified.
+2025-11-24 18:05:14.444 -05:00 [INF] Seeding database with initial data...
+2025-11-24 18:05:14.528 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 18:05:14.529 -05:00 [INF] Database seeded successfully.
+2025-11-24 18:05:14.756 -05:00 [INF] Now listening on: https://localhost:59678
+2025-11-24 18:05:14.757 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 18:05:14.757 -05:00 [INF] Hosting environment: Development
+2025-11-24 18:05:14.757 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 18:05:17.447 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 18:05:17.497 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 54.7813ms
+2025-11-24 18:05:17.544 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 18:05:17.548 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-24 18:05:17.781 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 236.5762ms
+2025-11-24 18:05:20.369 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 18:05:20.375 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 18:05:20.398 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:05:20.399 -05:00 [INF] Property Skip : null
+2025-11-24 18:05:20.399 -05:00 [INF] Property Take : null
+2025-11-24 18:05:20.399 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:05:20.399 -05:00 [INF] Property Skip : null
+2025-11-24 18:05:20.399 -05:00 [INF] Property Take : null
+2025-11-24 18:05:20.447 -05:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version AS Revision, CreatedDate, RevisedDate FROM Forms
+2025-11-24 18:05:20.451 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Version'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Version'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-11-24 18:05:20.453 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 18:05:20.453 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Version'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 11
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-24 18:05:20.463 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 95.1451ms
+2025-11-24 18:09:36.548 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:09:36.571 -05:00 [INF] Executed DbCommand (6ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:09:36.574 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:09:36.573466+00:00');
+SELECT changes();
+2025-11-24 18:09:36.595 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:09:36.597 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:09:36.598 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:09:36.602 -05:00 [INF] Applying migration '20251124230923_RemoveVersionMigration'.
+2025-11-24 18:09:36.606 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DROP TABLE "Version";
+2025-11-24 18:09:36.606 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251124230923_RemoveVersionMigration', '9.0.6');
+2025-11-24 18:09:36.607 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:11:44.992 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 18:11:45.007 -05:00 [INF] Registered 21 endpoints in 149 milliseconds.
+2025-11-24 18:11:45.034 -05:00 [INF] Starting database seeding process...
+2025-11-24 18:11:45.037 -05:00 [INF] Applying pending migrations...
+2025-11-24 18:11:45.370 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:11:45.384 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:11:45.386 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:11:45.385862+00:00');
+SELECT changes();
+2025-11-24 18:11:45.410 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:11:45.415 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:11:45.417 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:11:45.420 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 18:11:45.421 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:11:45.422 -05:00 [INF] Migrations applied successfully.
+2025-11-24 18:11:45.422 -05:00 [INF] Ensuring database is created...
+2025-11-24 18:11:45.423 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 18:11:45.423 -05:00 [INF] Database created/verified.
+2025-11-24 18:11:45.423 -05:00 [INF] Seeding database with initial data...
+2025-11-24 18:11:45.507 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 18:11:45.508 -05:00 [INF] Database seeded successfully.
+2025-11-24 18:11:45.775 -05:00 [INF] Now listening on: https://localhost:60748
+2025-11-24 18:11:45.775 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 18:11:45.775 -05:00 [INF] Hosting environment: Development
+2025-11-24 18:11:45.775 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 18:11:47.333 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 18:11:47.386 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 56.1087ms
+2025-11-24 18:11:47.437 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 18:11:47.441 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-24 18:11:47.685 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 247.4908ms
+2025-11-24 18:11:49.436 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 18:11:49.443 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 18:11:49.467 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:11:49.467 -05:00 [INF] Property Skip : null
+2025-11-24 18:11:49.467 -05:00 [INF] Property Take : null
+2025-11-24 18:11:49.467 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:11:49.467 -05:00 [INF] Property Skip : null
+2025-11-24 18:11:49.468 -05:00 [INF] Property Take : null
+2025-11-24 18:11:49.518 -05:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Revision, CreatedDate, RevisedDate FROM Forms
+2025-11-24 18:11:49.522 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Revision'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Revision'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-11-24 18:11:49.524 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 18:11:49.524 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: Revision'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 11
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsQueryHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsQueryHandler.cs:line 10
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at Ardalis.SharedKernel.LoggingBehavior`2.Handle(TRequest request, RequestHandlerDelegate`1 next, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-11-24 18:11:49.531 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 500 null text/plain; charset=utf-8 95.6357ms
+2025-11-24 18:15:28.276 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:15:28.290 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:16:01.263 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:16:01.283 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:16:01.286 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:16:01.285577+00:00');
+SELECT changes();
+2025-11-24 18:16:01.308 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:16:01.310 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:16:01.311 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:16:01.314 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 18:16:01.314 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:18:10.247 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:18:10.261 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:18:21.290 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:18:21.304 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:18:31.422 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:18:31.444 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:18:31.447 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:18:31.446579+00:00');
+SELECT changes();
+2025-11-24 18:18:31.488 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:18:31.490 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:18:31.491 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:18:31.497 -05:00 [INF] Applying migration '20251124231506_RenameVersionToRevision'.
+2025-11-24 18:18:31.506 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Forms" ADD "Revision" TEXT NULL;
+2025-11-24 18:18:31.506 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251124231506_RenameVersionToRevision', '9.0.6');
+2025-11-24 18:18:31.506 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:19:14.840 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 18:19:14.858 -05:00 [INF] Registered 21 endpoints in 173 milliseconds.
+2025-11-24 18:19:14.887 -05:00 [INF] Starting database seeding process...
+2025-11-24 18:19:14.889 -05:00 [INF] Applying pending migrations...
+2025-11-24 18:19:15.193 -05:00 [ERR] An error occurred seeding the DB. An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+System.InvalidOperationException: An error was generated for warning 'Microsoft.EntityFrameworkCore.Migrations.PendingModelChangesWarning': The model for context 'AppDbContext' has pending changes. Add a new migration before updating the database. See https://aka.ms/efcore-docs-pending-changes. This exception can be suppressed or logged by passing event ID 'RelationalEventId.PendingModelChangesWarning' to the 'ConfigureWarnings' method in 'DbContext.OnConfiguring' or 'AddDbContext'.
+   at Microsoft.EntityFrameworkCore.Diagnostics.EventDefinition`1.Log[TLoggerCategory](IDiagnosticsLogger`1 logger, TParam arg)
+   at Microsoft.EntityFrameworkCore.Diagnostics.RelationalLoggerExtensions.PendingModelChangesWarning(IDiagnosticsLogger`1 diagnostics, Type contextType)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.ValidateMigrations(Boolean useTransaction, String targetMigration)
+   at Microsoft.EntityFrameworkCore.Migrations.Internal.Migrator.MigrateAsync(String targetMigration, CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Configurations/MiddlewareConfig.cs:line 29
+2025-11-24 18:19:52.947 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:19:52.962 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:21:31.932 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:21:31.953 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:21:31.956 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:21:31.955638+00:00');
+SELECT changes();
+2025-11-24 18:21:31.997 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:21:31.999 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:21:32.000 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:21:32.005 -05:00 [INF] Applying migration '20251124231747_UpdateFormModelSnapshot'.
+2025-11-24 18:21:32.014 -05:00 [ERR] Failed executing DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+ALTER TABLE "Forms" ADD "Revision" TEXT NULL;
+2025-11-24 18:21:41.213 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:21:41.228 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:26:40.811 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:26:40.827 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:44:17.738 -05:00 [INF] No migrations were found in assembly 'FormDesignerAPI.Infrastructure'. A migration needs to be added before the database can be updated.
+2025-11-24 18:44:17.769 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+PRAGMA journal_mode = 'wal';
+2025-11-24 18:44:17.773 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:44:17.775 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:44:17.775 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsLock" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK___EFMigrationsLock" PRIMARY KEY,
+    "Timestamp" TEXT NOT NULL
+);
+2025-11-24 18:44:17.776 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:44:17.776056+00:00');
+SELECT changes();
+2025-11-24 18:44:17.814 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:44:17.817 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:44:17.818 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:44:17.820 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 18:44:17.820 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:46:58.089 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:46:58.112 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:46:58.115 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:46:58.114209+00:00');
+SELECT changes();
+2025-11-24 18:46:58.137 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:46:58.139 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:46:58.140 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:46:58.144 -05:00 [INF] Applying migration '20251124234354_NewInitialMigration'.
+2025-11-24 18:46:58.156 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoles" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_AspNetRoles" PRIMARY KEY,
+    "Name" TEXT NULL,
+    "NormalizedName" TEXT NULL,
+    "ConcurrencyStamp" TEXT NULL
+);
+2025-11-24 18:46:58.156 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUsers" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_AspNetUsers" PRIMARY KEY,
+    "FirstName" TEXT NULL,
+    "LastName" TEXT NULL,
+    "Division" TEXT NULL,
+    "JobTitle" TEXT NULL,
+    "Supervisor" TEXT NULL,
+    "ProfileImageUrl" TEXT NULL,
+    "UserName" TEXT NULL,
+    "NormalizedUserName" TEXT NULL,
+    "Email" TEXT NULL,
+    "NormalizedEmail" TEXT NULL,
+    "EmailConfirmed" INTEGER NOT NULL,
+    "PasswordHash" TEXT NULL,
+    "SecurityStamp" TEXT NULL,
+    "ConcurrencyStamp" TEXT NULL,
+    "PhoneNumber" TEXT NULL,
+    "PhoneNumberConfirmed" INTEGER NOT NULL,
+    "TwoFactorEnabled" INTEGER NOT NULL,
+    "LockoutEnd" TEXT NULL,
+    "LockoutEnabled" INTEGER NOT NULL,
+    "AccessFailedCount" INTEGER NOT NULL
+);
+2025-11-24 18:46:58.156 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Contributors" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_Contributors" PRIMARY KEY AUTOINCREMENT,
+    "Name" TEXT NOT NULL,
+    "Status" INTEGER NOT NULL,
+    "PhoneNumber_CountryCode" TEXT NULL,
+    "PhoneNumber_Number" TEXT NULL,
+    "PhoneNumber_Extension" TEXT NULL
+);
+2025-11-24 18:46:58.156 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "FormDefinition" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_FormDefinition" PRIMARY KEY,
+    "FormDefinitionId" TEXT NOT NULL,
+    "ConfigurationPath" TEXT NOT NULL
+);
+2025-11-24 18:46:58.156 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Forms" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_Forms" PRIMARY KEY,
+    "FormId" TEXT NOT NULL,
+    "FormNumber" TEXT NOT NULL,
+    "FormTitle" TEXT NOT NULL,
+    "Division" TEXT NULL,
+    "Owner_Name" TEXT NULL,
+    "Owner_Email" TEXT NULL,
+    "CreatedDate" TEXT NULL,
+    "RevisedDate" TEXT NULL,
+    "CurrentRevisionId" TEXT NULL,
+    "Status" INTEGER NOT NULL DEFAULT 4,
+    "Revision" TEXT NULL
+);
+2025-11-24 18:46:58.156 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetRoleClaims" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_AspNetRoleClaims" PRIMARY KEY AUTOINCREMENT,
+    "RoleId" TEXT NOT NULL,
+    "ClaimType" TEXT NULL,
+    "ClaimValue" TEXT NULL,
+    CONSTRAINT "FK_AspNetRoleClaims_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE
+);
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserClaims" (
+    "Id" INTEGER NOT NULL CONSTRAINT "PK_AspNetUserClaims" PRIMARY KEY AUTOINCREMENT,
+    "UserId" TEXT NOT NULL,
+    "ClaimType" TEXT NULL,
+    "ClaimValue" TEXT NULL,
+    CONSTRAINT "FK_AspNetUserClaims_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserLogins" (
+    "LoginProvider" TEXT NOT NULL,
+    "ProviderKey" TEXT NOT NULL,
+    "ProviderDisplayName" TEXT NULL,
+    "UserId" TEXT NOT NULL,
+    CONSTRAINT "PK_AspNetUserLogins" PRIMARY KEY ("LoginProvider", "ProviderKey"),
+    CONSTRAINT "FK_AspNetUserLogins_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserRoles" (
+    "UserId" TEXT NOT NULL,
+    "RoleId" TEXT NOT NULL,
+    CONSTRAINT "PK_AspNetUserRoles" PRIMARY KEY ("UserId", "RoleId"),
+    CONSTRAINT "FK_AspNetUserRoles_AspNetRoles_RoleId" FOREIGN KEY ("RoleId") REFERENCES "AspNetRoles" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_AspNetUserRoles_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "AspNetUserTokens" (
+    "UserId" TEXT NOT NULL,
+    "LoginProvider" TEXT NOT NULL,
+    "Name" TEXT NOT NULL,
+    "Value" TEXT NULL,
+    CONSTRAINT "PK_AspNetUserTokens" PRIMARY KEY ("UserId", "LoginProvider", "Name"),
+    CONSTRAINT "FK_AspNetUserTokens_AspNetUsers_UserId" FOREIGN KEY ("UserId") REFERENCES "AspNetUsers" ("Id") ON DELETE CASCADE
+);
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE "Revision" (
+    "Id" TEXT NOT NULL CONSTRAINT "PK_Revision" PRIMARY KEY,
+    "RevisionId" TEXT NOT NULL,
+    "Major" INTEGER NOT NULL,
+    "Minor" INTEGER NOT NULL,
+    "Patch" INTEGER NOT NULL,
+    "RevisionDate" TEXT NOT NULL,
+    "ReleasedDate" TEXT NULL,
+    "Status" INTEGER NOT NULL DEFAULT 4,
+    "FormId" TEXT NOT NULL,
+    CONSTRAINT "FK_Revision_FormDefinition_RevisionId" FOREIGN KEY ("RevisionId") REFERENCES "FormDefinition" ("Id") ON DELETE CASCADE,
+    CONSTRAINT "FK_Revision_Forms_FormId" FOREIGN KEY ("FormId") REFERENCES "Forms" ("Id") ON DELETE CASCADE
+);
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetRoleClaims_RoleId" ON "AspNetRoleClaims" ("RoleId");
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "RoleNameIndex" ON "AspNetRoles" ("NormalizedName");
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserClaims_UserId" ON "AspNetUserClaims" ("UserId");
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserLogins_UserId" ON "AspNetUserLogins" ("UserId");
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_AspNetUserRoles_RoleId" ON "AspNetUserRoles" ("RoleId");
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "EmailIndex" ON "AspNetUsers" ("NormalizedEmail");
+2025-11-24 18:46:58.157 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "UserNameIndex" ON "AspNetUsers" ("NormalizedUserName");
+2025-11-24 18:46:58.158 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX "IX_Revision_FormId" ON "Revision" ("FormId");
+2025-11-24 18:46:58.158 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE UNIQUE INDEX "IX_Revision_RevisionId" ON "Revision" ("RevisionId");
+2025-11-24 18:46:58.158 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251124234354_NewInitialMigration', '9.0.6');
+2025-11-24 18:46:58.158 -05:00 [INF] Applying migration '20251124234639_InitialMigration'.
+2025-11-24 18:46:58.161 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "__EFMigrationsHistory" ("MigrationId", "ProductVersion")
+VALUES ('20251124234639_InitialMigration', '9.0.6');
+2025-11-24 18:46:58.162 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:48:06.202 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-11-24 18:48:06.217 -05:00 [INF] Registered 21 endpoints in 150 milliseconds.
+2025-11-24 18:48:06.247 -05:00 [INF] Starting database seeding process...
+2025-11-24 18:48:06.250 -05:00 [INF] Applying pending migrations...
+2025-11-24 18:48:06.545 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-11-24 18:48:06.559 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsLock' AND "type" = 'table';
+2025-11-24 18:48:06.562 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT OR IGNORE INTO "__EFMigrationsLock"("Id", "Timestamp") VALUES(1, '2025-11-24 23:48:06.561239+00:00');
+SELECT changes();
+2025-11-24 18:48:06.584 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+    "MigrationId" TEXT NOT NULL CONSTRAINT "PK___EFMigrationsHistory" PRIMARY KEY,
+    "ProductVersion" TEXT NOT NULL
+);
+2025-11-24 18:48:06.589 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "name" = '__EFMigrationsHistory' AND "type" = 'table';
+2025-11-24 18:48:06.591 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "MigrationId", "ProductVersion"
+FROM "__EFMigrationsHistory"
+ORDER BY "MigrationId";
+2025-11-24 18:48:06.594 -05:00 [INF] No migrations were applied. The database is already up to date.
+2025-11-24 18:48:06.594 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DELETE FROM "__EFMigrationsLock";
+2025-11-24 18:48:06.595 -05:00 [INF] Migrations applied successfully.
+2025-11-24 18:48:06.595 -05:00 [INF] Ensuring database is created...
+2025-11-24 18:48:06.596 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-11-24 18:48:06.596 -05:00 [INF] Database created/verified.
+2025-11-24 18:48:06.596 -05:00 [INF] Seeding database with initial data...
+2025-11-24 18:48:06.677 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Contributors" AS "c")
+2025-11-24 18:48:06.679 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-11-24 18:48:06.793 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (Size = 7), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name", "Status")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2025-11-24 18:48:06.797 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (Size = 8), @p1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Contributors" ("Name", "Status")
+VALUES (@p0, @p1)
+RETURNING "Id";
+2025-11-24 18:48:06.798 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 34), @p2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FormDefinition" ("Id", "ConfigurationPath", "FormDefinitionId")
+VALUES (@p0, @p1, @p2);
+2025-11-24 18:48:06.798 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 37), @p2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FormDefinition" ("Id", "ConfigurationPath", "FormDefinitionId")
+VALUES (@p0, @p1, @p2);
+2025-11-24 18:48:06.798 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (Size = 34), @p2='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "FormDefinition" ("Id", "ConfigurationPath", "FormDefinitionId")
+VALUES (@p0, @p1, @p2);
+2025-11-24 18:48:06.799 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 9), @p4='?' (DbType = Guid), @p5='?' (Size = 6), @p6='?' (Size = 25), @p7='?' (DbType = DateTime), @p8='?', @p9='?' (DbType = Int32), @p10='?' (Size = 22), @p11='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Forms" ("Id", "CreatedDate", "CurrentRevisionId", "Division", "FormId", "FormNumber", "FormTitle", "RevisedDate", "Revision", "Status", "Owner_Email", "Owner_Name")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-11-24 18:48:06.799 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 11), @p4='?' (DbType = Guid), @p5='?' (Size = 6), @p6='?' (Size = 26), @p7='?' (DbType = DateTime), @p8='?', @p9='?' (DbType = Int32), @p10='?' (Size = 20), @p11='?' (Size = 8)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Forms" ("Id", "CreatedDate", "CurrentRevisionId", "Division", "FormId", "FormNumber", "FormTitle", "RevisedDate", "Revision", "Status", "Owner_Email", "Owner_Name")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-11-24 18:48:06.800 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Revision" ("Id", "FormId", "Major", "Minor", "Patch", "ReleasedDate", "RevisionDate", "RevisionId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-24 18:48:06.800 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Revision" ("Id", "FormId", "Major", "Minor", "Patch", "ReleasedDate", "RevisionDate", "RevisionId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-24 18:48:06.800 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = Guid), @p2='?' (DbType = Int32), @p3='?' (DbType = Int32), @p4='?' (DbType = Int32), @p5='?' (DbType = DateTime), @p6='?' (DbType = DateTime), @p7='?' (DbType = Guid), @p8='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Revision" ("Id", "FormId", "Major", "Minor", "Patch", "ReleasedDate", "RevisionDate", "RevisionId", "Status")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+2025-11-24 18:48:06.804 -05:00 [INF] Database seeded successfully.
+2025-11-24 18:48:07.030 -05:00 [INF] Now listening on: https://localhost:50480
+2025-11-24 18:48:07.030 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-11-24 18:48:07.030 -05:00 [INF] Hosting environment: Development
+2025-11-24 18:48:07.030 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-11-24 18:48:55.242 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/index.html - null null
+2025-11-24 18:48:55.294 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/index.html - 200 null text/html; charset=utf-8 54.9366ms
+2025-11-24 18:48:55.366 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - null null
+2025-11-24 18:48:55.368 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-11-24 18:48:55.597 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 231.1772ms
+2025-11-24 18:48:57.823 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 18:48:57.827 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 18:48:57.846 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:48:57.846 -05:00 [INF] Property Skip : null
+2025-11-24 18:48:57.846 -05:00 [INF] Property Take : null
+2025-11-24 18:48:57.846 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:48:57.847 -05:00 [INF] Property Skip : null
+2025-11-24 18:48:57.847 -05:00 [INF] Property Take : null
+2025-11-24 18:48:57.887 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Revision, CreatedDate, RevisedDate FROM Forms
+2025-11-24 18:48:57.888 -05:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 41 ms
+2025-11-24 18:48:57.889 -05:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 42 ms
+2025-11-24 18:48:57.898 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 18:48:57.899 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 75.4536ms
+2025-11-24 18:49:51.792 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms/00000000-0000-0000-0000-000000000000 - null null
+2025-11-24 18:49:51.794 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms/{FormId:Guid}'
+2025-11-24 18:49:51.818 -05:00 [INF] Handling GetFormQuery
+2025-11-24 18:49:51.819 -05:00 [INF] Property FormId : "00000000-0000-0000-0000-000000000000"
+2025-11-24 18:49:51.819 -05:00 [INF] Handling GetFormQuery
+2025-11-24 18:49:51.819 -05:00 [INF] Property FormId : "00000000-0000-0000-0000-000000000000"
+2025-11-24 18:49:51.880 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[@__FormId_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."CreatedDate", "f"."CurrentRevisionId", "f"."Division", "f"."FormId", "f"."FormNumber", "f"."FormTitle", "f"."RevisedDate", "f"."Revision", "f"."Status", "f"."Owner_Email", "f"."Owner_Name"
+FROM "Forms" AS "f"
+WHERE "f"."Id" = @__FormId_0
+LIMIT 1
+2025-11-24 18:49:51.880 -05:00 [INF] Handled GetFormQuery with Ardalis.Result.Result`1[FormDesignerAPI.UseCases.Forms.FormDTO] in 61 ms
+2025-11-24 18:49:51.880 -05:00 [INF] Handled GetFormQuery with Ardalis.Result.Result`1[FormDesignerAPI.UseCases.Forms.FormDTO] in 61 ms
+2025-11-24 18:49:51.881 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms/{FormId:Guid}'
+2025-11-24 18:49:51.881 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms/00000000-0000-0000-0000-000000000000 - 404 null null 88.68ms
+2025-11-24 18:50:11.245 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms/"00000000-0000-0000-0000-000000000000" - null null
+2025-11-24 18:50:11.247 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms/"00000000-0000-0000-0000-000000000000" - 404 0 null 2.562ms
+2025-11-24 18:50:11.247 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Forms/%2200000000-0000-0000-0000-000000000000%22, Response status code: 404
+2025-11-24 18:50:31.231 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms/00000048-0000-0000-0000-000000000000" - null null
+2025-11-24 18:50:31.232 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms/00000048-0000-0000-0000-000000000000" - 404 0 null 1.4265ms
+2025-11-24 18:50:31.233 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57679/Forms/00000048-0000-0000-0000-000000000000%22, Response status code: 404
+2025-11-24 18:53:31.327 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Forms - application/json 319
+2025-11-24 18:53:31.328 -05:00 [INF] Executing endpoint 'HTTP: POST /Forms'
+2025-11-24 18:53:31.346 -05:00 [INF] Executed endpoint 'HTTP: POST /Forms'
+2025-11-24 18:53:31.346 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Forms - 400 null application/problem+json; charset=utf-8 19.4249ms
+2025-11-24 18:53:44.191 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57679/Forms - application/json 320
+2025-11-24 18:53:44.191 -05:00 [INF] Executing endpoint 'HTTP: POST /Forms'
+2025-11-24 18:53:44.196 -05:00 [INF] Handling CreateFormCommand
+2025-11-24 18:53:44.197 -05:00 [INF] Property FormNumber : FD-0003
+2025-11-24 18:53:44.197 -05:00 [INF] Property FormTitle : Yet Another Form
+2025-11-24 18:53:44.197 -05:00 [INF] Property Division : Fiscal
+2025-11-24 18:53:44.198 -05:00 [INF] Property Owner : {"Name":"Elmer Fudd","Email":"fudd@example.com","$type":"Owner"}
+2025-11-24 18:53:44.200 -05:00 [INF] Property Revision : null
+2025-11-24 18:53:44.201 -05:00 [INF] Property CreatedDate : "2025-11-24T23:48:06.2137000Z"
+2025-11-24 18:53:44.201 -05:00 [INF] Property RevisedDate : "2025-11-24T23:48:06.2137130Z"
+2025-11-24 18:53:44.201 -05:00 [INF] Handling CreateFormCommand
+2025-11-24 18:53:44.201 -05:00 [INF] Property FormNumber : FD-0003
+2025-11-24 18:53:44.201 -05:00 [INF] Property FormTitle : Yet Another Form
+2025-11-24 18:53:44.201 -05:00 [INF] Property Division : Fiscal
+2025-11-24 18:53:44.202 -05:00 [INF] Property Owner : {"Name":"Elmer Fudd","Email":"fudd@example.com","$type":"Owner"}
+2025-11-24 18:53:44.202 -05:00 [INF] Property Revision : null
+2025-11-24 18:53:44.202 -05:00 [INF] Property CreatedDate : "2025-11-24T23:48:06.2137000Z"
+2025-11-24 18:53:44.202 -05:00 [INF] Property RevisedDate : "2025-11-24T23:48:06.2137130Z"
+2025-11-24 18:53:44.206 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = Guid), @p3='?' (Size = 6), @p4='?' (DbType = Guid), @p5='?' (Size = 7), @p6='?' (Size = 16), @p7='?' (DbType = DateTime), @p8='?', @p9='?' (DbType = Int32), @p10='?' (Size = 16), @p11='?' (Size = 10)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Forms" ("Id", "CreatedDate", "CurrentRevisionId", "Division", "FormId", "FormNumber", "FormTitle", "RevisedDate", "Revision", "Status", "Owner_Email", "Owner_Name")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11);
+2025-11-24 18:53:44.206 -05:00 [INF] Handled CreateFormCommand with Ardalis.Result.Result`1[System.Guid] in 4 ms
+2025-11-24 18:53:44.206 -05:00 [INF] Handled CreateFormCommand with Ardalis.Result.Result`1[System.Guid] in 5 ms
+2025-11-24 18:53:44.207 -05:00 [INF] Executed endpoint 'HTTP: POST /Forms'
+2025-11-24 18:53:44.207 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57679/Forms - 200 null application/json; charset=utf-8 16.9819ms
+2025-11-24 18:53:50.800 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57679/Forms - null null
+2025-11-24 18:53:50.800 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-11-24 18:53:50.801 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:53:50.801 -05:00 [INF] Property Skip : null
+2025-11-24 18:53:50.801 -05:00 [INF] Property Take : null
+2025-11-24 18:53:50.801 -05:00 [INF] Handling ListFormsQuery
+2025-11-24 18:53:50.801 -05:00 [INF] Property Skip : null
+2025-11-24 18:53:50.801 -05:00 [INF] Property Take : null
+2025-11-24 18:53:50.810 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Revision, CreatedDate, RevisedDate FROM Forms
+2025-11-24 18:53:50.810 -05:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 9 ms
+2025-11-24 18:53:50.810 -05:00 [INF] Handled ListFormsQuery with Ardalis.Result.Result`1[System.Collections.Generic.IEnumerable`1[FormDesignerAPI.UseCases.Forms.FormDTO]] in 9 ms
+2025-11-24 18:53:50.810 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-11-24 18:53:50.810 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57679/Forms - 200 null application/json; charset=utf-8 10.489ms
