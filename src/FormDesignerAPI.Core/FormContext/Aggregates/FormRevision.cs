@@ -1,6 +1,8 @@
-namespace FormDesignerAPI.Core.FormAggregate;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
 
-public class Version : EntityBase<Guid>
+namespace FormDesignerAPI.Core.FormContext.Aggregates;
+
+public class FormRevision : EntityBase<Guid>
 {
     public Guid VersionId { get; set; }
 
@@ -15,7 +17,7 @@ public class Version : EntityBase<Guid>
     // Each version has exactly one form definition
     public FormDefinition FormDefinition { get; private set; } = default!;
 
-    private Version(int major, int minor, int patch, FormDefinition formDefinition)
+    private FormRevision(int major, int minor, int patch, FormDefinition formDefinition)
     {
         VersionId = Guid.NewGuid();
         Major = Guard.Against.NegativeOrZero(major, nameof(major));
@@ -38,17 +40,17 @@ public class Version : EntityBase<Guid>
         FormDefinition = formDefinition;
     }
 
-    public Version CreateVersion(int major, int minor, int patch, FormDefinition formDefinition)
+    public FormRevision CreateVersion(int major, int minor, int patch, FormDefinition formDefinition)
     {
-        return new Version(major, minor, patch, formDefinition);
+        return new FormRevision(major, minor, patch, formDefinition);
     }
 
-    public static Version Create(int major, int minor, int patch, FormDefinition formDefinition)
+    public static FormRevision Create(int major, int minor, int patch, FormDefinition formDefinition)
     {
-        return new Version(major, minor, patch, formDefinition);
+        return new FormRevision(major, minor, patch, formDefinition);
     }
 
-    public Version PublishVersion(DateTime releasedDate)
+    public FormRevision PublishVersion(DateTime releasedDate)
     {
         ReleasedDate = releasedDate;
         Status = FormStatus.Published;
@@ -59,7 +61,7 @@ public class Version : EntityBase<Guid>
     /// Archives this version
     /// </summary>
     /// <returns>The version instance for method chaining</returns>
-    public Version Archive()
+    public FormRevision Archive()
     {
         Status = FormStatus.Archived;
         return this;
@@ -69,7 +71,7 @@ public class Version : EntityBase<Guid>
     /// Sets this version back to draft status
     /// </summary>
     /// <returns>The version instance for method chaining</returns>
-    public Version SetToDraft()
+    public FormRevision SetToDraft()
     {
         Status = FormStatus.Draft;
         ReleasedDate = null; // Clear release date when reverting to draft

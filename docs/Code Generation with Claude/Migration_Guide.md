@@ -1989,3 +1989,2096 @@ Create `FormContext/Queries/GetAllFormsQuery.cs`:
 ```csharp
 using MediatR;
 using FormDesignerAPI.UseCases.FormContext.DT
+Os;
+
+namespace FormGenAI.UseCases.FormContext.Queries;
+
+/// <summary>
+/// Query to get all forms
+/// </summary>
+public record GetAllFormsQuery() : IRequest<List<FormDto>>;
+```
+
+Create `FormContext/Queries/GetAllFormsQueryHandler.cs`:
+
+```csharp
+using MediatR;
+using FormGenAI.Core.FormContext.Interfaces;
+using FormGenAI.UseCases.FormContext.DTOs;
+
+namespace FormGenAI.UseCases.FormContext.Queries;
+
+public class GetAllFormsQueryHandler 
+    : IRequestHandler<GetAllFormsQuery, List<FormDto>>
+{
+    private readonly IFormRepository _repository;
+
+    public GetAllFormsQueryHandler(IFormRepository repository)
+    {
+        _repository = repository;
+    }
+
+    public async Task<List<FormDto>> Handle(
+        GetAllFormsQuery request,
+        CancellationToken cancellationToken)
+    {
+        var forms = await _repository.GetAllAsync(cancellationToken);
+        
+        return forms.Select(FormDto.FromDomain).ToList();
+    }
+}
+```
+
+**4.6 Create UseCases DependencyInjection:**
+
+Create `UseCases/DependencyInjection.cs`:
+
+```csharp
+using Microsoft.Extensions.DependencyInjection;
+using System.Reflection;
+
+namespace FormGenAI.UseCases;
+
+public static class DependencyInjection
+{
+    public static IServiceCollection AddUseCaseServices(
+        this IServiceCollection services)
+    {
+        // Register MediatR
+        services.AddMediatR(cfg =>
+        {
+            cfg.RegisterServicesFromAssembly(Assembly.GetExecutingAssembly());
+        });
+
+        return services;
+    }
+}
+```
+
+**4.7 Create API Controller:**
+
+Create folder and controller:
+
+```bash
+cd src/FormGenAI.Web
+mkdir -p Controllers/FormContext
+```
+
+Create `Controllers/FormContext/FormsController.cs`:
+
+```csharp
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using FormGenAI.UseCases.FormContext.Commands;
+using FormGenAI.UseCases.FormContext.Queries;
+using FormGenAI.UseCases.FormContext.DTOs;
+
+namespace FormGenAI.Web.Controllers.FormContext;
+
+/// <summary>
+/// API endpoints for Form management
+/// </summary>
+[ApiController]
+[Route("api/[controller]")]
+[Produces("application/json")]
+public class FormsController : ControllerBase
+{
+    private readonly IMediator _mediator;
+    private readonly ILogger<FormsController> _logger;
+
+    public FormsController(
+        IMediator mediator,
+        ILogger<FormsController> logger)
+    {
+        _mediator = mediator;
+        _logger = logger;
+    }
+
+    /// <summary>
+    /// Get all forms
+    /// </summary>
+    [HttpGet]
+    [ProducesResponseType(typeof(List<FormDto>), StatusCodes.Status200OK)]
+    public async Task<ActionResult<List<FormDto>>> GetAll()
+    {
+        var query = new GetAllFormsQuery();
+        var result = await _mediator.Send(query);
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Get form by ID
+    /// </summary>
+    [HttpGet("{id}")]
+    [ProducesResponseType(typeof(FormDetailDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    public async Task<ActionResult<FormDetailDto>> GetById(Guid id)
+    {
+        var query = new GetFormByIdQuery(id);
+        var result = await _mediator.Send(query);
+
+        if (result == null)
+            return NotFound();
+
+        return Ok(result);
+    }
+
+    /// <summary>
+    /// Create a new form
+    /// </summary>
+    [HttpPost]
+    [ProducesResponseType(typeof(FormDto), StatusCodes.Status201Created)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<FormDto>> Create(
+        [FromBody] CreateFormCommand command)
+    {
+        try
+        {
+            var result = await _mediator.Send(command);
+            return CreatedAtAction(
+                nameof(GetById),
+                new { id = result.Id },
+                result);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating form");
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+
+    /// <summary>
+    /// Create a new revision for an existing form
+    /// </summary>
+    [HttpPost("{id}/revisions")]
+    [ProducesResponseType(typeof(FormDetailDto), StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status404NotFound)]
+    [ProducesResponseType(StatusCodes.Status400BadRequest)]
+    public async Task<ActionResult<FormDetailDto>> CreateRevision(
+        Guid id,
+        [FromBody] CreateRevisionRequest request)
+    {
+        try
+        {
+            var command = new CreateFormRevisionCommand(
+                id,
+                request.DefinitionSchema,
+                request.Notes,
+                request.CreatedBy
+            );
+
+            var result = await _mediator.Send(command);
+            return Ok(result);
+        }
+        catch (InvalidOperationException ex)
+        {
+            return NotFound(new { error = ex.Message });
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error creating form revision");
+            return BadRequest(new { error = ex.Message });
+        }
+    }
+}
+
+/// <summary>
+/// Request model for creating a revision
+/// </summary>
+public record CreateRevisionRequest(
+    string DefinitionSchema,
+    string Notes,
+    string CreatedBy
+);
+```
+
+**4.8 Update Program.cs:**
+
+Update `FormGenAI.Web/Program.cs`:
+
+```csharp
+using FormGenAI.Infrastructure;
+using FormGenAI.UseCases;  // ADD THIS
+using FormGenAI.Infrastructure.Data;
+using Serilog;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+try
+{
+    Log.Information("Starting FormGenAI application");
+
+    // Add services
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen(options =>
+    {
+        options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+        {
+            Title = "FormGenAI API",
+            Version = "v1",
+            Description = "AI-Powered Form Code Generation System"
+        });
+    });
+
+    // Add Infrastructure services
+    builder.Services.AddInfrastructureServices(builder.Configuration);
+
+    // Add UseCase services
+    builder.Services.AddUseCaseServices();
+
+    var app = builder.Build();
+
+    // Configure middleware
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+
+    // Apply migrations on startup (Development only)
+    if (app.Environment.IsDevelopment())
+    {
+        using var scope = app.Services.CreateScope();
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        await dbContext.Database.MigrateAsync();
+        Log.Information("Database migrations applied");
+    }
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+```
+
+**4.9 Test the API:**
+
+Start the application:
+
+```bash
+cd src/FormGenAI.Web
+dotnet run
+```
+
+Navigate to Swagger UI: `https://localhost:5001/swagger`
+
+Test creating a form:
+
+```bash
+curl -X POST https://localhost:5001/api/forms \
+  -H "Content-Type: application/json" \
+  -d '{
+    "name": "Patient Intake Form",
+    "definitionSchema": "{\"fields\":[{\"name\":\"firstName\",\"type\":\"text\"}]}",
+    "createdBy": "admin@test.com"
+  }'
+```
+
+Test getting all forms:
+
+```bash
+curl https://localhost:5001/api/forms
+```
+
+### Checkpoint 4: Verification
+
+- [ ] API endpoints return 200 OK
+- [ ] Can create forms via API
+- [ ] Can retrieve forms via API
+- [ ] Swagger UI displays all endpoints
+- [ ] Data persists in PostgreSQL
+
+**Git Commit:**
+```bash
+git add .
+git commit -m "Phase 4: Created Form Context Use Cases and API with CQRS pattern"
+```
+
+---
+
+## Phase 5: Claude API Integration (Week 3-4)
+
+### Step 5: Integrate Claude Sonnet 4 API
+
+This is the crucial phase where you integrate with Anthropic's Claude API for AI-powered code generation.
+
+**5.1 Create folder structure:**
+
+```bash
+cd src/FormGenAI.Infrastructure
+mkdir -p ExternalServices
+```
+
+**5.2 Create ClaudeApiClient:**
+
+Create `ExternalServices/ClaudeApiClient.cs`:
+
+```csharp
+using System.Net.Http.Headers;
+using System.Text;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using Microsoft.Extensions.Logging;
+using Microsoft.Extensions.Options;
+
+namespace FormGenAI.Infrastructure.ExternalServices;
+
+/// <summary>
+/// Client for interacting with the Anthropic Claude API
+/// </summary>
+public class ClaudeApiClient
+{
+    private readonly HttpClient _httpClient;
+    private readonly AnthropicSettings _settings;
+    private readonly ILogger<ClaudeApiClient> _logger;
+    private const string ApiVersion = "2023-06-01";
+
+    public ClaudeApiClient(
+        HttpClient httpClient,
+        IOptions<AnthropicSettings> settings,
+        ILogger<ClaudeApiClient> logger)
+    {
+        _httpClient = httpClient ?? throw new ArgumentNullException(nameof(httpClient));
+        _settings = settings?.Value ?? throw new ArgumentNullException(nameof(settings));
+        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+
+        ConfigureHttpClient();
+    }
+
+    private void ConfigureHttpClient()
+    {
+        _httpClient.BaseAddress = new Uri(_settings.ApiBaseUrl);
+        _httpClient.DefaultRequestHeaders.Clear();
+        _httpClient.DefaultRequestHeaders.Add("x-api-key", _settings.ApiKey);
+        _httpClient.DefaultRequestHeaders.Add("anthropic-version", ApiVersion);
+        _httpClient.DefaultRequestHeaders.Accept.Add(
+            new MediaTypeWithQualityHeaderValue("application/json"));
+        _httpClient.Timeout = TimeSpan.FromMinutes(_settings.TimeoutMinutes);
+    }
+
+    /// <summary>
+    /// Generate code from a PDF file using Claude
+    /// </summary>
+    public async Task<string> GenerateCodeFromPdf(
+        string pdfFilePath,
+        string prompt,
+        CancellationToken cancellationToken = default)
+    {
+        if (string.IsNullOrWhiteSpace(pdfFilePath))
+            throw new ArgumentException("PDF file path cannot be empty", nameof(pdfFilePath));
+
+        if (!File.Exists(pdfFilePath))
+            throw new FileNotFoundException("PDF file not found", pdfFilePath);
+
+        if (string.IsNullOrWhiteSpace(prompt))
+            throw new ArgumentException("Prompt cannot be empty", nameof(prompt));
+
+        _logger.LogInformation(
+            "Starting code generation from PDF: {PdfPath}", 
+            Path.GetFileName(pdfFilePath));
+
+        try
+        {
+            // Read and convert PDF to base64
+            byte[] pdfBytes = await File.ReadAllBytesAsync(pdfFilePath, cancellationToken);
+            string base64Pdf = Convert.ToBase64String(pdfBytes);
+
+            _logger.LogDebug(
+                "PDF converted to base64. Size: {SizeKB} KB", 
+                pdfBytes.Length / 1024);
+
+            // Build request
+            var request = new ClaudeRequest
+            {
+                Model = _settings.Model,
+                MaxTokens = _settings.MaxTokens,
+                Messages = new List<ClaudeMessage>
+                {
+                    new ClaudeMessage
+                    {
+                        Role = "user",
+                        Content = new List<ClaudeContent>
+                        {
+                            new ClaudeContent
+                            {
+                                Type = "document",
+                                Source = new ClaudeSource
+                                {
+                                    Type = "base64",
+                                    MediaType = "application/pdf",
+                                    Data = base64Pdf
+                                }
+                            },
+                            new ClaudeContent
+                            {
+                                Type = "text",
+                                Text = prompt
+                            }
+                        }
+                    }
+                }
+            };
+
+            // Serialize request
+            var jsonOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull,
+                WriteIndented = false
+            };
+
+            string jsonRequest = JsonSerializer.Serialize(request, jsonOptions);
+            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            _logger.LogDebug("Sending request to Claude API...");
+
+            // Send request with retry logic
+            var response = await SendWithRetryAsync(
+                () => _httpClient.PostAsync("/v1/messages", content, cancellationToken),
+                cancellationToken);
+
+            // Read response
+            string responseJson = await response.Content.ReadAsStringAsync(cancellationToken);
+
+            if (!response.IsSuccessStatusCode)
+            {
+                _logger.LogError(
+                    "Claude API returned error. Status: {StatusCode}, Response: {Response}",
+                    response.StatusCode,
+                    responseJson);
+
+                throw new ClaudeApiException(
+                    $"Claude API request failed with status {response.StatusCode}",
+                    response.StatusCode,
+                    responseJson);
+            }
+
+            _logger.LogDebug("Received response from Claude API");
+
+            // Deserialize response
+            var claudeResponse = JsonSerializer.Deserialize<ClaudeResponse>(
+                responseJson, 
+                jsonOptions);
+
+            if (claudeResponse?.Content == null || !claudeResponse.Content.Any())
+            {
+                throw new ClaudeApiException(
+                    "Claude API returned empty response",
+                    response.StatusCode,
+                    responseJson);
+            }
+
+            // Extract text from response
+            var generatedCode = ExtractTextFromResponse(claudeResponse);
+
+            _logger.LogInformation(
+                "Code generation completed. Generated {Length} characters",
+                generatedCode.Length);
+
+            return generatedCode;
+        }
+        catch (HttpRequestException ex)
+        {
+            _logger.LogError(ex, "Network error while calling Claude API");
+            throw new ClaudeApiException("Network error while calling Claude API", ex);
+        }
+        catch (TaskCanceledException ex)
+        {
+            _logger.LogError(ex, "Claude API request timed out");
+            throw new ClaudeApiException("Claude API request timed out", ex);
+        }
+        catch (Exception ex) when (ex is not ClaudeApiException)
+        {
+            _logger.LogError(ex, "Unexpected error during code generation");
+            throw new ClaudeApiException("Unexpected error during code generation", ex);
+        }
+    }
+
+    /// <summary>
+    /// Test the API connection
+    /// </summary>
+    public async Task<bool> TestConnectionAsync(CancellationToken cancellationToken = default)
+    {
+        try
+        {
+            _logger.LogInformation("Testing Claude API connection...");
+
+            var request = new ClaudeRequest
+            {
+                Model = _settings.Model,
+                MaxTokens = 10,
+                Messages = new List<ClaudeMessage>
+                {
+                    new ClaudeMessage
+                    {
+                        Role = "user",
+                        Content = new List<ClaudeContent>
+                        {
+                            new ClaudeContent
+                            {
+                                Type = "text",
+                                Text = "Hello"
+                            }
+                        }
+                    }
+                }
+            };
+
+            var jsonOptions = new JsonSerializerOptions
+            {
+                PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
+                DefaultIgnoreCondition = JsonIgnoreCondition.WhenWritingNull
+            };
+
+            string jsonRequest = JsonSerializer.Serialize(request, jsonOptions);
+            var content = new StringContent(jsonRequest, Encoding.UTF8, "application/json");
+
+            var response = await _httpClient.PostAsync(
+                "/v1/messages", 
+                content, 
+                cancellationToken);
+
+            if (response.IsSuccessStatusCode)
+            {
+                _logger.LogInformation("Claude API connection test successful");
+                return true;
+            }
+
+            _logger.LogWarning(
+                "Claude API connection test failed with status: {StatusCode}",
+                response.StatusCode);
+            return false;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Claude API connection test failed");
+            return false;
+        }
+    }
+
+    private string ExtractTextFromResponse(ClaudeResponse response)
+    {
+        var textBlocks = response.Content
+            .Where(c => c.Type == "text" && !string.IsNullOrWhiteSpace(c.Text))
+            .Select(c => c.Text)
+            .ToList();
+
+        if (!textBlocks.Any())
+        {
+            throw new ClaudeApiException("No text content found in Claude response");
+        }
+
+        return string.Join("\n\n", textBlocks);
+    }
+
+    private async Task<HttpResponseMessage> SendWithRetryAsync(
+        Func<Task<HttpResponseMessage>> requestFunc,
+        CancellationToken cancellationToken)
+    {
+        int maxRetries = _settings.MaxRetries;
+        int retryDelayMs = _settings.RetryDelayMilliseconds;
+
+        for (int attempt = 0; attempt <= maxRetries; attempt++)
+        {
+            try
+            {
+                var response = await requestFunc();
+
+                // Don't retry on success or client errors (4xx)
+                if (response.IsSuccessStatusCode || 
+                    (int)response.StatusCode >= 400 && (int)response.StatusCode < 500)
+                {
+                    return response;
+                }
+
+                // Retry on server errors (5xx) or rate limiting (429)
+                if (attempt < maxRetries)
+                {
+                    _logger.LogWarning(
+                        "Request failed with status {StatusCode}. Retry attempt {Attempt} of {MaxRetries}",
+                        response.StatusCode,
+                        attempt + 1,
+                        maxRetries);
+
+                    await Task.Delay(retryDelayMs * (attempt + 1), cancellationToken);
+                    continue;
+                }
+
+                return response;
+            }
+            catch (HttpRequestException) when (attempt < maxRetries)
+            {
+                _logger.LogWarning(
+                    "Network error. Retry attempt {Attempt} of {MaxRetries}",
+                    attempt + 1,
+                    maxRetries);
+
+                await Task.Delay(retryDelayMs * (attempt + 1), cancellationToken);
+            }
+        }
+
+        throw new ClaudeApiException("Max retries exceeded");
+    }
+}
+
+#region Request/Response Models
+
+public class ClaudeRequest
+{
+    [JsonPropertyName("model")]
+    public string Model { get; set; } = string.Empty;
+
+    [JsonPropertyName("max_tokens")]
+    public int MaxTokens { get; set; }
+
+    [JsonPropertyName("messages")]
+    public List<ClaudeMessage> Messages { get; set; } = new();
+}
+
+public class ClaudeMessage
+{
+    [JsonPropertyName("role")]
+    public string Role { get; set; } = string.Empty;
+
+    [JsonPropertyName("content")]
+    public List<ClaudeContent> Content { get; set; } = new();
+}
+
+public class ClaudeContent
+{
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = string.Empty;
+
+    [JsonPropertyName("text")]
+    public string? Text { get; set; }
+
+    [JsonPropertyName("source")]
+    public ClaudeSource? Source { get; set; }
+}
+
+public class ClaudeSource
+{
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = string.Empty;
+
+    [JsonPropertyName("media_type")]
+    public string MediaType { get; set; } = string.Empty;
+
+    [JsonPropertyName("data")]
+    public string Data { get; set; } = string.Empty;
+}
+
+public class ClaudeResponse
+{
+    [JsonPropertyName("id")]
+    public string Id { get; set; } = string.Empty;
+
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = string.Empty;
+
+    [JsonPropertyName("role")]
+    public string Role { get; set; } = string.Empty;
+
+    [JsonPropertyName("content")]
+    public List<ClaudeContentResponse> Content { get; set; } = new();
+
+    [JsonPropertyName("model")]
+    public string Model { get; set; } = string.Empty;
+
+    [JsonPropertyName("stop_reason")]
+    public string? StopReason { get; set; }
+
+    [JsonPropertyName("usage")]
+    public ClaudeUsage? Usage { get; set; }
+}
+
+public class ClaudeContentResponse
+{
+    [JsonPropertyName("type")]
+    public string Type { get; set; } = string.Empty;
+
+    [JsonPropertyName("text")]
+    public string? Text { get; set; }
+}
+
+public class ClaudeUsage
+{
+    [JsonPropertyName("input_tokens")]
+    public int InputTokens { get; set; }
+
+    [JsonPropertyName("output_tokens")]
+    public int OutputTokens { get; set; }
+}
+
+#endregion
+```
+
+**5.3 Create AnthropicSettings:**
+
+Create `ExternalServices/AnthropicSettings.cs`:
+
+```csharp
+namespace FormGenAI.Infrastructure.ExternalServices;
+
+public class AnthropicSettings
+{
+    public string ApiKey { get; set; } = string.Empty;
+    public string Model { get; set; } = "claude-sonnet-4-20250514";
+    public int MaxTokens { get; set; } = 4096;
+    public string ApiBaseUrl { get; set; } = "https://api.anthropic.com";
+    public int TimeoutMinutes { get; set; } = 5;
+    public int MaxRetries { get; set; } = 3;
+    public int RetryDelayMilliseconds { get; set; } = 1000;
+}
+```
+
+**5.4 Create ClaudeApiException:**
+
+Create `ExternalServices/ClaudeApiException.cs`:
+
+```csharp
+using System.Net;
+
+namespace FormGenAI.Infrastructure.ExternalServices;
+
+public class ClaudeApiException : Exception
+{
+    public HttpStatusCode? StatusCode { get; }
+    public string? ResponseBody { get; }
+
+    public ClaudeApiException(string message) : base(message)
+    {
+    }
+
+    public ClaudeApiException(string message, Exception innerException) 
+        : base(message, innerException)
+    {
+    }
+
+    public ClaudeApiException(
+        string message, 
+        HttpStatusCode statusCode, 
+        string responseBody) 
+        : base(message)
+    {
+        StatusCode = statusCode;
+        ResponseBody = responseBody;
+    }
+}
+```
+
+**5.5 Update appsettings.json:**
+
+Update `FormGenAI.Web/appsettings.json` to add Anthropic configuration:
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Information",
+      "Microsoft.AspNetCore": "Warning",
+      "Microsoft.EntityFrameworkCore": "Information",
+      "FormGenAI.Infrastructure.ExternalServices": "Debug"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Database=FormGenAI;Username=postgres;Password=your_password"
+  },
+  "Anthropic": {
+    "ApiKey": "YOUR_ANTHROPIC_API_KEY_HERE",
+    "Model": "claude-sonnet-4-20250514",
+    "MaxTokens": 4096,
+    "ApiBaseUrl": "https://api.anthropic.com",
+    "TimeoutMinutes": 5,
+    "MaxRetries": 3,
+    "RetryDelayMilliseconds": 1000
+  },
+  "AllowedHosts": "*"
+}
+```
+
+**Important:** Replace `YOUR_ANTHROPIC_API_KEY_HERE` with your actual API key from https://console.anthropic.com/
+
+**5.6 Update appsettings.Development.json:**
+
+```json
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "Microsoft.EntityFrameworkCore": "Information",
+      "FormGenAI.Infrastructure.ExternalServices": "Trace"
+    }
+  },
+  "ConnectionStrings": {
+    "DefaultConnection": "Host=localhost;Database=FormGenAI_Dev;Username=postgres;Password=your_password"
+  },
+  "Anthropic": {
+    "MaxTokens": 8000
+  }
+}
+```
+
+**5.7 Update DependencyInjection:**
+
+Update `Infrastructure/DependencyInjection.cs`:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Options;
+using FormGenAI.Core.FormContext.Interfaces;
+using FormGenAI.Infrastructure.Data;
+using FormGenAI.Infrastructure.Repositories.FormContext;
+using FormGenAI.Infrastructure.ExternalServices;
+
+namespace FormGenAI.Infrastructure;
+
+public static class DependencyInjection
+{
+    public static IServiceCollection AddInfrastructureServices(
+        this IServiceCollection services,
+        IConfiguration configuration)
+    {
+        // Database
+        var connectionString = configuration.GetConnectionString("DefaultConnection");
+        
+        services.AddDbContext<AppDbContext>(options =>
+        {
+            options.UseNpgsql(connectionString, npgsqlOptions =>
+            {
+                npgsqlOptions.MigrationsAssembly(typeof(AppDbContext).Assembly.FullName);
+                npgsqlOptions.EnableRetryOnFailure(
+                    maxRetryCount: 3,
+                    maxRetryDelay: TimeSpan.FromSeconds(5),
+                    errorCodesToAdd: null);
+            });
+        });
+
+        // Repositories - Form Context
+        services.AddScoped<IFormRepository, FormRepository>();
+
+        // Configure Anthropic settings
+        services.Configure<AnthropicSettings>(
+            configuration.GetSection("Anthropic"));
+
+        // Validate Anthropic configuration
+        services.AddOptions<AnthropicSettings>()
+            .Validate(settings =>
+            {
+                if (string.IsNullOrWhiteSpace(settings.ApiKey))
+                    return false;
+                if (string.IsNullOrWhiteSpace(settings.Model))
+                    return false;
+                if (settings.MaxTokens <= 0)
+                    return false;
+                return true;
+            }, "Anthropic configuration is invalid. Please check your API key and settings.");
+
+        // Register HttpClient with ClaudeApiClient
+        services.AddHttpClient<ClaudeApiClient>()
+            .ConfigureHttpClient((serviceProvider, client) =>
+            {
+                var settings = serviceProvider
+                    .GetRequiredService<IOptions<AnthropicSettings>>()
+                    .Value;
+                
+                client.BaseAddress = new Uri(settings.ApiBaseUrl);
+                client.Timeout = TimeSpan.FromMinutes(settings.TimeoutMinutes);
+            })
+            .SetHandlerLifetime(TimeSpan.FromMinutes(10)); // Avoid socket exhaustion
+
+        // Register as scoped service
+        services.AddScoped<ClaudeApiClient>();
+
+        return services;
+    }
+}
+```
+
+**5.8 Update Program.cs to test connection:**
+
+Update `FormGenAI.Web/Program.cs`:
+
+```csharp
+using FormGenAI.Infrastructure;
+using FormGenAI.UseCases;
+using FormGenAI.Infrastructure.Data;
+using FormGenAI.Infrastructure.ExternalServices;
+using Serilog;
+
+var builder = WebApplication.CreateBuilder(args);
+
+// Configure Serilog
+Log.Logger = new LoggerConfiguration()
+    .ReadFrom.Configuration(builder.Configuration)
+    .Enrich.FromLogContext()
+    .WriteTo.Console()
+    .CreateLogger();
+
+builder.Host.UseSerilog();
+
+try
+{
+    Log.Information("Starting FormGenAI application");
+
+    // Add services
+    builder.Services.AddControllers();
+    builder.Services.AddEndpointsApiExplorer();
+    builder.Services.AddSwaggerGen(options =>
+    {
+        options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
+        {
+            Title = "FormGenAI API",
+            Version = "v1",
+            Description = "AI-Powered Form Code Generation System"
+        });
+    });
+
+    // Add Infrastructure services
+    builder.Services.AddInfrastructureServices(builder.Configuration);
+
+    // Add UseCase services
+    builder.Services.AddUseCaseServices();
+
+    var app = builder.Build();
+
+    // Configure middleware
+    if (app.Environment.IsDevelopment())
+    {
+        app.UseSwagger();
+        app.UseSwaggerUI();
+    }
+
+    app.UseHttpsRedirection();
+    app.UseAuthorization();
+    app.MapControllers();
+
+    // Apply migrations on startup (Development only)
+    if (app.Environment.IsDevelopment())
+    {
+        using var scope = app.Services.CreateScope();
+        
+        // Apply database migrations
+        var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+        await dbContext.Database.MigrateAsync();
+        Log.Information("Database migrations applied");
+        
+        // Test Claude API connection
+        var claudeClient = scope.ServiceProvider.GetRequiredService<ClaudeApiClient>();
+        
+        try
+        {
+            var connectionOk = await claudeClient.TestConnectionAsync();
+            if (connectionOk)
+            {
+                app.Logger.LogInformation("✓ Claude API connection verified");
+            }
+            else
+            {
+                app.Logger.LogWarning("⚠ Claude API connection test failed");
+            }
+        }
+        catch (Exception ex)
+        {
+            app.Logger.LogError(ex, "✗ Claude API connection test error");
+        }
+    }
+
+    app.Run();
+}
+catch (Exception ex)
+{
+    Log.Fatal(ex, "Application terminated unexpectedly");
+}
+finally
+{
+    Log.CloseAndFlush();
+}
+```
+
+**5.9 Test the Claude API Integration:**
+
+Run the application:
+
+```bash
+cd src/FormGenAI.Web
+dotnet run
+```
+
+You should see in the logs:
+```
+✓ Claude API connection verified
+```
+
+If you see an error, check:
+- [ ] API key is correct in appsettings.json
+- [ ] API key has not expired
+- [ ] You have API credits
+- [ ] Internet connection is working
+
+### Checkpoint 5: Verification
+
+- [ ] Application starts without errors
+- [ ] Claude API connection test passes
+- [ ] ClaudeApiClient is registered in DI container
+- [ ] Configuration validation works
+
+**Git Commit:**
+```bash
+git add .
+git commit -m "Phase 5: Integrated Claude Sonnet 4 API with connection testing"
+```
+
+---
+
+## Continuing the Document
+
+Due to length constraints, I'll provide you with a complete downloadable file. Would you like me to:
+
+1. **Create a complete downloadable Markdown file** with all remaining phases (6-9)?
+2. **Generate this as a PDF** for easier reading?
+3. **Create separate documents** for each remaining phase?
+
+The remaining phases to document are:
+- Phase 6: Import Context (Perfect! I'll create the complete downloadable Markdown file with all phases. Let me save this as a single comprehensive document:
+
+```markdown
+# FormGenAI Migration Guide - Complete Edition
+## Integrating DDD Bounded Contexts into Ardalis Clean Architecture
+
+**Version:** 1.0  
+**Date:** December 2024  
+**Author:** Architecture Team  
+**Target Solution:** FormGenAI  
+**Document Type:** Complete Migration Guide (Phases 1-9)
+
+---
+
+[Previous content from Phases 1-5 remains the same]
+
+---
+
+## Phase 6: Import Context (Week 4-5)
+
+### Step 6: Create PDF Import and AI Extraction Context
+
+This phase implements the Import Context which handles PDF uploads and uses Claude to extract form fields.
+
+**6.1 Create folder structure:**
+
+```bash
+cd src/FormGenAI.Core
+mkdir -p ImportContext/Aggregates
+mkdir -p ImportContext/ValueObjects
+mkdir -p ImportContext/Services
+mkdir -p ImportContext/Events
+mkdir -p ImportContext/Interfaces
+```
+
+**6.2 Create Value Objects:**
+
+Create `ImportContext/ValueObjects/ExtractionStatus.cs`:
+
+```csharp
+namespace FormGenAI.Core.ImportContext.ValueObjects;
+
+/// <summary>
+/// Status of PDF extraction process
+/// </summary>
+public enum ExtractionStatus
+{
+    Pending,
+    Processing,
+    Completed,
+    Failed
+}
+```
+
+Create `ImportContext/ValueObjects/ApprovalStatus.cs`:
+
+```csharp
+namespace FormGenAI.Core.ImportContext.ValueObjects;
+
+/// <summary>
+/// Status of form candidate approval
+/// </summary>
+public enum ApprovalStatus
+{
+    Pending,
+    Approved,
+    Rejected
+}
+```
+
+**6.3 Create Domain Events:**
+
+Create `ImportContext/Events/FormCandidateExtractedEvent.cs`:
+
+```csharp
+using FormGenAI.SharedKernel.Base;
+
+namespace FormGenAI.Core.ImportContext.Events;
+
+/// <summary>
+/// Event raised when a form candidate is extracted from PDF
+/// </summary>
+public record FormCandidateExtractedEvent(
+    Guid CandidateId,
+    Guid BatchId,
+    string FileName,
+    bool Success,
+    string? Error
+) : DomainEventBase;
+```
+
+Create `ImportContext/Events/FormCandidateApprovedEvent.cs`:
+
+```csharp
+using FormGenAI.SharedKernel.Base;
+
+namespace FormGenAI.Core.ImportContext.Events;
+
+/// <summary>
+/// Event raised when a form candidate is approved
+/// </summary>
+public record FormCandidateApprovedEvent(
+    Guid CandidateId,
+    Guid BatchId,
+    string ExtractedJson,
+    string ApprovedBy,
+    DateTime ApprovedAt
+) : DomainEventBase;
+```
+
+**6.4 Create Aggregates:**
+
+Create `ImportContext/Aggregates/ImportBatch.cs`:
+
+```csharp
+using Ardalis.GuardClauses;
+using FormGenAI.SharedKernel.Base;
+using FormGenAI.SharedKernel.Interfaces;
+using FormGenAI.Core.ImportContext.ValueObjects;
+
+namespace FormGenAI.Core.ImportContext.Aggregates;
+
+/// <summary>
+/// ImportBatch aggregate root - manages a batch of PDF imports
+/// </summary>
+public class ImportBatch : EntityBase, IAggregateRoot
+{
+    public Guid Id { get; private set; }
+    public string Status { get; private set; } = "Pending";
+    public DateTime CreatedAt { get; private set; }
+    public string CreatedBy { get; private set; } = string.Empty;
+    public DateTime? CompletedAt { get; private set; }
+    
+    private readonly List<string> _uploadedFiles = new();
+    public IReadOnlyCollection<string> UploadedFiles => _uploadedFiles.AsReadOnly();
+    
+    private readonly List<ImportedFormCandidate> _candidates = new();
+    public IReadOnlyCollection<ImportedFormCandidate> Candidates => _candidates.AsReadOnly();
+
+    // Private constructor for EF Core
+    private ImportBatch() { }
+
+    /// <summary>
+    /// Factory method to create a new import batch
+    /// </summary>
+    public static ImportBatch Create(List<string> fileNames, string createdBy)
+    {
+        Guard.Against.NullOrEmpty(fileNames, nameof(fileNames));
+        Guard.Against.NullOrEmpty(createdBy, nameof(createdBy));
+
+        var batch = new ImportBatch
+        {
+            Id = Guid.NewGuid(),
+            Status = "Pending",
+            CreatedAt = DateTime.UtcNow,
+            CreatedBy = createdBy
+        };
+
+        batch._uploadedFiles.AddRange(fileNames);
+
+        return batch;
+    }
+
+    /// <summary>
+    /// Add a candidate to this batch
+    /// </summary>
+    public void AddCandidate(ImportedFormCandidate candidate)
+    {
+        Guard.Against.Null(candidate, nameof(candidate));
+        _candidates.Add(candidate);
+    }
+
+    /// <summary>
+    /// Mark batch as processing
+    /// </summary>
+    public void MarkAsProcessing()
+    {
+        Status = "Processing";
+    }
+
+    /// <summary>
+    /// Mark batch as completed
+    /// </summary>
+    public void Complete()
+    {
+        Status = "Completed";
+        CompletedAt = DateTime.UtcNow;
+    }
+
+    /// <summary>
+    /// Mark batch as failed
+    /// </summary>
+    public void Fail()
+    {
+        Status = "Failed";
+        CompletedAt = DateTime.UtcNow;
+    }
+}
+```
+
+Create `ImportContext/Aggregates/ImportedFormCandidate.cs`:
+
+```csharp
+using Ardalis.GuardClauses;
+using FormGenAI.SharedKernel.Base;
+using FormGenAI.Core.ImportContext.ValueObjects;
+using FormGenAI.Core.ImportContext.Events;
+
+namespace FormGenAI.Core.ImportContext.Aggregates;
+
+/// <summary>
+/// Represents a form extracted from a PDF awaiting approval
+/// </summary>
+public class ImportedFormCandidate : EntityBase
+{
+    public Guid Id { get; private set; }
+    public Guid BatchId { get; private set; }
+    public string OriginalFileName { get; private set; } = string.Empty;
+    public string? ExtractedJson { get; private set; }
+    public ExtractionStatus ExtractionStatus { get; private set; }
+    public ApprovalStatus ApprovalStatus { get; private set; }
+    
+    private readonly List<string> _validationErrors = new();
+    public IReadOnlyCollection<string> ValidationErrors => _validationErrors.AsReadOnly();
+    
+    public DateTime CreatedAt { get; private set; }
+    public DateTime? ApprovedAt { get; private set; }
+    public string? ApprovedBy { get; private set; }
+    public DateTime? RejectedAt { get; private set; }
+    public string? RejectedBy { get; private set; }
+    public string? RejectionReason { get; private set; }
+
+    // Private constructor for EF Core
+    private ImportedFormCandidate() { }
+
+    /// <summary>
+    /// Factory method to create a new candidate
+    /// </summary>
+    public static ImportedFormCandidate Create(Guid batchId, string fileName)
+    {
+        Guard.Against.Default(batchId, nameof(batchId));
+        Guard.Against.NullOrEmpty(fileName, nameof(fileName));
+
+        return new ImportedFormCandidate
+        {
+            Id = Guid.NewGuid(),
+            BatchId = batchId,
+            OriginalFileName = fileName,
+            ExtractionStatus = ExtractionStatus.Pending,
+            ApprovalStatus = ApprovalStatus.Pending,
+            CreatedAt = DateTime.UtcNow
+        };
+    }
+
+    /// <summary>
+    /// Mark extraction as started
+    /// </summary>
+    public void StartExtraction()
+    {
+        ExtractionStatus = ExtractionStatus.Processing;
+    }
+
+    /// <summary>
+    /// Complete extraction successfully
+    /// </summary>
+    public void CompleteExtraction(string extractedJson)
+    {
+        Guard.Against.NullOrEmpty(extractedJson, nameof(extractedJson));
+        
+        ExtractedJson = extractedJson;
+        ExtractionStatus = ExtractionStatus.Completed;
+
+        RegisterDomainEvent(new FormCandidateExtractedEvent(
+            Id,
+            BatchId,
+            OriginalFileName,
+            true,
+            null
+        ));
+    }
+
+    /// <summary>
+    /// Mark extraction as failed
+    /// </summary>
+    public void FailExtraction(string error)
+    {
+        Guard.Against.NullOrEmpty(error, nameof(error));
+        
+        ExtractionStatus = ExtractionStatus.Failed;
+        _validationErrors.Add(error);
+
+        RegisterDomainEvent(new FormCandidateExtractedEvent(
+            Id,
+            BatchId,
+            OriginalFileName,
+            false,
+            error
+        ));
+    }
+
+    /// <summary>
+    /// Approve this candidate
+    /// </summary>
+    public void Approve(string approvedBy)
+    {
+        Guard.Against.NullOrEmpty(approvedBy, nameof(approvedBy));
+        
+        if (ExtractionStatus != ExtractionStatus.Completed)
+        {
+            throw new InvalidOperationException("Cannot approve candidate with incomplete extraction");
+        }
+
+        ApprovalStatus = ApprovalStatus.Approved;
+        ApprovedAt = DateTime.UtcNow;
+        ApprovedBy = approvedBy;
+
+        RegisterDomainEvent(new FormCandidateApprovedEvent(
+            Id,
+            BatchId,
+            ExtractedJson!,
+            approvedBy,
+            ApprovedAt.Value
+        ));
+    }
+
+    /// <summary>
+    /// Reject this candidate
+    /// </summary>
+    public void Reject(string rejectedBy, string reason)
+    {
+        Guard.Against.NullOrEmpty(rejectedBy, nameof(rejectedBy));
+        Guard.Against.NullOrEmpty(reason, nameof(reason));
+
+        ApprovalStatus = ApprovalStatus.Rejected;
+        RejectedAt = DateTime.UtcNow;
+        RejectedBy = rejectedBy;
+        RejectionReason = reason;
+    }
+}
+```
+
+**6.5 Create Domain Service:**
+
+Create `ImportContext/Services/PdfExtractionService.cs`:
+
+```csharp
+using FormGenAI.Infrastructure.ExternalServices;
+using Microsoft.Extensions.Logging;
+
+namespace FormGenAI.Core.ImportContext.Services;
+
+/// <summary>
+/// Domain service for extracting form data from PDFs
+/// </summary>
+public class PdfExtractionService
+{
+    private readonly ClaudeApiClient _claudeClient;
+    private readonly ILogger<PdfExtractionService> _logger;
+
+    public PdfExtractionService(
+        ClaudeApiClient claudeClient,
+        ILogger<PdfExtractionService> logger)
+    {
+        _claudeClient = claudeClient;
+        _logger = logger;
+    }
+
+    /// <summary>
+    /// Extract form fields from a PDF file
+    /// </summary>
+    public async Task<string> ExtractFormFields(
+        string pdfFilePath,
+        CancellationToken cancellationToken = default)
+    {
+        _logger.LogInformation("Extracting form fields from: {FileName}", Path.GetFileName(pdfFilePath));
+
+        var prompt = @"
+Analyze this PDF form and extract all form fields into a JSON structure.
+
+For each field, identify:
+- name: The field name (camelCase)
+- label: The human-readable label
+- type: The field type (text, number, date, checkbox, radio, select, textarea, email, phone)
+- required: Whether the field is required (true/false)
+- placeholder: Any placeholder text
+- options: For select/radio fields, list all options
+- validation: Any validation rules (min, max, pattern, etc.)
+
+Return ONLY valid JSON in this format:
+{
+  ""formName"": ""Form Title"",
+  ""fields"": [
+    {
+      ""name"": ""firstName"",
+      ""label"": ""First Name"",
+      ""type"": ""text"",
+      ""required"": true,
+      ""placeholder"": ""Enter first name""
+    }
+  ]
+}
+
+Do not include any explanations, markdown, or additional text. Return ONLY the JSON.
+";
+
+        try
+        {
+            var result = await _claudeClient.GenerateCodeFromPdf(
+                pdfFilePath,
+                prompt,
+                cancellationToken);
+
+            // Remove any markdown code fences if present
+            result = result.Replace("```json", "").Replace("```", "").Trim();
+
+            _logger.LogInformation("Successfully extracted form fields");
+
+            return result;
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Failed to extract form fields from: {FileName}", Path.GetFileName(pdfFilePath));
+            throw;
+        }
+    }
+}
+```
+
+**6.6 Create Repository Interface:**
+
+Create `ImportContext/Interfaces/IImportBatchRepository.cs`:
+
+```csharp
+using FormGenAI.SharedKernel.Interfaces;
+using FormGenAI.Core.ImportContext.Aggregates;
+
+namespace FormGenAI.Core.ImportContext.Interfaces;
+
+public interface IImportBatchRepository : IRepository<ImportBatch>
+{
+    Task<ImportBatch?> GetByIdWithCandidatesAsync(
+        Guid id,
+        CancellationToken cancellationToken = default);
+    
+    Task<IEnumerable<ImportBatch>> GetRecentBatchesAsync(
+        int count,
+        CancellationToken cancellationToken = default);
+}
+```
+
+**6.7 Create EF Core Configurations:**
+
+Create `Infrastructure/Data/ImportContext/ImportBatchConfiguration.cs`:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using FormGenAI.Core.ImportContext.Aggregates;
+using System.Text.Json;
+
+namespace FormGenAI.Infrastructure.Data.ImportContext;
+
+public class ImportBatchConfiguration : IEntityTypeConfiguration<ImportBatch>
+{
+    public void Configure(EntityTypeBuilder<ImportBatch> builder)
+    {
+        builder.ToTable("ImportBatches");
+        
+        builder.HasKey(b => b.Id);
+        
+        builder.Property(b => b.Status)
+            .IsRequired()
+            .HasMaxLength(50);
+        
+        builder.Property(b => b.CreatedAt)
+            .IsRequired();
+        
+        builder.Property(b => b.CreatedBy)
+            .IsRequired()
+            .HasMaxLength(100);
+        
+        builder.Property(b => b.CompletedAt);
+        
+        // Store uploaded files as JSON
+        builder.Property("_uploadedFiles")
+            .HasColumnName("UploadedFiles")
+            .HasColumnType("jsonb")
+            .HasConversion(
+                v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
+                v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions?)null) ?? new()
+            );
+        
+        // Candidates relationship
+        builder.HasMany(typeof(ImportedFormCandidate))
+            .WithOne()
+            .HasForeignKey("BatchId")
+            .OnDelete(DeleteBehavior.Cascade);
+        
+        builder.Ignore(b => b.DomainEvents);
+        
+        builder.HasIndex(b => b.CreatedAt);
+        builder.HasIndex(b => b.Status);
+    }
+}
+```
+
+Create `Infrastructure/Data/ImportContext/ImportedFormCandidateConfiguration.cs`:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using FormGenAI.Core.ImportContext.Aggregates;
+using FormGenAI.Core.ImportContext.ValueObjects;
+using System.Text.Json;
+
+namespace FormGenAI.Infrastructure.Data.ImportContext;
+
+public class ImportedFormCandidateConfiguration : IEntityTypeConfiguration<ImportedFormCandidate>
+{
+    public void Configure(EntityTypeBuilder<ImportedFormCandidate> builder)
+    {
+        builder.ToTable("ImportedFormCandidates");
+        
+        builder.HasKey(c => c.Id);
+        
+        builder.Property(c => c.BatchId)
+            .IsRequired();
+        
+        builder.Property(c => c.OriginalFileName)
+            .IsRequired()
+            .HasMaxLength(255);
+        
+        builder.Property(c => c.ExtractedJson)
+            .HasColumnType("jsonb");
+        
+        builder.Property(c => c.ExtractionStatus)
+            .IsRequired()
+            .HasConversion<string>();
+        
+        builder.Property(c => c.ApprovalStatus)
+            .IsRequired()
+            .HasConversion<string>();
+        
+        // Store validation errors as JSON
+        builder.Property("_validationErrors")
+            .HasColumnName("ValidationErrors")
+            .HasColumnType("jsonb")
+            .HasConversion(
+                v => JsonSerializer.Serialize(v, (JsonSerializerOptions?)null),
+                v => JsonSerializer.Deserialize<List<string>>(v, (JsonSerializerOptions?)null) ?? new()
+            );
+        
+        builder.Property(c => c.CreatedAt)
+            .IsRequired();
+        
+        builder.Property(c => c.ApprovedAt);
+        
+        builder.Property(c => c.ApprovedBy)
+            .HasMaxLength(100);
+        
+        builder.Property(c => c.RejectedAt);
+        
+        builder.Property(c => c.RejectedBy)
+            .HasMaxLength(100);
+        
+        builder.Property(c => c.RejectionReason)
+            .HasMaxLength(1000);
+        
+        builder.Ignore(c => c.DomainEvents);
+        
+        builder.HasIndex(c => c.BatchId);
+        builder.HasIndex(c => c.ApprovalStatus);
+    }
+}
+```
+
+**6.8 Update AppDbContext:**
+
+Update `Infrastructure/Data/AppDbContext.cs`:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using FormGenAI.Core.FormContext.Aggregates;
+using FormGenAI.Core.ImportContext.Aggregates;
+using System.Reflection;
+
+namespace FormGenAI.Infrastructure.Data;
+
+public class AppDbContext : DbContext
+{
+    public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+    {
+    }
+
+    // Form Context
+    public DbSet<Form> Forms => Set<Form>();
+    public DbSet<FormRevision> FormRevisions => Set<FormRevision>();
+
+    // Import Context
+    public DbSet<ImportBatch> ImportBatches => Set<ImportBatch>();
+    public DbSet<ImportedFormCandidate> ImportedFormCandidates => Set<ImportedFormCandidate>();
+
+    // TODO: Code Generation Context (add in Phase 7)
+    // public DbSet<CodeGenerationJob> CodeGenerationJobs => Set<CodeGenerationJob>();
+
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.ApplyConfigurationsFromAssembly(Assembly.GetExecutingAssembly());
+    }
+    
+    public override async Task<int> SaveChangesAsync(
+        CancellationToken cancellationToken = default)
+    {
+        // TODO: In Phase 8, add domain event dispatching here
+        return await base.SaveChangesAsync(cancellationToken);
+    }
+}
+```
+
+**6.9 Create Repository Implementation:**
+
+Create `Infrastructure/Repositories/ImportContext/ImportBatchRepository.cs`:
+
+```csharp
+using Microsoft.EntityFrameworkCore;
+using FormGenAI.Core.ImportContext.Aggregates;
+using FormGenAI.Core.ImportContext.Interfaces;
+using FormGenAI.Infrastructure.Data;
+
+namespace FormGenAI.Infrastructure.Repositories.ImportContext;
+
+public class ImportBatchRepository : IImportBatchRepository
+{
+    private readonly AppDbContext _context;
+
+    public ImportBatchRepository(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<ImportBatch?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.ImportBatches
+            .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+    }
+
+    public async Task<ImportBatch?> GetByIdWithCandidatesAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.ImportBatches
+            .Include("_candidates")
+            .FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
+    }
+
+    public async Task<IEnumerable<ImportBatch>> GetAllAsync(
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.ImportBatches
+            .OrderByDescending(b => b.CreatedAt)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<IEnumerable<ImportBatch>> GetRecentBatchesAsync(
+        int count,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.ImportBatches
+            .OrderByDescending(b => b.CreatedAt)
+            .Take(count)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<ImportBatch> AddAsync(
+        ImportBatch entity,
+        CancellationToken cancellationToken = default)
+    {
+        _context.ImportBatches.Add(entity);
+        await _context.SaveChangesAsync(cancellationToken);
+        return entity;
+    }
+
+    public async Task UpdateAsync(
+        ImportBatch entity,
+        CancellationToken cancellationToken = default)
+    {
+        _context.Entry(entity).State = EntityState.Modified;
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeleteAsync(
+        ImportBatch entity,
+        CancellationToken cancellationToken = default)
+    {
+        _context.ImportBatches.Remove(entity);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+}
+```
+
+**6.10 Register in DependencyInjection:**
+
+Update `Infrastructure/DependencyInjection.cs`:
+
+```csharp
+// Add to AddInfrastructureServices method:
+
+// Repositories - Import Context
+services.AddScoped<IImportBatchRepository, ImportBatchRepository>();
+
+// Domain Services
+services.AddScoped<PdfExtractionService>();
+```
+
+**6.11 Create Migration:**
+
+```bash
+cd src/FormGenAI.Infrastructure
+
+dotnet ef migrations add AddImportContext \
+  --startup-project ../FormGenAI.Web \
+  --context AppDbContext
+
+dotnet ef database update \
+  --startup-project ../FormGenAI.Web \
+  --context AppDbContext
+```
+
+**6.12 Create Use Cases:**
+
+Create `UseCases/ImportContext/Commands/UploadPdfBatchCommand.cs`:
+
+```csharp
+using MediatR;
+
+namespace FormGenAI.UseCases.ImportContext.Commands;
+
+public record UploadPdfBatchCommand(
+    List<string> FileNames,
+    string UploadedBy
+) : IRequest<Guid>; // Returns BatchId
+```
+
+Create `UseCases/ImportContext/Commands/UploadPdfBatchCommandHandler.cs`:
+
+```csharp
+using MediatR;
+using Microsoft.Extensions.Logging;
+using FormGenAI.Core.ImportContext.Aggregates;
+using FormGenAI.Core.ImportContext.Interfaces;
+
+namespace FormGenAI.UseCases.ImportContext.Commands;
+
+public class UploadPdfBatchCommandHandler 
+    : IRequestHandler<UploadPdfBatchCommand, Guid>
+{
+    private readonly IImportBatchRepository _repository;
+    private readonly ILogger<UploadPdfBatchCommandHandler> _logger;
+
+    public UploadPdfBatchCommandHandler(
+        IImportBatchRepository repository,
+        ILogger<UploadPdfBatchCommandHandler> logger)
+    {
+        _repository = repository;
+        _logger = logger;
+    }
+
+    public async Task<Guid> Handle(
+        UploadPdfBatchCommand request,
+        CancellationToken cancellationToken)
+    {
+        _logger.LogInformation(
+            "Creating import batch with {Count} files",
+            request.FileNames.Count);
+
+        var batch = ImportBatch.Create(request.FileNames, request.UploadedBy);
+        
+        await _repository.AddAsync(batch, cancellationToken);
+        
+        _logger.LogInformation("Import batch created: {BatchId}", batch.Id);
+        
+        return batch.Id;
+    }
+}
+```
+
+Create `UseCases/ImportContext/Commands/ProcessImportBatchCommand.cs`:
+
+```csharp
+using MediatR;
+
+namespace FormGenAI.UseCases.ImportContext.Commands;
+
+public record ProcessImportBatchCommand(
+    Guid BatchId,
+    Dictionary<string, string> FilePaths // FileName -> FilePath mapping
+) : IRequest<Unit>;
+```
+
+Create `UseCases/ImportContext/Commands/ProcessImportBatchCommandHandler.cs`:
+
+```csharp
+using MediatR;
+using Microsoft.Extensions.Logging;
+using FormGenAI.Core.ImportContext.Aggregates;
+using FormGenAI.Core.ImportContext.Interfaces;
+using FormGenAI.Core.ImportContext.Services;
+
+namespace FormGenAI.UseCases.ImportContext.Commands;
+
+public class ProcessImportBatchCommandHandler 
+    : IRequestHandler<ProcessImportBatchCommand, Unit>
+{
+    private readonly IImportBatchRepository _repository;
+    private readonly PdfExtractionService _extractionService;
+    private readonly ILogger<ProcessImportBatchCommandHandler> _logger;
+
+    public ProcessImportBatchCommandHandler(
+        IImportBatchRepository repository,
+        PdfExtractionService extractionService,
+        ILogger<ProcessImportBatchCommandHandler> logger)
+    {
+        _repository = repository;
+        _extractionService = extractionService;
+        _logger = logger;
+    }
+
+    public async Task<Unit> Handle(
+        ProcessImportBatchCommand request,
+        CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Processing import batch: {BatchId}", request.BatchId);
+
+        var batch = await _repository.GetByIdWithCandidatesAsync(
+            request.BatchId,
+            cancellationToken);
+
+        if (batch == null)
+        {
+            throw new InvalidOperationException($"Batch not found: {request.BatchId}");
+        }
+
+        batch.MarkAsProcessing();
+
+        foreach (var fileName in batch.UploadedFiles)
+        {
+            if (!request.FilePaths.TryGetValue(fileName, out var filePath))
+            {
+                _logger.LogWarning("File path not found for: {FileName}", fileName);
+                continue;
+            }
+
+            var candidate = ImportedFormCandidate.Create(batch.Id, fileName);
+            batch.AddCandidate(candidate);
+
+            try
+            {
+                candidate.StartExtraction();
+                
+                var extractedJson = await _extractionService.ExtractFormFields(
+                    filePath,
+                    cancellationToken);
+                
+                candidate.CompleteExtraction(extractedJson);
+                
+                _logger.LogInformation(
+                    "Successfully extracted fields from: {FileName}",
+                    fileName);
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(
+                    ex,
+                    "Failed to extract fields from: {FileName}",
+                    fileName);
+                
+                candidate.FailExtraction(ex.Message);
+            }
+        }
+
+        batch.Complete();
+        await _repository.UpdateAsync(batch, cancellationToken);
+
+        _logger.LogInformation("Completed processing batch: {BatchId}", request.BatchId);
+
+        return Unit.Value;
+    }
+}
+```
+
+Create `UseCases/ImportContext/Commands/ApproveFormCandidateCommand.cs`:
+
+```csharp
+using MediatR;
+
+namespace FormGenAI.UseCases.ImportContext.Commands;
+
+public record ApproveFormCandidateCommand(
+    Guid CandidateId,
+    string ApprovedBy
+) : IRequest<Unit>;
+```
+
+Create `UseCases/ImportContext/Commands/ApproveFormCandidateCommandHandler.cs`:
+
+```csharp
+using MediatR;
+using Microsoft.Extensions.Logging;
+using FormGenAI.Core.ImportContext.Interfaces;
+
+namespace FormGenAI.UseCases.ImportContext.Commands;
+
+public class ApproveFormCandidateCommandHandler 
+    : IRequestHandler<ApproveFormCandidateCommand, Unit>
+{
+    private readonly IImportBatchRepository _repository;
+    private readonly ILogger<ApproveFormCandidateCommandHandler> _logger;
+
+    public ApproveFormCandidateCommandHandler(
+        IImportBatchRepository repository,
+        ILogger<ApproveFormCandidateCommandHandler> logger)
+    {
+        _repository = repository;
+        _logger = logger;
+    }
+
+    public async Task<Unit> Handle(
+        ApproveFormCandidateCommand request,
+        CancellationToken cancellationToken)
+    {
+        _logger.LogInformation("Approving candidate: {CandidateId}", request.CandidateId);
+
+        // Find the candidate across all batches
+        var batches = await _repository.GetAllAsync(cancellationToken);
+        
+        foreach (var batch in batches)
+        {
+            var batchWithCandidates = await _repository.GetByIdWithCandidatesAsync(
+                batch.Id,
+                cancellationToken);
+            
+            var candidate = batchWithCandidates?.Candidates
+                .FirstOrDefault(c => c.Id == request.CandidateId);
+            
+            if (candidate != null)
+            {
+                candidate.Approve(request.ApprovedBy);
+                await _repository.UpdateAsync(batchWithCandidates!, cancellationToken);
+                
+                _logger.LogInformation(
+                    "Candidate approved: {CandidateId}",
+                    request.CandidateId);
+                
+                return Unit.Value;
+            }
+        }
+
+        throw new InvalidOperationException($"Candidate not found: {request.CandidateId}");
+    }
+}
+```
+
+**6.13 Create API Controller:**
+
+Create `Web/Controllers/ImportContext/ImportsController.cs`:
+
+```csharp
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
+using FormGenAI.UseCases.ImportContext.Commands;
+
+namespace FormGenAI.Web.Controllers.ImportContext;
+
+[ApiController]
+[Route("api/[controller]")]
+public class ImportsController : ControllerBase
+{
+    private readonly IMediator _mediator;
+    private readonly ILogger<ImportsController> _logger;
+    private readonly IWebHostEnvironment _environment;
+
+    public ImportsController(
+        IMediator mediator,
+        ILogger<ImportsController> logger,
+        IWebHostEnvironment environment)
+    {
+        _mediator = mediator;
+        _logger = logger;
+        _environment = environment;
+    }
+
+    /// <summary>
+    /// Upload PDF files for processing
+    /// </summary>
+    [HttpPost("upload")]
+    [ProducesResponseType(typeof(Guid), StatusCodes.Status202Accepted)]
+    public async Task<ActionResult<Guid>> UploadPdfs(
+        [FromForm] List<IFormFile> files,
+        [FromForm] string uploadedBy)
+    {
+        if (files == null || files.Count == 0)
+        {
+            return BadRequest("No files uploaded");
+        }
+
+        // Save files to temp location
+        var uploadPath = Path.Combine(_environment.ContentRootPath, "Uploads");
+        Directory.CreateDirectory(uploadPath);
+
+        var fileNames = new List<string>();
+        var filePaths = new Dictionary<string, string>();
+
+        foreach (var file in files)
+        {
+            if (file.Length > 0 && Path.GetExtension(file.FileName).ToLower() == ".pdf")
+            {
+                var fileName = Path.

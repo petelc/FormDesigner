@@ -1,4 +1,4 @@
-namespace FormDesignerAPI.Core.FormAggregate;
+namespace FormDesignerAPI.Core.FormContext.Aggregates;
 
 
 /// <summary>
@@ -36,8 +36,8 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     public DateTime? RevisedDate { get; private set; }
 
     // Collection of versions - each form can have multiple versions
-    private readonly List<Version> _versions = new();
-    public IReadOnlyCollection<Version> Versions => _versions.AsReadOnly();
+    private readonly List<FormRevision> _revisions = new();
+    public IReadOnlyCollection<FormRevision> Revisions => _revisions.AsReadOnly();
 
     public FormStatus Status { get; private set; } = FormStatus.NotSet;
 
@@ -59,20 +59,20 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         return this;
     }
 
-    public Form AddVersion(Version version)
+    public Form AddRevision(FormRevision revision)
     {
-        Guard.Against.Null(version, nameof(version));
+        Guard.Against.Null(revision, nameof(revision));
 
         // Set version status to Draft by default if not already set
-        if (version.Status == FormStatus.NotSet)
+        if (revision.Status == FormStatus.NotSet)
         {
-            version.Status = FormStatus.Draft;
+            revision.Status = FormStatus.Draft;
         }
 
-        _versions.Add(version);
+        _revisions.Add(revision);
 
         // Update form status if this is the first version
-        if (_versions.Count == 1 && Status == FormStatus.NotSet)
+        if (_revisions.Count == 1 && Status == FormStatus.NotSet)
         {
             Status = FormStatus.Draft;
         }
@@ -80,14 +80,14 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         return this;
     }
 
-    public Version? GetCurrentVersion()
+    public FormRevision? GetCurrentRevision()
     {
-        return _versions.OrderByDescending(v => v.VersionDate).FirstOrDefault();
+        return _revisions.OrderByDescending(v => v.VersionDate).FirstOrDefault();
     }
 
-    public Version? GetPublishedVersion()
+    public FormRevision? GetPublishedRevision()
     {
-        return _versions.FirstOrDefault(v => v.Status == FormStatus.Published);
+        return _revisions.FirstOrDefault(v => v.Status == FormStatus.Published);
     }
 
     /// <summary>
@@ -98,12 +98,12 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     /// <param name="publishDate">The date to publish the version (optional, defaults to UtcNow)</param>
     /// <returns>The form instance for method chaining</returns>
     /// <exception cref="InvalidOperationException">Thrown when the version doesn't belong to this form</exception>
-    public Form PublishVersion(Version versionToPublish, DateTime? publishDate = null)
+    public Form PublishVersion(FormRevision versionToPublish, DateTime? publishDate = null)
     {
         Guard.Against.Null(versionToPublish, nameof(versionToPublish));
 
         // Ensure the version belongs to this form
-        if (!_versions.Contains(versionToPublish))
+        if (!_revisions.Contains(versionToPublish))
         {
             throw new InvalidOperationException("Cannot publish a version that doesn't belong to this form.");
         }
@@ -111,7 +111,7 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         var releaseDate = publishDate ?? DateTime.UtcNow;
 
         // Archive the currently published version (if any)
-        var currentlyPublished = GetPublishedVersion();
+        var currentlyPublished = GetPublishedRevision();
         if (currentlyPublished != null && currentlyPublished != versionToPublish)
         {
             currentlyPublished.Status = FormStatus.Archived;
@@ -133,13 +133,13 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     /// <returns>The form instance for method chaining</returns>
     public Form ArchivePublishedVersion()
     {
-        var publishedVersion = GetPublishedVersion();
-        if (publishedVersion != null)
+        var publishedRevision = GetPublishedRevision();
+        if (publishedRevision != null)
         {
-            publishedVersion.Status = FormStatus.Archived;
+            publishedRevision.Status = FormStatus.Archived;
 
-            // If no other versions are published, set form status to Draft
-            if (!_versions.Any(v => v.Status == FormStatus.Published))
+            // If no other revisions are published, set form status to Draft
+            if (!_revisions.Any(v => v.Status == FormStatus.Published))
             {
                 Status = FormStatus.Draft;
             }
@@ -153,22 +153,22 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     /// </summary>
     /// <param name="status">The status to filter by</param>
     /// <returns>Collection of versions with the specified status</returns>
-    public IEnumerable<Version> GetVersionsByStatus(FormStatus status)
+    public IEnumerable<FormRevision> GetRevisionsByStatus(FormStatus status)
     {
-        return _versions.Where(v => v.Status == status);
+        return _revisions.Where(v => v.Status == status);
     }
 
     /// <summary>
     /// Checks if the form can have a new version published
     /// </summary>
     /// <returns>True if a new version can be published</returns>
-    public bool CanPublishVersion()
+    public bool CanPublishRevision()
     {
         // You can add business rules here, e.g.:
         // - Must have at least one version
         // - Form must not be archived
         // - etc.
-        return _versions.Any() && Status != FormStatus.Archived;
+        return _revisions.Any() && Status != FormStatus.Archived;
     }
 
     public Form SetOwner(string name, string email)
@@ -189,13 +189,13 @@ public class Form : EntityBase<Guid>, IAggregateRoot
         return this;
     }
 
-    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwnerName, string newOwnerEmail, Version newVersion, DateTime newRevisionDate)
+    public Form UpdateDetails(string newFormNumber, string newFormTitle, string newDivision, string newOwnerName, string newOwnerEmail, FormRevision newRevision, DateTime newRevisionDate)
     {
         UpdateFormNumber(newFormNumber);
         UpdateFormTitle(newFormTitle);
         UpdateDivision(newDivision);
         SetOwner(newOwnerName, newOwnerEmail);
-        AddVersion(newVersion);
+        AddRevision(newRevision);
         SetRevisedDate(newRevisionDate);
         return this;
     }

@@ -14,8 +14,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="CodeGenerationContext/" />
     <Folder Include="Enums/" />
     <Folder Include="Identity/" />
+    <Folder Include="ImportContext/Events/" />
+    <Folder Include="ImportContext/Interfaces/" />
+    <Folder Include="ImportContext/ValueObjects/" />
     <Folder Include="ValueObjects/" />
   </ItemGroup>
 

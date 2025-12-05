@@ -1,4 +1,4 @@
-namespace FormDesignerAPI.Core.FormAggregate;
+namespace FormDesignerAPI.Core.FormContext.ValueObjects;
 
 public class FormDefinition : EntityBase<Guid>
 {

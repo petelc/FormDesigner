@@ -1,4 +1,4 @@
-namespace FormDesignerAPI.Core.FormAggregate.Events;
+namespace FormDesignerAPI.Core.FormContext.Events;
 
 /// <summary>
 ///    Represents the event that is published when a form is deleted.
