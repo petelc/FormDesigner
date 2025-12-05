@@ -1,10 +1,10 @@
-# FormGenAI Migration Guide
+# FormDesignerAPI Migration Guide
 ## Integrating DDD Bounded Contexts into Ardalis Clean Architecture
 
 **Version:** 1.0  
 **Date:** December 2024  
 **Author:** Architecture Team  
-**Target Solution:** FormGenAI
+**Target Solution:** FormDesignerAPI
 
 ---
 
@@ -90,23 +90,23 @@ dotnet ef --version
 
 You'll add these as you progress through the phases:
 ```xml
-<!-- FormGenAI.SharedKernel -->
+<!-- FormDesignerAPI.SharedKernel -->
 <PackageReference Include="MediatR.Contracts" Version="2.0.1" />
 
-<!-- FormGenAI.Core -->
+<!-- FormDesignerAPI.Core -->
 <PackageReference Include="Ardalis.GuardClauses" Version="4.5.0" />
 
-<!-- FormGenAI.Infrastructure -->
+<!-- FormDesignerAPI.Infrastructure -->
 <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="8.0.0" />
 <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0" />
 <PackageReference Include="System.Text.Json" Version="8.0.0" />
 
-<!-- FormGenAI.UseCases -->
+<!-- FormDesignerAPI.UseCases -->
 <PackageReference Include="MediatR" Version="12.2.0" />
 <PackageReference Include="AutoMapper" Version="12.0.1" />
 <PackageReference Include="FluentValidation" Version="11.9.0" />
 
-<!-- FormGenAI.UnitTests -->
+<!-- FormDesignerAPI.UnitTests -->
 <PackageReference Include="xunit" Version="2.6.0" />
 <PackageReference Include="FluentAssertions" Version="6.12.0" />
 <PackageReference Include="Moq" Version="4.20.0" />
@@ -118,9 +118,9 @@ You'll add these as you progress through the phases:
 **PostgreSQL Database (Using Docker):**
 ```bash
 # Start PostgreSQL container
-docker run --name formgenai-db \
+docker run --name FormDesignerAPI-db \
   -e POSTGRES_PASSWORD=your_password \
-  -e POSTGRES_DB=FormGenAI \
+  -e POSTGRES_DB=FormDesignerAPI \
   -p 5432:5432 \
   -d postgres:15
 
@@ -128,7 +128,7 @@ docker run --name formgenai-db \
 docker ps
 
 # Connect to verify
-docker exec -it formgenai-db psql -U postgres -d FormGenAI
+docker exec -it FormDesignerAPI-db psql -U postgres -d FormDesignerAPI
 ```
 
 **Anthropic API Key:**
@@ -146,7 +146,7 @@ Before starting, create a backup:
 git checkout -b feature/ddd-migration
 
 # Or create a full copy
-cp -r FormGenAI FormGenAI.backup
+cp -r FormDesignerAPI FormDesignerAPI.backup
 
 # Commit current state
 git add .
@@ -161,16 +161,16 @@ git commit -m "Checkpoint before DDD migration"
 
 Your solution currently follows this structure:
 ```
-FormGenAI/
+FormDesignerAPI/
 ├── src/
-│   ├── FormGenAI.Core/          # Domain entities & interfaces
-│   ├── FormGenAI.Infrastructure/ # Data access & external services
-│   ├── FormGenAI.UseCases/      # Application logic
-│   └── FormGenAI.Web/           # API endpoints
+│   ├── FormDesignerAPI.Core/          # Domain entities & interfaces
+│   ├── FormDesignerAPI.Infrastructure/ # Data access & external services
+│   ├── FormDesignerAPI.UseCases/      # Application logic
+│   └── FormDesignerAPI.Web/           # API endpoints
 └── tests/
-    ├── FormGenAI.FunctionalTests/
-    ├── FormGenAI.IntegrationTests/
-    └── FormGenAI.UnitTests/
+    ├── FormDesignerAPI.FunctionalTests/
+    ├── FormDesignerAPI.IntegrationTests/
+    └── FormDesignerAPI.UnitTests/
 ```
 
 **Key Characteristics:**
@@ -184,16 +184,16 @@ FormGenAI/
 
 We'll reorganize to this:
 ```
-FormGenAI/
+FormDesignerAPI/
 ├── src/
-│   ├── FormGenAI.SharedKernel/        # NEW - Shared abstractions
-│   ├── FormGenAI.Core/                # REFACTOR - Organize by context
+│   ├── FormDesignerAPI.SharedKernel/        # NEW - Shared abstractions
+│   ├── FormDesignerAPI.Core/                # REFACTOR - Organize by context
 │   │   ├── FormContext/
 │   │   ├── ImportContext/
 │   │   └── CodeGenerationContext/
-│   ├── FormGenAI.UseCases/            # REFACTOR - Organize by context
-│   ├── FormGenAI.Infrastructure/      # REFACTOR - Organize by context
-│   └── FormGenAI.Web/                 # REFACTOR - Organize by context
+│   ├── FormDesignerAPI.UseCases/            # REFACTOR - Organize by context
+│   ├── FormDesignerAPI.Infrastructure/      # REFACTOR - Organize by context
+│   └── FormDesignerAPI.Web/                 # REFACTOR - Organize by context
 └── tests/
 ```
 
@@ -240,22 +240,22 @@ FormGenAI/
 Each bounded context follows Clean Architecture:
 ```
 ┌─────────────────────────────────────┐
-│     Presentation Layer              │ ← FormGenAI.Web
+│     Presentation Layer              │ ← FormDesignerAPI.Web
 │     (Controllers, APIs)             │
 └──────────────┬──────────────────────┘
                │
 ┌──────────────┴──────────────────────┐
-│     Application Layer               │ ← FormGenAI.UseCases
+│     Application Layer               │ ← FormDesignerAPI.UseCases
 │   (Use Cases, Commands, Queries)   │
 └──────────────┬──────────────────────┘
                │
 ┌──────────────┴──────────────────────┐
-│     Domain Layer                    │ ← FormGenAI.Core
+│     Domain Layer                    │ ← FormDesignerAPI.Core
 │  (Aggregates, Entities, Events)    │
 └──────────────┬──────────────────────┘
                │
 ┌──────────────┴──────────────────────┐
-│     Infrastructure Layer            │ ← FormGenAI.Infrastructure
+│     Infrastructure Layer            │ ← FormDesignerAPI.Infrastructure
 │ (Data Access, External Services)   │
 └─────────────────────────────────────┘
 ```
@@ -307,9 +307,9 @@ Before starting, verify your current state:
 
 ### 5.1 Final Folder Structure
 ```
-FormGenAI/
+FormDesignerAPI/
 ├── src/
-│   ├── FormGenAI.SharedKernel/
+│   ├── FormDesignerAPI.SharedKernel/
 │   │   ├── Base/
 │   │   │   ├── EntityBase.cs
 │   │   │   ├── ValueObject.cs
@@ -321,7 +321,7 @@ FormGenAI/
 │   │   └── Results/
 │   │       └── Result.cs
 │   │
-│   ├── FormGenAI.Core/
+│   ├── FormDesignerAPI.Core/
 │   │   ├── FormContext/
 │   │   │   ├── Aggregates/
 │   │   │   │   ├── Form.cs
@@ -360,7 +360,7 @@ FormGenAI/
 │   │       ├── Events/
 │   │       └── Interfaces/
 │   │
-│   ├── FormGenAI.UseCases/
+│   ├── FormDesignerAPI.UseCases/
 │   │   ├── FormContext/
 │   │   │   ├── Commands/
 │   │   │   ├── Queries/
@@ -368,7 +368,7 @@ FormGenAI/
 │   │   ├── ImportContext/
 │   │   └── CodeGenerationContext/
 │   │
-│   ├── FormGenAI.Infrastructure/
+│   ├── FormDesignerAPI.Infrastructure/
 │   │   ├── Data/
 │   │   │   ├── AppDbContext.cs
 │   │   │   ├── FormContext/
@@ -381,7 +381,7 @@ FormGenAI/
 │   │   ├── BackgroundJobs/
 │   │   └── Integration/
 │   │
-│   └── FormGenAI.Web/
+│   └── FormDesignerAPI.Web/
 │       ├── Controllers/
 │       │   ├── FormContext/
 │       │   ├── ImportContext/
@@ -391,9 +391,9 @@ FormGenAI/
 │       └── Program.cs
 │
 └── tests/
-    ├── FormGenAI.UnitTests/
-    ├── FormGenAI.IntegrationTests/
-    └── FormGenAI.FunctionalTests/
+    ├── FormDesignerAPI.UnitTests/
+    ├── FormDesignerAPI.IntegrationTests/
+    └── FormDesignerAPI.FunctionalTests/
 ```
 
 ### 5.2 Database Schema Overview
@@ -470,13 +470,13 @@ CREATE TABLE "CodeGenerationJobs" (
 **1.1 Create the project:**
 ```bash
 cd src
-dotnet new classlib -n FormGenAI.SharedKernel
-dotnet sln ../FormGenAI.sln add FormGenAI.SharedKernel/FormGenAI.SharedKernel.csproj
+dotnet new classlib -n FormDesignerAPI.SharedKernel
+dotnet sln ../FormDesignerAPI.sln add FormDesignerAPI.SharedKernel/FormDesignerAPI.SharedKernel.csproj
 ```
 
 **1.2 Add NuGet packages:**
 ```bash
-cd FormGenAI.SharedKernel
+cd FormDesignerAPI.SharedKernel
 dotnet add package MediatR.Contracts
 ```
 
@@ -491,9 +491,9 @@ mkdir Results
 
 Create `Base/EntityBase.cs`:
 ```csharp
-using FormGenAI.SharedKernel.Interfaces;
+using FormDesignerAPI.SharedKernel.Interfaces;
 
-namespace FormGenAI.SharedKernel.Base;
+namespace FormDesignerAPI.SharedKernel.Base;
 
 /// <summary>
 /// Base class for all entities with domain event support
@@ -530,7 +530,7 @@ public abstract class EntityBase
 
 Create `Interfaces/IAggregateRoot.cs`:
 ```csharp
-namespace FormGenAI.SharedKernel.Interfaces;
+namespace FormDesignerAPI.SharedKernel.Interfaces;
 
 /// <summary>
 /// Marker interface for aggregate roots
@@ -548,7 +548,7 @@ Create `Interfaces/IDomainEvent.cs`:
 ```csharp
 using MediatR;
 
-namespace FormGenAI.SharedKernel.Interfaces;
+namespace FormDesignerAPI.SharedKernel.Interfaces;
 
 /// <summary>
 /// Base interface for all domain events
@@ -567,9 +567,9 @@ public interface IDomainEvent : INotification
 
 Create `Base/DomainEventBase.cs`:
 ```csharp
-using FormGenAI.SharedKernel.Interfaces;
+using FormDesignerAPI.SharedKernel.Interfaces;
 
-namespace FormGenAI.SharedKernel.Base;
+namespace FormDesignerAPI.SharedKernel.Base;
 
 /// <summary>
 /// Base implementation for domain events
@@ -584,7 +584,7 @@ public abstract record DomainEventBase : IDomainEvent
 
 Create `Base/ValueObject.cs`:
 ```csharp
-namespace FormGenAI.SharedKernel.Base;
+namespace FormDesignerAPI.SharedKernel.Base;
 
 /// <summary>
 /// Base class for value objects
@@ -630,7 +630,7 @@ public abstract class ValueObject
 
 Create `Interfaces/IRepository.cs`:
 ```csharp
-namespace FormGenAI.SharedKernel.Interfaces;
+namespace FormDesignerAPI.SharedKernel.Interfaces;
 
 /// <summary>
 /// Generic repository interface
@@ -649,7 +649,7 @@ public interface IRepository<T> where T : class, IAggregateRoot
 
 Create `Results/Result.cs`:
 ```csharp
-namespace FormGenAI.SharedKernel.Results;
+namespace FormDesignerAPI.SharedKernel.Results;
 
 /// <summary>
 /// Represents the result of an operation
@@ -692,8 +692,8 @@ public class Result<T> : Result
 
 **1.11 Add reference to Core project:**
 ```bash
-cd ../FormGenAI.Core
-dotnet add reference ../FormGenAI.SharedKernel/FormGenAI.SharedKernel.csproj
+cd ../FormDesignerAPI.Core
+dotnet add reference ../FormDesignerAPI.SharedKernel/FormDesignerAPI.SharedKernel.csproj
 ```
 
 **1.12 Build and verify:**
@@ -723,7 +723,7 @@ git commit -m "Phase 1: Created SharedKernel with base classes and interfaces"
 
 **2.1 Create folder structure:**
 ```bash
-cd src/FormGenAI.Core
+cd src/FormDesignerAPI.Core
 mkdir -p FormContext/Aggregates
 mkdir -p FormContext/ValueObjects
 mkdir -p FormContext/Events
@@ -734,7 +734,7 @@ mkdir -p FormContext/Interfaces
 
 Create `FormContext/ValueObjects/OriginType.cs`:
 ```csharp
-namespace FormGenAI.Core.FormContext.ValueObjects;
+namespace FormDesignerAPI.Core.FormContext.ValueObjects;
 
 /// <summary>
 /// Represents how a form was created
@@ -767,7 +767,7 @@ public enum OriginType
 
 Create `FormContext/ValueObjects/OriginMetadata.cs`:
 ```csharp
-namespace FormGenAI.Core.FormContext.ValueObjects;
+namespace FormDesignerAPI.Core.FormContext.ValueObjects;
 
 /// <summary>
 /// Tracks how and when a form was created
@@ -818,7 +818,7 @@ Create `FormContext/ValueObjects/FormDefinition.cs`:
 ```csharp
 using System.Text.Json;
 
-namespace FormGenAI.Core.FormContext.ValueObjects;
+namespace FormDesignerAPI.Core.FormContext.ValueObjects;
 
 /// <summary>
 /// Represents the structure and fields of a form
@@ -873,10 +873,10 @@ public record FormField
 
 Create `FormContext/Events/FormCreatedEvent.cs`:
 ```csharp
-using FormGenAI.SharedKernel.Base;
-using FormGenAI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.SharedKernel.Base;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
 
-namespace FormGenAI.Core.FormContext.Events;
+namespace FormDesignerAPI.Core.FormContext.Events;
 
 /// <summary>
 /// Domain event raised when a new form is created
@@ -891,9 +891,9 @@ public record FormCreatedEvent(
 
 Create `FormContext/Events/FormRevisionCreatedEvent.cs`:
 ```csharp
-using FormGenAI.SharedKernel.Base;
+using FormDesignerAPI.SharedKernel.Base;
 
-namespace FormGenAI.Core.FormContext.Events;
+namespace FormDesignerAPI.Core.FormContext.Events;
 
 /// <summary>
 /// Domain event raised when a new form revision is created
@@ -911,12 +911,12 @@ public record FormRevisionCreatedEvent(
 Create `FormContext/Aggregates/Form.cs`:
 ```csharp
 using Ardalis.GuardClauses;
-using FormGenAI.SharedKernel.Base;
-using FormGenAI.SharedKernel.Interfaces;
-using FormGenAI.Core.FormContext.ValueObjects;
-using FormGenAI.Core.FormContext.Events;
+using FormDesignerAPI.SharedKernel.Base;
+using FormDesignerAPI.SharedKernel.Interfaces;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.Core.FormContext.Events;
 
-namespace FormGenAI.Core.FormContext.Aggregates;
+namespace FormDesignerAPI.Core.FormContext.Aggregates;
 
 /// <summary>
 /// Form aggregate root - manages form definitions and their revisions
@@ -1075,10 +1075,10 @@ public class FormRevision : EntityBase
 
 Create `FormContext/Interfaces/IFormRepository.cs`:
 ```csharp
-using FormGenAI.SharedKernel.Interfaces;
-using FormGenAI.Core.FormContext.Aggregates;
+using FormDesignerAPI.SharedKernel.Interfaces;
+using FormDesignerAPI.Core.FormContext.Aggregates;
 
-namespace FormGenAI.Core.FormContext.Interfaces;
+namespace FormDesignerAPI.Core.FormContext.Interfaces;
 
 /// <summary>
 /// Repository interface for Form aggregate
@@ -1135,7 +1135,7 @@ git commit -m "Phase 2: Created Form Context domain model with aggregates, value
 
 **3.1 Install required packages:**
 ```bash
-cd src/FormGenAI.Infrastructure
+cd src/FormDesignerAPI.Infrastructure
 dotnet add package Npgsql.EntityFrameworkCore.PostgreSQL
 dotnet add package Microsoft.EntityFrameworkCore.Design
 ```
@@ -1152,11 +1152,11 @@ Create `Data/FormContext/FormConfiguration.cs`:
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using FormGenAI.Core.FormContext.Aggregates;
-using FormGenAI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
 using System.Text.Json;
 
-namespace FormGenAI.Infrastructure.Data.FormContext;
+namespace FormDesignerAPI.Infrastructure.Data.FormContext;
 
 /// <summary>
 /// EF Core configuration for Form aggregate
@@ -1234,11 +1234,11 @@ Create `Data/FormContext/FormRevisionConfiguration.cs`:
 ```csharp
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using FormGenAI.Core.FormContext.Aggregates;
-using FormGenAI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
 using System.Text.Json;
 
-namespace FormGenAI.Infrastructure.Data.FormContext;
+namespace FormDesignerAPI.Infrastructure.Data.FormContext;
 
 /// <summary>
 /// EF Core configuration for FormRevision entity
@@ -1301,10 +1301,10 @@ public class FormRevisionConfiguration : IEntityTypeConfiguration<FormRevision>
 Update `Data/AppDbContext.cs`:
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using FormGenAI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.Aggregates;
 using System.Reflection;
 
-namespace FormGenAI.Infrastructure.Data;
+namespace FormDesignerAPI.Infrastructure.Data;
 
 public class AppDbContext : DbContext
 {
@@ -1346,12 +1346,12 @@ public class AppDbContext : DbContext
 Create `Repositories/FormContext/FormRepository.cs`:
 ```csharp
 using Microsoft.EntityFrameworkCore;
-using FormGenAI.Core.FormContext.Aggregates;
-using FormGenAI.Core.FormContext.Interfaces;
-using FormGenAI.Core.FormContext.ValueObjects;
-using FormGenAI.Infrastructure.Data;
+using FormDesignerAPI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.Infrastructure.Data;
 
-namespace FormGenAI.Infrastructure.Repositories.FormContext;
+namespace FormDesignerAPI.Infrastructure.Repositories.FormContext;
 
 /// <summary>
 /// Repository implementation for Form aggregate
@@ -1441,7 +1441,7 @@ public class FormRepository : IFormRepository
 
 **3.6 Update Configuration Files:**
 
-Update `FormGenAI.Web/appsettings.json`:
+Update `FormDesignerAPI.Web/appsettings.json`:
 ```json
 {
   "Logging": {
@@ -1452,13 +1452,13 @@ Update `FormGenAI.Web/appsettings.json`:
     }
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=FormGenAI;Username=postgres;Password=your_password"
+    "DefaultConnection": "Host=localhost;Database=FormDesignerAPI;Username=postgres;Password=your_password"
   },
   "AllowedHosts": "*"
 }
 ```
 
-Update `FormGenAI.Web/appsettings.Development.json`:
+Update `FormDesignerAPI.Web/appsettings.Development.json`:
 ```json
 {
   "Logging": {
@@ -1468,7 +1468,7 @@ Update `FormGenAI.Web/appsettings.Development.json`:
     }
   },
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=FormGenAI_Dev;Username=postgres;Password=your_password"
+    "DefaultConnection": "Host=localhost;Database=FormDesignerAPI_Dev;Username=postgres;Password=your_password"
   }
 }
 ```
@@ -1480,11 +1480,11 @@ Create `Infrastructure/DependencyInjection.cs`:
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using FormGenAI.Core.FormContext.Interfaces;
-using FormGenAI.Infrastructure.Data;
-using FormGenAI.Infrastructure.Repositories.FormContext;
+using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.Infrastructure.Data;
+using FormDesignerAPI.Infrastructure.Repositories.FormContext;
 
-namespace FormGenAI.Infrastructure;
+namespace FormDesignerAPI.Infrastructure;
 
 public static class DependencyInjection
 {
@@ -1521,10 +1521,10 @@ public static class DependencyInjection
 
 **3.8 Update Program.cs:**
 
-Update `FormGenAI.Web/Program.cs`:
+Update `FormDesignerAPI.Web/Program.cs`:
 ```csharp
-using FormGenAI.Infrastructure;
-using FormGenAI.Infrastructure.Data;
+using FormDesignerAPI.Infrastructure;
+using FormDesignerAPI.Infrastructure.Data;
 using Serilog;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -1540,7 +1540,7 @@ builder.Host.UseSerilog();
 
 try
 {
-    Log.Information("Starting FormGenAI application");
+    Log.Information("Starting FormDesignerAPI application");
 
     // Add services
     builder.Services.AddControllers();
@@ -1589,25 +1589,25 @@ finally
 
 **3.9 Create and Apply Migration:**
 ```bash
-cd src/FormGenAI.Infrastructure
+cd src/FormDesignerAPI.Infrastructure
 
 # Create migration
 dotnet ef migrations add InitialCreate \
-  --startup-project ../FormGenAI.Web \
+  --startup-project ../FormDesignerAPI.Web \
   --context AppDbContext
 
 # Review the migration file in Migrations/ folder
 # Then apply it:
 
 dotnet ef database update \
-  --startup-project ../FormGenAI.Web \
+  --startup-project ../FormDesignerAPI.Web \
   --context AppDbContext
 ```
 
 **3.10 Verify Database:**
 ```bash
 # Connect to PostgreSQL
-psql -U postgres -d FormGenAI
+psql -U postgres -d FormDesignerAPI
 
 # List tables
 \dt
@@ -1642,7 +1642,7 @@ git commit -m "Phase 3: Created Form Context infrastructure with EF Core, reposi
 
 **4.1 Install MediatR:**
 ```bash
-cd src/FormGenAI.UseCases
+cd src/FormDesignerAPI.UseCases
 dotnet add package MediatR
 ```
 
@@ -1657,9 +1657,9 @@ mkdir -p FormContext/DTOs
 
 Create `FormContext/DTOs/FormDto.cs`:
 ```csharp
-using FormGenAI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.Aggregates;
 
-namespace FormGenAI.UseCases.FormContext.DTOs;
+namespace FormDesignerAPI.UseCases.FormContext.DTOs;
 
 /// <summary>
 /// Data transfer object for Form
@@ -1697,9 +1697,9 @@ public record FormDto
 
 Create `FormContext/DTOs/FormDetailDto.cs`:
 ```csharp
-using FormGenAI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.Aggregates;
 
-namespace FormGenAI.UseCases.FormContext.DTOs;
+namespace FormDesignerAPI.UseCases.FormContext.DTOs;
 
 /// <summary>
 /// Detailed DTO including form definition
@@ -1771,9 +1771,9 @@ public record FormRevisionDto
 Create `FormContext/Commands/CreateFormCommand.cs`:
 ```csharp
 using MediatR;
-using FormGenAI.UseCases.FormContext.DTOs;
+using FormDesignerAPI.UseCases.FormContext.DTOs;
 
-namespace FormGenAI.UseCases.FormContext.Commands;
+namespace FormDesignerAPI.UseCases.FormContext.Commands;
 
 /// <summary>
 /// Command to create a new form
@@ -1789,12 +1789,12 @@ Create `FormContext/Commands/CreateFormCommandHandler.cs`:
 ```csharp
 using MediatR;
 using Microsoft.Extensions.Logging;
-using FormGenAI.Core.FormContext.Aggregates;
-using FormGenAI.Core.FormContext.ValueObjects;
-using FormGenAI.Core.FormContext.Interfaces;
-using FormGenAI.UseCases.FormContext.DTOs;
+using FormDesignerAPI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.UseCases.FormContext.DTOs;
 
-namespace FormGenAI.UseCases.FormContext.Commands;
+namespace FormDesignerAPI.UseCases.FormContext.Commands;
 
 /// <summary>
 /// Handler for CreateFormCommand
@@ -1860,9 +1860,9 @@ public class CreateFormCommandHandler : IRequestHandler<CreateFormCommand, FormD
 Create `FormContext/Commands/CreateFormRevisionCommand.cs`:
 ```csharp
 using MediatR;
-using FormGenAI.UseCases.FormContext.DTOs;
+using FormDesignerAPI.UseCases.FormContext.DTOs;
 
-namespace FormGenAI.UseCases.FormContext.Commands;
+namespace FormDesignerAPI.UseCases.FormContext.Commands;
 
 /// <summary>
 /// Command to create a new form revision
@@ -1879,11 +1879,11 @@ Create `FormContext/Commands/CreateFormRevisionCommandHandler.cs`:
 ```csharp
 using MediatR;
 using Microsoft.Extensions.Logging;
-using FormGenAI.Core.FormContext.ValueObjects;
-using FormGenAI.Core.FormContext.Interfaces;
-using FormGenAI.UseCases.FormContext.DTOs;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
+using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.UseCases.FormContext.DTOs;
 
-namespace FormGenAI.UseCases.FormContext.Commands;
+namespace FormDesignerAPI.UseCases.FormContext.Commands;
 
 public class CreateFormRevisionCommandHandler 
     : IRequestHandler<CreateFormRevisionCommand, FormDetailDto>
@@ -1944,9 +1944,9 @@ public class CreateFormRevisionCommandHandler
 Create `FormContext/Queries/GetFormByIdQuery.cs`:
 ```csharp
 using MediatR;
-using FormGenAI.UseCases.FormContext.DTOs;
+using FormDesignerAPI.UseCases.FormContext.DTOs;
 
-namespace FormGenAI.UseCases.FormContext.Queries;
+namespace FormDesignerAPI.UseCases.FormContext.Queries;
 
 /// <summary>
 /// Query to get a form by ID
@@ -1957,10 +1957,10 @@ public record GetFormByIdQuery(Guid FormId) : IRequest<FormDetailDto?>;
 Create `FormContext/Queries/GetFormByIdQueryHandler.cs`:
 ```csharp
 using MediatR;
-using FormGenAI.Core.FormContext.Interfaces;
-using FormGenAI.UseCases.FormContext.DTOs;
+using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.UseCases.FormContext.DTOs;
 
-namespace FormGenAI.UseCases.FormContext.Queries;
+namespace FormDesignerAPI.UseCases.FormContext.Queries;
 
 public class GetFormByIdQueryHandler 
     : IRequestHandler<GetFormByIdQuery, FormDetailDto?>
@@ -1988,4 +1988,4 @@ public class GetFormByIdQueryHandler
 Create `FormContext/Queries/GetAllFormsQuery.cs`:
 ```csharp
 using MediatR;
-using FormGenAI.UseCases.FormContext.DT
+using FormDesignerAPI.UseCases.FormContext.DT
