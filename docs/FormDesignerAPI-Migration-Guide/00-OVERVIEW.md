@@ -92,9 +92,9 @@ Choose one:
 ```bash
 
 # Create backup
-mkdir -p ~/FormDesignerAPI-Backups
+mkdir -p ~/Development/Backups/FormDesignerAPI-Backups
 # Option 1: Compressed archive (recommended)
-tar -czf ~/FormDesignerAPI-Backups/FormDesignerAPI-backup-$(date +%Y%m%d).tar.gz \
+tar -czf ~/Development/Backups/FormDesignerAPI-Backups/FormDesignerAPI-backup-$(date +%Y%m%d).tar.gz \
   --exclude='.git' \
   --exclude='node_modules' \
   --exclude='bin' \
