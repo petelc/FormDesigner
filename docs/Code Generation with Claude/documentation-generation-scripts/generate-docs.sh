@@ -3,15 +3,15 @@
 ```bash
 #!/bin/bash
 
-# FormGenAI Migration Guide Generator
+# FormDesignerAPI Migration Guide Generator
 # Bash script to create all documentation files
 
-echo "🚀 FormGenAI Migration Guide Generator"
+echo "🚀 FormDesignerAPI Migration Guide Generator"
 echo "======================================="
 echo ""
 
 # Create base directory
-BASE_DIR="FormGenAI-Migration-Guide"
+BASE_DIR="FormDesignerAPI-Migration-Guide"
 
 if [ -d "$BASE_DIR" ]; then
     echo -n "⚠️  Directory already exists. Remove it? (y/n): "
@@ -38,7 +38,7 @@ create_file() {
 
 # README.md
 read -r -d '' README_CONTENT << 'EOF'
-# FormGenAI Migration Guide - Complete Documentation
+# FormDesignerAPI Migration Guide - Complete Documentation
 
 Welcome to the complete migration guide for transforming your Ardalis CleanArchitecture solution into a DDD-based AI-powered code generation system.
 
@@ -105,7 +105,7 @@ Before starting, ensure you have:
 ## 🏗️ Architecture Overview
 
 ``````
-FormGenAI/
+FormDesignerAPI/
 ├── SharedKernel/          (Phase 1)
 ├── Core/
 │   ├── FormContext/       (Phase 2)
@@ -160,7 +160,7 @@ New-DocFile "README.md" $readmeContent
 
 # 00-OVERVIEW.md
 $overviewContent = @"
-# Overview: FormGenAI Migration Guide
+# Overview: FormDesignerAPI Migration Guide
 
 ## Executive Summary
 
@@ -232,18 +232,18 @@ EF Core tools: 8.0.x
 
 ``````bash
 # Start PostgreSQL container
-docker run --name formgenai-db \
+docker run --name FormDesignerAPI-db \
   -e POSTGRES_PASSWORD=YourSecurePassword123! \
-  -e POSTGRES_DB=FormGenAI \
+  -e POSTGRES_DB=FormDesignerAPI \
   -p 5432:5432 \
-  -v formgenai-data:/var/lib/postgresql/data \
+  -v FormDesignerAPI-data:/var/lib/postgresql/data \
   -d postgres:15
 
 # Verify it's running
-docker ps | grep formgenai-db
+docker ps | grep FormDesignerAPI-db
 
 # Connect to verify
-docker exec -it formgenai-db psql -U postgres -d FormGenAI
+docker exec -it FormDesignerAPI-db psql -U postgres -d FormDesignerAPI
 
 # Inside psql:
 \l                    # List databases
@@ -278,11 +278,11 @@ Before starting the migration:
 git checkout -b feature/ddd-migration
 
 # Create backup directory
-mkdir -p ../FormGenAI-Backups
-cp -r . ../FormGenAI-Backups/FormGenAI-$(date +%Y%m%d)
+mkdir -p ../FormDesignerAPI-Backups
+cp -r . ../FormDesignerAPI-Backups/FormDesignerAPI-$(date +%Y%m%d)
 
 # Or create ZIP backup
-tar -czf ../FormGenAI-backup-$(date +%Y%m%d).tar.gz .
+tar -czf ../FormDesignerAPI-backup-$(date +%Y%m%d).tar.gz .
 
 # Commit current state
 git add .
@@ -295,16 +295,16 @@ git tag -a v0.0.0-pre-migration -m "State before DDD migration"
 ### Current State: Ardalis Template
 
 ``````
-FormGenAI/
+FormDesignerAPI/
 ├── src/
-│   ├── FormGenAI.Core/          # Generic domain layer
-│   ├── FormGenAI.Infrastructure/ # Data access
-│   ├── FormGenAI.UseCases/      # Application logic
-│   └── FormGenAI.Web/           # API endpoints
+│   ├── FormDesignerAPI.Core/          # Generic domain layer
+│   ├── FormDesignerAPI.Infrastructure/ # Data access
+│   ├── FormDesignerAPI.UseCases/      # Application logic
+│   └── FormDesignerAPI.Web/           # API endpoints
 └── tests/
-    ├── FormGenAI.FunctionalTests/
-    ├── FormGenAI.IntegrationTests/
-    └── FormGenAI.UnitTests/
+    ├── FormDesignerAPI.FunctionalTests/
+    ├── FormDesignerAPI.IntegrationTests/
+    └── FormDesignerAPI.UnitTests/
 ``````
 
 **Current Issues:**
@@ -317,9 +317,9 @@ FormGenAI/
 ### Target State: DDD with Bounded Contexts
 
 ``````
-FormGenAI/
+FormDesignerAPI/
 ├── src/
-│   ├── FormGenAI.SharedKernel/          # 🆕 Phase 1
+│   ├── FormDesignerAPI.SharedKernel/          # 🆕 Phase 1
 │   │   ├── Base/
 │   │   │   ├── EntityBase.cs
 │   │   │   ├── ValueObject.cs
@@ -331,7 +331,7 @@ FormGenAI/
 │   │   └── Results/
 │   │       └── Result.cs
 │   │
-│   ├── FormGenAI.Core/                  # 🔄 Refactored
+│   ├── FormDesignerAPI.Core/                  # 🔄 Refactored
 │   │   ├── FormContext/                 # Phase 2
 │   │   │   ├── Aggregates/
 │   │   │   │   ├── Form.cs
@@ -364,7 +364,7 @@ FormGenAI/
 │   │           ├── TemplateBasedCodeGenerator.cs
 │   │           └── ZipPackager.cs
 │   │
-│   ├── FormGenAI.UseCases/              # 🔄 Refactored
+│   ├── FormDesignerAPI.UseCases/              # 🔄 Refactored
 │   │   ├── FormContext/                 # Phase 4
 │   │   │   ├── Commands/
 │   │   │   ├── Queries/
@@ -372,7 +372,7 @@ FormGenAI/
 │   │   ├── ImportContext/               # Phase 6
 │   │   └── CodeGenerationContext/       # Phase 7
 │   │
-│   ├── FormGenAI.Infrastructure/        # 🔄 Refactored
+│   ├── FormDesignerAPI.Infrastructure/        # 🔄 Refactored
 │   │   ├── Data/
 │   │   │   ├── AppDbContext.cs
 │   │   │   ├── FormContext/             # Phase 3
@@ -383,7 +383,7 @@ FormGenAI/
 │   │   │   └── ClaudeApiClient.cs       # Phase 5
 │   │   └── BackgroundJobs/              # Phase 8
 │   │
-│   └── FormGenAI.Web/                   # 🔄 Refactored
+│   └── FormDesignerAPI.Web/                   # 🔄 Refactored
 │       ├── Controllers/
 │       │   ├── FormContext/             # Phase 4
 │       │   ├── ImportContext/           # Phase 6
@@ -391,12 +391,12 @@ FormGenAI/
 │       └── Program.cs
 │
 └── tests/
-    ├── FormGenAI.UnitTests/             # Phase 9
+    ├── FormDesignerAPI.UnitTests/             # Phase 9
     │   ├── FormContext/
     │   ├── ImportContext/
     │   └── CodeGenerationContext/
-    ├── FormGenAI.IntegrationTests/      # Phase 9
-    └── FormGenAI.FunctionalTests/       # Phase 9
+    ├── FormDesignerAPI.IntegrationTests/      # Phase 9
+    └── FormDesignerAPI.FunctionalTests/       # Phase 9
 ``````
 
 ### Bounded Context Map
@@ -449,7 +449,7 @@ Each bounded context follows this layering:
 ``````
 ┌─────────────────────────────────────────────────────────┐
 │     PRESENTATION LAYER                                  │
-│     FormGenAI.Web                                       │
+│     FormDesignerAPI.Web                                       │
 │     - Controllers                                       │
 │     - API Endpoints                                     │
 │     - Request/Response Models                           │
@@ -458,7 +458,7 @@ Each bounded context follows this layering:
                │
 ┌──────────────┴──────────────────────────────────────────┐
 │     APPLICATION LAYER                                   │
-│     FormGenAI.UseCases                                  │
+│     FormDesignerAPI.UseCases                                  │
 │     - Commands (write operations)                       │
 │     - Queries (read operations)                         │
 │     - DTOs (data transfer objects)                      │
@@ -468,7 +468,7 @@ Each bounded context follows this layering:
                │
 ┌──────────────┴──────────────────────────────────────────┐
 │     DOMAIN LAYER (Core)                                 │
-│     FormGenAI.Core                                      │
+│     FormDesignerAPI.Core                                      │
 │     - Aggregates                                        │
 │     - Entities                                          │
 │     - Value Objects                                     │
@@ -481,7 +481,7 @@ Each bounded context follows this layering:
                │
 ┌──────────────┴──────────────────────────────────────────┐
 │     INFRASTRUCTURE LAYER                                │
-│     FormGenAI.Infrastructure                            │
+│     FormDesignerAPI.Infrastructure                            │
 │     - EF Core DbContext                                 │
 │     - Repository Implementations                        │
 │     - External Service Clients (Claude API)             │
@@ -860,14 +860,14 @@ Before starting this phase:
 **Commands:**
 ``````bash
 # Example commands
-cd src/FormGenAI.Core
+cd src/FormDesignerAPI.Core
 mkdir -p Context/Folder
 ``````
 
 **Code Example:**
 ``````csharp
 // Example code snippet
-namespace FormGenAI.Core.Context;
+namespace FormDesignerAPI.Core.Context;
 
 public class ExampleClass
 {
@@ -977,9 +977,9 @@ This appendix contains complete, working code examples for reference.
 ### EntityBase.cs (Complete)
 
 ``````csharp
-using FormGenAI.SharedKernel.Interfaces;
+using FormDesignerAPI.SharedKernel.Interfaces;
 
-namespace FormGenAI.SharedKernel.Base;
+namespace FormDesignerAPI.SharedKernel.Base;
 
 /// <summary>
 /// Base class for all entities with domain event support
@@ -1015,7 +1015,7 @@ public abstract class EntityBase
 ### ValueObject.cs (Complete)
 
 ``````csharp
-namespace FormGenAI.SharedKernel.Base;
+namespace FormDesignerAPI.SharedKernel.Base;
 
 /// <summary>
 /// Base class for value objects
@@ -1124,10 +1124,10 @@ dotnet build
 **Diagnosis:**
 ``````bash
 # List migrations
-dotnet ef migrations list --project src/FormGenAI.Infrastructure
+dotnet ef migrations list --project src/FormDesignerAPI.Infrastructure
 
 # Check migration status
-dotnet ef database update --project src/FormGenAI.Infrastructure --dry-run
+dotnet ef database update --project src/FormDesignerAPI.Infrastructure --dry-run
 ``````
 
 **Solutions:**
@@ -1135,19 +1135,19 @@ dotnet ef database update --project src/FormGenAI.Infrastructure --dry-run
 **Solution 1: Remove and recreate migration**
 ``````bash
 # Remove last migration
-dotnet ef migrations remove --project src/FormGenAI.Infrastructure
+dotnet ef migrations remove --project src/FormDesignerAPI.Infrastructure
 
 # Recreate
-dotnet ef migrations add YourMigration --project src/FormGenAI.Infrastructure
+dotnet ef migrations add YourMigration --project src/FormDesignerAPI.Infrastructure
 ``````
 
 **Solution 2: Reset database (Development only!)**
 ``````bash
 # Drop database
-dotnet ef database drop --project src/FormGenAI.Infrastructure --force
+dotnet ef database drop --project src/FormDesignerAPI.Infrastructure --force
 
 # Reapply all migrations
-dotnet ef database update --project src/FormGenAI.Infrastructure
+dotnet ef database update --project src/FormDesignerAPI.Infrastructure
 ``````
 
 ## Claude API Issues
@@ -1161,7 +1161,7 @@ dotnet ef database update --project src/FormGenAI.Infrastructure
 **Diagnosis:**
 ``````bash
 # Check if API key is set
-cat src/FormGenAI.Web/appsettings.json | grep ApiKey
+cat src/FormDesignerAPI.Web/appsettings.json | grep ApiKey
 ``````
 
 **Solutions:**
@@ -1172,7 +1172,7 @@ cat src/FormGenAI.Web/appsettings.json | grep ApiKey
 5. Use User Secrets in development:
 
 ``````bash
-cd src/FormGenAI.Web
+cd src/FormDesignerAPI.Web
 dotnet user-secrets set "Anthropic:ApiKey" "your-api-key-here"
 ``````
 
@@ -1219,10 +1219,10 @@ dotnet user-secrets set "Anthropic:ApiKey" "your-api-key-here"
 **Diagnosis:**
 ``````bash
 # Test PostgreSQL connection
-docker exec -it formgenai-db psql -U postgres -d FormGenAI
+docker exec -it FormDesignerAPI-db psql -U postgres -d FormDesignerAPI
 
 # If that fails, check if container is running
-docker ps | grep formgenai-db
+docker ps | grep FormDesignerAPI-db
 ``````
 
 **Solutions:**
@@ -1231,7 +1231,7 @@ docker ps | grep formgenai-db
 ``````json
 {
   "ConnectionStrings": {
-    "DefaultConnection": "Host=localhost;Database=FormGenAI;Username=postgres;Password=your_password"
+    "DefaultConnection": "Host=localhost;Database=FormDesignerAPI;Username=postgres;Password=your_password"
   }
 }
 ``````
@@ -1239,7 +1239,7 @@ docker ps | grep formgenai-db
 3. Ensure firewall allows port 5432
 4. Check PostgreSQL logs:
 ``````bash
-docker logs formgenai-db
+docker logs FormDesignerAPI-db
 ``````
 
 ### Issue: JSONB Queries Failing
@@ -1323,10 +1323,10 @@ return File(zipStream, "application/zip", "generated-code.zip");
 ### Reset Everything (Development)
 ``````bash
 # ⚠️ WARNING: This deletes all data!
-docker stop formgenai-db
-docker rm formgenai-db
-rm -rf src/FormGenAI.Infrastructure/Migrations
-dotnet ef database drop --force --project src/FormGenAI.Infrastructure
+docker stop FormDesignerAPI-db
+docker rm FormDesignerAPI-db
+rm -rf src/FormDesignerAPI.Infrastructure/Migrations
+dotnet ef database drop --force --project src/FormDesignerAPI.Infrastructure
 # Then recreate from Phase 3
 ``````
 
@@ -1340,7 +1340,7 @@ docker --version
 docker ps
 
 # Check PostgreSQL
-docker exec -it formgenai-db psql -U postgres -c "SELECT version();"
+docker exec -it FormDesignerAPI-db psql -U postgres -c "SELECT version();"
 
 # Check EF Core tools
 dotnet ef --version
@@ -1358,7 +1358,7 @@ dotnet test
 tail -f logs/log-.txt
 
 # Docker logs
-docker logs -f formgenai-db
+docker logs -f FormDesignerAPI-db
 
 # EF Core SQL logging (add to appsettings)
 {
@@ -1771,10 +1771,10 @@ echo ""
 echo "🎉 Next steps:" -ForegroundColor Yellow
 echo "   1. Review the generated files" -ForegroundColor White
 echo "   2. Fill in detailed content for each phase" -ForegroundColor White
-echo "   3. Create ZIP: Compress-Archive -Path '$baseDir' -DestinationPath 'FormGenAI-Migration-Guide.zip'" -ForegroundColor White
+echo "   3. Create ZIP: Compress-Archive -Path '$baseDir' -DestinationPath 'FormDesignerAPI-Migration-Guide.zip'" -ForegroundColor White
 echo ""
 echo "📦 To create ZIP archive:" -ForegroundColor Cyan
-echo "   Compress-Archive -Path '$baseDir' -DestinationPath 'FormGenAI-Migration-Guide.zip'" -ForegroundColor White
+echo "   Compress-Archive -Path '$baseDir' -DestinationPath 'FormDesignerAPI-Migration-Guide.zip'" -ForegroundColor White
 echo ""
 ```
 
@@ -1793,9 +1793,9 @@ echo ""
 echo "🎉 Next steps:"
 echo "   1. Review the generated files"
 echo "   2. Fill in detailed content for each phase"
-echo "   3. Create ZIP: zip -r FormGenAI-Migration-Guide.zip $BASE_DIR"
+echo "   3. Create ZIP: zip -r FormDesignerAPI-Migration-Guide.zip $BASE_DIR"
 echo ""
 echo "📦 To create ZIP archive:"
-echo "   zip -r FormGenAI-Migration-Guide.zip $BASE_DIR"
+echo "   zip -r FormDesignerAPI-Migration-Guide.zip $BASE_DIR"
 echo ""
 ```
