@@ -1,4 +1,4 @@
-namespace FormDesignerAPI.Core.FormAggregate;
+namespace FormDesignerAPI.Core.FormContext.Aggregates;
 
 /// <summary>
 /// Builder pattern for creating Form instances with fluent syntax
@@ -67,22 +67,22 @@ public class FormBuilder
     }
 
     /// <summary>
-    /// Adds a version to the form
+    /// Adds a revision to the form
     /// </summary>
-    public FormBuilder WithVersion(Version version)
+    public FormBuilder WithRevision(FormRevision revision)
     {
-        _form.AddVersion(version);
+        _form.AddRevision(revision);
         return this;
     }
 
     /// <summary>
-    /// Adds multiple versions to the form
+    /// Adds multiple revisions to the form
     /// </summary>
-    public FormBuilder WithVersions(params Version[] versions)
+    public FormBuilder WithRevisions(params FormRevision[] revisions)
     {
-        foreach (var version in versions)
+        foreach (var revision in revisions)
         {
-            _form.AddVersion(version);
+            _form.AddRevision(revision);
         }
         return this;
     }
