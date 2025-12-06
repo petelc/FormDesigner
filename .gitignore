@@ -6,6 +6,10 @@
 # dotenv files
 .env
 
+# dotnet obj.
+[Oo]bj/
+*.obj
+
 # User-specific files
 *.rsuser
 *.suo
