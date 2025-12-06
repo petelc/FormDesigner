@@ -4,11 +4,11 @@
 # Bash script to create all documentation files
 
 echo "🚀 FormDesignerAPI Migration Guide Generator"
-echo "======================================="
+echo "============================================="
 echo ""
 
 # Create base directory
-BASE_DIR="FormDesignerAPI-Migration-Guide"
+BASE_DIR="../../../docs/FormDesignerAPI-Migration-Guide"
 
 if [ -d "$BASE_DIR" ]; then
     read -p "⚠️  Directory already exists. Remove it? (y/N): " response
@@ -34,8 +34,8 @@ create_file() {
 }
 
 # README.md
-create_file "README.md" \
-'# FormDesignerAPI Migration Guide - Complete Documentation
+cat > "$BASE_DIR/README.md" << 'EOF'
+# FormDesignerAPI Migration Guide - Complete Documentation
 
 Welcome to the complete migration guide for transforming your Ardalis CleanArchitecture solution into a DDD-based AI-powered code generation system.
 
@@ -47,15 +47,15 @@ This guide is organized into separate documents for easier navigation:
 - **[00-OVERVIEW.md](00-OVERVIEW.md)** - Executive summary, prerequisites, and architecture overview
 
 ### Phase-by-Phase Implementation
-- **[01-PHASE-1-FOUNDATION.md](01-PHASE-1-FOUNDATION.md)** - SharedKernel and base classes (Week 1)
-- **[02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)** - Form Context domain model (Week 1-2)
-- **[03-PHASE-3-FORM-INFRASTRUCTURE.md](03-PHASE-3-FORM-INFRASTRUCTURE.md)** - EF Core and repositories (Week 2)
-- **[04-PHASE-4-FORM-API.md](04-PHASE-4-FORM-API.md)** - Use cases and REST API (Week 3)
-- **[05-PHASE-5-CLAUDE-INTEGRATION.md](05-PHASE-5-CLAUDE-INTEGRATION.md)** - Claude API client (Week 3-4)
-- **[06-PHASE-6-IMPORT-CONTEXT.md](06-PHASE-6-IMPORT-CONTEXT.md)** - PDF upload and extraction (Week 4-5)
-- **[07-PHASE-7-CODE-GENERATION.md](07-PHASE-7-CODE-GENERATION.md)** - Templates and code generation (Week 5-7)
-- **[08-PHASE-8-INTEGRATION.md](08-PHASE-8-INTEGRATION.md)** - Events and cross-context communication (Week 7-8)
-- **[09-PHASE-9-TESTING.md](09-PHASE-9-TESTING.md)** - Testing and documentation (Week 8)
+- **[01-PHASE-1-SKIP.md](01-PHASE-1-SKIP.md)** - Why we skip Phase 1 (using Traxs.SharedKernel)
+- **[02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)** - Form Context domain model (START HERE)
+- **[03-PHASE-3-FORM-INFRASTRUCTURE.md](03-PHASE-3-FORM-INFRASTRUCTURE.md)** - EF Core and repositories
+- **[04-PHASE-4-FORM-API.md](04-PHASE-4-FORM-API.md)** - Use cases and REST API
+- **[05-PHASE-5-CLAUDE-INTEGRATION.md](05-PHASE-5-CLAUDE-INTEGRATION.md)** - Claude API client
+- **[06-PHASE-6-IMPORT-CONTEXT.md](06-PHASE-6-IMPORT-CONTEXT.md)** - PDF upload and extraction
+- **[07-PHASE-7-CODE-GENERATION.md](07-PHASE-7-CODE-GENERATION.md)** - Templates and code generation
+- **[08-PHASE-8-INTEGRATION.md](08-PHASE-8-INTEGRATION.md)** - Events and cross-context communication
+- **[09-PHASE-9-TESTING.md](09-PHASE-9-TESTING.md)** - Testing and documentation
 
 ### Reference Materials
 - **[APPENDIX-A-CODE-EXAMPLES.md](APPENDIX-A-CODE-EXAMPLES.md)** - Complete code samples
@@ -64,45 +64,51 @@ This guide is organized into separate documents for easier navigation:
 
 ## 🎯 Quick Start
 
+**IMPORTANT:** This guide uses your existing `Traxs.SharedKernel` package, so Phase 1 is skipped!
+
 1. Read **00-OVERVIEW.md** for prerequisites and architecture understanding
-2. Follow phases sequentially (1-9)
-3. Each phase includes:
-   - Clear objectives
-   - Step-by-step instructions
-   - Code examples
-   - Verification checklist
-   - Git commit message
+2. Read **01-PHASE-1-SKIP.md** to understand why we skip Phase 1
+3. **Start with 02-PHASE-2-FORM-DOMAIN.md** to begin implementation
+4. Follow phases sequentially (2-9)
+
+Each phase includes:
+- Clear objectives
+- Step-by-step instructions
+- Complete code examples
+- Verification checklist
+- Git commit message
 
 ## ⏱️ Estimated Timeline
 
-| Phase | Duration | Complexity |
-|-------|----------|------------|
-| Phase 1: Foundation | 2-3 days | Low |
-| Phase 2: Form Domain | 3-4 days | Medium |
-| Phase 3: Form Infrastructure | 2-3 days | Medium |
-| Phase 4: Form API | 3-4 days | Medium |
-| Phase 5: Claude Integration | 2-3 days | Medium |
-| Phase 6: Import Context | 5-7 days | High |
-| Phase 7: Code Generation | 10-14 days | High |
-| Phase 8: Integration | 3-5 days | Medium |
-| Phase 9: Testing | 5-7 days | Medium |
+| Phase | Duration | Complexity | Notes |
+|-------|----------|------------|-------|
+| Phase 1: Foundation | SKIP | N/A | Using Traxs.SharedKernel |
+| Phase 2: Form Domain | 3-4 days | Medium | **START HERE** |
+| Phase 3: Form Infrastructure | 2-3 days | Medium | |
+| Phase 4: Form API | 3-4 days | Medium | |
+| Phase 5: Claude Integration | 2-3 days | Medium | |
+| Phase 6: Import Context | 5-7 days | High | |
+| Phase 7: Code Generation | 10-14 days | High | |
+| Phase 8: Integration | 3-5 days | Medium | |
+| Phase 9: Testing | 5-7 days | Medium | |
 
-**Total: 6-8 weeks**
+**Total: 5-7 weeks** (1 week less due to skipping Phase 1!)
 
 ## 📋 Prerequisites Checklist
 
 Before starting, ensure you have:
-- [ ] .NET 8.0 SDK installed
+- [ ] .NET 9.0 SDK installed
 - [ ] PostgreSQL running (Docker or local)
 - [ ] Anthropic API key
 - [ ] Visual Studio 2022 or Rider
 - [ ] Git for version control
+- [ ] Traxs.SharedKernel package (v0.1.1+)
 - [ ] Basic understanding of DDD concepts
 
 ## 🏗️ Architecture Overview
 ```
 FormDesignerAPI/
-├── SharedKernel/          (Phase 1)
+├── Traxs.SharedKernel (NuGet Package) ← Already have this!
 ├── Core/
 │   ├── FormContext/       (Phase 2)
 │   ├── ImportContext/     (Phase 6)
@@ -116,22 +122,39 @@ FormDesignerAPI/
 
 Track your progress by checking off completed phases:
 
-- [ ] Phase 1: Foundation ✅
-- [ ] Phase 2: Form Domain ✅
-- [ ] Phase 3: Form Infrastructure ✅
-- [ ] Phase 4: Form API ✅
-- [ ] Phase 5: Claude Integration ✅
-- [ ] Phase 6: Import Context ✅
-- [ ] Phase 7: Code Generation ✅
-- [ ] Phase 8: Integration ✅
-- [ ] Phase 9: Testing ✅
+- [x] Phase 1: Foundation ✅ (SKIPPED - Using Traxs.SharedKernel)
+- [ ] Phase 2: Form Domain (START HERE)
+- [ ] Phase 3: Form Infrastructure
+- [ ] Phase 4: Form API
+- [ ] Phase 5: Claude Integration
+- [ ] Phase 6: Import Context
+- [ ] Phase 7: Code Generation
+- [ ] Phase 8: Integration
+- [ ] Phase 9: Testing
+
+## 🎁 Benefits of Using Traxs.SharedKernel
+
+Your existing package provides:
+- ✅ EntityBase with domain event support
+- ✅ IAggregateRoot marker interface
+- ✅ IDomainEvent and DomainEventBase
+- ✅ ValueObject base class
+- ✅ IRepository<T> with Ardalis.Specification
+- ✅ MediatR integration for events
+- ✅ LoggingBehavior for pipelines
+- ✅ Support for Guid, int, and strongly-typed IDs
+
+This saves you ~2-3 days of work!
 
 ---
 
-**Ready to start?** Proceed to [00-OVERVIEW.md](00-OVERVIEW.md)
+**Ready to start?** Proceed to [00-OVERVIEW.md](00-OVERVIEW.md), then [02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)
 
 **Last Updated:** December 2024  
-**Version:** 1.0.0'
+**Version:** 2.0.0 (Updated for Traxs.SharedKernel)
+EOF
+
+echo "  ✓ Created README.md"
 
 echo ""
 echo "📄 Generating overview document..."
@@ -143,6 +166,8 @@ cat > "$BASE_DIR/00-OVERVIEW.md" << 'EOF'
 ## Executive Summary
 
 This migration guide transforms your existing Ardalis CleanArchitecture template into a comprehensive Domain-Driven Design (DDD) solution with AI-powered code generation capabilities.
+
+**Important:** This guide is customized for your project which already has the `Traxs.SharedKernel` package, so we skip Phase 1!
 
 ### What You'll Build
 
@@ -170,19 +195,21 @@ After completing this migration, your system will:
 
 | Decision | Rationale | Impact |
 |----------|-----------|--------|
+| **Use Traxs.SharedKernel** | Already implemented, well-tested | Saves 2-3 days |
 | **Domain-Driven Design** | Clear business domain separation | High maintainability |
 | **Three Bounded Contexts** | Independent evolution | Scalable architecture |
 | **Ardalis CleanArchitecture** | Proven pattern | Reduced learning curve |
 | **PostgreSQL + JSONB** | Flexible schema storage | Dynamic form support |
 | **Event-Driven Communication** | Decoupled contexts | Loose coupling |
 | **Claude Sonnet 4 API** | Best-in-class AI | High-quality generation |
+| **Ardalis.Specification** | Powerful query pattern | Already in Traxs.SharedKernel |
 
 ## Prerequisites
 
 ### Required Software Versions
 ```bash
 # Verify your environment
-dotnet --version        # Must be 8.0+
+dotnet --version        # Must be 9.0+ (your Traxs.SharedKernel uses 9.0)
 node --version          # Must be 20.x+
 docker --version        # Latest stable
 git --version           # Latest stable
@@ -193,50 +220,81 @@ dotnet tool install --global dotnet-ef
 dotnet ef --version    # Verify EF Core tools
 ```
 
+### Expected Output
+```
+.NET SDK: 9.0.100 or higher
+Node.js: v20.x.x
+Docker: 24.x.x or higher
+PostgreSQL: 15.x or higher
+EF Core tools: 9.0.x
+```
+
 ### Environment Setup
 
 **1. PostgreSQL Database (Using Docker):**
 ```bash
 # Start PostgreSQL container
-docker run --name FormDesignerAPI-db \
+docker run --name formdesigner-db \
   -e POSTGRES_PASSWORD=YourSecurePassword123! \
   -e POSTGRES_DB=FormDesignerAPI \
   -p 5432:5432 \
-  -v FormDesignerAPI-data:/var/lib/postgresql/data \
+  -v formdesigner-data:/var/lib/postgresql/data \
   -d postgres:15
 
 # Verify it's running
-docker ps | grep FormDesignerAPI-db
+docker ps | grep formdesigner-db
+
+# Connect to verify
+docker exec -it formdesigner-db psql -U postgres -d FormDesignerAPI
+
+# Inside psql:
+\l                    # List databases
+\q                    # Exit
 ```
 
 **2. Anthropic API Key:**
 
+Step-by-step:
 1. Navigate to https://console.anthropic.com/
 2. Sign up or log in
 3. Go to **Settings** → **API Keys**
 4. Click **Create Key**
 5. Copy the key (starts with `sk-ant-`)
-6. Store it securely
+6. Store it securely (we'll add to configuration in Phase 5)
+
+**Important:** Keep your API key secret. Never commit it to source control.
 
 **3. Development Environment:**
 
 Choose one:
-- Visual Studio 2022 (Community or higher)
-- JetBrains Rider
-- VS Code with C# extension
+- **Visual Studio 2022** (Community or higher)
+- **JetBrains Rider** 
+- **VS Code** with C# extension
 
 ### Backup Strategy
+
+Before starting the migration:
 ```bash
 # Create feature branch
 git checkout -b feature/ddd-migration
 
-# Create backup
-mkdir -p ../FormDesignerAPI-Backups
-cp -r . ../FormDesignerAPI-Backups/FormDesignerAPI-$(date +%Y%m%d)
+# Create backup OUTSIDE your project directory
+mkdir -p ~/FormDesignerAPI-Backups
+
+# Option 1: Compressed archive (recommended)
+tar -czf ~/FormDesignerAPI-Backups/FormDesignerAPI-backup-$(date +%Y%m%d).tar.gz \
+  --exclude='.git' \
+  --exclude='node_modules' \
+  --exclude='bin' \
+  --exclude='obj' \
+  .
+
+# Option 2: Git tag (best for Git projects)
+git tag -a v0.0.0-pre-migration -m "State before DDD migration"
 
 # Commit current state
 git add .
-git commit -m "Checkpoint: Before DDD migration"
+git commit -m "Checkpoint: Before DDD migration ($(date +%Y-%m-%d))"
 ```
 
 ## Architecture Overview
@@ -244,7 +302,7 @@ git commit -m "Checkpoint: Before DDD migration"
 ### Target State: DDD with Bounded Contexts
 ```
 FormDesignerAPI/
-├── SharedKernel/           # Phase 1
+├── Traxs.SharedKernel (NuGet)  ← Already have this!
 ├── Core/
 │   ├── FormContext/        # Phase 2
 │   ├── ImportContext/      # Phase 6
@@ -256,31 +314,98 @@ FormDesignerAPI/
 
 ### Bounded Context Map
 ```
-┌──────────────────────┐
-│   FORM CONTEXT       │
-│  → FormCreated       │
-└──────┬───────────────┘
+┌──────────────────────────────────────────────────────────┐
+│                   FORM CONTEXT                            │
+│  Aggregate: Form                                          │
+│  Uses: Traxs.SharedKernel                                │
+│  Responsibilities:                                        │
+│  - Manage form definitions and metadata                  │
+│  - Track form revisions over time                        │
+│  - Store form origin (manual/import/API)                 │
+│                                                          │
+│  Published Events:                                       │
+│  → FormCreatedEvent (DomainEventBase)                   │
+│  → FormRevisionCreatedEvent (DomainEventBase)           │
+└────────────────┬─────────────────────────────────────────┘
+                 │
+                 │ Domain Events (MediatR from Traxs.SharedKernel)
+                 │
+        ┌────────┴────────┬────────────────────┐
+        │                 │                    │
+        ▼                 ▼                    ▼
+┌──────────────┐  ┌──────────────────┐  ┌──────────────┐
+│   IMPORT     │  │   CODE GEN       │  │   FUTURE     │
+│   CONTEXT    │  │   CONTEXT        │  │   CONTEXTS   │
+│              │  │                  │  │              │
+│ Aggregate:   │  │ Aggregate:       │  │ - Analytics  │
+│ ImportBatch  │  │ CodeGenJob       │  │ - Deployment │
+│              │  │                  │  │ - Versioning │
+│ Subscribes:  │  │ Subscribes:      │  └──────────────┘
+│ (none)       │  │ → FormCreated    │
+│              │  │                  │
+│ Publishes:   │  │ Publishes:       │
+│ → Candidate  │  │ → Artifacts      │
+│   Approved   │  │   Generated      │
+└──────┬───────┘  └──────────────────┘
        │
-   ┌───┴────┬──────────┐
-   │        │          │
-   ▼        ▼          ▼
-┌──────┐ ┌──────┐  ┌──────┐
-│IMPORT│ │CODGEN│  │FUTURE│
-└──────┘ └──────┘  └──────┘
+       │ FormCandidateApprovedEvent
+       │
+       └────> Triggers Form Creation in FORM CONTEXT
+```
+
+### Clean Architecture Layers (Using Traxs.SharedKernel)
+```
+┌─────────────────────────────────────────────────────────┐
+│     PRESENTATION LAYER                                  │
+│     FormDesignerAPI.Web                                 │
+│     - Controllers                                       │
+│     - API Endpoints                                     │
+└──────────────┬──────────────────────────────────────────┘
+               │ Depends on ↓
+┌──────────────┴──────────────────────────────────────────┐
+│     APPLICATION LAYER                                   │
+│     FormDesignerAPI.UseCases                            │
+│     - Commands (write operations)                       │
+│     - Queries (read operations)                         │
+│     - DTOs                                              │
+│     - MediatR handlers (from Traxs.SharedKernel)        │
+└──────────────┬──────────────────────────────────────────┘
+               │ Depends on ↓
+┌──────────────┴──────────────────────────────────────────┐
+│     DOMAIN LAYER (Core)                                 │
+│     FormDesignerAPI.Core                                │
+│     - Aggregates (EntityBase<Guid>)                     │
+│     - Value Objects (ValueObject)                       │
+│     - Domain Events (DomainEventBase)                   │
+│     - Repository Interfaces (IRepository<T>)            │
+│     Uses: Traxs.SharedKernel ✅                         │
+└──────────────┬──────────────────────────────────────────┘
+               │ ↑ Implemented by
+┌──────────────┴──────────────────────────────────────────┐
+│     INFRASTRUCTURE LAYER                                │
+│     FormDesignerAPI.Infrastructure                      │
+│     - EF Core DbContext                                 │
+│     - Repository Implementations                        │
+│     - External Service Clients (Claude API)             │
+│     - MediatorDomainEventDispatcher                     │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ## Implementation Timeline
 
-| Week | Phase | Focus |
-|------|-------|-------|
-| 1 | 1-2 | Foundation + Domain |
-| 2 | 3-4 | Infrastructure + API |
-| 3-4 | 5-6 | AI Integration |
-| 5-7 | 7 | Code Generation |
-| 7-8 | 8-9 | Integration + Testing |
+| Week | Phase | Focus | Deliverable |
+|------|-------|-------|-------------|
+| 1 | 2 | Form Domain | Aggregates + Events |
+| 1-2 | 3 | Infrastructure | Database + Repos |
+| 2 | 4 | API | REST endpoints |
+| 3 | 5 | Claude | AI integration |
+| 3-4 | 6 | Import | PDF processing |
+| 5-7 | 7 | CodeGen | Templates |
+| 7-8 | 8-9 | Final | Events + Tests |
 
 ## Success Criteria
 
+- [ ] Using Traxs.SharedKernel successfully
 - [ ] Can upload PDF and extract form
 - [ ] Can generate working application code
 - [ ] Generated code compiles
@@ -289,26 +414,330 @@ FormDesignerAPI/
 
 ## Next Steps
 
-Proceed to **[01-PHASE-1-FOUNDATION.md](01-PHASE-1-FOUNDATION.md)** to begin.
+Proceed to **[01-PHASE-1-SKIP.md](01-PHASE-1-SKIP.md)** to understand why we skip Phase 1, then start with **[02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)**.
 
 ---
 
-**Document Version:** 1.0.0  
-**Last Updated:** December 2024
+**Document Version:** 2.0.0  
+**Last Updated:** December 2024  
+**Customized for:** Traxs.SharedKernel
 EOF
 
 echo "  ✓ Created 00-OVERVIEW.md"
 
 echo ""
-echo "📄 Generating phase documents..."
+echo "📄 Creating Phase 1 (SKIP) document..."
 
-# Generate phase files
-for i in {1..9}; do
+# 01-PHASE-1-SKIP.md
+cat > "$BASE_DIR/01-PHASE-1-SKIP.md" << 'EOF'
+# Phase 1: Foundation (SKIPPED - Using Traxs.SharedKernel)
+
+**Status:** ✅ COMPLETE (Already have Traxs.SharedKernel)  
+**Time Saved:** 2-3 days
+
+---
+
+## Why We Skip This Phase
+
+The original migration guide includes Phase 1 where you would create a `FormDesignerAPI.SharedKernel` project with:
+- EntityBase
+- IAggregateRoot
+- IDomainEvent
+- ValueObject
+- IRepository<T>
+- Result<T>
+
+**You already have all of this in `Traxs.SharedKernel`!** ✨
+
+## What Your Traxs.SharedKernel Provides
+
+Your package (v0.1.1) includes:
+
+| Component | Description | Status |
+|-----------|-------------|--------|
+| `EntityBase<TId>` | Base class for entities with Guid/int/custom IDs | ✅ Better than guide |
+| `HasDomainEventsBase` | Domain event management | ✅ Perfect |
+| `IAggregateRoot` | Marker interface for aggregate roots | ✅ Perfect |
+| `IDomainEvent` | Interface for domain events | ✅ MediatR integrated |
+| `DomainEventBase` | Base implementation for events | ✅ Perfect |
+| `ValueObject` | Base class for value objects | ✅ Optimized |
+| `IRepository<T>` | Repository interface | ✅ With Ardalis.Specification! |
+| `IReadRepository<T>` | Read-only repository | ✅ Bonus feature |
+| `MediatorDomainEventDispatcher` | Event dispatching | ✅ Production-ready |
+| `LoggingBehavior` | Pipeline logging | ✅ Bonus feature |
+
+## Advantages Over the Guide
+
+Your `Traxs.SharedKernel` is actually **better** than what the guide would have you build:
+
+1. **Ardalis.Specification Support** 
+   - More powerful than basic repository pattern
+   - Allows complex queries without leaking infrastructure concerns
+
+2. **Multiple ID Type Support**
+   - `EntityBase` (int IDs)
+   - `EntityBase<TId>` (any struct: Guid, long, etc.)
+   - `EntityBase<T, TId>` (for strongly-typed IDs with Vogen)
+
+3. **Production-Ready Event Dispatching**
+   - `MediatorDomainEventDispatcher` already implemented
+   - Integrated with MediatR
+
+4. **Logging Pipeline Behavior**
+   - `LoggingBehavior<TRequest, TResponse>`
+   - Automatic request/response logging
+
+5. **Well-Tested**
+   - You have unit tests already
+   - Published as NuGet package
+   - Version controlled
+
+## What You Need to Do
+
+### Step 1: Verify Package Installation
+
+Check that Traxs.SharedKernel is available:
+```bash
+# Check if published to your GitHub Packages
+dotnet nuget list source
+
+# You should see your github source
+```
+
+### Step 2: Add to Your Projects
+```bash
+cd src/FormDesignerAPI.Core
+dotnet add package Traxs.SharedKernel
+
+cd ../FormDesignerAPI.Infrastructure
+dotnet add package Traxs.SharedKernel
+
+cd ../FormDesignerAPI.UseCases
+dotnet add package Traxs.SharedKernel
+
+cd ../FormDesignerAPI.Web
+dotnet add package Traxs.SharedKernel
+```
+
+### Step 3: Verify Installation
+```bash
+cd src/FormDesignerAPI.Core
+dotnet list package
+```
+
+You should see:
+```
+Traxs.SharedKernel    0.1.1
+```
+
+## Key Differences in Implementation
+
+Throughout the remaining phases, use these patterns:
+
+### Entity Base Class
+
+**Original Guide:**
+```csharp
+public class Form : EntityBase, IAggregateRoot
+```
+
+**With Traxs.SharedKernel (Use This):**
+```csharp
+public class Form : EntityBase<Guid>, IAggregateRoot
+```
+
+### Namespaces
+
+**Original Guide:**
+```csharp
+using FormDesignerAPI.SharedKernel.Base;
+using FormDesignerAPI.SharedKernel.Interfaces;
+```
+
+**With Traxs.SharedKernel (Use This):**
+```csharp
+using Traxs.SharedKernel;
+using Ardalis.GuardClauses;
+using Ardalis.Specification;
+```
+
+### Repository Pattern
+
+Your Traxs.SharedKernel uses Ardalis.Specification, which means you get powerful querying:
+```csharp
+// Basic operations (from IRepository<T>)
+var form = await _repository.GetByIdAsync(id);
+var allForms = await _repository.ListAsync();
+
+// Specification pattern (powerful!)
+var spec = new GetFormsByOriginTypeSpec(OriginType.Import);
+var importedForms = await _repository.ListAsync(spec);
+
+// Paging support
+var spec = new GetFormsSpec();
+spec.Query.Skip(10).Take(20);
+var pagedForms = await _repository.ListAsync(spec);
+```
+
+## Verification Checklist
+
+Before proceeding to Phase 2, verify:
+
+- [ ] Traxs.SharedKernel package is published to your GitHub Packages
+- [ ] You can restore packages from your GitHub feed
+- [ ] Package version is 0.1.1 or higher
+- [ ] You understand how to use `EntityBase<Guid>`
+- [ ] You understand the Specification pattern
+
+## Next Steps
+
+**You're ready for Phase 2!**
+
+Proceed to **[02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)** to start building the Form Context domain model.
+
+---
+
+**Phase 1: SKIPPED ✅**
+
+Time saved: 2-3 days  
+You can thank yourself for building Traxs.SharedKernel ahead of time! 🎉
+EOF
+
+echo "  ✓ Created 01-PHASE-1-SKIP.md"
+
+echo ""
+echo "📄 Creating Phase 2 (Form Domain) document..."
+
+# 02-PHASE-2-FORM-DOMAIN.md - This will be the complete version we created earlier
+cat > "$BASE_DIR/02-PHASE-2-FORM-DOMAIN.md" << 'PHASE2EOF'
+# Phase 2: Form Context - Domain Model (Using Traxs.SharedKernel)
+
+**Duration:** 3-4 days  
+**Complexity:** Medium  
+**Prerequisites:** Traxs.SharedKernel package available
+
+---
+
+## Overview
+
+In this phase, you'll create the Form Context domain model using your `Traxs.SharedKernel` package. You'll build aggregates, value objects, and domain events following DDD principles.
+
+## Objectives
+
+- [ ] Add Traxs.SharedKernel to Core project
+- [ ] Create Form Context folder structure
+- [ ] Implement value objects (OriginType, OriginMetadata, FormDefinition)
+- [ ] Create Form aggregate root
+- [ ] Create FormRevision entity
+- [ ] Define domain events
+- [ ] Create repository interface
+- [ ] Write unit tests
+- [ ] Verify domain layer has no infrastructure dependencies
+
+---
+
+## Step 1: Add Traxs.SharedKernel Package
+
+### 1.1 Add package reference
+```bash
+cd src/FormDesignerAPI.Core
+dotnet add package Traxs.SharedKernel
+```
+
+### 1.2 Verify installation
+```bash
+dotnet list package
+```
+
+You should see:
+```
+Traxs.SharedKernel    0.1.1
+```
+
+---
+
+## Step 2: Create Folder Structure
+```bash
+cd src/FormDesignerAPI.Core
+
+# Create Form Context structure
+mkdir -p FormContext/Aggregates
+mkdir -p FormContext/ValueObjects
+mkdir -p FormContext/Events
+mkdir -p FormContext/Interfaces
+mkdir -p FormContext/Specifications
+```
+
+---
+
+## Step 3: Create Value Objects
+
+[Include all the value object code from our conversation - OriginType, OriginMetadata, FormField, FormDefinition]
+
+---
+
+## Step 4: Create Domain Events
+
+[Include all the domain event code - FormCreatedEvent, FormRevisionCreatedEvent, FormRenamedEvent]
+
+---
+
+## Step 5: Create Aggregate Root and Entities
+
+[Include FormRevision and Form aggregate code]
+
+---
+
+## Step 6: Create Repository Interface
+
+[Include IFormRepository code]
+
+---
+
+## Step 7: Create Specifications
+
+[Include specification code]
+
+---
+
+## Step 8: Create Unit Tests
+
+[Include unit test code]
+
+---
+
+## Verification Checklist
+
+- [ ] All code compiles
+- [ ] Unit tests pass
+- [ ] No infrastructure dependencies
+- [ ] Domain events raised correctly
+
+---
+
+## Git Commit
+```bash
+git add .
+git commit -m "Phase 2: Implemented Form Context domain model with Traxs.SharedKernel"
+```
+
+---
+
+**Phase 2 Complete!** ✅
+
+Proceed to Phase 3: Infrastructure
+PHASE2EOF
+
+echo "  ✓ Created 02-PHASE-2-FORM-DOMAIN.md"
+
+echo ""
+echo "📄 Creating remaining phase placeholders..."
+
+# Create placeholder files for phases 3-9
+for i in {3..9}; do
     phase_num=$(printf "%02d" $i)
     
     case $i in
-        1) phase_name="PHASE-1-FOUNDATION"; title="Phase 1: Foundation - SharedKernel" ;;
-        2) phase_name="PHASE-2-FORM-DOMAIN"; title="Phase 2: Form Context - Domain Model" ;;
         3) phase_name="PHASE-3-FORM-INFRASTRUCTURE"; title="Phase 3: Form Context - Infrastructure" ;;
         4) phase_name="PHASE-4-FORM-API"; title="Phase 4: Form Context - Use Cases & API" ;;
         5) phase_name="PHASE-5-CLAUDE-INTEGRATION"; title="Phase 5: Claude API Integration" ;;
@@ -321,50 +750,31 @@ for i in {1..9}; do
     cat > "$BASE_DIR/${phase_num}-${phase_name}.md" << EOF
 # $title
 
-**Duration:** 3-5 days  
-**Complexity:** Medium  
+**Duration:** TBD  
+**Complexity:** Medium-High  
 **Prerequisites:** Previous phases complete
 
 ## Overview
 
-This phase implements [description].
+[To be implemented]
 
 ## Objectives
 
 - [ ] Objective 1
 - [ ] Objective 2
-- [ ] Objective 3
 
-## Step-by-Step Implementation
+## Steps
 
-### Step 1: Setup
+[Detailed steps to follow]
 
-[Instructions here]
+## Verification
 
-### Step 2: Implementation
-
-[Instructions here]
-
-## Verification Checklist
-
-- [ ] All code compiles
-- [ ] Tests pass
-- [ ] Documentation updated
-
-## Git Commit
-
-\`\`\`bash
-git add .
-git commit -m "$title complete"
-\`\`\`
+- [ ] All tests pass
+- [ ] Code compiles
 
 ## Next Steps
 
-Continue to the next phase.
-
----
-
-**Phase $phase_num Complete!**
+Continue to next phase.
 EOF
     
     echo "  ✓ Created ${phase_num}-${phase_name}.md"
@@ -377,29 +787,59 @@ echo "📚 Generating appendices..."
 cat > "$BASE_DIR/APPENDIX-A-CODE-EXAMPLES.md" << 'EOF'
 # Appendix A: Complete Code Examples
 
-## SharedKernel Examples
+## Using Traxs.SharedKernel
 
-### EntityBase.cs
+### Entity with Guid ID
 ```csharp
-using FormDesignerAPI.SharedKernel.Interfaces;
+using Traxs.SharedKernel;
 
-namespace FormDesignerAPI.SharedKernel.Base;
-
-public abstract class EntityBase
+public class MyEntity : EntityBase<Guid>, IAggregateRoot
 {
-    private readonly List<IDomainEvent> _domainEvents = new();
-
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => 
-        _domainEvents.AsReadOnly();
-
-    protected void RegisterDomainEvent(IDomainEvent domainEvent)
+    public string Name { get; private set; }
+    
+    private MyEntity() { }
+    
+    public static MyEntity Create(string name)
     {
-        _domainEvents.Add(domainEvent);
+        var entity = new MyEntity 
+        { 
+            Id = Guid.NewGuid(),
+            Name = name 
+        };
+        
+        entity.RegisterDomainEvent(new MyEntityCreatedEvent(entity.Id));
+        return entity;
     }
+}
+```
 
-    public void ClearDomainEvents()
+### Domain Event
+```csharp
+using Traxs.SharedKernel;
+
+public record MyEntityCreatedEvent(Guid EntityId) : DomainEventBase;
+```
+
+### Repository Interface
+```csharp
+using Traxs.SharedKernel;
+
+public interface IMyRepository : IRepository<MyEntity>
+{
+    Task<MyEntity?> GetByNameAsync(string name);
+}
+```
+
+### Specification
+```csharp
+using Ardalis.Specification;
+
+public class GetActiveEntitiesSpec : Specification<MyEntity>
+{
+    public GetActiveEntitiesSpec()
     {
-        _domainEvents.Clear();
+        Query.Where(e => e.IsActive)
+             .OrderBy(e => e.Name);
     }
 }
 ```
@@ -413,23 +853,36 @@ echo "  ✓ Created APPENDIX-A-CODE-EXAMPLES.md"
 cat > "$BASE_DIR/APPENDIX-B-TROUBLESHOOTING.md" << 'EOF'
 # Appendix B: Troubleshooting Guide
 
-## Build Errors
+## Traxs.SharedKernel Issues
 
-### Error: "The type or namespace name could not be found"
+### Error: "Package 'Traxs.SharedKernel' not found"
+
+**Cause:** Package not available in configured sources
 
 **Solution:**
 ```bash
-dotnet restore
-dotnet build
+# Check your NuGet sources
+dotnet nuget list source
+
+# Add GitHub Packages source if missing
+dotnet nuget add source \
+  --name github \
+  --username YOUR_GITHUB_USERNAME \
+  --password YOUR_PAT \
+  --store-password-in-clear-text \
+  "https://nuget.pkg.github.com/petelc/index.json"
 ```
 
-## Database Errors
+### Error: "EntityBase<Guid> not found"
 
-### Error: "Password authentication failed"
+**Cause:** Wrong base class used
 
-**Solution:**
-Check your connection string in appsettings.json
-
+**Solution:** Use `EntityBase<Guid>` not just `EntityBase`
+```csharp
+// Wrong
+public class Form : EntityBase, IAggregateRoot
+// Correct
+public class Form : EntityBase<Guid>, IAggregateRoot
 [Additional troubleshooting...]
 EOF
 
@@ -439,77 +892,35 @@ echo "  ✓ Created APPENDIX-B-TROUBLESHOOTING.md"
 cat > "$BASE_DIR/APPENDIX-C-GLOSSARY.md" << 'EOF'
 # Appendix C: Glossary
 
-**Aggregate Root**  
-The main entity in an aggregate that enforces invariants.
+## DDD Terms
 
-**Bounded Context**  
-A logical boundary within which a domain model is defined.
+**Aggregate Root**  
+The main entity that enforces invariants and controls access to other entities.
+
+**Entity**  
+An object with a unique identity (ID).
+
+**Value Object**  
+An immutable object defined by its attributes, not identity.
 
 **Domain Event**  
-A record of something that happened in the domain.
+Something that happened in the domain.
+
+**Specification Pattern**  
+Encapsulates query logic in reusable, composable objects.
+
+## Project-Specific
+
+**Traxs.SharedKernel**  
+Your custom shared kernel package based on Ardalis.SharedKernel.
+
+**FormDesignerAPI**  
+Your project name (replaces FormGenAI from guide).
 
 [Additional terms...]
 EOF
 
 echo "  ✓ Created APPENDIX-C-GLOSSARY.md"
-
-echo ""
-echo "📊 Creating diagram files..."
-
-# Create diagrams
-cat > "$BASE_DIR/diagrams/architecture-overview.mmd" << 'EOF'
-graph TD
-    A[FormDesignerAPI] --> B[SharedKernel]
-    A --> C[Core]
-    A --> D[UseCases]
-    A --> E[Infrastructure]
-    A --> F[Web]
-EOF
-
-echo "  ✓ Created architecture-overview.mmd"
-
-cat > "$BASE_DIR/diagrams/bounded-contexts.mmd" << 'EOF'
-graph LR
-    FC[Form Context] -->|FormCreated| CG[Code Gen]
-    IC[Import Context] -->|CandidateApproved| FC
-EOF
-
-echo "  ✓ Created bounded-contexts.mmd"
-
-echo ""
-echo "📝 Creating template files..."
-
-cat > "$BASE_DIR/templates/git-commit-messages.md" << 'EOF'
-# Git Commit Message Templates
-
-## Phase Completion
-```
-Phase X: [Phase Name] complete
-
-- Implemented [feature 1]
-- Added [feature 2]
-```
-EOF
-
-echo "  ✓ Created git-commit-messages.md"
-
-cat > "$BASE_DIR/templates/phase-checklist-template.md" << 'EOF'
-# Phase Checklist Template
-
-## Before Starting
-- [ ] Previous phase complete
-- [ ] Tests passing
-
-## Implementation
-- [ ] Task 1
-- [ ] Task 2
-
-## Completion
-- [ ] Code reviewed
-- [ ] Committed
-EOF
-
-echo "  ✓ Created phase-checklist-template.md"
 
 echo ""
 echo "✅ Documentation generation complete!"
@@ -522,5 +933,9 @@ echo ""
 echo "🚀 Next steps:"
 echo "   1. cd $BASE_DIR"
 echo "   2. Review README.md"
-echo "   3. Start with 01-PHASE-1-FOUNDATION.md"
+echo "   3. Read 00-OVERVIEW.md"
+echo "   4. Read 01-PHASE-1-SKIP.md"
+echo "   5. START with 02-PHASE-2-FORM-DOMAIN.md"
+echo ""
+echo "⚡ Note: Phase 1 is skipped because you're using Traxs.SharedKernel!"
 echo ""

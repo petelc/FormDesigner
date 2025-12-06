@@ -1,48 +1,50 @@
-# Phase 2: Form Context - Domain Model
+# Phase 2: Form Context - Domain Model (Using Traxs.SharedKernel)
 
-**Duration:** 3-5 days  
+**Duration:** 3-4 days  
 **Complexity:** Medium  
-**Prerequisites:** Previous phases complete
+**Prerequisites:** Traxs.SharedKernel package available
+
+---
 
 ## Overview
 
-In this phase, you'll create the Form Context domain model using Traxs.SharedKernel package. You'll build aggregates, value objects, and domain events following DDD principles.
+In this phase, you'll create the Form Context domain model using your `Traxs.SharedKernel` package. You'll build aggregates, value objects, and domain events following DDD principles.
 
 ## Objectives
 
- -[] Add Traxs.SharedKernel to Core project
- -[] Create Form Context folder structure
- -[] Implement value objects (OriginType, OriginMetadata, FormDefinition)
- -[] Create Form aggregate root
- -[] Create FormRevision entity
- -[] Define domain events
- -[] Create repository interface
- -[] Verify domain layer has no infrastructure dependencies
+- [ ] Add Traxs.SharedKernel to Core project
+- [ ] Create Form Context folder structure
+- [ ] Implement value objects (OriginType, OriginMetadata, FormDefinition)
+- [ ] Create Form aggregate root
+- [ ] Create FormRevision entity
+- [ ] Define domain events
+- [ ] Create repository interface
+- [ ] Write unit tests
+- [ ] Verify domain layer has no infrastructure dependencies
 
-## Step-by-Step Implementation
+---
 
-### Step 1: Add Traxs.SharedKernel Package
+## Step 1: Add Traxs.SharedKernel Package
 
-**1.1 Add package reference**
-
+### 1.1 Add package reference
 ```bash
 cd src/FormDesignerAPI.Core
 dotnet add package Traxs.SharedKernel
 ```
 
-**1.2 Verify Installation**
-
+### 1.2 Verify installation
 ```bash
 dotnet list package
 ```
-You should see:
 
-```bash
+You should see:
+```
 Traxs.SharedKernel    0.1.1
 ```
 
-### Step 2: Create Folder Structure
+---
 
+## Step 2: Create Folder Structure
 ```bash
 cd src/FormDesignerAPI.Core
 
@@ -54,76 +56,61 @@ mkdir -p FormContext/Interfaces
 mkdir -p FormContext/Specifications
 ```
 
-Your structure should look like:
+---
 
-```bash
-FormDesignerAPI.Core/
-└── FormContext/
-    ├── Aggregates/
-    ├── ValueObjects/
-    ├── Events/
-    ├── Interfaces/
-    └── Specifications/
-```
+## Step 3: Create Value Objects
 
-### Step 3: Create Value Objects
+[Include all the value object code from our conversation - OriginType, OriginMetadata, FormField, FormDefinition]
 
-**3.1 Create OriginType Enum**
+---
 
-> File: FormContext/ValueObjects/OriginType.cs
+## Step 4: Create Domain Events
 
-```csharp
-namespace FormDesignerAPI.Core.FormContext.ValueObjects;
+[Include all the domain event code - FormCreatedEvent, FormRevisionCreatedEvent, FormRenamedEvent]
 
-/// <summary>
-/// Represents how a form was created
-/// </summary>
-public enum OriginType
-{
-  /// <summary>
-  /// Manually created by a user
-  /// </summary>
-  Manual,
-  
-  /// <summary>
-  /// Created from an imported PDF
-  /// </summary>
-  Import,
-  
-  /// <summary>
-  /// Created via API
-  /// </summary>
-  API,
-  
-  /// <summary>
-  /// Created from a template
-  /// </summary>
-  Template
-}
-```
+---
 
-**3.2 Create OriginMetadata Value Object**
+## Step 5: Create Aggregate Root and Entities
 
-> File: FormContext/ValueObjects/OriginMetadata.cs
+[Include FormRevision and Form aggregate code]
 
+---
+
+## Step 6: Create Repository Interface
+
+[Include IFormRepository code]
+
+---
+
+## Step 7: Create Specifications
+
+[Include specification code]
+
+---
+
+## Step 8: Create Unit Tests
+
+[Include unit test code]
+
+---
 
 ## Verification Checklist
 
 - [ ] All code compiles
-- [ ] Tests pass
-- [ ] Documentation updated
-
-## Git Commit
-
-```bash
-git add .
-git commit -m "Phase 2: Form Context - Domain Model complete"
-```
-
-## Next Steps
-
-Continue to the next phase.
+- [ ] Unit tests pass
+- [ ] No infrastructure dependencies
+- [ ] Domain events raised correctly
 
 ---
 
-**Phase 02 Complete!**
+## Git Commit
+```bash
+git add .
+git commit -m "Phase 2: Implemented Form Context domain model with Traxs.SharedKernel"
+```
+
+---
+
+**Phase 2 Complete!** ✅
+
+Proceed to Phase 3: Infrastructure

@@ -1,20 +1,33 @@
 # Appendix B: Troubleshooting Guide
 
-## Build Errors
+## Traxs.SharedKernel Issues
 
-### Error: "The type or namespace name could not be found"
+### Error: "Package 'Traxs.SharedKernel' not found"
+
+**Cause:** Package not available in configured sources
 
 **Solution:**
 ```bash
-dotnet restore
-dotnet build
+# Check your NuGet sources
+dotnet nuget list source
+
+# Add GitHub Packages source if missing
+dotnet nuget add source \
+  --name github \
+  --username YOUR_GITHUB_USERNAME \
+  --password YOUR_PAT \
+  --store-password-in-clear-text \
+  "https://nuget.pkg.github.com/petelc/index.json"
 ```
 
-## Database Errors
+### Error: "EntityBase<Guid> not found"
 
-### Error: "Password authentication failed"
+**Cause:** Wrong base class used
 
-**Solution:**
-Check your connection string in appsettings.json
-
+**Solution:** Use `EntityBase<Guid>` not just `EntityBase`
+```csharp
+// Wrong
+public class Form : EntityBase, IAggregateRoot
+// Correct
+public class Form : EntityBase<Guid>, IAggregateRoot
 [Additional troubleshooting...]
