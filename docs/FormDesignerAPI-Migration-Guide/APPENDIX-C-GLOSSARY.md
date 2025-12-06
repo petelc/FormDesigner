@@ -1,12 +1,28 @@
 # Appendix C: Glossary
 
-**Aggregate Root**  
-The main entity in an aggregate that enforces invariants.
+## DDD Terms
 
-**Bounded Context**  
-A logical boundary within which a domain model is defined.
+**Aggregate Root**  
+The main entity that enforces invariants and controls access to other entities.
+
+**Entity**  
+An object with a unique identity (ID).
+
+**Value Object**  
+An immutable object defined by its attributes, not identity.
 
 **Domain Event**  
-A record of something that happened in the domain.
+Something that happened in the domain.
+
+**Specification Pattern**  
+Encapsulates query logic in reusable, composable objects.
+
+## Project-Specific
+
+**Traxs.SharedKernel**  
+Your custom shared kernel package based on Ardalis.SharedKernel.
+
+**FormDesignerAPI**  
+Your project name (replaces FormGenAI from guide).
 
 [Additional terms...]
