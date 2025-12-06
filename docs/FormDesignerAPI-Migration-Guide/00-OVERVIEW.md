@@ -86,17 +86,30 @@ Choose one:
 - VS Code with C# extension
 
 ### Backup Strategy
+
+#### Create backup OUTSIDE your project directory
+
 ```bash
+
+# Create backup
+mkdir -p ~/FormDesignerAPI-Backups
+# Option 1: Compressed archive (recommended)
+tar -czf ~/FormDesignerAPI-Backups/FormDesignerAPI-backup-$(date +%Y%m%d).tar.gz \
+  --exclude='.git' \
+  --exclude='node_modules' \
+  --exclude='bin' \
+  --exclude='obj' \
+  .
+
+# Option 2: Git tag (best for Git projects)
+git tag -a v0.0.0-pre-migration -m "State before DDD migration"
+
 # Create feature branch
 git checkout -b feature/ddd-migration
 
-# Create backup
-mkdir -p ../FormDesignerAPI-Backups
-cp -r . ../FormDesignerAPI-Backups/FormDesignerAPI-$(date +%Y%m%d)
-
 # Commit current state
 git add .
-git commit -m "Checkpoint: Before DDD migration"
+git commit -m "Checkpoint: Before DDD migration ($(date +%Y-%m-%d))"
 ```
 
 ## Architecture Overview
@@ -104,14 +117,16 @@ git commit -m "Checkpoint: Before DDD migration"
 ### Target State: DDD with Bounded Contexts
 ```
 FormDesignerAPI/
-├── SharedKernel/           # Phase 1
-├── Core/
-│   ├── FormContext/        # Phase 2
-│   ├── ImportContext/      # Phase 6
-│   └── CodeGenContext/     # Phase 7
-├── UseCases/               # Phase 4
-├── Infrastructure/         # Phase 3, 5
-└── Web/                    # Phase 4
+├── src/
+│   ├── FormDesignerAPI.SharedKernel/      # Phase 1
+│   ├── FormDesignerAPI.Core/              # Phase 2
+│   ├── FormDesignerAPI.UseCases/          # Phase 4
+│   ├── FormDesignerAPI.Infrastructure/    # Phase 3
+│   └── FormDesignerAPI.Web/               # Phase 4
+└── tests/
+    ├── FormDesignerAPI.UnitTests/
+    ├── FormDesignerAPI.IntegrationTests/
+    └── FormDesignerAPI.FunctionalTests/
 ```
 
 ### Bounded Context Map
