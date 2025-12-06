@@ -4081,4 +4081,103 @@ public class ImportsController : ControllerBase
         {
             if (file.Length > 0 && Path.GetExtension(file.FileName).ToLower() == ".pdf")
             {
-                var fileName = Path.
+                var fileName = Path.GetFileName(file.FileName);
+                var filePath = Path.Combine(uploadPath, $"{Guid.NewGuid()}_{fileName}");
+                using (var stream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(stream);
+                }
+            
+            fileNames.Add(fileName);
+            filePaths[fileName] = filePath;
+        }
+    }
+
+    if (fileNames.Count == 0)
+    {
+        return BadRequest("No valid PDF files uploaded");
+    }
+
+    // Create batch
+    var command = new UploadPdfBatchCommand(fileNames, uploadedBy);
+    var batchId = await _mediator.Send(command);
+
+    // Process batch in background (simplified - should use background job)
+    _ = Task.Run(async () =>
+    {
+        try
+        {
+            var processCommand = new ProcessImportBatchCommand(batchId, filePaths);
+            await _mediator.Send(processCommand);
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error processing batch: {BatchId}", batchId);
+        }
+    });
+
+    return AcceptedAtAction(
+        nameof(GetBatchStatus),
+        new { id = batchId },
+        batchId);
+}
+
+/// <summary>
+/// Get batch processing status
+/// </summary>
+[HttpGet("batch/{id}/status")]
+[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+public async Task<ActionResult> GetBatchStatus(Guid id)
+{
+    // TODO: Implement query
+    return Ok(new { batchId = id, status = "Processing" });
+}
+
+/// <summary>
+/// Approve a form candidate
+/// </summary>
+[HttpPost("candidates/{id}/approve")]
+[ProducesResponseType(StatusCodes.Status200OK)]
+[ProducesResponseType(StatusCodes.Status404NotFound)]
+public async Task<ActionResult> ApproveCandidate(
+    Guid id,
+    [FromBody] ApproveRequest request)
+{
+    try
+    {
+        var command = new ApproveFormCandidateCommand(id, request.ApprovedBy);
+        await _mediator.Send(command);
+        return Ok();
+    }
+    catch (InvalidOperationException ex)
+    {
+        return NotFound(new { error = ex.Message });
+    }
+}
+}
+public record ApproveRequest(string ApprovedBy);
+### Checkpoint 6: Verification
+
+- [ ] Can upload PDF files via API
+- [ ] PDF extraction service calls Claude API
+- [ ] Candidates are created and tracked
+- [ ] Can approve/reject candidates
+- [ ] Domain events are raised
+
+**Git Commit:**
+```bash
+git add .
+git commit -m "Phase 6: Created Import Context with PDF upload and AI extraction"
+```
+
+---
+
+This complete guide is getting very long. Would you like me to:
+
+1. **Save what we have so far** (Phases 1-6) as a downloadable file
+2. **Continue with Phases 7-9** in a separate document
+3. **Create a condensed version** with just the key steps
+4. **Package everything** as multiple markdown files (one per phase)
+
+Let me know your preference and I'll prepare the files accordingly!
