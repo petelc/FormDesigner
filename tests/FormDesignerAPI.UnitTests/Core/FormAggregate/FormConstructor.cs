@@ -9,6 +9,8 @@ public class FormConstructor
     private readonly string _testDivision = "Test Division";
     private readonly Owner _testOwner = new Owner("Test Owner", "testownder@example.com");
     private readonly string _testVersion = "1.0";
+    private readonly DateTime _testCreatedDate = DateTime.UtcNow;
+    private readonly DateTime _testRevisedDate = DateTime.UtcNow;
     private readonly string _testConfigurationPath = "/path/to/config";
 
     private Form? _testForm;
@@ -20,7 +22,7 @@ public class FormConstructor
 
     private Form CreateFullForm()
     {
-        return new Form(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testConfigurationPath);
+        return new Form(_testFormNumber, _testFormTitle, _testDivision, _testOwner, _testVersion, _testCreatedDate, _testRevisedDate, _testConfigurationPath);
     }
 
     [Fact]

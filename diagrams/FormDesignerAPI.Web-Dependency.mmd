@@ -1,0 +1,24 @@
+---
+references:
+  - "File: /src/FormDesignerAPI.Web/FormDesignerAPI.Web.csproj"
+generationTime: 2025-10-02T00:57:45.476Z
+---
+flowchart TD
+    subgraph ProjectReferences
+        Web --> Infrastructure["FormDesignerAPI.Infrastructure"]
+        Web --> UseCases["FormDesignerAPI.UseCases"]
+        Web --> ServiceDefaults["FormDesignerAPI.ServiceDefaults"]
+    end
+
+    subgraph NuGetPackages
+        Web --> ArdalisListStartupServices["Ardalis.ListStartupServices"]
+        Web --> ArdalisResult["Ardalis.Result"]
+        Web --> ArdalisResultAspNetCore["Ardalis.Result.AspNetCore"]
+        Web --> FastEndpoints
+        Web --> FastEndpointsSwagger["FastEndpoints.Swagger"]
+        Web --> MediatR
+        Web --> EFCoreDesign["Microsoft.EntityFrameworkCore.Design"]
+        Web --> SerilogAspNetCore
+    end
+
+    Web["FormDesignerAPI.Web"]

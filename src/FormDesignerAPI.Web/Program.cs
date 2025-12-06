@@ -1,11 +1,18 @@
-﻿using FormDesignerAPI.Core.Interfaces;
+﻿using Ardalis.ListStartupServices;
+using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
+using FormDesignerAPI.Infrastructure.Identity;
 using FormDesignerAPI.UseCases.Contributors.Create;
 using FormDesignerAPI.UseCases.Forms.Create;
+using FormDesignerAPI.UseCases.Identity.Register;
+using FormDesignerAPI.UseCases.Interfaces;
 using FormDesignerAPI.Web.Configurations;
 
+
 var builder = WebApplication.CreateBuilder(args);
+// Register AuthSettings for options pattern
+builder.Services.Configure<AuthSettings>(builder.Configuration.GetSection("Auth"));
 
 var logger = Log.Logger = new LoggerConfiguration()
   .Enrich.FromLogContext()
@@ -44,6 +51,11 @@ builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, 
 
 builder.Services.AddTransient<IFormUpdateService, FormUpdateService>();
 
+builder.Services.AddTransient<ICommandHandler<RegisterUserCommand, Result<string>>, RegisterUserHandler>();
+
+builder.Services.AddTransient<IIdentityService, IdentityService>();
+
+
 
 var app = builder.Build();
 
@@ -51,13 +63,17 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
   app.UseDeveloperExceptionPage();
-  // app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
+  app.UseShowAllServicesMiddleware(); // see https://github.com/ardalis/AspNetCoreStartupServices
 }
 else
 {
   app.UseDefaultExceptionHandler(); // from FastEndpoints
   app.UseHsts();
 }
+
+// Add authentication and authorization middleware
+// app.UseAuthentication();
+// app.UseAuthorization();
 
 app.UseFastEndpoints();
 app.UseSwaggerGen(); // Includes AddFileServer and static files middleware
