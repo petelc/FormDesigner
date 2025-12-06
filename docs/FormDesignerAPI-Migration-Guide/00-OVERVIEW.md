@@ -115,11 +115,36 @@ git commit -m "Checkpoint: Before DDD migration ($(date +%Y-%m-%d))"
 ## Architecture Overview
 
 ### Target State: DDD with Bounded Contexts
+
 ```
 FormDesignerAPI/
 ├── src/
-│   ├── FormDesignerAPI.SharedKernel/      # Phase 1
-│   ├── FormDesignerAPI.Core/              # Phase 2
+│   ├── FormDesignerAPI.Core/              ← Add Traxs.SharedKernel package
+│   │   ├── FormContext/
+│   │   │   ├── Aggregates/
+│   │   │   │   └── Form.cs                ← Inherits EntityBase<Guid>
+│   │   │   ├── ValueObjects/
+│   │   │   │   └── FormDefinition.cs      ← Inherits ValueObject
+│   │   │   ├── Events/
+│   │   │   │   └── FormCreatedEvent.cs    ← Inherits DomainEventBase
+│   │   │   └── Interfaces/
+│   │   │       └── IFormRepository.cs     ← Inherits IRepository<Form>
+│   │   ├── ImportContext/
+│   │   └── CodeGenerationContext/
+│   │
+│   ├── FormDesignerAPI.Infrastructure/    ← Add Traxs.SharedKernel package
+│   │   └── Repositories/
+│   │       └── FormRepository.cs          ← Implements IFormRepository
+│   │
+│   ├── FormDesignerAPI.UseCases/          ← Add Traxs.SharedKernel package
+│   └── FormDesignerAPI.Web/               ← Add Traxs.SharedKernel package
+```
+
+
+```
+FormDesignerAPI/
+├── src/
+│   ├── FormDesignerAPI.Core/              # Phase 2 Skipping Phase 1
 │   ├── FormDesignerAPI.UseCases/          # Phase 4
 │   ├── FormDesignerAPI.Infrastructure/    # Phase 3
 │   └── FormDesignerAPI.Web/               # Phase 4
@@ -148,7 +173,7 @@ FormDesignerAPI/
 
 | Week | Phase | Focus |
 |------|-------|-------|
-| 1 | 1-2 | Foundation + Domain |
+| 1 | 1-2 | Domain |
 | 2 | 3-4 | Infrastructure + API |
 | 3-4 | 5-6 | AI Integration |
 | 5-7 | 7 | Code Generation |
@@ -164,7 +189,7 @@ FormDesignerAPI/
 
 ## Next Steps
 
-Proceed to **[01-PHASE-1-FOUNDATION.md](01-PHASE-1-FOUNDATION.md)** to begin.
+Skipping Phase 1. Proceed to **[02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)** to begin.
 
 ---
 
