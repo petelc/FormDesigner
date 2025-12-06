@@ -119,31 +119,6 @@ git commit -m "Checkpoint: Before DDD migration ($(date +%Y-%m-%d))"
 ```
 FormDesignerAPI/
 ├── src/
-│   ├── FormDesignerAPI.Core/              ← Add Traxs.SharedKernel package
-│   │   ├── FormContext/
-│   │   │   ├── Aggregates/
-│   │   │   │   └── Form.cs                ← Inherits EntityBase<Guid>
-│   │   │   ├── ValueObjects/
-│   │   │   │   └── FormDefinition.cs      ← Inherits ValueObject
-│   │   │   ├── Events/
-│   │   │   │   └── FormCreatedEvent.cs    ← Inherits DomainEventBase
-│   │   │   └── Interfaces/
-│   │   │       └── IFormRepository.cs     ← Inherits IRepository<Form>
-│   │   ├── ImportContext/
-│   │   └── CodeGenerationContext/
-│   │
-│   ├── FormDesignerAPI.Infrastructure/    ← Add Traxs.SharedKernel package
-│   │   └── Repositories/
-│   │       └── FormRepository.cs          ← Implements IFormRepository
-│   │
-│   ├── FormDesignerAPI.UseCases/          ← Add Traxs.SharedKernel package
-│   └── FormDesignerAPI.Web/               ← Add Traxs.SharedKernel package
-```
-
-
-```
-FormDesignerAPI/
-├── src/
 │   ├── FormDesignerAPI.Core/              # Phase 2 Skipping Phase 1
 │   ├── FormDesignerAPI.UseCases/          # Phase 4
 │   ├── FormDesignerAPI.Infrastructure/    # Phase 3
