@@ -1,28 +1,58 @@
 # Appendix A: Complete Code Examples
 
-## SharedKernel Examples
+## Using Traxs.SharedKernel
 
-### EntityBase.cs
+### Entity with Guid ID
 ```csharp
-using FormDesignerAPI.SharedKernel.Interfaces;
+using Traxs.SharedKernel;
 
-namespace FormDesignerAPI.SharedKernel.Base;
-
-public abstract class EntityBase
+public class MyEntity : EntityBase<Guid>, IAggregateRoot
 {
-    private readonly List<IDomainEvent> _domainEvents = new();
-
-    public IReadOnlyCollection<IDomainEvent> DomainEvents => 
-        _domainEvents.AsReadOnly();
-
-    protected void RegisterDomainEvent(IDomainEvent domainEvent)
+    public string Name { get; private set; }
+    
+    private MyEntity() { }
+    
+    public static MyEntity Create(string name)
     {
-        _domainEvents.Add(domainEvent);
+        var entity = new MyEntity 
+        { 
+            Id = Guid.NewGuid(),
+            Name = name 
+        };
+        
+        entity.RegisterDomainEvent(new MyEntityCreatedEvent(entity.Id));
+        return entity;
     }
+}
+```
 
-    public void ClearDomainEvents()
+### Domain Event
+```csharp
+using Traxs.SharedKernel;
+
+public record MyEntityCreatedEvent(Guid EntityId) : DomainEventBase;
+```
+
+### Repository Interface
+```csharp
+using Traxs.SharedKernel;
+
+public interface IMyRepository : IRepository<MyEntity>
+{
+    Task<MyEntity?> GetByNameAsync(string name);
+}
+```
+
+### Specification
+```csharp
+using Ardalis.Specification;
+
+public class GetActiveEntitiesSpec : Specification<MyEntity>
+{
+    public GetActiveEntitiesSpec()
     {
-        _domainEvents.Clear();
+        Query.Where(e => e.IsActive)
+             .OrderBy(e => e.Name);
     }
 }
 ```
