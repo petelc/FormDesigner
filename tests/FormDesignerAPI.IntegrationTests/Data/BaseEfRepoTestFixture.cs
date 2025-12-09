@@ -1,5 +1,4 @@
-﻿using FormDesignerAPI.Core.ContributorAggregate;
-using FormDesignerAPI.Core.FormAggregate;
+﻿using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Identity;
 
@@ -34,10 +33,6 @@ public abstract class BaseEfRepoTestFixture
     return builder.Options;
   }
 
-  protected EfRepository<Contributor> GetRepository()
-  {
-    return new EfRepository<Contributor>(_dbContext);
-  }
 
   protected EfRepository<Form> GetFormRepository()
   {

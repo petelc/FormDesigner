@@ -1,5 +1,4 @@
-﻿using FormDesignerAPI.Core.ContributorAggregate;
-using FormDesignerAPI.Core.FormAggregate;
+﻿using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
@@ -14,7 +13,6 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     _dispatcher = dispatcher;
   }
 
-  public DbSet<Contributor> Contributors => Set<Contributor>();
 
   public DbSet<Form> Forms => Set<Form>();
 

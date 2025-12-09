@@ -922,7 +922,7 @@ public class SearchFormsByNameSpec : Specification<Form>
 
 ---
 
-## Step 8: Create Unit Tests
+## Step 8: Verify Build and Dependencies
 
 8.1 Build the project
 bash
