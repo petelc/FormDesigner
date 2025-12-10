@@ -1,6 +1,6 @@
-namespace FormDesignerAPI.UseCases.Forms.List;
+// namespace FormDesignerAPI.UseCases.Forms.List;
 
-public interface IListFormsQueryService
-{
-    Task<IEnumerable<FormDTO>> ListFormsAsync();
-}
+// public interface IListFormsQueryService
+// {
+//     Task<IEnumerable<FormDTO>> ListFormsAsync();
+// }
