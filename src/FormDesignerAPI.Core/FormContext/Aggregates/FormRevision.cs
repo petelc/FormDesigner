@@ -1,95 +1,84 @@
+using Traxs.SharedKernel;
+using Ardalis.GuardClauses;
 using FormDesignerAPI.Core.FormContext.ValueObjects;
 
 namespace FormDesignerAPI.Core.FormContext.Aggregates;
 
+/// <summary>
+/// FormRevision entity - represents a version of a form
+/// NOT an aggregate root - managed by Form aggregate
+/// </summary>
 public class FormRevision : EntityBase<Guid>
 {
-    public Guid VersionId { get; set; }
+    public Guid FormId { get; private set; }
+    public int Version { get; private set; }
+    public FormDefinition Definition { get; private set; } = null!;
+    public string Notes { get; private set; } = string.Empty;
+    public DateTime CreatedAt { get; private set; }
+    public string CreatedBy { get; private set; } = string.Empty;
 
-    // Version components: Major.Minor.Patch
-    public int Major { get; private set; }
-    public int Minor { get; private set; }
-    public int Patch { get; private set; }
-    public DateTime VersionDate { get; set; }
-    public DateTime? ReleasedDate { get; set; }
-    public FormStatus Status { get; internal set; } = FormStatus.NotSet; // internal set allows Form aggregate to modify it
+    // Private constructor for EF Core
+    private FormRevision() { }
 
-    // Each version has exactly one form definition
-    public FormDefinition FormDefinition { get; private set; } = default!;
-
-    private FormRevision(int major, int minor, int patch, FormDefinition formDefinition)
+    /// <summary>
+    /// Factory method to create a new revision
+    /// Internal - only Form aggregate can create revisions
+    /// </summary>
+    internal static FormRevision Create(
+      Guid formId,
+      FormDefinition definition,
+      string notes,
+      string createdBy,
+      int version)
     {
-        VersionId = Guid.NewGuid();
-        Major = Guard.Against.NegativeOrZero(major, nameof(major));
-        Minor = Guard.Against.NegativeOrZero(minor, nameof(minor));
-        Patch = Guard.Against.NegativeOrZero(patch, nameof(patch));
-        FormDefinition = Guard.Against.Null(formDefinition, nameof(formDefinition));
-        VersionDate = DateTime.UtcNow;
-    }
+        Guard.Against.Default(formId, nameof(formId));
+        Guard.Against.Null(definition, nameof(definition));
+        Guard.Against.NullOrWhiteSpace(createdBy, nameof(createdBy));
+        Guard.Against.NegativeOrZero(version, nameof(version));
 
-    public override string ToString()
-    {
-        return $"{Major}.{Minor}.{Patch}";
-    }
-
-    public void UpdateVersion(int major, int minor, int patch, FormDefinition formDefinition)
-    {
-        Major = Guard.Against.NegativeOrZero(major, nameof(major));
-        Minor = Guard.Against.NegativeOrZero(minor, nameof(minor));
-        Patch = Guard.Against.NegativeOrZero(patch, nameof(patch));
-        FormDefinition = formDefinition;
-    }
-
-    public FormRevision CreateVersion(int major, int minor, int patch, FormDefinition formDefinition)
-    {
-        return new FormRevision(major, minor, patch, formDefinition);
-    }
-
-    public static FormRevision Create(int major, int minor, int patch, FormDefinition formDefinition)
-    {
-        return new FormRevision(major, minor, patch, formDefinition);
-    }
-
-    public FormRevision PublishVersion(DateTime releasedDate)
-    {
-        ReleasedDate = releasedDate;
-        Status = FormStatus.Published;
-        return this;
+        return new FormRevision
+        {
+            Id = Guid.NewGuid(),
+            FormId = formId,
+            Version = version,
+            Definition = definition,
+            Notes = notes ?? string.Empty,
+            CreatedAt = DateTime.UtcNow,
+            CreatedBy = createdBy
+        };
     }
 
     /// <summary>
-    /// Archives this version
+    /// Check if this revision has breaking changes from another
     /// </summary>
-    /// <returns>The version instance for method chaining</returns>
-    public FormRevision Archive()
+    public bool HasBreakingChangesFrom(FormRevision other)
     {
-        Status = FormStatus.Archived;
-        return this;
+        // Field removed
+        var thisFieldNames = Definition.Fields.Select(f => f.Name).ToHashSet();
+        var otherFieldNames = other.Definition.Fields.Select(f => f.Name).ToHashSet();
+
+        if (otherFieldNames.Except(thisFieldNames).Any())
+            return true;
+
+        // Required field added
+        var newRequiredFields = Definition.Fields
+          .Where(f => f.Required)
+          .Select(f => f.Name)
+          .Except(other.Definition.Fields.Where(f => f.Required).Select(f => f.Name));
+
+        if (newRequiredFields.Any())
+            return true;
+
+        // Field type changed
+        foreach (var fieldName in thisFieldNames.Intersect(otherFieldNames))
+        {
+            var thisField = Definition.GetField(fieldName);
+            var otherField = other.Definition.GetField(fieldName);
+
+            if (thisField?.Type != otherField?.Type)
+                return true;
+        }
+
+        return false;
     }
-
-    /// <summary>
-    /// Sets this version back to draft status
-    /// </summary>
-    /// <returns>The version instance for method chaining</returns>
-    public FormRevision SetToDraft()
-    {
-        Status = FormStatus.Draft;
-        ReleasedDate = null; // Clear release date when reverting to draft
-        return this;
-    }
-
-    /// <summary>
-    /// Checks if this version is currently published
-    /// </summary>
-    public bool IsPublished => Status == FormStatus.Published;
-
-    /// <summary>
-    /// Checks if this version is archived
-    /// </summary>
-    public bool IsArchived => Status == FormStatus.Archived;
-
-    /// <summary>
-    /// Checks if this version is in draft status
-    /// </summary>
-    public bool IsDraft => Status == FormStatus.Draft;
 }

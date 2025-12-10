@@ -1,7 +1,5 @@
 ﻿global using System.Runtime.CompilerServices;
-global using Ardalis.SharedKernel;
-global using FormDesignerAPI.Core.ContributorAggregate;
-global using FormDesignerAPI.UseCases.Contributors.Create;
+global using Traxs.SharedKernel;
 global using Shouldly;
 global using MediatR;
 global using Microsoft.Extensions.Logging;
