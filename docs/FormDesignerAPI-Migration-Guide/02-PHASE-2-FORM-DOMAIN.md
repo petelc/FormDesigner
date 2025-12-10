@@ -27,17 +27,20 @@ In this phase, you'll create the Form Context domain model using your `Traxs.Sha
 ## Step 1: Add Traxs.SharedKernel Package
 
 ### 1.1 Add package reference
+
 ```bash
 cd src/FormDesignerAPI.Core
 dotnet add package Traxs.SharedKernel
 ```
 
 ### 1.2 Verify installation
+
 ```bash
 dotnet list package
 ```
 
 You should see:
+
 ```
 Traxs.SharedKernel    0.1.1
 ```
@@ -45,6 +48,7 @@ Traxs.SharedKernel    0.1.1
 ---
 
 ## Step 2: Create Folder Structure
+
 ```bash
 cd src/FormDesignerAPI.Core
 
@@ -75,17 +79,17 @@ public enum OriginType
   /// Manually created by a user
   /// </summary>
   Manual,
-  
+
   /// <summary>
   /// Created from an imported PDF
   /// </summary>
   Import,
-  
+
   /// <summary>
   /// Created via API
   /// </summary>
   API,
-  
+
   /// <summary>
   /// Created from a template
   /// </summary>
@@ -96,7 +100,7 @@ public enum OriginType
 3.2 Create OriginMetadata Value Object
 File: FormContext/ValueObjects/OriginMetadata.cs
 
-```csharp
+````csharp
 using Traxs.SharedKernel;
 
 namespace FormDesignerAPI.Core.FormContext.ValueObjects;
@@ -224,18 +228,20 @@ public record FormField
   {
     if (string.IsNullOrWhiteSpace(Name)) return false;
     if (string.IsNullOrWhiteSpace(Type)) return false;
-    
+
     // If it's a select/radio, must have options
-    if ((Type == "select" || Type == "radio") && 
+    if ((Type == "select" || Type == "radio") &&
         (Options == null || Options.Count == 0))
       return false;
 
     return true;
   }
 }
-```
+````
+
 3.4 Create FormDefinition Value Object
 File: FormContext/ValueObjects/FormDefinition.cs
+
 ```csharp
 using System.Text.Json;
 using Traxs.SharedKernel;
@@ -392,7 +398,7 @@ public class FormDefinition : ValueObject
   /// </summary>
   public FormField? GetField(string fieldName)
   {
-    return Fields.FirstOrDefault(f => 
+    return Fields.FirstOrDefault(f =>
       f.Name.Equals(fieldName, StringComparison.OrdinalIgnoreCase));
   }
 
@@ -401,7 +407,7 @@ public class FormDefinition : ValueObject
   /// </summary>
   public bool HasField(string fieldName)
   {
-    return Fields.Any(f => 
+    return Fields.Any(f =>
       f.Name.Equals(fieldName, StringComparison.OrdinalIgnoreCase));
   }
 
@@ -583,7 +589,7 @@ public class FormRevision : EntityBase<Guid>
     // Field removed
     var thisFieldNames = Definition.Fields.Select(f => f.Name).ToHashSet();
     var otherFieldNames = other.Definition.Fields.Select(f => f.Name).ToHashSet();
-    
+
     if (otherFieldNames.Except(thisFieldNames).Any())
       return true;
 
@@ -592,7 +598,7 @@ public class FormRevision : EntityBase<Guid>
       .Where(f => f.Required)
       .Select(f => f.Name)
       .Except(other.Definition.Fields.Where(f => f.Required).Select(f => f.Name));
-    
+
     if (newRequiredFields.Any())
       return true;
 
@@ -601,7 +607,7 @@ public class FormRevision : EntityBase<Guid>
     {
       var thisField = Definition.GetField(fieldName);
       var otherField = other.Definition.GetField(fieldName);
-      
+
       if (thisField?.Type != otherField?.Type)
         return true;
     }
@@ -632,20 +638,20 @@ public class Form : EntityBase<Guid>, IAggregateRoot
   public FormDefinition Definition { get; private set; } = null!;
   public OriginMetadata Origin { get; private set; } = null!;
   public bool IsActive { get; private set; } = true;
-  
+
   private readonly List<FormRevision> _revisions = new();
   public IReadOnlyCollection<FormRevision> Revisions => _revisions.AsReadOnly();
-  
+
   /// <summary>
   /// Get the most recent revision
   /// </summary>
-  public FormRevision CurrentRevision => 
+  public FormRevision CurrentRevision =>
     _revisions.OrderByDescending(r => r.Version).First();
 
   /// <summary>
   /// Get the current version number
   /// </summary>
-  public int CurrentVersion => 
+  public int CurrentVersion =>
     _revisions.Any() ? _revisions.Max(r => r.Version) : 0;
 
   /// <summary>
@@ -655,7 +661,7 @@ public class Form : EntityBase<Guid>, IAggregateRoot
 
   // Private constructor for EF Core
   private Form() { }
-  
+
   /// <summary>
   /// Factory method to create a new form
   /// </summary>
@@ -670,7 +676,7 @@ public class Form : EntityBase<Guid>, IAggregateRoot
     Guard.Against.Null(definition, nameof(definition));
     Guard.Against.Null(origin, nameof(origin));
     Guard.Against.NullOrWhiteSpace(createdBy, nameof(createdBy));
-    
+
     // Validate definition has fields
     if (definition.Fields.Count == 0)
       throw new ArgumentException("Form must have at least one field", nameof(definition));
@@ -683,18 +689,18 @@ public class Form : EntityBase<Guid>, IAggregateRoot
       Origin = origin,
       IsActive = true
     };
-    
+
     // Create initial revision (version 1)
     var initialRevision = FormRevision.Create(
-      form.Id, 
-      definition, 
+      form.Id,
+      definition,
       "Initial version",
       createdBy,
       1
     );
-    
+
     form._revisions.Add(initialRevision);
-    
+
     // Raise domain event
     form.RegisterDomainEvent(new FormCreatedEvent(
       form.Id,
@@ -702,10 +708,10 @@ public class Form : EntityBase<Guid>, IAggregateRoot
       origin,
       createdBy
     ));
-    
+
     return form;
   }
-  
+
   /// <summary>
   /// Create a new revision of this form
   /// </summary>
@@ -726,7 +732,7 @@ public class Form : EntityBase<Guid>, IAggregateRoot
       throw new ArgumentException("Form revision must have at least one field");
 
     var nextVersion = CurrentVersion + 1;
-    
+
     var revision = FormRevision.Create(
       Id,
       newDefinition,
@@ -734,10 +740,10 @@ public class Form : EntityBase<Guid>, IAggregateRoot
       createdBy,
       nextVersion
     );
-    
+
     _revisions.Add(revision);
     Definition = newDefinition;
-    
+
     RegisterDomainEvent(new FormRevisionCreatedEvent(
       Id,
       revision.Id,
@@ -745,7 +751,7 @@ public class Form : EntityBase<Guid>, IAggregateRoot
       createdBy
     ));
   }
-  
+
   /// <summary>
   /// Update the form name
   /// </summary>
@@ -825,9 +831,9 @@ public interface IFormRepository : IRepository<Form>
   /// Get form with all its revisions eagerly loaded
   /// </summary>
   Task<Form?> GetByIdWithRevisionsAsync(
-    Guid id, 
+    Guid id,
     CancellationToken cancellationToken = default);
-  
+
   /// <summary>
   /// Get form by name
   /// </summary>
@@ -928,26 +934,30 @@ public class SearchFormsByNameSpec : Specification<Form>
 bash
 cd src/FormDesignerAPI.Core
 dotnet build
+
 ```
 
 ### 8.2 Verify no errors
 
 You should see:
 ```
+
 Build succeeded.
-    0 Warning(s)
-    0 Error(s)
-```
+0 Warning(s)
+0 Error(s)
+
+````
 ### 8.3 Verify dependencies
 
 ```bash
 dotnet list package
-```
+````
 
 Should show:
+
 ```
 Project 'FormDesignerAPI.Core' has the following package references
-   [net9.0]: 
+   [net9.0]:
    Top-level Package               Requested   Resolved
    > Ardalis.GuardClauses          5.0.0       5.0.0
    > Traxs.SharedKernel            0.1.1       0.1.1
@@ -1026,7 +1036,7 @@ public class FormTests
         form.DomainEvents.Should().HaveCount(1);
         var domainEvent = form.DomainEvents.First();
         domainEvent.Should().BeOfType<FormCreatedEvent>();
-        
+
         var formCreatedEvent = (FormCreatedEvent)domainEvent;
         formCreatedEvent.FormId.Should().Be(form.Id);
         formCreatedEvent.Name.Should().Be(name);
@@ -1044,10 +1054,10 @@ public class FormTests
         var definition = FormDefinition.FromFields(fields);
         var origin = OriginMetadata.Manual("admin@test.com");
         // Act & Assert
-        Assert.Throws<ArgumentException>(() => 
+        Assert.Throws<ArgumentException>(() =>
         Form.Create("", definition, origin, "admin@test.com"));
     }
-        
+
     [Fact]
     public void CreateRevision_WithValidData_ShouldCreateNewRevision()
     {
@@ -1113,7 +1123,7 @@ public class FormTests
         var newDefinition = FormDefinition.FromFields(newFields);
 
         // Act & Assert
-        Assert.Throws<InvalidOperationException>(() => 
+        Assert.Throws<InvalidOperationException>(() =>
         form.CreateRevision(newDefinition, "test", "admin@test.com"));
     }
 
@@ -1201,17 +1211,17 @@ dotnet test
 
 ## Verification Checklist
 
-- [ ] Traxs.SharedKernel package added to Core project
-- [ ] All value objects compile without errors
-- [ ] Form aggregate compiles without errors
-- [ ] FormRevision entity compiles without errors
-- [ ] All domain events compile without errors
-- [ ] Repository interface compiles without errors
-- [ ] Specifications compile without errors
-- [ ] No infrastructure dependencies in Core project
-- [ ] Unit tests pass
-- [ ] Domain events are raised correctly
-- [ ] Aggregate enforces invariants (guard clauses work)
+- [x] Traxs.SharedKernel package added to Core project
+- [x] All value objects compile without errors
+- [x] Form aggregate compiles without errors
+- [x] FormRevision entity compiles without errors
+- [x] All domain events compile without errors
+- [x] Repository interface compiles without errors
+- [x] Specifications compile without errors
+- [x] No infrastructure dependencies in Core project
+- [x] Unit tests pass
+- [x] Domain events are raised correctly
+- [x] Aggregate enforces invariants (guard clauses work)
 
 ---
 
