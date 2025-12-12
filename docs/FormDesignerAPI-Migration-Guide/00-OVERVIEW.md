@@ -244,8 +244,8 @@ FormDesignerAPI/
 | Week  | Phase | Focus          | Deliverable         |
 | ----- | ----- | -------------- | ------------------- |
 | 1     | 2     | Form Domain    | Aggregates + Events |
-| 1-2   | 3     | Infrastructure | Database + Repos    |
-| 3-4   | 4     | Use Case       | Application layer   |
+| 1-2   | 3     | Use Case       | Application layer   |
+| 3-4   | 4     | Infrastructure | Database + Repos    |
 | 4-5   | 5     | API            | REST endpoints      |
 | 5-6   | 6     | Import         | PDF processing      |
 | 7-8   | 7     | CodeGen        | Templates           |
