@@ -12,7 +12,7 @@ This guide is organized into separate documents for easier navigation:
 ### Phase-by-Phase Implementation
 - **[01-PHASE-1-SKIP.md](01-PHASE-1-SKIP.md)** - Why we skip Phase 1 (using Traxs.SharedKernel)
 - **[02-PHASE-2-FORM-DOMAIN.md](02-PHASE-2-FORM-DOMAIN.md)** - Form Context domain model (START HERE)
-- **[03-PHASE-3-FORM-USE-CASE.md](03-PHASE-3-USE-USE-CASE.md)**  - Use cases
+- **[03-PHASE-3-FORM-USE-CASE.md](03-PHASE-3-FORM-USE-CASE.md)**  - Use cases
 - **[04-PHASE-4-FORM-INFRASTRUCTURE.md](04-PHASE-4-FORM-INFRASTRUCTURE.md)** - EF Core and repositories
 - **[05-PHASE-5-FORM-API.md](05-PHASE-5-FORM-API.md)** - REST API 
 - **[06-PHASE-6-IMPORT-CONTEXT.md](06-PHASE-6-IMPORT-CONTEXT.md)** - PDF upload and extraction
