@@ -4,6 +4,8 @@
 **Complexity:** Medium-High  
 **Prerequisites:** Previous phases complete
 
+> **NOTES:** I am thinking about using the templating functionality created > in the FormGen project here instead of using an AI Service,
+
 ## Overview
 
 [To be implemented]
