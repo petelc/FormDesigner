@@ -8,21 +8,9 @@
 
 ## Overview
 
-[To be implemented]
+Using the Scriban template engine take in the json string created during the import AI service and using provided templates generate the necessary Code files.
 
-## Objectives
-
-- [ ] Objective 1
-- [ ] Objective 2
-
-## Steps
-
-[Detailed steps to follow]
-
-## Verification
-
-- [ ] All tests pass
-- [ ] Code compiles
+Please follow the complete setup guide found [here](setup_guide_complete.md)
 
 ## Next Steps
 
