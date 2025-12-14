@@ -4,19 +4,23 @@
   <ItemGroup>
     <PackageReference Include="Ardalis.GuardClauses" />
     <PackageReference Include="Ardalis.Result" />
-    <PackageReference Include="Ardalis.SharedKernel" />
+    <!-- <PackageReference Include="Ardalis.SharedKernel" /> -->
     <PackageReference Include="Traxs.SharedKernel" />
     <PackageReference Include="Ardalis.SmartEnum" />
     <PackageReference Include="Ardalis.Specification" />
     <PackageReference Include="MediatR" />
     <!-- <PackageReference Include="Microsoft.EntityFrameworkCore" /> -->
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Scriban" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Common/" />
+    <Folder Include="CodeGenerationContext/" />
     <Folder Include="Enums/" />
     <Folder Include="Identity/" />
+    <Folder Include="ImportContext/Events/" />
+    <Folder Include="ImportContext/Interfaces/" />
+    <Folder Include="ImportContext/ValueObjects/" />
     <Folder Include="ValueObjects/" />
   </ItemGroup>
 

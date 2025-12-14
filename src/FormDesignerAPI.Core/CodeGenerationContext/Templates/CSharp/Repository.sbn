@@ -1,0 +1,87 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Repository.sbn -}}
+using Microsoft.EntityFrameworkCore;
+using {{ Namespace }}.Core.Entities;
+using {{ Namespace }}.Core.Interfaces;
+using {{ Namespace }}.Infrastructure.Data;
+
+namespace {{ Namespace }}.Infrastructure.Repositories;
+
+/// <summary>
+/// Repository implementation for {{ EntityName }}
+/// Generated on {{ GeneratedDateFormatted }} UTC
+/// </summary>
+public class {{ EntityName }}Repository : I{{ EntityName }}Repository
+{
+    private readonly AppDbContext _context;
+
+    public {{ EntityName }}Repository(AppDbContext context)
+    {
+        _context = context;
+    }
+
+    public async Task<{{ EntityName }}?> GetByIdAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.{{ EntityNamePlural }}
+            .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
+    }
+
+    public async Task<IEnumerable<{{ EntityName }}>> GetAllAsync(
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.{{ EntityNamePlural }}
+            .OrderByDescending(e => e.CreatedAt)
+            .ToListAsync(cancellationToken);
+    }
+
+    public async Task<{{ EntityName }}> AddAsync(
+        {{ EntityName }} entity,
+        CancellationToken cancellationToken = default)
+    {
+        await _context.{{ EntityNamePlural }}.AddAsync(entity, cancellationToken);
+        await _context.SaveChangesAsync(cancellationToken);
+        return entity;
+    }
+
+    public async Task UpdateAsync(
+        {{ EntityName }} entity,
+        CancellationToken cancellationToken = default)
+    {
+        _context.{{ EntityNamePlural }}.Update(entity);
+        await _context.SaveChangesAsync(cancellationToken);
+    }
+
+    public async Task DeleteAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        var entity = await GetByIdAsync(id, cancellationToken);
+        if (entity != null)
+        {
+            _context.{{ EntityNamePlural }}.Remove(entity);
+            await _context.SaveChangesAsync(cancellationToken);
+        }
+    }
+
+{{~ # Add custom query methods based on fields ~}}
+{{~ for field in Fields ~}}
+{{~ if field.Type == "email" || field.Type == "text" && field.Name == "email" ~}}
+    public async Task<{{ EntityName }}?> GetByEmailAsync(
+        string email,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.{{ EntityNamePlural }}
+            .FirstOrDefaultAsync(e => e.{{ field.NamePascal }} == email, cancellationToken);
+    }
+{{~ end ~}}
+{{~ end ~}}
+
+    public async Task<bool> ExistsAsync(
+        Guid id,
+        CancellationToken cancellationToken = default)
+    {
+        return await _context.{{ EntityNamePlural }}
+            .AnyAsync(e => e.Id == id, cancellationToken);
+    }
+}

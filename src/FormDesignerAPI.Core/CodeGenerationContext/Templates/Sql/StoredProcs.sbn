@@ -1,0 +1,218 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/Sql/StoredProcs.sbn -}}
+-- ============================================================================
+-- Stored Procedures for {{ EntityName }}
+-- Generated on {{ GeneratedDateFormatted }} UTC
+-- Author: {{ Author }}
+-- ============================================================================
+
+-- ============================================================================
+-- GET BY ID
+-- ============================================================================
+IF OBJECT_ID('dbo.usp_{{ EntityName }}_GetById', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.usp_{{ EntityName }}_GetById;
+GO
+
+CREATE PROCEDURE dbo.usp_{{ EntityName }}_GetById
+    @Id UNIQUEIDENTIFIER
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        [Id],
+{{~ for field in Fields ~}}
+        [{{ field.NamePascal }}],
+{{~ end ~}}
+        [CreatedAt],
+        [CreatedBy],
+        [UpdatedAt],
+        [UpdatedBy]
+    FROM dbo.{{ EntityNamePlural }}
+    WHERE [Id] = @Id;
+END
+GO
+
+-- ============================================================================
+-- GET ALL
+-- ============================================================================
+IF OBJECT_ID('dbo.usp_{{ EntityName }}_GetAll', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.usp_{{ EntityName }}_GetAll;
+GO
+
+CREATE PROCEDURE dbo.usp_{{ EntityName }}_GetAll
+    @PageNumber INT = 1,
+    @PageSize INT = 50
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        [Id],
+{{~ for field in Fields ~}}
+        [{{ field.NamePascal }}],
+{{~ end ~}}
+        [CreatedAt],
+        [CreatedBy],
+        [UpdatedAt],
+        [UpdatedBy]
+    FROM dbo.{{ EntityNamePlural }}
+    ORDER BY [CreatedAt] DESC
+    OFFSET (@PageNumber - 1) * @PageSize ROWS
+    FETCH NEXT @PageSize ROWS ONLY;
+    
+    -- Return total count
+    SELECT COUNT(*) AS TotalCount
+    FROM dbo.{{ EntityNamePlural }};
+END
+GO
+
+-- ============================================================================
+-- INSERT
+-- ============================================================================
+IF OBJECT_ID('dbo.usp_{{ EntityName }}_Insert', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.usp_{{ EntityName }}_Insert;
+GO
+
+CREATE PROCEDURE dbo.usp_{{ EntityName }}_Insert
+    @Id UNIQUEIDENTIFIER OUTPUT,
+{{~ for field in Fields ~}}
+    @{{ field.NamePascal }} {{ field.SqlType }}{{ if !field.Required }} = NULL{{ end }},
+{{~ end ~}}
+    @CreatedBy NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SET @Id = NEWID();
+    
+    INSERT INTO dbo.{{ EntityNamePlural }} (
+        [Id],
+{{~ for field in Fields ~}}
+        [{{ field.NamePascal }}],
+{{~ end ~}}
+        [CreatedAt],
+        [CreatedBy]
+    )
+    VALUES (
+        @Id,
+{{~ for field in Fields ~}}
+        @{{ field.NamePascal }},
+{{~ end ~}}
+        GETUTCDATE(),
+        @CreatedBy
+    );
+    
+    -- Return the newly created record
+    EXEC dbo.usp_{{ EntityName }}_GetById @Id;
+END
+GO
+
+-- ============================================================================
+-- UPDATE
+-- ============================================================================
+IF OBJECT_ID('dbo.usp_{{ EntityName }}_Update', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.usp_{{ EntityName }}_Update;
+GO
+
+CREATE PROCEDURE dbo.usp_{{ EntityName }}_Update
+    @Id UNIQUEIDENTIFIER,
+{{~ for field in Fields ~}}
+    @{{ field.NamePascal }} {{ field.SqlType }}{{ if !field.Required }} = NULL{{ end }},
+{{~ end ~}}
+    @UpdatedBy NVARCHAR(100)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Check if record exists
+    IF NOT EXISTS (SELECT 1 FROM dbo.{{ EntityNamePlural }} WHERE [Id] = @Id)
+    BEGIN
+        RAISERROR('{{ EntityName }} with Id %s not found', 16, 1, @Id);
+        RETURN;
+    END
+    
+    UPDATE dbo.{{ EntityNamePlural }}
+    SET
+{{~ for field in Fields ~}}
+        [{{ field.NamePascal }}] = @{{ field.NamePascal }},
+{{~ end ~}}
+        [UpdatedAt] = GETUTCDATE(),
+        [UpdatedBy] = @UpdatedBy
+    WHERE [Id] = @Id;
+    
+    -- Return the updated record
+    EXEC dbo.usp_{{ EntityName }}_GetById @Id;
+END
+GO
+
+-- ============================================================================
+-- DELETE
+-- ============================================================================
+IF OBJECT_ID('dbo.usp_{{ EntityName }}_Delete', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.usp_{{ EntityName }}_Delete;
+GO
+
+CREATE PROCEDURE dbo.usp_{{ EntityName }}_Delete
+    @Id UNIQUEIDENTIFIER
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    -- Check if record exists
+    IF NOT EXISTS (SELECT 1 FROM dbo.{{ EntityNamePlural }} WHERE [Id] = @Id)
+    BEGIN
+        RAISERROR('{{ EntityName }} with Id %s not found', 16, 1, @Id);
+        RETURN;
+    END
+    
+    DELETE FROM dbo.{{ EntityNamePlural }}
+    WHERE [Id] = @Id;
+    
+    SELECT @@ROWCOUNT AS RowsAffected;
+END
+GO
+
+{{~ # Add custom stored procedures based on specific fields ~}}
+{{~ for field in Fields ~}}
+{{~ if field.Type == "email" ~}}
+
+-- ============================================================================
+-- GET BY EMAIL
+-- ============================================================================
+IF OBJECT_ID('dbo.usp_{{ EntityName }}_GetByEmail', 'P') IS NOT NULL
+    DROP PROCEDURE dbo.usp_{{ EntityName }}_GetByEmail;
+GO
+
+CREATE PROCEDURE dbo.usp_{{ EntityName }}_GetByEmail
+    @Email NVARCHAR(255)
+AS
+BEGIN
+    SET NOCOUNT ON;
+    
+    SELECT 
+        [Id],
+{{~ for f in Fields ~}}
+        [{{ f.NamePascal }}],
+{{~ end ~}}
+        [CreatedAt],
+        [CreatedBy],
+        [UpdatedAt],
+        [UpdatedBy]
+    FROM dbo.{{ EntityNamePlural }}
+    WHERE [{{ field.NamePascal }}] = @Email;
+END
+GO
+
+{{~ end ~}}
+{{~ end ~}}
+
+-- Grant execute permissions (adjust as needed)
+-- GRANT EXECUTE ON dbo.usp_{{ EntityName }}_GetById TO [YourAppRole];
+-- GRANT EXECUTE ON dbo.usp_{{ EntityName }}_GetAll TO [YourAppRole];
+-- GRANT EXECUTE ON dbo.usp_{{ EntityName }}_Insert TO [YourAppRole];
+-- GRANT EXECUTE ON dbo.usp_{{ EntityName }}_Update TO [YourAppRole];
+-- GRANT EXECUTE ON dbo.usp_{{ EntityName }}_Delete TO [YourAppRole];
+-- GO
+
+PRINT '✓ Stored procedures for {{ EntityName }} created successfully';
+GO

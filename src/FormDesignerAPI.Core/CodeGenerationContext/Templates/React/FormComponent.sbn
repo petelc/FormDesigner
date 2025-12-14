@@ -1,0 +1,259 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/React/FormComponent.sbn -}}
+import React, { useState } from 'react';
+
+/**
+ * {{ EntityName }} Form Component
+ * Generated on {{ GeneratedDateFormatted }} UTC
+ * Author: {{ Author }}
+ */
+
+// ============================================================================
+// TYPES
+// ============================================================================
+
+interface {{ EntityName }}FormData {
+{{~ for field in Fields ~}}
+  {{ field.NameCamel }}: {{ field.TypeScriptType }}{{ if !field.Required }} | null{{ end }};
+{{~ end ~}}
+}
+
+interface {{ EntityName }}FormProps {
+  initialData?: Partial<{{ EntityName }}FormData>;
+  onSubmit: (data: {{ EntityName }}FormData) => void | Promise<void>;
+  onCancel?: () => void;
+  isLoading?: boolean;
+}
+
+interface ValidationErrors {
+  [key: string]: string;
+}
+
+// ============================================================================
+// COMPONENT
+// ============================================================================
+
+export const {{ EntityName }}Form: React.FC<{{ EntityName }}FormProps> = ({
+  initialData,
+  onSubmit,
+  onCancel,
+  isLoading = false
+}) => {
+  // State
+  const [formData, setFormData] = useState<{{ EntityName }}FormData>({
+{{~ for field in Fields ~}}
+    {{ field.NameCamel }}: initialData?.{{ field.NameCamel }} ?? {{ if field.TypeScriptType == "string" }}''{{ else if field.TypeScriptType == "number" }}0{{ else if field.TypeScriptType == "boolean" }}false{{ else }}null{{ end }},
+{{~ end ~}}
+  });
+
+  const [errors, setErrors] = useState<ValidationErrors>({});
+  const [touched, setTouched] = useState<Set<string>>(new Set());
+
+  // Validation
+  const validate = (): boolean => {
+    const newErrors: ValidationErrors = {};
+
+{{~ for field in Fields ~}}
+{{~ if field.Required ~}}
+    // {{ field.Label }} - Required
+    if (!formData.{{ field.NameCamel }}{{ if field.TypeScriptType == "string" }} || formData.{{ field.NameCamel }}.trim() === ''{{ end }}) {
+      newErrors.{{ field.NameCamel }} = '{{ field.Label }} is required';
+    }
+{{~ end ~}}
+{{~ if field.MinLength ~}}
+    // {{ field.Label }} - Min Length
+    if (formData.{{ field.NameCamel }} && formData.{{ field.NameCamel }}.length < {{ field.MinLength }}) {
+      newErrors.{{ field.NameCamel }} = '{{ field.Label }} must be at least {{ field.MinLength }} characters';
+    }
+{{~ end ~}}
+{{~ if field.MaxLength ~}}
+    // {{ field.Label }} - Max Length
+    if (formData.{{ field.NameCamel }} && formData.{{ field.NameCamel }}.length > {{ field.MaxLength }}) {
+      newErrors.{{ field.NameCamel }} = '{{ field.Label }} cannot exceed {{ field.MaxLength }} characters';
+    }
+{{~ end ~}}
+{{~ if field.Type == "email" ~}}
+    // {{ field.Label }} - Email Format
+    if (formData.{{ field.NameCamel }}) {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(formData.{{ field.NameCamel }})) {
+        newErrors.{{ field.NameCamel }} = 'Invalid email format';
+      }
+    }
+{{~ end ~}}
+{{~ if field.Pattern ~}}
+    // {{ field.Label }} - Pattern
+    if (formData.{{ field.NameCamel }}) {
+      const pattern = new RegExp('{{ field.Pattern }}');
+      if (!pattern.test(formData.{{ field.NameCamel }})) {
+        newErrors.{{ field.NameCamel }} = '{{ field.Label }} format is invalid';
+      }
+    }
+{{~ end ~}}
+
+{{~ end ~}}
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  // Handlers
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    const { name, value, type } = e.target;
+    const checked = (e.target as HTMLInputElement).checked;
+
+    setFormData(prev => ({
+      ...prev,
+      [name]: type === 'checkbox' ? checked : 
+              type === 'number' ? (value ? Number(value) : null) :
+              value
+    }));
+
+    // Clear error when user starts typing
+    if (errors[name]) {
+      setErrors(prev => {
+        const newErrors = { ...prev };
+        delete newErrors[name];
+        return newErrors;
+      });
+    }
+  };
+
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+    setTouched(prev => new Set(prev).add(e.target.name));
+    validate();
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    
+    // Mark all fields as touched
+    setTouched(new Set([
+{{~ for field in Fields ~}}
+      '{{ field.NameCamel }}',
+{{~ end ~}}
+    ]));
+
+    if (validate()) {
+      await onSubmit(formData);
+    }
+  };
+
+  // Render
+  return (
+    <form onSubmit={handleSubmit} className="space-y-4 max-w-2xl">
+{{~ for field in Fields ~}}
+      {/* {{ field.Label }} */}
+      <div className="form-group">
+        <label 
+          htmlFor="{{ field.NameCamel }}" 
+          className="block text-sm font-medium text-gray-700 mb-1"
+        >
+          {{ field.Label }}{{ if field.Required }} <span className="text-red-500">*</span>{{ end }}
+        </label>
+        
+{{~ if field.Type == "textarea" ~}}
+        <textarea
+          id="{{ field.NameCamel }}"
+          name="{{ field.NameCamel }}"
+          value={formData.{{ field.NameCamel }}}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          {{ if field.Required }}required{{ end }}
+          {{ if field.Placeholder }}placeholder="{{ field.Placeholder }}"{{ end }}
+          {{ if field.MaxLength }}maxLength={{ field.MaxLength }}{{ end }}
+          rows={4}
+          disabled={isLoading}
+          className={`mt-1 block w-full rounded-md shadow-sm ${
+            touched.has('{{ field.NameCamel }}') && errors.{{ field.NameCamel }}
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        />
+{{~ else if field.Type == "select" && field.Options ~}}
+        <select
+          id="{{ field.NameCamel }}"
+          name="{{ field.NameCamel }}"
+          value={formData.{{ field.NameCamel }}}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          {{ if field.Required }}required{{ end }}
+          disabled={isLoading}
+          className={`mt-1 block w-full rounded-md shadow-sm ${
+            touched.has('{{ field.NameCamel }}') && errors.{{ field.NameCamel }}
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        >
+          <option value="">Select {{ field.Label }}</option>
+{{~ for option in field.Options ~}}
+          <option value="{{ option }}">{{ option }}</option>
+{{~ end ~}}
+        </select>
+{{~ else if field.Type == "checkbox" || field.Type == "boolean" ~}}
+        <div className="flex items-center">
+          <input
+            type="checkbox"
+            id="{{ field.NameCamel }}"
+            name="{{ field.NameCamel }}"
+            checked={formData.{{ field.NameCamel }}}
+            onChange={handleChange}
+            onBlur={handleBlur}
+            disabled={isLoading}
+            className="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+          />
+          <label htmlFor="{{ field.NameCamel }}" className="ml-2 text-sm text-gray-700">
+            {{ field.Label }}
+          </label>
+        </div>
+{{~ else ~}}
+        <input
+          type="{{ field.Type }}"
+          id="{{ field.NameCamel }}"
+          name="{{ field.NameCamel }}"
+          value={formData.{{ field.NameCamel }}}
+          onChange={handleChange}
+          onBlur={handleBlur}
+          {{ if field.Required }}required{{ end }}
+          {{ if field.Placeholder }}placeholder="{{ field.Placeholder }}"{{ end }}
+          {{ if field.MaxLength }}maxLength={{ field.MaxLength }}{{ end }}
+          {{ if field.MinLength }}minLength={{ field.MinLength }}{{ end }}
+          disabled={isLoading}
+          className={`mt-1 block w-full rounded-md shadow-sm ${
+            touched.has('{{ field.NameCamel }}') && errors.{{ field.NameCamel }}
+              ? 'border-red-300 focus:border-red-500 focus:ring-red-500'
+              : 'border-gray-300 focus:border-blue-500 focus:ring-blue-500'
+          }`}
+        />
+{{~ end ~}}
+        
+        {touched.has('{{ field.NameCamel }}') && errors.{{ field.NameCamel }} && (
+          <p className="mt-1 text-sm text-red-600">{errors.{{ field.NameCamel }}}</p>
+        )}
+      </div>
+
+{{~ end ~}}
+
+      {/* Form Actions */}
+      <div className="flex gap-3 pt-4">
+        <button
+          type="submit"
+          disabled={isLoading}
+          className="px-4 py-2 bg-blue-600 text-white rounded-md hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed"
+        >
+          {isLoading ? 'Saving...' : 'Save'}
+        </button>
+        
+        {onCancel && (
+          <button
+            type="button"
+            onClick={onCancel}
+            disabled={isLoading}
+            className="px-4 py-2 bg-gray-200 text-gray-700 rounded-md hover:bg-gray-300 disabled:opacity-50"
+          >
+            Cancel
+          </button>
+        )}
+      </div>
+    </form>
+  );
+};

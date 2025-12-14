@@ -1,4 +1,4 @@
-using FormDesignerAPI.Core.FormAggregate;
+using FormDesignerAPI.Core.FormContext.Aggregates;
 
 namespace FormDesignerAPI.Infrastructure.Data.Config;
 
@@ -29,13 +29,11 @@ public class FormConfiguration : IEntityTypeConfiguration<Form>
                 .IsRequired();
         });
 
-        builder.Property(f => f.Version)
-            .HasMaxLength(DataSchemaConstants.DEFAULT_FORM_NUMBER_LENGTH);
+        builder.Property(f => f.Revisions);
 
         builder.Property(f => f.CreatedDate);
 
         builder.Property(f => f.RevisedDate);
-        builder.Property(f => f.ConfigurationPath);
 
         builder.Property(f => f.Status)
             .HasConversion(
