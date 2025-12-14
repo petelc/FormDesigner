@@ -3,7 +3,7 @@ using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
 using FormDesignerAPI.Infrastructure.Identity;
-using FormDesignerAPI.UseCases.Contributors.List;
+// using FormDesignerAPI.UseCases.Contributors.List; // Not yet implemented
 using FormDesignerAPI.UseCases.Forms.List;
 using Microsoft.AspNetCore.Identity;
 
@@ -29,10 +29,10 @@ public static class InfrastructureServiceExtensions
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
         .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-        .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
-        .AddScoped<IDeleteContributorService, DeleteContributorService>()
+        // .AddScoped<IListContributorsQueryService, ListContributorsQueryService>() // Not yet implemented
+        // .AddScoped<IDeleteContributorService, DeleteContributorService>() // Not yet implemented
         .AddScoped<IListFormsQueryService, ListFormsQueryService>()
-        .AddScoped<IDeleteFormService, FormDeletedService>()
+        // .AddScoped<IDeleteFormService, FormDeletedService>() // Not yet implemented
         .AddScoped<ITokenClaimService, IdentityTokenClaimService>();
 
 

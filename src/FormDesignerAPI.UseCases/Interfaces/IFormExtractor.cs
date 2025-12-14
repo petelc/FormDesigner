@@ -14,7 +14,7 @@ public interface IFormExtractor
 
     Task<ExtractedFormStructure> ExtractFormStructureAsync(
         string pdfPath,
-        FormType formType,
+        string formType,
         CancellationToken cancellationToken = default);
 }
 

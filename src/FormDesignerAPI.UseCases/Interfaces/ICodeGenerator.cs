@@ -11,7 +11,7 @@ public interface ICodeGenerator
     Task<GeneratedCodeOutput> GenerateCodeAsync(
         Form form,
         string formName,
-        CodeNamespace targetNamespace,
+        string targetNamespace,
         string? formPurpose,
         CancellationToken cancellationToken = default);
 }
