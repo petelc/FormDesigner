@@ -1,5 +1,6 @@
 ﻿using Ardalis.ListStartupServices;
 using FormDesignerAPI.Infrastructure.Data;
+using Microsoft.EntityFrameworkCore;
 
 namespace FormDesignerAPI.Web.Configurations;
 
@@ -19,7 +20,7 @@ public static class MiddlewareConfig
     try
     {
       var context = services.GetRequiredService<AppDbContext>();
-      //          await context.Database.MigrateAsync();
+      // Use EnsureCreated for now since EF migrations tools have SDK version issues
       await context.Database.EnsureCreatedAsync();
       await SeedData.InitializeAsync(context);
     }
