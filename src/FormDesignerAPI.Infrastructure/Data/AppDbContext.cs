@@ -1,4 +1,4 @@
-﻿using FormDesignerAPI.Core.FormAggregate;
+﻿using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
@@ -13,8 +13,9 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
     _dispatcher = dispatcher;
   }
 
-
+  // FormContext aggregates
   public DbSet<Form> Forms => Set<Form>();
+  public DbSet<FormRevision> FormRevisions => Set<FormRevision>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
