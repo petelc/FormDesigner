@@ -239,7 +239,6 @@ public class MockFormExtractorService : IFormExtractor
                     Label = "Username",
                     Type = "text",
                     IsRequired = true,
-                    MinLength = 3,
                     MaxLength = 20,
                     ValidationPattern = @"^[a-zA-Z0-9_]+$"
                 },
@@ -257,7 +256,6 @@ public class MockFormExtractorService : IFormExtractor
                     Label = "Password",
                     Type = "password",
                     IsRequired = true,
-                    MinLength = 8,
                     MaxLength = 100
                 },
                 new ExtractedField

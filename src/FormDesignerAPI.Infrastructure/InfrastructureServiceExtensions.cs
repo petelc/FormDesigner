@@ -1,10 +1,13 @@
 ﻿using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
+using FormDesignerAPI.Core.FormContext.Interfaces;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
 using FormDesignerAPI.Infrastructure.Identity;
+using FormDesignerAPI.Infrastructure.DocumentIntelligence;
 // using FormDesignerAPI.UseCases.Contributors.List; // Not yet implemented
 using FormDesignerAPI.UseCases.Forms.List;
+using FormDesignerAPI.UseCases.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -34,6 +37,10 @@ public static class InfrastructureServiceExtensions
         .AddScoped<IListFormsQueryService, ListFormsQueryService>()
         // .AddScoped<IDeleteFormService, FormDeletedService>() // Not yet implemented
         .AddScoped<ITokenClaimService, IdentityTokenClaimService>();
+
+    // FormContext services
+    services.AddScoped<IFormRepository, FormRepository>()
+        .AddScoped<IFormExtractor, MockFormExtractorService>();
 
 
     logger.LogInformation("{Project} services registered", "Infrastructure");

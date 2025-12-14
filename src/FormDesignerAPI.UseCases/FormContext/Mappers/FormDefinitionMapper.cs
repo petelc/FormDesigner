@@ -2,7 +2,7 @@ using FormDesignerAPI.Core.FormContext.ValueObjects;
 using FormDesignerAPI.UseCases.Interfaces;
 using Microsoft.Extensions.Logging;
 
-namespace FormDesignerAPI.Infrastructure.DocumentIntelligence;
+namespace FormDesignerAPI.UseCases.FormContext.Mappers;
 
 /// <summary>
 /// Maps extracted form structure from Document Intelligence to FormDefinition value object
