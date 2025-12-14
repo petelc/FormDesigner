@@ -6,7 +6,8 @@
       "Bash(dotnet build:*)",
       "Bash(mkdir:*)",
       "Bash(dotnet ef migrations add:*)",
-      "Bash(dotnet tool update:*)"
+      "Bash(dotnet tool update:*)",
+      "Bash(dotnet ef migrations:*)"
     ],
     "deny": [],
     "ask": []
