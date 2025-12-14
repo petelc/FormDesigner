@@ -3,6 +3,7 @@ using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.UseCases.Identity.GetUserProfile;
 using FormDesignerAPI.UseCases.FormContext.Mappers;
+using FormDesignerAPI.Infrastructure.Data;
 using MediatR;
 using System.Reflection;
 
@@ -21,7 +22,7 @@ public static class MediatrConfigs
 
     services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(mediatRAssemblies!))
             .AddScoped(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>))
-            // .AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>() // Not yet implemented
+            .AddScoped<IDomainEventDispatcher, NoOpDomainEventDispatcher>()
             .AddScoped<FormDefinitionMapper>();
 
     return services;
