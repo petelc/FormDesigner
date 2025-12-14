@@ -1,0 +1,29 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Interface.sbn -}}
+using {{ Namespace }}.Core.Entities;
+
+namespace {{ Namespace }}.Core.Interfaces;
+
+/// <summary>
+/// Repository interface for {{ EntityName }}
+/// Generated on {{ GeneratedDateFormatted }} UTC
+/// </summary>
+public interface I{{ EntityName }}Repository
+{
+    Task<{{ EntityName }}?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    
+    Task<IEnumerable<{{ EntityName }}>> GetAllAsync(CancellationToken cancellationToken = default);
+    
+    Task<{{ EntityName }}> AddAsync({{ EntityName }} entity, CancellationToken cancellationToken = default);
+    
+    Task UpdateAsync({{ EntityName }} entity, CancellationToken cancellationToken = default);
+    
+    Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
+
+{{~ for field in Fields ~}}
+{{~ if field.Type == "email" || field.Type == "text" && field.Name == "email" ~}}
+    Task<{{ EntityName }}?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
+{{~ end ~}}
+{{~ end ~}}
+
+    Task<bool> ExistsAsync(Guid id, CancellationToken cancellationToken = default);
+}

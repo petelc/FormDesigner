@@ -1,0 +1,74 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/Sql/CreateTable.sbn -}}
+-- ============================================================================
+-- Create table for {{ EntityName }}
+-- Generated on {{ GeneratedDateFormatted }} UTC
+-- Author: {{ Author }}
+-- ============================================================================
+
+-- Drop table if exists (for development - remove in production)
+IF OBJECT_ID('dbo.{{ EntityNamePlural }}', 'U') IS NOT NULL
+    DROP TABLE dbo.{{ EntityNamePlural }};
+GO
+
+-- Create table
+CREATE TABLE dbo.{{ EntityNamePlural }} (
+    [Id] UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
+{{~ for field in Fields ~}}
+    [{{ field.NamePascal }}] {{ field.SqlType }}{{ if field.Required }} NOT NULL{{ else }} NULL{{ end }},
+{{~ end ~}}
+    [CreatedAt] DATETIME NOT NULL DEFAULT GETUTCDATE(),
+    [CreatedBy] NVARCHAR(100) NOT NULL,
+    [UpdatedAt] DATETIME NULL,
+    [UpdatedBy] NVARCHAR(100) NULL,
+    
+    -- Constraints
+{{~ for field in Fields ~}}
+{{~ if field.Type == "email" ~}}
+    CONSTRAINT CK_{{ EntityNamePlural }}_{{ field.NamePascal }}_Email 
+        CHECK ({{ field.NamePascal }} LIKE '%_@__%.__%'),
+{{~ end ~}}
+{{~ end ~}}
+    CONSTRAINT CK_{{ EntityNamePlural }}_Dates 
+        CHECK (UpdatedAt IS NULL OR UpdatedAt >= CreatedAt)
+);
+GO
+
+-- Indexes
+CREATE INDEX IX_{{ EntityNamePlural }}_CreatedAt 
+    ON dbo.{{ EntityNamePlural }}([CreatedAt] DESC);
+GO
+
+{{~ for field in Fields ~}}
+{{~ if field.Required && (field.Type == "text" || field.Type == "email") ~}}
+CREATE INDEX IX_{{ EntityNamePlural }}_{{ field.NamePascal }} 
+    ON dbo.{{ EntityNamePlural }}([{{ field.NamePascal }}]);
+GO
+
+{{~ end ~}}
+{{~ end ~}}
+
+-- Comments
+EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description',
+    @value = N'{{ EntityName }} entity table - Generated {{ GeneratedDateFormatted }}',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE',  @level1name = N'{{ EntityNamePlural }}';
+GO
+
+{{~ for field in Fields ~}}
+EXEC sys.sp_addextendedproperty 
+    @name = N'MS_Description',
+    @value = N'{{ field.Label }}{{ if field.Required }} (Required){{ end }}',
+    @level0type = N'SCHEMA', @level0name = N'dbo',
+    @level1type = N'TABLE',  @level1name = N'{{ EntityNamePlural }}',
+    @level2type = N'COLUMN', @level2name = N'{{ field.NamePascal }}';
+GO
+
+{{~ end ~}}
+
+-- Grant permissions (adjust as needed)
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.{{ EntityNamePlural }} TO [YourAppRole];
+-- GO
+
+PRINT '✓ Table {{ EntityNamePlural }} created successfully';
+GO

@@ -1,0 +1,92 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Entity.sbn -}}
+using System;
+using Traxs.SharedKernel;
+using {{ Namespace }}.Core.Interfaces;
+
+namespace {{ Namespace }}.Core.Entities;
+
+/// <summary>
+/// {{ EntityName }} entity
+/// Generated on {{ GeneratedDateFormatted }} UTC
+/// Author: {{ Author }}
+/// </summary>
+public class {{ EntityName }} : EntityBase<Guid>, IAggregateRoot
+{
+{{~ for field in Fields ~}}
+    /// <summary>
+    /// {{ field.Label }}
+    /// </summary>
+    public {{ field.CSharpType }} {{ field.NamePascal }} { get; set; }{{ if field.Required && field.CSharpType == "string" }} = string.Empty;{{ end }}
+{{~ end ~}}
+
+    public DateTime CreatedAt { get; set; }
+    public string CreatedBy { get; set; } = string.Empty;
+    public DateTime? UpdatedAt { get; set; }
+    public string? UpdatedBy { get; set; }
+
+    // Private constructor for EF Core
+    private {{ EntityName }}() { }
+
+    /// <summary>
+    /// Factory method to create a new {{ EntityName }}
+    /// </summary>
+    public static {{ EntityName }} Create(
+{{~ for field in Fields ~}}
+        {{ field.CSharpType }} {{ field.NameCamel }}{{ if !for.last }},{{ end }}
+{{~ end ~}},
+        string createdBy)
+    {
+        var entity = new {{ EntityName }}
+        {
+            Id = Guid.NewGuid(),
+{{~ for field in Fields ~}}
+            {{ field.NamePascal }} = {{ field.NameCamel }},
+{{~ end ~}}
+            CreatedAt = DateTime.UtcNow,
+            CreatedBy = createdBy
+        };
+
+        return entity;
+    }
+
+    /// <summary>
+    /// Update the {{ EntityName }}
+    /// </summary>
+    public void Update(
+{{~ for field in Fields ~}}
+        {{ field.CSharpType }} {{ field.NameCamel }}{{ if !for.last }},{{ end }}
+{{~ end ~}},
+        string updatedBy)
+    {
+{{~ for field in Fields ~}}
+        {{ field.NamePascal }} = {{ field.NameCamel }};
+{{~ end ~}}
+        UpdatedAt = DateTime.UtcNow;
+        UpdatedBy = updatedBy;
+    }
+
+{{~ if Fields | array.size > 0 ~}}
+    /// <summary>
+    /// Validate the entity
+    /// </summary>
+    public bool IsValid()
+    {
+{{~ for field in Fields ~}}
+{{~ if field.Required && field.CSharpType == "string" ~}}
+        if (string.IsNullOrWhiteSpace({{ field.NamePascal }}))
+            return false;
+{{~ end ~}}
+{{~ if field.MinLength ~}}
+        if ({{ field.NamePascal }}.Length < {{ field.MinLength }})
+            return false;
+{{~ end ~}}
+{{~ if field.MaxLength ~}}
+        if ({{ field.NamePascal }}.Length > {{ field.MaxLength }})
+            return false;
+{{~ end ~}}
+{{~ end ~}}
+
+        return true;
+    }
+{{~ end ~}}
+}

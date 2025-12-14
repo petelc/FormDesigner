@@ -1,0 +1,121 @@
+{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Dto.sbn -}}
+using System.ComponentModel.DataAnnotations;
+
+namespace {{ Namespace }}.Application.DTOs;
+
+/// <summary>
+/// Data Transfer Objects for {{ EntityName }}
+/// Generated on {{ GeneratedDateFormatted }} UTC
+/// </summary>
+
+// ============================================================================
+// CREATE REQUEST
+// ============================================================================
+
+/// <summary>
+/// Request to create a new {{ EntityName }}
+/// </summary>
+public record Create{{ EntityName }}Request
+{
+{{~ for field in Fields ~}}
+    /// <summary>
+    /// {{ field.Label }}
+    /// </summary>
+{{~ if field.Required ~}}
+    [Required(ErrorMessage = "{{ field.Label }} is required")]
+{{~ end ~}}
+{{~ if field.MaxLength ~}}
+    [MaxLength({{ field.MaxLength }}, ErrorMessage = "{{ field.Label }} cannot exceed {{ field.MaxLength }} characters")]
+{{~ end ~}}
+{{~ if field.MinLength ~}}
+    [MinLength({{ field.MinLength }}, ErrorMessage = "{{ field.Label }} must be at least {{ field.MinLength }} characters")]
+{{~ end ~}}
+{{~ if field.Type == "email" ~}}
+    [EmailAddress(ErrorMessage = "Invalid email format")]
+{{~ end ~}}
+{{~ if field.Type == "url" ~}}
+    [Url(ErrorMessage = "Invalid URL format")]
+{{~ end ~}}
+{{~ if field.Pattern ~}}
+    [RegularExpression(@"{{ field.Pattern }}", ErrorMessage = "{{ field.Label }} format is invalid")]
+{{~ end ~}}
+    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+{{~ if field.DefaultValue ~}}
+         = {{ if field.CSharpType == "string" }}"{{ field.DefaultValue }}"{{ else }}{{ field.DefaultValue }}{{ end }};
+{{~ end ~}}
+
+{{~ end ~}}
+}
+
+// ============================================================================
+// UPDATE REQUEST
+// ============================================================================
+
+/// <summary>
+/// Request to update an existing {{ EntityName }}
+/// </summary>
+public record Update{{ EntityName }}Request
+{
+{{~ for field in Fields ~}}
+    /// <summary>
+    /// {{ field.Label }}
+    /// </summary>
+{{~ if field.Required ~}}
+    [Required(ErrorMessage = "{{ field.Label }} is required")]
+{{~ end ~}}
+{{~ if field.MaxLength ~}}
+    [MaxLength({{ field.MaxLength }}, ErrorMessage = "{{ field.Label }} cannot exceed {{ field.MaxLength }} characters")]
+{{~ end ~}}
+{{~ if field.MinLength ~}}
+    [MinLength({{ field.MinLength }}, ErrorMessage = "{{ field.Label }} must be at least {{ field.MinLength }} characters")]
+{{~ end ~}}
+{{~ if field.Type == "email" ~}}
+    [EmailAddress(ErrorMessage = "Invalid email format")]
+{{~ end ~}}
+{{~ if field.Type == "url" ~}}
+    [Url(ErrorMessage = "Invalid URL format")]
+{{~ end ~}}
+    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+
+{{~ end ~}}
+}
+
+// ============================================================================
+// RESPONSE DTO
+// ============================================================================
+
+/// <summary>
+/// Response DTO for {{ EntityName }}
+/// </summary>
+public record {{ EntityName }}Response
+{
+    public Guid Id { get; init; }
+{{~ for field in Fields ~}}
+    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+{{~ end ~}}
+    public DateTime CreatedAt { get; init; }
+    public string CreatedBy { get; init; } = string.Empty;
+    public DateTime? UpdatedAt { get; init; }
+    public string? UpdatedBy { get; init; }
+}
+
+// ============================================================================
+// LIST ITEM DTO (for list views)
+// ============================================================================
+
+/// <summary>
+/// Simplified DTO for {{ EntityName }} list views
+/// </summary>
+public record {{ EntityName }}ListItem
+{
+    public Guid Id { get; init; }
+{{~ # Include only the first 3-4 most important fields for list view ~}}
+{{~ i = 0 ~}}
+{{~ for field in Fields ~}}
+{{~ if i < 4 ~}}
+    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+{{~ i = i + 1 ~}}
+{{~ end ~}}
+{{~ end ~}}
+    public DateTime CreatedAt { get; init; }
+}
