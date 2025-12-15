@@ -1,0 +1,19 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(find:*)",
+      "Bash(cat:*)",
+      "Bash(dotnet build:*)",
+      "Bash(mkdir:*)",
+      "Bash(dotnet ef migrations add:*)",
+      "Bash(dotnet tool update:*)",
+      "Bash(dotnet ef migrations:*)",
+      "Bash(dotnet run:*)",
+      "Bash(dotnet restore:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -1,10 +1,15 @@
 ﻿using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
+using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.Core.CodeGenerationContext.Interfaces;
+using FormDesignerAPI.Core.CodeGenerationContext.Services;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
 using FormDesignerAPI.Infrastructure.Identity;
-using FormDesignerAPI.UseCases.Contributors.List;
+using FormDesignerAPI.Infrastructure.DocumentIntelligence;
+// using FormDesignerAPI.UseCases.Contributors.List; // Not yet implemented
 using FormDesignerAPI.UseCases.Forms.List;
+using FormDesignerAPI.UseCases.Interfaces;
 using Microsoft.AspNetCore.Identity;
 
 
@@ -29,12 +34,52 @@ public static class InfrastructureServiceExtensions
 
     services.AddScoped(typeof(IRepository<>), typeof(EfRepository<>))
         .AddScoped(typeof(IReadRepository<>), typeof(EfRepository<>))
-        .AddScoped<IListContributorsQueryService, ListContributorsQueryService>()
-        .AddScoped<IDeleteContributorService, DeleteContributorService>()
+        // .AddScoped<IListContributorsQueryService, ListContributorsQueryService>() // Not yet implemented
+        // .AddScoped<IDeleteContributorService, DeleteContributorService>() // Not yet implemented
         .AddScoped<IListFormsQueryService, ListFormsQueryService>()
-        .AddScoped<IDeleteFormService, FormDeletedService>()
+        // .AddScoped<IDeleteFormService, FormDeletedService>() // Not yet implemented
         .AddScoped<ITokenClaimService, IdentityTokenClaimService>();
 
+    // FormContext services
+    services.AddScoped<IFormRepository, FormRepository>();
+
+    // CodeGenerationContext services
+    services.AddScoped<ICodeGenerationJobRepository, CodeGenerationJobRepository>();
+    services.AddScoped<ScribanTemplateEngine>();
+
+    // Register TemplateRepository with template base path
+    // Templates are in the Core project at CodeGenerationContext/Templates
+    var templateBasePath = Path.Combine(
+        AppDomain.CurrentDomain.BaseDirectory,
+        "..", "..", "..", "..", "..",
+        "FormDesignerAPI.Core",
+        "CodeGenerationContext",
+        "Templates");
+    services.AddScoped<TemplateRepository>(sp =>
+        new TemplateRepository(
+            Path.GetFullPath(templateBasePath),
+            sp.GetRequiredService<ILogger<TemplateRepository>>()));
+
+    // Register CodeArtifactOrganizer with output path
+    var outputBasePath = Path.Combine(Path.GetTempPath(), "FormDesigner", "CodeGeneration");
+    services.AddScoped<CodeArtifactOrganizer>(sp =>
+        new CodeArtifactOrganizer(outputBasePath));
+
+    services.AddScoped<ZipPackager>();
+    services.AddScoped<CodeGenerationOrchestrator>();
+
+    // Register IFormExtractor - use configuration to choose between Mock and Real Azure service
+    var useMock = config.GetValue<bool>("AzureDocumentIntelligence:UseMock", true);
+    if (useMock)
+    {
+      services.AddScoped<IFormExtractor, MockFormExtractorService>();
+      logger.LogInformation("Using MockFormExtractorService (no Azure API calls)");
+    }
+    else
+    {
+      services.AddScoped<IFormExtractor, AzureFormExtractorService>();
+      logger.LogInformation("Using AzureFormExtractorService (real Azure Document Intelligence)");
+    }
 
     logger.LogInformation("{Project} services registered", "Infrastructure");
 

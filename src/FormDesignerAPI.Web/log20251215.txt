@@ -1,0 +1,67 @@
+2025-12-15 05:47:00.764 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-15 05:47:00.831 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-15 05:47:00.838 -05:00 [INF] Registering templates from: /Users/pete/Development/Projects/FormDesigner/FormDesignerAPI.Core/CodeGenerationContext/Templates
+2025-12-15 05:47:00.838 -05:00 [INF] Registered 9 templates
+2025-12-15 05:47:00.842 -05:00 [INF] Registered 17 endpoints in 155 milliseconds.
+2025-12-15 05:47:01.127 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-15 05:47:01.127 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-15 05:47:01.196 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-12-15 05:47:01.303 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-12-15 05:47:01.511 -05:00 [INF] Now listening on: https://localhost:52566
+2025-12-15 05:47:01.511 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-15 05:47:01.511 -05:00 [INF] Hosting environment: Development
+2025-12-15 05:47:01.511 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-15 05:47:47.261 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-15 05:47:47.285 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-15 05:47:47.283 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 25.8185ms
+2025-12-15 05:47:47.320 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 34.5943ms
+2025-12-15 05:47:47.386 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-15 05:47:47.388 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-15 05:47:47.590 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 204.5679ms
+2025-12-15 05:48:29.460 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/forms - null null
+2025-12-15 05:48:29.465 -05:00 [INF] Executing endpoint 'HTTP: GET /api/forms'
+2025-12-15 05:48:29.540 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."IsActive", "f"."Name", "f"."DefinitionSchema", "f"."Origin_CreatedAt", "f"."Origin_CreatedBy", "f"."Origin_ReferenceId", "f"."Origin_Type"
+FROM "Forms" AS "f"
+2025-12-15 05:48:29.577 -05:00 [INF] Executed endpoint 'HTTP: GET /api/forms'
+2025-12-15 05:48:29.579 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/forms - 200 null application/json; charset=utf-8 119.1638ms
+2025-12-15 05:51:06.040 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/api/forms/143a75f5-15fc-4c5a-ab5f-19a09229b57d/generate-code - application/json 633
+2025-12-15 05:51:06.042 -05:00 [INF] Executing endpoint 'HTTP: POST /api/forms/{FormId}/generate-code'
+2025-12-15 05:51:06.044 -05:00 [INF] Registering templates from: /Users/pete/Development/Projects/FormDesigner/FormDesignerAPI.Core/CodeGenerationContext/Templates
+2025-12-15 05:51:06.044 -05:00 [INF] Registered 9 templates
+2025-12-15 05:51:06.097 -05:00 [INF] Executed endpoint 'HTTP: POST /api/forms/{FormId}/generate-code'
+2025-12-15 05:51:06.097 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: The expression 'f.Revisions' is invalid inside an 'Include' operation, since it does not represent a property access: 't => t.MyProperty'. To target navigations declared on derived types, use casting ('t => ((Derived)t).MyProperty') or the 'as' operator ('t => (t as Derived).MyProperty'). Collection navigation access can be filtered by composing Where, OrderBy(Descending), ThenBy(Descending), Skip or Take operations. For more information on including related data, see https://go.microsoft.com/fwlink/?LinkID=746393.
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.PopulateIncludeTree(IncludeTreeNode includeTreeNode, Expression expression, Boolean setLoaded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.ProcessInclude(NavigationExpansionExpression source, Expression expression, Boolean thenInclude, Boolean setLoaded)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.VisitMethodCall(MethodCallExpression methodCallExpression)
+   at Microsoft.EntityFrameworkCore.Query.Internal.NavigationExpandingExpressionVisitor.Expand(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryTranslationPreprocessor.Process(Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutorExpression[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Query.QueryCompilationContext.CreateQueryExecutor[TResult](Expression query)
+   at Microsoft.EntityFrameworkCore.Storage.Database.CompileQuery[TResult](Expression query, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.CompileQueryCore[TResult](IDatabase database, Expression query, IModel model, Boolean async)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.<>c__DisplayClass11_0`1.<ExecuteCore>b__0()
+   at Microsoft.EntityFrameworkCore.Query.Internal.CompiledQueryCache.GetOrAddQuery[TResult](Object cacheKey, Func`1 compiler)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteCore[TResult](Expression query, Boolean async, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.QueryCompiler.ExecuteAsync[TResult](Expression query, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.EntityQueryProvider.ExecuteAsync[TResult](Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, Expression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ExecuteAsync[TSource,TResult](MethodInfo operatorMethodInfo, IQueryable`1 source, LambdaExpression expression, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.FirstOrDefaultAsync[TSource](IQueryable`1 source, Expression`1 predicate, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.FormRepository.GetByIdWithRevisionsAsync(Guid id, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/FormRepository.cs:line 26
+   at FormDesignerAPI.Web.CodeGeneration.GenerateCode.HandleAsync(GenerateCodeRequest request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/CodeGeneration/GenerateCode.cs:line 39
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-12-15 05:51:06.106 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/api/forms/143a75f5-15fc-4c5a-ab5f-19a09229b57d/generate-code - 500 null text/plain; charset=utf-8 66.03ms

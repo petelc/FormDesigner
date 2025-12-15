@@ -3,7 +3,7 @@ using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
 using FormDesignerAPI.Infrastructure.Identity;
-using FormDesignerAPI.UseCases.Contributors.Create;
+// using FormDesignerAPI.UseCases.Contributors.Create; // Not yet implemented
 using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.UseCases.Identity.Register;
 using FormDesignerAPI.UseCases.Interfaces;
@@ -38,18 +38,18 @@ builder.Services.AddFastEndpoints()
   .SwaggerDocument(o =>
       {
         o.ShortSchemaNames = true;
-      })
-      .AddCommandMiddleware(c =>
-      {
-        c.Register(typeof(CommandLogger<,>));
       });
+      // .AddCommandMiddleware(c =>
+      // {
+      //   c.Register(typeof(CommandLogger<,>));
+      // });
 
 // wire up commands
-builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>();
+// builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>(); // Not yet implemented
 
-builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>();
+// builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>(); // Not yet implemented
 
-builder.Services.AddTransient<IFormUpdateService, FormUpdateService>();
+// builder.Services.AddTransient<IFormUpdateService, FormUpdateService>(); // Not yet implemented
 
 builder.Services.AddTransient<ICommandHandler<RegisterUserCommand, Result<string>>, RegisterUserHandler>();
 

@@ -1,6 +1,3 @@
-using FormDesignerAPI.Core.FormContext.Aggregates;
-using FormDesignerAPI.Core.FormContext.ValueObjects;
-
 namespace FormDesignerAPI.UseCases.Interfaces;
 
 /// <summary>
@@ -14,7 +11,7 @@ public interface IFormExtractor
 
     Task<ExtractedFormStructure> ExtractFormStructureAsync(
         string pdfPath,
-        FormType formType,
+        string formType,
         CancellationToken cancellationToken = default);
 }
 

@@ -4,25 +4,29 @@ using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.Core.FormContext.Interfaces;
 using FormDesignerAPI.Core.FormContext.ValueObjects;
 using FormDesignerAPI.UseCases.Interfaces;
+using FormDesignerAPI.UseCases.FormContext.Mappers;
 
 namespace FormDesignerAPI.UseCases.Commands.AnalyzeForm;
 
 /// <summary>
-/// Handler for AnalyzeFormCommand
+/// Handler for AnalyzeFormCommand - analyzes PDF forms and creates Form aggregates
 /// </summary>
 public class AnalyzeFormCommandHandler : IRequestHandler<AnalyzeFormCommand, AnalyzeFormResult>
 {
     private readonly IFormExtractor _formExtractor;
     private readonly IFormRepository _formRepository;
+    private readonly FormDefinitionMapper _mapper;
     private readonly ILogger<AnalyzeFormCommandHandler> _logger;
 
     public AnalyzeFormCommandHandler(
         IFormExtractor formExtractor,
         IFormRepository formRepository,
+        FormDefinitionMapper mapper,
         ILogger<AnalyzeFormCommandHandler> logger)
     {
         _formExtractor = formExtractor;
         _formRepository = formRepository;
+        _mapper = mapper;
         _logger = logger;
     }
 
@@ -41,108 +45,70 @@ public class AnalyzeFormCommandHandler : IRequestHandler<AnalyzeFormCommand, Ana
                 await request.PdfStream.CopyToAsync(fileStream, cancellationToken);
             }
 
-            // Detect form type
-            var formTypeValue = await _formExtractor.DetectFormTypeAsync(tempPath, cancellationToken);
-            var formType = FormType.FromString(formTypeValue);
+            // Detect form type using Document Intelligence
+            var formType = await _formExtractor.DetectFormTypeAsync(tempPath, cancellationToken);
+            _logger.LogInformation("Detected form type: {FormType}", formType);
 
-            _logger.LogInformation("Detected form type: {FormType}", formType.Value);
-
-            // Create Form aggregate
-            var form = new Form(request.FileName, formType);
-
-            // Extract structure
+            // Extract structure from PDF
             var extractedStructure = await _formExtractor.ExtractFormStructureAsync(
                 tempPath,
                 formType,
                 cancellationToken);
 
-            // Add fields to aggregate
-            foreach (var fieldData in extractedStructure.Fields)
+            _logger.LogInformation(
+                "Extracted {FieldCount} fields, {TableCount} tables",
+                extractedStructure.Fields.Count,
+                extractedStructure.Tables.Count);
+
+            // Map extracted structure to FormDefinition value object
+            var definition = _mapper.MapToFormDefinition(extractedStructure);
+
+            // Optionally map tables as repeating fields
+            if (extractedStructure.Tables.Any())
             {
-                var fieldType = FieldType.FromString(fieldData.Type);
-                var field = new FormField(fieldData.Name, fieldData.Label, fieldType, fieldData.IsRequired);
-
-                if (fieldData.MaxLength.HasValue)
-                    field.SetMaxLength(fieldData.MaxLength.Value);
-
-                if (!string.IsNullOrEmpty(fieldData.DefaultValue))
-                    field.SetDefaultValue(fieldData.DefaultValue);
-
-                if (fieldData.Options != null)
-                {
-                    foreach (var option in fieldData.Options)
-                        field.AddOption(option);
-                }
-
-                if (!string.IsNullOrEmpty(fieldData.ValidationPattern))
-                {
-                    var validationRule = new ValidationRule(
-                        fieldData.ValidationPattern,
-                        "Validation failed",
-                        fieldData.IsRequired);
-                    field.SetValidationRule(validationRule);
-                }
-
-                form.AddField(field);
+                var tableFields = _mapper.MapTablesAsRepeatingFields(extractedStructure.Tables);
+                _logger.LogInformation(
+                    "Mapped {TableFieldCount} additional fields from tables",
+                    tableFields.Count);
             }
 
-            // Add tables to aggregate
-            foreach (var tableData in extractedStructure.Tables)
-            {
-                var table = new FormTable(tableData.RowCount, tableData.ColumnCount);
+            // Create Form aggregate with Import origin
+            var fileName = Path.GetFileNameWithoutExtension(request.FileName);
+            var origin = OriginMetadata.Import(request.FileName, "system");
+            var form = Form.Create(fileName, definition, origin, "system");
 
-                foreach (var cellData in tableData.Cells)
-                {
-                    var cell = new TableCell(
-                        cellData.Content,
-                        cellData.RowIndex,
-                        cellData.ColumnIndex,
-                        cellData.IsHeader);
-                    table.AddCell(cell);
-                }
-
-                form.AddTable(table);
-            }
-
-            // Add warnings
-            foreach (var warning in extractedStructure.Warnings)
-            {
-                form.AddWarning(warning);
-            }
-
-            // Mark as analyzed (raises domain event)
-            form.MarkAsAnalyzed();
+            _logger.LogInformation("Created form aggregate: {FormId}", form.Id);
 
             // Persist to repository
             await _formRepository.AddAsync(form, cancellationToken);
+            await _formRepository.SaveChangesAsync(cancellationToken);
 
             _logger.LogInformation(
-                "Form analysis complete: {FormId}, {FieldCount} fields, {TableCount} tables",
+                "Form analysis complete: {FormId}, {FieldCount} fields",
                 form.Id,
-                form.Fields.Count,
-                form.Tables.Count);
+                form.FieldCount);
 
             // Map to result DTO
             return new AnalyzeFormResult
             {
                 FormId = form.Id,
-                FileName = form.FileName,
-                FormType = form.FormType.Value,
-                FieldCount = form.Fields.Count,
-                TableCount = form.Tables.Count,
-                Fields = form.Fields.Select(f => new FieldSummaryDto
+                FileName = request.FileName,
+                FormType = formType,
+                FieldCount = form.FieldCount,
+                TableCount = extractedStructure.Tables.Count,
+                Fields = definition.Fields.Select(f => new FieldSummaryDto
                 {
                     Name = f.Name,
-                    Label = f.Label,
-                    Type = f.FieldType.Value,
-                    IsRequired = f.IsRequired,
-                    HasOptions = f.Options.Any(),
-                    HasValidation = f.ValidationRule != null,
+                    Label = f.Label ?? f.Name,
+                    Type = f.Type,
+                    IsRequired = f.Required,
+                    HasOptions = f.Options?.Any() ?? false,
+                    HasValidation = !string.IsNullOrEmpty(f.Pattern),
                     MaxLength = f.MaxLength
                 }).ToList(),
-                Warnings = form.Warnings.ToList(),
-                RequiresManualReview = form.RequiresManualReview(),
-                AnalyzedAt = form.AnalyzedAt!.Value
+                Warnings = extractedStructure.Warnings,
+                RequiresManualReview = extractedStructure.Warnings.Any(),
+                AnalyzedAt = DateTime.UtcNow
             };
         }
         finally
