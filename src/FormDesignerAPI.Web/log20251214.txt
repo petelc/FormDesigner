@@ -299,3 +299,62 @@ SELECT "f"."Id", "f"."IsActive", "f"."Name", "f"."DefinitionSchema", "f"."Origin
 FROM "Forms" AS "f"
 2025-12-14 10:06:59.988 -05:00 [INF] Executed endpoint 'HTTP: GET /api/forms'
 2025-12-14 10:06:59.988 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/forms - 200 null application/json; charset=utf-8 102.081ms
+2025-12-14 21:36:09.545 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-14 21:36:09.614 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-14 21:36:09.622 -05:00 [INF] Registered 19 endpoints in 159 milliseconds.
+2025-12-14 21:36:09.929 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-12-14 21:36:10.029 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-12-14 21:36:10.273 -05:00 [INF] Now listening on: https://localhost:57671
+2025-12-14 21:36:10.273 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-14 21:36:10.274 -05:00 [INF] Hosting environment: Development
+2025-12-14 21:36:10.274 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-14 21:36:23.013 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/ - null null
+2025-12-14 21:36:23.031 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/ - 404 0 null 19.2655ms
+2025-12-14 21:36:23.036 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/, Response status code: 404
+2025-12-14 21:36:48.656 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/ - null null
+2025-12-14 21:36:48.658 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/ - 404 0 null 1.4107ms
+2025-12-14 21:36:48.658 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/, Response status code: 404
+2025-12-14 21:37:05.492 -05:00 [INF] Application is shutting down...
+2025-12-14 21:37:37.755 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-14 21:37:37.814 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-14 21:37:37.821 -05:00 [INF] Registered 19 endpoints in 132 milliseconds.
+2025-12-14 21:37:38.112 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-12-14 21:37:38.210 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-12-14 21:37:38.431 -05:00 [INF] Now listening on: https://localhost:54954
+2025-12-14 21:37:38.431 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-14 21:37:38.431 -05:00 [INF] Hosting environment: Development
+2025-12-14 21:37:38.431 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-14 21:37:48.958 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-14 21:37:48.983 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-14 21:37:48.981 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 26.937ms
+2025-12-14 21:37:49.019 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 35.8536ms
+2025-12-14 21:37:49.084 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-14 21:37:49.087 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-14 21:37:49.341 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 256.5425ms
+2025-12-14 21:38:17.410 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/api/forms/upload-pdf - multipart/form-data; boundary=----WebKitFormBoundarypEwDwcbflivLs5gT 18193
+2025-12-14 21:38:17.412 -05:00 [INF] Executing endpoint 'HTTP: POST /api/forms/upload-pdf'
+2025-12-14 21:38:17.457 -05:00 [INF] AzureFormExtractorService initialized with endpoint: https://formdesigner-docintel.cognitiveservices.azure.com/, model: prebuilt-document
+2025-12-14 21:38:17.461 -05:00 [INF] Analyzing form: Test.pdf
+2025-12-14 21:38:17.462 -05:00 [INF] Detecting form type for: /var/folders/j5/xrt7qb6s05n4wn8_yppp17t00000gn/T/tmp2hNk5m.tmp
+2025-12-14 21:38:24.201 -05:00 [INF] Detected form type: generic
+2025-12-14 21:38:24.201 -05:00 [INF] Detected form type: generic
+2025-12-14 21:38:24.202 -05:00 [INF] Extracting form structure from /var/folders/j5/xrt7qb6s05n4wn8_yppp17t00000gn/T/tmp2hNk5m.tmp as generic
+2025-12-14 21:38:30.518 -05:00 [INF] Extracted 7 fields and 0 tables from /var/folders/j5/xrt7qb6s05n4wn8_yppp17t00000gn/T/tmp2hNk5m.tmp
+2025-12-14 21:38:30.518 -05:00 [INF] Extracted 7 fields, 0 tables
+2025-12-14 21:38:30.518 -05:00 [INF] Mapping 7 extracted fields to FormDefinition
+2025-12-14 21:38:30.521 -05:00 [INF] Successfully mapped 7 fields
+2025-12-14 21:38:30.533 -05:00 [INF] Created form aggregate: "143a75f5-15fc-4c5a-ab5f-19a09229b57d"
+2025-12-14 21:38:30.613 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 36), @p1='?' (DbType = Boolean), @p2='?' (Size = 4), @p3='?' (Size = 784), @p4='?' (DbType = DateTime), @p5='?' (Size = 6), @p6='?' (Size = 8), @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Forms" ("Id", "IsActive", "Name", "DefinitionSchema", "Origin_CreatedAt", "Origin_CreatedBy", "Origin_ReferenceId", "Origin_Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-12-14 21:38:30.617 -05:00 [INF] Form analysis complete: "143a75f5-15fc-4c5a-ab5f-19a09229b57d", 7 fields
+2025-12-14 21:38:30.620 -05:00 [INF] Executed endpoint 'HTTP: POST /api/forms/upload-pdf'
+2025-12-14 21:38:30.622 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/api/forms/upload-pdf - 200 null application/json; charset=utf-8 13212.1535ms
