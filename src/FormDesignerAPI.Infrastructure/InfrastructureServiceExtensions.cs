@@ -1,6 +1,8 @@
 ﻿using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Core.FormContext.Interfaces;
+using FormDesignerAPI.Core.CodeGenerationContext.Interfaces;
+using FormDesignerAPI.Core.CodeGenerationContext.Services;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
 using FormDesignerAPI.Infrastructure.Identity;
@@ -40,6 +42,31 @@ public static class InfrastructureServiceExtensions
 
     // FormContext services
     services.AddScoped<IFormRepository, FormRepository>();
+
+    // CodeGenerationContext services
+    services.AddScoped<ICodeGenerationJobRepository, CodeGenerationJobRepository>();
+    services.AddScoped<ScribanTemplateEngine>();
+
+    // Register TemplateRepository with template base path
+    // Templates are in the Core project at CodeGenerationContext/Templates
+    var templateBasePath = Path.Combine(
+        AppDomain.CurrentDomain.BaseDirectory,
+        "..", "..", "..", "..", "..",
+        "FormDesignerAPI.Core",
+        "CodeGenerationContext",
+        "Templates");
+    services.AddScoped<TemplateRepository>(sp =>
+        new TemplateRepository(
+            Path.GetFullPath(templateBasePath),
+            sp.GetRequiredService<ILogger<TemplateRepository>>()));
+
+    // Register CodeArtifactOrganizer with output path
+    var outputBasePath = Path.Combine(Path.GetTempPath(), "FormDesigner", "CodeGeneration");
+    services.AddScoped<CodeArtifactOrganizer>(sp =>
+        new CodeArtifactOrganizer(outputBasePath));
+
+    services.AddScoped<ZipPackager>();
+    services.AddScoped<CodeGenerationOrchestrator>();
 
     // Register IFormExtractor - use configuration to choose between Mock and Real Azure service
     var useMock = config.GetValue<bool>("AzureDocumentIntelligence:UseMock", true);

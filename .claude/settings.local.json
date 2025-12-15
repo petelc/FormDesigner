@@ -9,7 +9,9 @@
       "Bash(dotnet tool update:*)",
       "Bash(dotnet ef migrations:*)",
       "Bash(dotnet run:*)",
-      "Bash(dotnet restore:*)"
+      "Bash(dotnet restore:*)",
+      "Bash(lsof:*)",
+      "Bash(xargs kill:*)"
     ],
     "deny": [],
     "ask": []
