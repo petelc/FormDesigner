@@ -39,7 +39,12 @@ public static class InfrastructureServiceExtensions
         .AddScoped<ITokenClaimService, IdentityTokenClaimService>();
 
     // FormContext services
+<<<<<<< HEAD
+    // services.AddScoped<IFormRepository, FormRepository>()
+    //     .AddScoped<IFormExtractor, MockFormExtractorService>();
+=======
     services.AddScoped<IFormRepository, FormRepository>();
+>>>>>>> 31d293544196fe21d2d76d944905c49da0b72e3f
 
     // Register IFormExtractor - use configuration to choose between Mock and Real Azure service
     var useMock = config.GetValue<bool>("AzureDocumentIntelligence:UseMock", true);

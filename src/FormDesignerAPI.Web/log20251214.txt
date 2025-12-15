@@ -143,3 +143,159 @@ SELECT EXISTS (
 2025-12-14 09:05:31.908 -05:00 [INF] Application started. Press Ctrl+C to shut down.
 2025-12-14 09:05:31.908 -05:00 [INF] Hosting environment: Development
 2025-12-14 09:05:31.908 -05:00 [INF] Content root path: /Users/pete/.claude-worktrees/FormDesigner/practical-elbakyan/src/FormDesignerAPI.Web
+2025-12-14 09:17:46.308 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-14 09:17:46.371 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-14 09:17:46.378 -05:00 [INF] Registered 19 endpoints in 146 milliseconds.
+2025-12-14 09:17:46.735 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-12-14 09:17:46.831 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-12-14 09:17:47.092 -05:00 [INF] Now listening on: https://localhost:55961
+2025-12-14 09:17:47.092 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-14 09:17:47.092 -05:00 [INF] Hosting environment: Development
+2025-12-14 09:17:47.092 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-14 09:20:34.501 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-14 09:20:34.561 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-14 09:20:34.568 -05:00 [INF] Registered 19 endpoints in 133 milliseconds.
+2025-12-14 09:20:34.848 -05:00 [INF] Executed DbCommand (5ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-12-14 09:20:34.949 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-12-14 09:20:35.169 -05:00 [INF] Now listening on: https://localhost:56362
+2025-12-14 09:20:35.169 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-14 09:20:35.169 -05:00 [INF] Hosting environment: Development
+2025-12-14 09:20:35.169 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-14 09:21:04.777 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-14 09:21:04.799 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-14 09:21:04.798 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 27.233ms
+2025-12-14 09:21:04.837 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 37.4094ms
+2025-12-14 09:21:04.841 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/swagger-ui.css - null null
+2025-12-14 09:21:04.842 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.css - null null
+2025-12-14 09:21:04.842 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/swagger-ui-bundle.js - null null
+2025-12-14 09:21:04.842 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/swagger-ui-standalone-preset.js - null null
+2025-12-14 09:21:04.846 -05:00 [INF] Sending file. Request path: '/index.css'. Physical path: 'N/A'
+2025-12-14 09:21:04.846 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.css - 200 218 text/css 4.3006ms
+2025-12-14 09:21:04.849 -05:00 [INF] Sending file. Request path: '/swagger-ui.css'. Physical path: 'N/A'
+2025-12-14 09:21:04.849 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/swagger-ui.css - 200 154988 text/css 7.6257ms
+2025-12-14 09:21:04.850 -05:00 [INF] Sending file. Request path: '/swagger-ui-standalone-preset.js'. Physical path: 'N/A'
+2025-12-14 09:21:04.850 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/swagger-ui-standalone-preset.js - 200 229224 text/javascript 7.995ms
+2025-12-14 09:21:04.853 -05:00 [INF] Sending file. Request path: '/swagger-ui-bundle.js'. Physical path: 'N/A'
+2025-12-14 09:21:04.853 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/swagger-ui-bundle.js - 200 1468327 text/javascript 11.6055ms
+2025-12-14 09:21:04.932 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-14 09:21:04.934 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-14 09:21:04.936 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/favicon-32x32.png - null null
+2025-12-14 09:21:04.937 -05:00 [INF] Sending file. Request path: '/favicon-32x32.png'. Physical path: 'N/A'
+2025-12-14 09:21:04.937 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/favicon-32x32.png - 200 628 image/png 0.3305ms
+2025-12-14 09:21:05.148 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 216.3145ms
+2025-12-14 09:21:22.592 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/Forms - null null
+2025-12-14 09:21:22.598 -05:00 [INF] Executing endpoint 'HTTP: GET /Forms'
+2025-12-14 09:21:22.677 -05:00 [ERR] Failed executing DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT Id, FormNumber, FormTitle, Division, Owner_Name AS Owner, Version, CreatedDate, RevisedDate, ConfigurationPath FROM Forms
+2025-12-14 09:21:22.682 -05:00 [ERR] An exception occurred while iterating over the results of a query for context type 'FormDesignerAPI.Infrastructure.Data.AppDbContext'.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: FormNumber'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: FormNumber'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+2025-12-14 09:21:22.683 -05:00 [INF] Executed endpoint 'HTTP: GET /Forms'
+2025-12-14 09:21:22.684 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+Microsoft.Data.Sqlite.SqliteException (0x80004005): SQLite Error 1: 'no such column: FormNumber'.
+   at Microsoft.Data.Sqlite.SqliteException.ThrowExceptionForRC(Int32 rc, sqlite3 db)
+   at Microsoft.Data.Sqlite.SqliteCommand.PrepareAndEnumerateStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteCommand.GetStatements()+MoveNext()
+   at Microsoft.Data.Sqlite.SqliteDataReader.NextResult()
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReader(CommandBehavior behavior)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.Data.Sqlite.SqliteCommand.ExecuteDbDataReaderAsync(CommandBehavior behavior, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalCommand.ExecuteReaderAsync(RelationalCommandParameterObject parameterObject, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.InitializeReaderAsync(AsyncEnumerator enumerator, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Query.Internal.FromSqlQueryingEnumerable`1.AsyncEnumerator.MoveNextAsync()
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.EntityFrameworkQueryableExtensions.ToListAsync[TSource](IQueryable`1 source, CancellationToken cancellationToken)
+   at FormDesignerAPI.Infrastructure.Data.Queries.ListFormsQueryService.ListFormsAsync() in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Infrastructure/Data/Queries/ListFormsQueryService.cs:line 10
+   at FormDesignerAPI.UseCases.Forms.List.ListFormsHandler.Handle(ListFormsQuery request, CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.UseCases/Forms/List/ListFormsHandler.cs:line 13
+   at FormDesignerAPI.Web.Forms.List.HandleAsync(CancellationToken cancellationToken) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Forms/List.cs:line 23
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-12-14 09:21:22.691 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/Forms - 500 null text/plain; charset=utf-8 98.9412ms
+2025-12-14 09:21:32.997 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/forms - null null
+2025-12-14 09:21:32.998 -05:00 [INF] Executing endpoint 'HTTP: GET /api/forms'
+2025-12-14 09:21:33.067 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."IsActive", "f"."Name", "f"."DefinitionSchema", "f"."Origin_CreatedAt", "f"."Origin_CreatedBy", "f"."Origin_ReferenceId", "f"."Origin_Type"
+FROM "Forms" AS "f"
+2025-12-14 09:21:33.075 -05:00 [INF] Executed endpoint 'HTTP: GET /api/forms'
+2025-12-14 09:21:33.075 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/forms - 200 null application/json; charset=utf-8 77.8797ms
+2025-12-14 10:04:11.911 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-14 10:04:11.974 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-14 10:04:11.982 -05:00 [INF] Registered 19 endpoints in 145 milliseconds.
+2025-12-14 10:04:12.272 -05:00 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*) FROM "sqlite_master" WHERE "type" = 'table' AND "rootpage" IS NOT NULL;
+2025-12-14 10:04:12.367 -05:00 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT EXISTS (
+    SELECT 1
+    FROM "Forms" AS "f")
+2025-12-14 10:04:12.567 -05:00 [INF] Now listening on: https://localhost:62242
+2025-12-14 10:04:12.567 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-14 10:04:12.567 -05:00 [INF] Hosting environment: Development
+2025-12-14 10:04:12.567 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-14 10:04:54.543 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-14 10:04:54.569 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-14 10:04:54.567 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 28.6399ms
+2025-12-14 10:04:54.605 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 36.1916ms
+2025-12-14 10:04:54.693 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-14 10:04:54.696 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-14 10:04:54.911 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 218.0962ms
+2025-12-14 10:05:55.767 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/api/forms/upload-pdf - multipart/form-data; boundary=----WebKitFormBoundaryEHNXKaIg3ggiYPPl 18193
+2025-12-14 10:05:55.771 -05:00 [INF] Executing endpoint 'HTTP: POST /api/forms/upload-pdf'
+2025-12-14 10:05:55.830 -05:00 [INF] Analyzing form: Test.pdf
+2025-12-14 10:05:55.831 -05:00 [INF] Mock: Detecting form type for /var/folders/j5/xrt7qb6s05n4wn8_yppp17t00000gn/T/tmpbXQzs3.tmp
+2025-12-14 10:05:56.333 -05:00 [INF] Detected form type: generic
+2025-12-14 10:05:56.335 -05:00 [INF] Mock: Extracting form structure from /var/folders/j5/xrt7qb6s05n4wn8_yppp17t00000gn/T/tmpbXQzs3.tmp, Type: generic
+2025-12-14 10:05:57.338 -05:00 [INF] Mock: Extracted 3 fields, 0 tables
+2025-12-14 10:05:57.338 -05:00 [INF] Extracted 3 fields, 0 tables
+2025-12-14 10:05:57.339 -05:00 [INF] Mapping 3 extracted fields to FormDefinition
+2025-12-14 10:05:57.344 -05:00 [INF] Successfully mapped 3 fields
+2025-12-14 10:05:57.371 -05:00 [INF] Created form aggregate: "0176a5af-f3cd-4daa-b0c9-77694431becc"
+2025-12-14 10:05:57.455 -05:00 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (Size = 36), @p1='?' (DbType = Boolean), @p2='?' (Size = 4), @p3='?' (Size = 443), @p4='?' (DbType = DateTime), @p5='?' (Size = 6), @p6='?' (Size = 8), @p7='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Forms" ("Id", "IsActive", "Name", "DefinitionSchema", "Origin_CreatedAt", "Origin_CreatedBy", "Origin_ReferenceId", "Origin_Type")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7);
+2025-12-14 10:05:57.458 -05:00 [INF] Form analysis complete: "0176a5af-f3cd-4daa-b0c9-77694431becc", 3 fields
+2025-12-14 10:05:57.461 -05:00 [INF] Executed endpoint 'HTTP: POST /api/forms/upload-pdf'
+2025-12-14 10:05:57.463 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/api/forms/upload-pdf - 200 null application/json; charset=utf-8 1695.9319ms
+2025-12-14 10:06:59.886 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/forms - null null
+2025-12-14 10:06:59.887 -05:00 [INF] Executing endpoint 'HTTP: GET /api/forms'
+2025-12-14 10:06:59.978 -05:00 [INF] Executed DbCommand (0ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT "f"."Id", "f"."IsActive", "f"."Name", "f"."DefinitionSchema", "f"."Origin_CreatedAt", "f"."Origin_CreatedBy", "f"."Origin_ReferenceId", "f"."Origin_Type"
+FROM "Forms" AS "f"
+2025-12-14 10:06:59.988 -05:00 [INF] Executed endpoint 'HTTP: GET /api/forms'
+2025-12-14 10:06:59.988 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/forms - 200 null application/json; charset=utf-8 102.081ms
