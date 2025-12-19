@@ -1,4 +1,4 @@
-// Save to: src/FormDesignerAPI.Core/CodeGenerationContext/ValueObjects/TemplateMetadata.cs
+﻿
 
 using Traxs.SharedKernel;
 

@@ -1,4 +1,4 @@
-using FormDesignerAPI.Core.FormContext.Aggregates;
+﻿using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.Core.FormContext.ValueObjects;
 
 namespace FormDesignerAPI.Infrastructure.Data.Config;
@@ -12,12 +12,9 @@ public class FormContextConfiguration : IEntityTypeConfiguration<Form>
     {
         builder.ToTable("Forms");
 
-        // Primary key - Guid stored as TEXT in SQLite
+        // Primary key - SQL Server uses uniqueidentifier natively
         builder.HasKey(f => f.Id);
         builder.Property(f => f.Id)
-            .HasConversion(
-                id => id.ToString(),
-                id => Guid.Parse(id))
             .IsRequired();
 
         // Name
@@ -25,17 +22,16 @@ public class FormContextConfiguration : IEntityTypeConfiguration<Form>
             .IsRequired()
             .HasMaxLength(DataSchemaConstants.DEFAULT_NAME_LENGTH);
 
-        // FormDefinition - stored as JSON
-        builder.OwnsOne(f => f.Definition, definition =>
-        {
-            definition.Property(d => d.Schema)
-                .HasColumnName("DefinitionSchema")
-                .HasColumnType("TEXT")
-                .IsRequired();
-
-            // Fields are serialized as part of the Schema JSON
-            definition.Ignore(d => d.Fields);
-        });
+        // FormDefinition - store as JSON and recreate with Fields when loading
+        builder.Property(f => f.Definition)
+            .HasConversion(
+                // To database: serialize the Schema property
+                definition => definition.Schema,
+                // From database: parse schema and populate Fields
+                schema => FormDefinition.From(schema))
+            .HasColumnName("DefinitionSchema")
+            .HasColumnType("nvarchar(max)")
+            .IsRequired();
 
         // OriginMetadata - owned entity
         builder.OwnsOne(f => f.Origin, origin =>
@@ -68,8 +64,11 @@ public class FormContextConfiguration : IEntityTypeConfiguration<Form>
         builder.Ignore(f => f.CurrentVersion);
         builder.Ignore(f => f.FieldCount);
 
-        // Revisions - ignore for now (will be handled separately)
-        builder.Ignore(f => f.Revisions);
+        // Configure the one-to-many relationship with FormRevisions
+        builder.HasMany(f => f.Revisions)
+            .WithOne()
+            .HasForeignKey(r => r.FormId)
+            .OnDelete(DeleteBehavior.Cascade);
 
         // Indexes
         builder.HasIndex(f => f.Name);

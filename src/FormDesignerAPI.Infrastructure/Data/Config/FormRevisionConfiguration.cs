@@ -1,4 +1,5 @@
-using FormDesignerAPI.Core.FormContext.Aggregates;
+﻿using FormDesignerAPI.Core.FormContext.Aggregates;
+using FormDesignerAPI.Core.FormContext.ValueObjects;
 
 namespace FormDesignerAPI.Infrastructure.Data.Config;
 
@@ -11,36 +12,29 @@ public class FormRevisionConfiguration : IEntityTypeConfiguration<FormRevision>
     {
         builder.ToTable("FormRevisions");
 
-        // Primary key - Guid stored as TEXT in SQLite
+        // Primary key - SQL Server uses uniqueidentifier natively
         builder.HasKey(r => r.Id);
         builder.Property(r => r.Id)
-            .HasConversion(
-                id => id.ToString(),
-                id => Guid.Parse(id))
             .IsRequired();
 
-        // FormId - foreign key stored as TEXT
-        builder.Property<Guid>("FormId")
-            .HasConversion(
-                id => id.ToString(),
-                id => Guid.Parse(id))
+        // FormId - foreign key using SQL Server uniqueidentifier
+        builder.Property(r => r.FormId)
             .IsRequired();
 
         // Version number
         builder.Property(r => r.Version)
             .IsRequired();
 
-        // FormDefinition - stored as JSON
-        builder.OwnsOne(r => r.Definition, definition =>
-        {
-            definition.Property(d => d.Schema)
-                .HasColumnName("DefinitionSchema")
-                .HasColumnType("TEXT")
-                .IsRequired();
-
-            // Fields are serialized as part of the Schema JSON
-            definition.Ignore(d => d.Fields);
-        });
+        // FormDefinition - store as JSON and recreate with Fields when loading
+        builder.Property(r => r.Definition)
+            .HasConversion(
+                // To database: serialize the Schema property
+                definition => definition.Schema,
+                // From database: parse schema and populate Fields
+                schema => FormDefinition.From(schema))
+            .HasColumnName("DefinitionSchema")
+            .HasColumnType("nvarchar(max)")
+            .IsRequired();
 
         // Notes
         builder.Property(r => r.Notes)
@@ -56,8 +50,8 @@ public class FormRevisionConfiguration : IEntityTypeConfiguration<FormRevision>
             .IsRequired();
 
         // Indexes
-        builder.HasIndex("FormId");
+        builder.HasIndex(r => r.FormId);
         builder.HasIndex(r => r.Version);
-        builder.HasIndex("FormId", "Version").IsUnique();
+        builder.HasIndex(r => new { r.FormId, r.Version }).IsUnique();
     }
 }

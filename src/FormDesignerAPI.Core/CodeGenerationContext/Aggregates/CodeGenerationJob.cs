@@ -1,4 +1,4 @@
-using Ardalis.GuardClauses;
+﻿using Ardalis.GuardClauses;
 using Traxs.SharedKernel;
 using FormDesignerAPI.Core.CodeGenerationContext.ValueObjects;
 using FormDesignerAPI.Core.CodeGenerationContext.Events;
@@ -22,6 +22,7 @@ public class CodeGenerationJob : EntityBase<Guid>, IAggregateRoot
   public string? OutputFolderPath { get; private set; }
   public string? ZipFilePath { get; private set; }
   public long? ZipFileSizeBytes { get; private set; }
+  public int ArtifactCount { get; private set; }
 
   public DateTime RequestedAt { get; private set; }
   public string RequestedBy { get; private set; } = string.Empty;
@@ -57,7 +58,8 @@ public class CodeGenerationJob : EntityBase<Guid>, IAggregateRoot
       Status = JobStatus.Pending,
       Options = options,
       RequestedAt = DateTime.UtcNow,
-      RequestedBy = requestedBy
+      RequestedBy = requestedBy,
+      ArtifactCount = 0
     };
 
     job.RegisterDomainEvent(new CodeGenerationJobCreatedEvent(job.Id));
@@ -115,6 +117,7 @@ public class CodeGenerationJob : EntityBase<Guid>, IAggregateRoot
     Status = JobStatus.Completed;
     CompletedAt = DateTime.UtcNow;
     ProcessingDuration = CompletedAt.Value - RequestedAt;
+    ArtifactCount = _artifacts.Count;
 
     RegisterDomainEvent(new CodeArtifactsGeneratedEvent(
       Id,
@@ -133,6 +136,7 @@ public class CodeGenerationJob : EntityBase<Guid>, IAggregateRoot
     CompletedAt = DateTime.UtcNow;
     ProcessingDuration = CompletedAt.Value - RequestedAt;
     ErrorMessage = ex.Message;
+    ArtifactCount = _artifacts.Count;
 
     RegisterDomainEvent(new CodeGenerationFailedEvent(Id, ex.Message));
   }

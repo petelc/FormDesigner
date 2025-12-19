@@ -21,7 +21,16 @@
     <Folder Include="ImportContext/Events/" />
     <Folder Include="ImportContext/Interfaces/" />
     <Folder Include="ImportContext/ValueObjects/" />
+    <Folder Include="ProjectContext\Events\" />
+    <Folder Include="ProjectContext\Services\" />
     <Folder Include="ValueObjects/" />
+  </ItemGroup>
+
+  <!-- Copy template files to output directory -->
+  <ItemGroup>
+    <None Include="CodeGenerationContext\Templates\**\*.sbn">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

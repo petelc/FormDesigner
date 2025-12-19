@@ -3,6 +3,7 @@ using System;
 using FormDesignerAPI.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -15,137 +16,264 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "9.0.6");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "9.0.8")
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            modelBuilder.Entity("FormDesignerAPI.Core.ContributorAggregate.Contributor", b =>
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("FormDesignerAPI.Core.CodeGenerationContext.Aggregates.CodeGenerationJob", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<int>("ArtifactCount")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("CompletedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("ErrorMessage")
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<Guid>("FormDefinitionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("FormRevisionId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("OutputFolderPath")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<TimeSpan?>("ProcessingDuration")
+                        .HasColumnType("time");
+
+                    b.Property<DateTime>("RequestedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("RequestedBy")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ZipFilePath")
+                        .HasMaxLength(500)
+                        .HasColumnType("nvarchar(500)");
+
+                    b.Property<long?>("ZipFileSizeBytes")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("CodeGenerationJobs", (string)null);
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormContext.Aggregates.Form", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("Definition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DefinitionSchema");
+
+                    b.Property<bool>("IsActive")
+                        .HasColumnType("bit");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("nvarchar(100)");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contributors");
+                    b.HasIndex("IsActive");
+
+                    b.HasIndex("Name");
+
+                    b.ToTable("Forms", (string)null);
                 });
 
-            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Form", b =>
+            modelBuilder.Entity("FormDesignerAPI.Core.FormContext.Aggregates.FormRevision", b =>
                 {
-                    b.Property<int>("Id")
+                    b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ConfigurationPath")
-                        .HasColumnType("TEXT");
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
 
-                    b.Property<DateTime?>("CreatedDate")
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("Division")
-                        .HasMaxLength(10)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FormNumber")
-                        .IsRequired()
-                        .HasMaxLength(8)
-                        .HasColumnType("TEXT");
-
-                    b.Property<string>("FormTitle")
+                    b.Property<string>("CreatedBy")
                         .IsRequired()
                         .HasMaxLength(100)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(100)");
 
-                    b.Property<DateTime?>("RevisedDate")
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Definition")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("DefinitionSchema");
 
-                    b.Property<int>("Status")
-                        .HasColumnType("INTEGER");
+                    b.Property<Guid>("FormId")
+                        .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("Version")
-                        .HasMaxLength(8)
-                        .HasColumnType("TEXT");
+                    b.Property<string>("Notes")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)");
+
+                    b.Property<int>("Version")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
-                    b.ToTable("Forms");
+                    b.HasIndex("FormId");
+
+                    b.HasIndex("Version");
+
+                    b.HasIndex("FormId", "Version")
+                        .IsUnique();
+
+                    b.ToTable("FormRevisions", (string)null);
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.ProjectContext.Aggregates.Project", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("Description")
+                        .IsRequired()
+                        .HasMaxLength(2000)
+                        .HasColumnType("nvarchar(2000)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("nvarchar(200)");
+
+                    b.Property<string>("Status")
+                        .IsRequired()
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
+
+                    b.Property<DateTime>("UpdatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("_codeGenerationJobIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("CodeGenerationJobIds");
+
+                    b.Property<string>("_formIds")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)")
+                        .HasColumnName("FormIds");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("CreatedAt");
+
+                    b.HasIndex("CreatedBy");
+
+                    b.HasIndex("Name");
+
+                    b.HasIndex("Status");
+
+                    b.HasIndex("UpdatedAt");
+
+                    b.ToTable("Projects", (string)null);
                 });
 
             modelBuilder.Entity("FormDesignerAPI.Infrastructure.Identity.ApplicationUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Division")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("FirstName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("JobTitle")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LastName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("ProfileImageUrl")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Supervisor")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("bit");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
@@ -154,7 +282,8 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
 
                     b.HasIndex("NormalizedUserName")
                         .IsUnique()
-                        .HasDatabaseName("UserNameIndex");
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers", (string)null);
                 });
@@ -162,25 +291,26 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(256)");
 
                     b.HasKey("Id");
 
                     b.HasIndex("NormalizedName")
                         .IsUnique()
-                        .HasDatabaseName("RoleNameIndex");
+                        .HasDatabaseName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
 
                     b.ToTable("AspNetRoles", (string)null);
                 });
@@ -189,17 +319,19 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -212,17 +344,19 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
@@ -234,17 +368,17 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -256,10 +390,10 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -271,67 +405,153 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("FormDesignerAPI.Core.ContributorAggregate.Contributor", b =>
+            modelBuilder.Entity("FormDesignerAPI.Core.CodeGenerationContext.Aggregates.CodeGenerationJob", b =>
                 {
-                    b.OwnsOne("FormDesignerAPI.Core.ContributorAggregate.PhoneNumber", "PhoneNumber", b1 =>
+                    b.OwnsOne("FormDesignerAPI.Core.CodeGenerationContext.ValueObjects.GenerationOptions", "Options", b1 =>
                         {
-                            b1.Property<int>("ContributorId")
-                                .HasColumnType("INTEGER");
+                            b1.Property<Guid>("CodeGenerationJobId")
+                                .HasColumnType("uniqueidentifier");
 
-                            b1.Property<string>("CountryCode")
+                            b1.Property<string>("AdditionalImports")
                                 .IsRequired()
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_AdditionalImports");
 
-                            b1.Property<string>("Extension")
-                                .HasColumnType("TEXT");
-
-                            b1.Property<string>("Number")
+                            b1.Property<string>("Author")
                                 .IsRequired()
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_Author");
 
-                            b1.HasKey("ContributorId");
+                            b1.Property<string>("CustomSettings")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_CustomSettings");
 
-                            b1.ToTable("Contributors");
+                            b1.Property<string>("DatabaseType")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_DatabaseType");
+
+                            b1.Property<bool>("GenerateIntegrationTests")
+                                .HasColumnType("bit")
+                                .HasColumnName("Options_GenerateIntegrationTests");
+
+                            b1.Property<bool>("IncludeCSharpModels")
+                                .HasColumnType("bit")
+                                .HasColumnName("Options_IncludeCSharpModels");
+
+                            b1.Property<bool>("IncludeReactComponents")
+                                .HasColumnType("bit")
+                                .HasColumnName("Options_IncludeReactComponents");
+
+                            b1.Property<bool>("IncludeSqlSchema")
+                                .HasColumnType("bit")
+                                .HasColumnName("Options_IncludeSqlSchema");
+
+                            b1.Property<bool>("IncludeTests")
+                                .HasColumnType("bit")
+                                .HasColumnName("Options_IncludeTests");
+
+                            b1.Property<string>("Namespace")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_Namespace");
+
+                            b1.Property<string>("ProjectName")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_ProjectName");
+
+                            b1.Property<string>("TestFramework")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Options_TestFramework");
+
+                            b1.Property<bool>("UseFluentAssertions")
+                                .HasColumnType("bit")
+                                .HasColumnName("Options_UseFluentAssertions");
+
+                            b1.HasKey("CodeGenerationJobId");
+
+                            b1.ToTable("CodeGenerationJobs");
 
                             b1.WithOwner()
-                                .HasForeignKey("ContributorId");
+                                .HasForeignKey("CodeGenerationJobId");
                         });
 
-                    b.Navigation("PhoneNumber");
+                    b.OwnsOne("FormDesignerAPI.Core.CodeGenerationContext.ValueObjects.GenerationVersion", "Version", b1 =>
+                        {
+                            b1.Property<Guid>("CodeGenerationJobId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<int>("Major")
+                                .HasColumnType("int")
+                                .HasColumnName("Version_Major");
+
+                            b1.Property<int>("Minor")
+                                .HasColumnType("int")
+                                .HasColumnName("Version_Minor");
+
+                            b1.Property<int>("Patch")
+                                .HasColumnType("int")
+                                .HasColumnName("Version_Patch");
+
+                            b1.HasKey("CodeGenerationJobId");
+
+                            b1.ToTable("CodeGenerationJobs");
+
+                            b1.WithOwner()
+                                .HasForeignKey("CodeGenerationJobId");
+                        });
+
+                    b.Navigation("Options")
+                        .IsRequired();
+
+                    b.Navigation("Version")
+                        .IsRequired();
                 });
 
-            modelBuilder.Entity("FormDesignerAPI.Core.FormAggregate.Form", b =>
+            modelBuilder.Entity("FormDesignerAPI.Core.FormContext.Aggregates.Form", b =>
                 {
-                    b.OwnsOne("FormDesignerAPI.Core.FormAggregate.Owner", "Owner", b1 =>
+                    b.OwnsOne("FormDesignerAPI.Core.FormContext.ValueObjects.OriginMetadata", "Origin", b1 =>
                         {
-                            b1.Property<int>("FormId")
-                                .HasColumnType("INTEGER");
+                            b1.Property<Guid>("FormId")
+                                .HasColumnType("uniqueidentifier");
 
-                            b1.Property<string>("Email")
+                            b1.Property<DateTime>("CreatedAt")
+                                .HasColumnType("datetime2")
+                                .HasColumnName("Origin_CreatedAt");
+
+                            b1.Property<string>("CreatedBy")
                                 .IsRequired()
                                 .HasMaxLength(100)
-                                .HasColumnType("TEXT");
+                                .HasColumnType("nvarchar(100)")
+                                .HasColumnName("Origin_CreatedBy");
 
-                            b1.Property<string>("Name")
-                                .IsRequired()
-                                .HasMaxLength(100)
-                                .HasColumnType("TEXT");
+                            b1.Property<string>("ReferenceId")
+                                .HasMaxLength(500)
+                                .HasColumnType("nvarchar(500)")
+                                .HasColumnName("Origin_ReferenceId");
+
+                            b1.Property<int>("Type")
+                                .HasColumnType("int")
+                                .HasColumnName("Origin_Type");
 
                             b1.HasKey("FormId");
 
@@ -341,7 +561,63 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                                 .HasForeignKey("FormId");
                         });
 
-                    b.Navigation("Owner");
+                    b.Navigation("Origin")
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormContext.Aggregates.FormRevision", b =>
+                {
+                    b.HasOne("FormDesignerAPI.Core.FormContext.Aggregates.Form", null)
+                        .WithMany("Revisions")
+                        .HasForeignKey("FormId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.ProjectContext.Aggregates.Project", b =>
+                {
+                    b.OwnsOne("FormDesignerAPI.Core.ProjectContext.ValueObjects.ProjectFilter", "Filter", b1 =>
+                        {
+                            b1.Property<Guid>("ProjectId")
+                                .HasColumnType("uniqueidentifier");
+
+                            b1.Property<bool>("ActiveOnly")
+                                .HasColumnType("bit")
+                                .HasColumnName("Filter_ActiveOnly");
+
+                            b1.Property<string>("CustomFilters")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Filter_CustomFilters");
+
+                            b1.Property<string>("FormType")
+                                .HasMaxLength(100)
+                                .HasColumnType("nvarchar(100)")
+                                .HasColumnName("Filter_FormType");
+
+                            b1.Property<DateTime?>("FromDate")
+                                .HasColumnType("datetime2")
+                                .HasColumnName("Filter_FromDate");
+
+                            b1.Property<string>("Tags")
+                                .IsRequired()
+                                .HasColumnType("nvarchar(max)")
+                                .HasColumnName("Filter_Tags");
+
+                            b1.Property<DateTime?>("ToDate")
+                                .HasColumnType("datetime2")
+                                .HasColumnName("Filter_ToDate");
+
+                            b1.HasKey("ProjectId");
+
+                            b1.ToTable("Projects");
+
+                            b1.WithOwner()
+                                .HasForeignKey("ProjectId");
+                        });
+
+                    b.Navigation("Filter")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -393,6 +669,11 @@ namespace FormDesignerAPI.Infrastructure.Data.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FormDesignerAPI.Core.FormContext.Aggregates.Form", b =>
+                {
+                    b.Navigation("Revisions");
                 });
 #pragma warning restore 612, 618
         }

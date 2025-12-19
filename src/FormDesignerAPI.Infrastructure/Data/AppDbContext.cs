@@ -1,5 +1,6 @@
 ﻿using FormDesignerAPI.Core.FormContext.Aggregates;
 using FormDesignerAPI.Core.CodeGenerationContext.Aggregates;
+using FormDesignerAPI.Core.ProjectContext.Aggregates;
 using FormDesignerAPI.Infrastructure.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
@@ -20,6 +21,9 @@ public class AppDbContext : IdentityDbContext<ApplicationUser>
 
   // CodeGenerationContext aggregates
   public DbSet<CodeGenerationJob> CodeGenerationJobs => Set<CodeGenerationJob>();
+
+  // ProjectContext aggregates
+  public DbSet<Project> Projects => Set<Project>();
 
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {

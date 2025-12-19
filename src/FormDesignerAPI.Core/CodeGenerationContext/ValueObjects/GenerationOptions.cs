@@ -1,6 +1,4 @@
-// Save to: src/FormDesignerAPI.Core/CodeGenerationContext/ValueObjects/GenerationOptions.cs
-
-namespace FormDesignerAPI.Core.CodeGenerationContext.ValueObjects;
+﻿namespace FormDesignerAPI.Core.CodeGenerationContext.ValueObjects;
 
 /// <summary>
 /// Configuration options for code generation
@@ -24,7 +22,7 @@ public record GenerationOptions
   public bool UseFluentAssertions { get; init; } = true;
   
   // Database options
-  public string DatabaseType { get; init; } = "PostgreSQL"; // PostgreSQL, SqlServer, MySQL
+  public string DatabaseType { get; init; } = "SqlServer"; // PostgreSQL, SqlServer, MySQL
   
   // Additional customization
   public Dictionary<string, string> AdditionalImports { get; init; } = new();

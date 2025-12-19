@@ -1,27 +1,26 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Interface.sbn -}}
-using {{ Namespace }}.Core.Entities;
+using {{ namespace }}.Core.Entities;
 
-namespace {{ Namespace }}.Core.Interfaces;
+namespace {{ namespace }}.Core.Interfaces;
 
 /// <summary>
-/// Repository interface for {{ EntityName }}
-/// Generated on {{ GeneratedDateFormatted }} UTC
+/// Repository interface for {{ entity_name }}
+/// Generated on {{ generated_date_formatted }} UTC
 /// </summary>
-public interface I{{ EntityName }}Repository
+public interface I{{ entity_name }}Repository
 {
-    Task<{{ EntityName }}?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
+    Task<{{ entity_name }}?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default);
     
-    Task<IEnumerable<{{ EntityName }}>> GetAllAsync(CancellationToken cancellationToken = default);
+    Task<IEnumerable<{{ entity_name }}>> GetAllAsync(CancellationToken cancellationToken = default);
     
-    Task<{{ EntityName }}> AddAsync({{ EntityName }} entity, CancellationToken cancellationToken = default);
+    Task<{{ entity_name }}> AddAsync({{ entity_name }} entity, CancellationToken cancellationToken = default);
     
-    Task UpdateAsync({{ EntityName }} entity, CancellationToken cancellationToken = default);
+    Task UpdateAsync({{ entity_name }} entity, CancellationToken cancellationToken = default);
     
     Task DeleteAsync(Guid id, CancellationToken cancellationToken = default);
 
-{{~ for field in Fields ~}}
-{{~ if field.Type == "email" || field.Type == "text" && field.Name == "email" ~}}
-    Task<{{ EntityName }}?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
+{{~ for field in fields ~}}
+{{~ if field.type == "email" || field.type == "text" && field.name == "email" ~}}
+    Task<{{ entity_name }}?> GetByEmailAsync(string email, CancellationToken cancellationToken = default);
 {{~ end ~}}
 {{~ end ~}}
 

@@ -1,4 +1,4 @@
-using Traxs.SharedKernel;
+﻿using Traxs.SharedKernel;
 using FormDesignerAPI.Core.CodeGenerationContext.Aggregates;
 
 namespace FormDesignerAPI.Core.CodeGenerationContext.Interfaces;
@@ -11,7 +11,7 @@ public interface ICodeGenerationJobRepository : IRepository<CodeGenerationJob>
     /// <summary>
     /// Get job with all artifacts eagerly loaded
     /// </summary>
-    Task<CodeGenerationJob?> GetByIdWithArtifactsAsync(
+    Task<CodeGenerationJob?> GetByIdAsync(
         Guid id,
         CancellationToken cancellationToken = default);
 

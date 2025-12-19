@@ -1,11 +1,10 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Dto.sbn -}}
 using System.ComponentModel.DataAnnotations;
 
-namespace {{ Namespace }}.Application.DTOs;
+namespace {{ namespace }}.Application.DTOs;
 
 /// <summary>
-/// Data Transfer Objects for {{ EntityName }}
-/// Generated on {{ GeneratedDateFormatted }} UTC
+/// Data Transfer Objects for {{ entity_name }}
+/// Generated on {{ generated_date_formatted }} UTC
 /// </summary>
 
 // ============================================================================
@@ -13,35 +12,35 @@ namespace {{ Namespace }}.Application.DTOs;
 // ============================================================================
 
 /// <summary>
-/// Request to create a new {{ EntityName }}
+/// Request to create a new {{ entity_name }}
 /// </summary>
-public record Create{{ EntityName }}Request
+public record Create{{ entity_name }}Request
 {
-{{~ for field in Fields ~}}
+{{~ for field in fields ~}}
     /// <summary>
-    /// {{ field.Label }}
+    /// {{ field.label }}
     /// </summary>
-{{~ if field.Required ~}}
-    [Required(ErrorMessage = "{{ field.Label }} is required")]
+{{~ if field.required ~}}
+    [Required(ErrorMessage = "{{ field.label }} is required")]
 {{~ end ~}}
-{{~ if field.MaxLength ~}}
-    [MaxLength({{ field.MaxLength }}, ErrorMessage = "{{ field.Label }} cannot exceed {{ field.MaxLength }} characters")]
+{{~ if field.max_length ~}}
+    [MaxLength({{ field.max_length }}, ErrorMessage = "{{ field.label }} cannot exceed {{ field.max_length }} characters")]
 {{~ end ~}}
-{{~ if field.MinLength ~}}
-    [MinLength({{ field.MinLength }}, ErrorMessage = "{{ field.Label }} must be at least {{ field.MinLength }} characters")]
+{{~ if field.min_length ~}}
+    [MinLength({{ field.min_length }}, ErrorMessage = "{{ field.label }} must be at least {{ field.min_length }} characters")]
 {{~ end ~}}
-{{~ if field.Type == "email" ~}}
+{{~ if field.type == "email" ~}}
     [EmailAddress(ErrorMessage = "Invalid email format")]
 {{~ end ~}}
-{{~ if field.Type == "url" ~}}
+{{~ if field.type == "url" ~}}
     [Url(ErrorMessage = "Invalid URL format")]
 {{~ end ~}}
-{{~ if field.Pattern ~}}
-    [RegularExpression(@"{{ field.Pattern }}", ErrorMessage = "{{ field.Label }} format is invalid")]
+{{~ if field.pattern ~}}
+    [RegularExpression(@"{{ field.pattern }}", ErrorMessage = "{{ field.label }} format is invalid")]
 {{~ end ~}}
-    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
-{{~ if field.DefaultValue ~}}
-         = {{ if field.CSharpType == "string" }}"{{ field.DefaultValue }}"{{ else }}{{ field.DefaultValue }}{{ end }};
+    public {{ field.csharp_type }} {{ field.name_pascal }} { get; init; }
+{{~ if field.default_value ~}}
+         = {{ if field.csharp_type == "string" }}"{{ field.default_value }}"{{ else }}{{ field.default_value }}{{ end }};
 {{~ end ~}}
 
 {{~ end ~}}
@@ -52,30 +51,30 @@ public record Create{{ EntityName }}Request
 // ============================================================================
 
 /// <summary>
-/// Request to update an existing {{ EntityName }}
+/// Request to update an existing {{ entity_name }}
 /// </summary>
-public record Update{{ EntityName }}Request
+public record Update{{ entity_name }}Request
 {
-{{~ for field in Fields ~}}
+{{~ for field in fields ~}}
     /// <summary>
-    /// {{ field.Label }}
+    /// {{ field.label }}
     /// </summary>
-{{~ if field.Required ~}}
-    [Required(ErrorMessage = "{{ field.Label }} is required")]
+{{~ if field.required ~}}
+    [Required(ErrorMessage = "{{ field.label }} is required")]
 {{~ end ~}}
-{{~ if field.MaxLength ~}}
-    [MaxLength({{ field.MaxLength }}, ErrorMessage = "{{ field.Label }} cannot exceed {{ field.MaxLength }} characters")]
+{{~ if field.max_length ~}}
+    [MaxLength({{ field.max_length }}, ErrorMessage = "{{ field.label }} cannot exceed {{ field.max_length }} characters")]
 {{~ end ~}}
-{{~ if field.MinLength ~}}
-    [MinLength({{ field.MinLength }}, ErrorMessage = "{{ field.Label }} must be at least {{ field.MinLength }} characters")]
+{{~ if field.min_length ~}}
+    [MinLength({{ field.min_length }}, ErrorMessage = "{{ field.label }} must be at least {{ field.min_length }} characters")]
 {{~ end ~}}
-{{~ if field.Type == "email" ~}}
+{{~ if field.type == "email" ~}}
     [EmailAddress(ErrorMessage = "Invalid email format")]
 {{~ end ~}}
-{{~ if field.Type == "url" ~}}
+{{~ if field.type == "url" ~}}
     [Url(ErrorMessage = "Invalid URL format")]
 {{~ end ~}}
-    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+    public {{ field.csharp_type }} {{ field.name_pascal }} { get; init; }
 
 {{~ end ~}}
 }
@@ -85,13 +84,13 @@ public record Update{{ EntityName }}Request
 // ============================================================================
 
 /// <summary>
-/// Response DTO for {{ EntityName }}
+/// Response DTO for {{ entity_name }}
 /// </summary>
-public record {{ EntityName }}Response
+public record {{ entity_name }}Response
 {
     public Guid Id { get; init; }
-{{~ for field in Fields ~}}
-    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+{{~ for field in fields ~}}
+    public {{ field.csharp_type }} {{ field.name_pascal }} { get; init; }
 {{~ end ~}}
     public DateTime CreatedAt { get; init; }
     public string CreatedBy { get; init; } = string.Empty;
@@ -104,16 +103,16 @@ public record {{ EntityName }}Response
 // ============================================================================
 
 /// <summary>
-/// Simplified DTO for {{ EntityName }} list views
+/// Simplified DTO for {{ entity_name }} list views
 /// </summary>
-public record {{ EntityName }}ListItem
+public record {{ entity_name }}ListItem
 {
     public Guid Id { get; init; }
 {{~ # Include only the first 3-4 most important fields for list view ~}}
 {{~ i = 0 ~}}
-{{~ for field in Fields ~}}
+{{~ for field in fields ~}}
 {{~ if i < 4 ~}}
-    public {{ field.CSharpType }} {{ field.NamePascal }} { get; init; }
+    public {{ field.csharp_type }} {{ field.name_pascal }} { get; init; }
 {{~ i = i + 1 ~}}
 {{~ end ~}}
 {{~ end ~}}

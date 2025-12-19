@@ -1,0 +1,1220 @@
+2025-12-17 08:40:53.702 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 08:40:53.969 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 08:40:54.230 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 08:40:54.232 -05:00 [INF] Registered 9 templates
+2025-12-17 08:40:54.240 -05:00 [INF] Registered 17 endpoints in 2,201 milliseconds.
+2025-12-17 08:40:55.335 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 08:40:55.335 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 08:41:13.098 -05:00 [ERR] An error occurred seeding the DB. A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (53): The network path was not found.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\Configurations\MiddlewareConfig.cs:line 24
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2025-12-17 08:41:13.467 -05:00 [INF] Now listening on: https://localhost:60841
+2025-12-17 08:41:13.473 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 08:41:13.514 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 08:41:13.514 -05:00 [INF] Hosting environment: Development
+2025-12-17 08:41:13.514 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 08:42:56.806 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-17 08:42:56.954 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 165.417ms
+2025-12-17 08:42:56.960 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-17 08:42:56.992 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 31.9783ms
+2025-12-17 08:42:57.018 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-17 08:42:57.020 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_vs/browserLink - null null
+2025-12-17 08:42:57.024 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - 200 16523 application/javascript; charset=utf-8 5.2305ms
+2025-12-17 08:42:57.065 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_vs/browserLink - 200 null text/javascript; charset=UTF-8 45.4034ms
+2025-12-17 08:42:57.151 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-17 08:42:57.283 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 132.0787ms
+2025-12-17 08:52:17.402 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/auth/register - null null
+2025-12-17 08:52:17.404 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/auth/register - 404 0 null 1.8499ms
+2025-12-17 08:52:17.407 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: OPTIONS https://localhost:57671/api/auth/register, Response status code: 404
+2025-12-17 09:06:27.202 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/Identity/register - null null
+2025-12-17 09:06:27.206 -05:00 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-12-17 09:06:27.206 -05:00 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-12-17 09:06:27.207 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/Identity/register - 405 0 null 4.852ms
+2025-12-17 09:15:52.383 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 09:15:52.548 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 09:15:52.568 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 09:15:52.569 -05:00 [INF] Registered 9 templates
+2025-12-17 09:15:52.577 -05:00 [INF] Registered 17 endpoints in 457 milliseconds.
+2025-12-17 09:15:53.033 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 09:15:53.033 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 09:16:09.979 -05:00 [ERR] An error occurred seeding the DB. A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: Named Pipes Provider, error: 40 - Could not open a connection to SQL Server)
+ ---> System.ComponentModel.Win32Exception (53): The network path was not found.
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\Configurations\MiddlewareConfig.cs:line 24
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+Error Number:53,State:0,Class:20
+2025-12-17 09:16:10.267 -05:00 [INF] Now listening on: https://localhost:60524
+2025-12-17 09:16:10.272 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 09:16:10.311 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 09:16:10.311 -05:00 [INF] Hosting environment: Development
+2025-12-17 09:16:10.311 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 09:16:15.928 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-17 09:16:15.997 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 75.1377ms
+2025-12-17 09:16:16.006 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-17 09:16:16.032 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 26.2793ms
+2025-12-17 09:16:16.039 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-17 09:16:16.045 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - 200 16523 application/javascript; charset=utf-8 6.111ms
+2025-12-17 09:16:16.053 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_vs/browserLink - null null
+2025-12-17 09:16:16.084 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_vs/browserLink - 200 null text/javascript; charset=UTF-8 31.5117ms
+2025-12-17 09:16:16.146 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-17 09:16:16.206 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 60.3865ms
+2025-12-17 09:18:50.145 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/Identity/register - null null
+2025-12-17 09:18:50.149 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:18:50.150 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/Identity/register - 204 null null 6.1826ms
+2025-12-17 09:18:50.152 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/Identity/register - application/json 142
+2025-12-17 09:18:50.153 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:18:50.155 -05:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-12-17 09:54:09.139 -05:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-12-17 09:54:09.160 -05:00 [ERR] An unhandled exception has occurred while executing the request.
+System.ArgumentNullException: Value cannot be null. (Parameter 'UserName')
+   at FormDesignerAPI.Web.Identity.Register.HandleAsync(RegisterUserRequest request, CancellationToken ct) in C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\Identity\Register.cs:line 21
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at FastEndpoints.Endpoint`2.ExecAsync(CancellationToken ct)
+   at Microsoft.AspNetCore.Routing.EndpointMiddleware.<Invoke>g__AwaitRequestTask|7_0(Endpoint endpoint, Task requestTask, ILogger logger)
+   at NSwag.AspNetCore.Middlewares.SwaggerUiIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.RedirectToIndexMiddleware.Invoke(HttpContext context)
+   at NSwag.AspNetCore.Middlewares.OpenApiDocumentMiddleware.Invoke(HttpContext context)
+   at Ardalis.ListStartupServices.ShowAllServicesMiddleware.Invoke(HttpContext httpContext)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-12-17 09:54:09.172 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/Identity/register - 500 null text/plain; charset=utf-8 2118972.9618ms
+2025-12-17 09:54:31.429 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 09:54:31.593 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 09:54:31.613 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 09:54:31.614 -05:00 [INF] Registered 9 templates
+2025-12-17 09:54:31.620 -05:00 [INF] Registered 17 endpoints in 470 milliseconds.
+2025-12-17 09:54:32.072 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 09:54:32.073 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 09:54:32.568 -05:00 [INF] Executed DbCommand (49ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 09:54:32.620 -05:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 09:54:32.814 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Forms] AS [f]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-12-17 09:54:33.090 -05:00 [INF] Now listening on: https://localhost:54825
+2025-12-17 09:54:33.094 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 09:54:33.131 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 09:54:33.131 -05:00 [INF] Hosting environment: Development
+2025-12-17 09:54:33.131 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 09:55:25.673 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-17 09:55:25.800 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-17 09:55:25.796 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 135.987ms
+2025-12-17 09:55:25.857 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 57.2274ms
+2025-12-17 09:55:25.864 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-17 09:55:25.870 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - 200 16523 application/javascript; charset=utf-8 6.2514ms
+2025-12-17 09:55:25.880 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_vs/browserLink - null null
+2025-12-17 09:55:25.909 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_vs/browserLink - 200 null text/javascript; charset=UTF-8 29.0094ms
+2025-12-17 09:55:25.973 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-17 09:55:26.042 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 69.1059ms
+2025-12-17 09:57:08.060 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/Identity/register - null null
+2025-12-17 09:57:08.065 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:08.066 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/Identity/register - 204 null null 6.1391ms
+2025-12-17 09:57:08.069 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/Identity/register - application/json 165
+2025-12-17 09:57:08.070 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:08.072 -05:00 [INF] Executing endpoint 'HTTP: POST /Identity/Register'
+2025-12-17 09:57:08.355 -05:00 [INF] Executed DbCommand (54ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Division], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[JobTitle], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfileImageUrl], [a].[SecurityStamp], [a].[Supervisor], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-12-17 09:57:08.502 -05:00 [INF] Executed DbCommand (33ms) [Parameters=[@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 4000), @p4='?' (Size = 256), @p5='?' (DbType = Boolean), @p6='?' (Size = 4000), @p7='?' (Size = 4000), @p8='?' (Size = 4000), @p9='?' (DbType = Boolean), @p10='?' (DbType = DateTimeOffset), @p11='?' (Size = 256), @p12='?' (Size = 256), @p13='?' (Size = 4000), @p14='?' (Size = 4000), @p15='?' (DbType = Boolean), @p16='?' (Size = 4000), @p17='?' (Size = 4000), @p18='?' (Size = 4000), @p19='?' (DbType = Boolean), @p20='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Division], [Email], [EmailConfirmed], [FirstName], [JobTitle], [LastName], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [ProfileImageUrl], [SecurityStamp], [Supervisor], [TwoFactorEnabled], [UserName])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20);
+2025-12-17 09:57:08.517 -05:00 [INF] Executed endpoint 'HTTP: POST /Identity/Register'
+2025-12-17 09:57:08.520 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/Identity/register - 200 null application/json; charset=utf-8 451.5228ms
+2025-12-17 09:57:08.593 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 09:57:08.593 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:08.593 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.8094ms
+2025-12-17 09:57:08.595 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 09:57:08.596 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:08.597 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 404 0 null 1.3181ms
+2025-12-17 09:57:08.597 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 09:57:08.599 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 09:57:08.600 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:08.600 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 404 0 null 0.5466ms
+2025-12-17 09:57:08.600 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 09:57:24.178 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:24.179 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:24.179 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:24.179 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:24.179 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 0.5212ms
+2025-12-17 09:57:24.179 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 1.1645ms
+2025-12-17 09:57:24.182 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:24.182 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:24.183 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 404 0 null 0.6139ms
+2025-12-17 09:57:24.183 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 09:57:24.185 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:24.185 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:24.185 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 404 0 null 0.7641ms
+2025-12-17 09:57:24.186 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 09:57:37.328 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:37.328 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:37.328 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:37.329 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:37.329 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 1.0247ms
+2025-12-17 09:57:37.329 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 0.9779ms
+2025-12-17 09:57:37.389 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:37.389 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:37.389 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 404 0 null 0.5337ms
+2025-12-17 09:57:37.389 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 09:57:37.391 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 09:57:37.391 -05:00 [INF] CORS policy execution successful.
+2025-12-17 09:57:37.391 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 404 0 null 0.4357ms
+2025-12-17 09:57:37.391 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 10:00:25.986 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:25.986 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:26.017 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:26.017 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:26.021 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 35.8734ms
+2025-12-17 10:00:26.021 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 36.0377ms
+2025-12-17 10:00:26.023 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:26.023 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:26.024 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 404 0 null 0.4715ms
+2025-12-17 10:00:26.024 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 10:00:26.025 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:26.025 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:26.025 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 404 0 null 0.2994ms
+2025-12-17 10:00:26.025 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 10:00:44.392 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:44.392 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:44.392 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:44.393 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:44.393 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.1735ms
+2025-12-17 10:00:44.393 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.9056ms
+2025-12-17 10:00:44.395 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:44.395 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:44.395 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 404 0 null 0.5006ms
+2025-12-17 10:00:44.395 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 10:00:44.397 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 10:00:44.397 -05:00 [INF] CORS policy execution successful.
+2025-12-17 10:00:44.397 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 404 0 null 0.6829ms
+2025-12-17 10:00:44.397 -05:00 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: GET https://localhost:57671/api/projects, Response status code: 404
+2025-12-17 13:03:42.190 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:03:42.204 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:03:42.207 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:03:42.207 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:03:42.208 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:03:42.209 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:22.897 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:22.913 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:22.915 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:22.916 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:22.917 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:22.918 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:04:23.397 -05:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 13:04:23.411 -05:00 [INF] Acquiring an exclusive lock for migration application. See https://aka.ms/efcore-docs-migrations-lock for more information if this takes too long.
+2025-12-17 13:04:23.450 -05:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_getapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session', @LockMode = 'Exclusive';
+SELECT @result
+2025-12-17 13:04:23.551 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+BEGIN
+    CREATE TABLE [__EFMigrationsHistory] (
+        [MigrationId] nvarchar(150) NOT NULL,
+        [ProductVersion] nvarchar(32) NOT NULL,
+        CONSTRAINT [PK___EFMigrationsHistory] PRIMARY KEY ([MigrationId])
+    );
+END;
+2025-12-17 13:04:23.656 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 13:04:23.696 -05:00 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT OBJECT_ID(N'[__EFMigrationsHistory]');
+2025-12-17 13:04:23.736 -05:00 [INF] Executed DbCommand (37ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [MigrationId], [ProductVersion]
+FROM [__EFMigrationsHistory]
+ORDER BY [MigrationId];
+2025-12-17 13:04:23.744 -05:00 [INF] Applying migration '20251217180342_AddProjectContext'.
+2025-12-17 13:04:23.798 -05:00 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE TABLE [Projects] (
+    [Id] uniqueidentifier NOT NULL,
+    [Name] nvarchar(200) NOT NULL,
+    [Description] nvarchar(2000) NOT NULL,
+    [Status] nvarchar(50) NOT NULL,
+    [Filter_FormType] nvarchar(100) NULL,
+    [Filter_Tags] nvarchar(max) NOT NULL,
+    [Filter_ActiveOnly] bit NOT NULL,
+    [Filter_FromDate] datetime2 NULL,
+    [Filter_ToDate] datetime2 NULL,
+    [Filter_CustomFilters] nvarchar(max) NOT NULL,
+    [CreatedBy] nvarchar(256) NOT NULL,
+    [CreatedAt] datetime2 NOT NULL,
+    [UpdatedAt] datetime2 NOT NULL,
+    [UpdatedBy] nvarchar(256) NULL,
+    [CodeGenerationJobIds] nvarchar(max) NOT NULL,
+    [FormIds] nvarchar(max) NOT NULL,
+    CONSTRAINT [PK_Projects] PRIMARY KEY ([Id])
+);
+2025-12-17 13:04:23.830 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Projects_CreatedAt] ON [Projects] ([CreatedAt]);
+2025-12-17 13:04:23.861 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Projects_CreatedBy] ON [Projects] ([CreatedBy]);
+2025-12-17 13:04:23.892 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Projects_Name] ON [Projects] ([Name]);
+2025-12-17 13:04:23.925 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Projects_Status] ON [Projects] ([Status]);
+2025-12-17 13:04:23.955 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+CREATE INDEX [IX_Projects_UpdatedAt] ON [Projects] ([UpdatedAt]);
+2025-12-17 13:04:23.985 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20251217180342_AddProjectContext', N'9.0.8');
+2025-12-17 13:04:24.046 -05:00 [INF] Executed DbCommand (27ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+DECLARE @result int;
+EXEC @result = sp_releaseapplock @Resource = '__EFMigrationsLock', @LockOwner = 'Session';
+SELECT @result
+2025-12-17 13:08:07.079 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 13:08:07.260 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 13:08:07.285 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 13:08:07.287 -05:00 [INF] Registered 9 templates
+2025-12-17 13:08:07.301 -05:00 [INF] Registered 19 endpoints in 576 milliseconds.
+2025-12-17 13:08:07.861 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:08:07.861 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:08:07.863 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:08:07.863 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:08:07.863 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:08:07.863 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:08:08.401 -05:00 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 13:08:08.452 -05:00 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 13:08:08.647 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Forms] AS [f]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-12-17 13:08:08.967 -05:00 [INF] Now listening on: https://localhost:53071
+2025-12-17 13:08:08.971 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 13:08:09.013 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 13:08:09.013 -05:00 [INF] Hosting environment: Development
+2025-12-17 13:08:09.014 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 13:08:09.784 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-17 13:08:09.946 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 169.0853ms
+2025-12-17 13:08:09.950 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-17 13:08:09.974 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 24.1362ms
+2025-12-17 13:08:09.980 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-17 13:08:09.987 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - 200 16523 application/javascript; charset=utf-8 6.7281ms
+2025-12-17 13:08:09.997 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_vs/browserLink - null null
+2025-12-17 13:08:10.077 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_vs/browserLink - 200 null text/javascript; charset=UTF-8 80.3184ms
+2025-12-17 13:08:10.134 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-17 13:08:10.238 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 103.7168ms
+2025-12-17 13:08:38.813 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?pageNumber=1&pageSize=10 - null null
+2025-12-17 13:08:38.819 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:08:38.994 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:08:39.114 -05:00 [INF] Executed DbCommand (49ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:08:39.135 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:08:39.138 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?pageNumber=1&pageSize=10 - 200 null application/json; charset=utf-8 325.8222ms
+2025-12-17 13:09:53.939 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:09:53.939 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:09:53.972 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:09:53.972 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:09:53.974 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 35.1084ms
+2025-12-17 13:09:53.974 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 35.1123ms
+2025-12-17 13:09:53.977 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:09:53.978 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:09:53.978 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:09:54.044 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:09:54.079 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:09:54.080 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:09:54.080 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 103.9538ms
+2025-12-17 13:09:54.083 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:09:54.083 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:09:54.083 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:09:54.119 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:09:54.149 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:09:54.149 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:09:54.149 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 66.5752ms
+2025-12-17 13:20:07.200 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:20:07.200 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:20:07.201 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:20:07.201 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:20:07.201 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.9503ms
+2025-12-17 13:20:07.201 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.0019ms
+2025-12-17 13:20:07.203 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:20:07.203 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:20:07.203 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:20:07.380 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:20:07.409 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:20:07.409 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:20:07.409 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 207.0917ms
+2025-12-17 13:20:07.412 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:20:07.412 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:20:07.412 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:20:07.443 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:20:07.473 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:20:07.474 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:20:07.474 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 62.2692ms
+2025-12-17 13:20:17.819 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:20:17.819 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:20:17.820 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:20:17.820 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:20:17.821 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.9376ms
+2025-12-17 13:20:17.821 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.1841ms
+2025-12-17 13:22:05.844 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:22:05.845 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:22:05.845 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:22:05.877 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:22:05.907 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:22:05.908 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:22:05.908 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 64.3866ms
+2025-12-17 13:22:05.910 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:22:05.910 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:22:05.910 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:22:05.940 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:22:05.977 -05:00 [INF] Executed DbCommand (36ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:22:05.978 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:22:05.978 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 68.3876ms
+2025-12-17 13:27:18.369 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/Identity/login - null null
+2025-12-17 13:27:18.369 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:27:18.369 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/Identity/login - 204 null null 0.9022ms
+2025-12-17 13:27:18.382 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/Identity/login - application/json 85
+2025-12-17 13:27:18.384 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:27:18.384 -05:00 [INF] Executing endpoint 'HTTP: POST /Identity/Login'
+2025-12-17 13:39:37.195 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 13:39:37.362 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 13:39:37.381 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 13:39:37.382 -05:00 [INF] Registered 9 templates
+2025-12-17 13:39:37.388 -05:00 [INF] Registered 19 endpoints in 479 milliseconds.
+2025-12-17 13:39:37.873 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:39:37.874 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:39:37.877 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:39:37.877 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:39:37.877 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:39:37.877 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:39:38.391 -05:00 [INF] Executed DbCommand (50ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 13:39:38.444 -05:00 [INF] Executed DbCommand (44ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 13:39:38.626 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Forms] AS [f]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-12-17 13:39:38.908 -05:00 [INF] Now listening on: https://localhost:62547
+2025-12-17 13:39:38.912 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 13:39:39.295 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 13:39:39.295 -05:00 [INF] Hosting environment: Development
+2025-12-17 13:39:39.295 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 13:40:12.410 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/Identity/login - null null
+2025-12-17 13:40:12.455 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:40:12.458 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/Identity/login - 204 null null 55.8435ms
+2025-12-17 13:40:12.462 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/Identity/login - application/json 71
+2025-12-17 13:40:12.471 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:40:12.475 -05:00 [INF] Executing endpoint 'HTTP: POST /Identity/Login'
+2025-12-17 13:40:12.634 -05:00 [INF] Executed DbCommand (49ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Division], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[JobTitle], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfileImageUrl], [a].[SecurityStamp], [a].[Supervisor], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-12-17 13:40:12.803 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-12-17 13:40:12.853 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-12-17 13:40:12.864 -05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-12-17 13:40:12.925 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Division], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[JobTitle], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfileImageUrl], [a].[SecurityStamp], [a].[Supervisor], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-12-17 13:40:12.959 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-12-17 13:59:20.192 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 13:59:20.365 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 13:59:20.386 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 13:59:20.386 -05:00 [INF] Registered 9 templates
+2025-12-17 13:59:20.393 -05:00 [INF] Registered 19 endpoints in 515 milliseconds.
+2025-12-17 13:59:20.875 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:59:20.876 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:59:20.880 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:59:20.880 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:59:20.880 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:59:20.880 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 13:59:21.391 -05:00 [INF] Executed DbCommand (53ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 13:59:21.440 -05:00 [INF] Executed DbCommand (41ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 13:59:21.625 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Forms] AS [f]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-12-17 13:59:21.917 -05:00 [INF] Now listening on: https://localhost:63074
+2025-12-17 13:59:21.920 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 13:59:21.960 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 13:59:21.960 -05:00 [INF] Hosting environment: Development
+2025-12-17 13:59:21.960 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 13:59:44.073 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/Identity/login - null null
+2025-12-17 13:59:44.111 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:59:44.123 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/Identity/login - 204 null null 56.515ms
+2025-12-17 13:59:44.126 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/Identity/login - application/json 71
+2025-12-17 13:59:44.128 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:59:44.204 -05:00 [INF] Executing endpoint 'HTTP: POST /Identity/Login'
+2025-12-17 13:59:44.354 -05:00 [INF] Executed DbCommand (53ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Division], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[JobTitle], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfileImageUrl], [a].[SecurityStamp], [a].[Supervisor], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-12-17 13:59:44.517 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__user_Id_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a].[Id], [a].[ClaimType], [a].[ClaimValue], [a].[UserId]
+FROM [AspNetUserClaims] AS [a]
+WHERE [a].[UserId] = @__user_Id_0
+2025-12-17 13:59:44.560 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-12-17 13:59:44.573 -05:00 [INF] AuthenticationScheme: Identity.Application signed in.
+2025-12-17 13:59:44.606 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[@__normalizedUserName_0='?' (Size = 256)], CommandType='"Text"', CommandTimeout='30']
+SELECT TOP(1) [a].[Id], [a].[AccessFailedCount], [a].[ConcurrencyStamp], [a].[Division], [a].[Email], [a].[EmailConfirmed], [a].[FirstName], [a].[JobTitle], [a].[LastName], [a].[LockoutEnabled], [a].[LockoutEnd], [a].[NormalizedEmail], [a].[NormalizedUserName], [a].[PasswordHash], [a].[PhoneNumber], [a].[PhoneNumberConfirmed], [a].[ProfileImageUrl], [a].[SecurityStamp], [a].[Supervisor], [a].[TwoFactorEnabled], [a].[UserName]
+FROM [AspNetUsers] AS [a]
+WHERE [a].[NormalizedUserName] = @__normalizedUserName_0
+2025-12-17 13:59:44.638 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__userId_0='?' (Size = 450)], CommandType='"Text"', CommandTimeout='30']
+SELECT [a0].[Name]
+FROM [AspNetUserRoles] AS [a]
+INNER JOIN [AspNetRoles] AS [a0] ON [a].[RoleId] = [a0].[Id]
+WHERE [a].[UserId] = @__userId_0
+2025-12-17 13:59:44.665 -05:00 [INF] Executed endpoint 'HTTP: POST /Identity/Login'
+2025-12-17 13:59:44.668 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/Identity/login - 200 null application/json; charset=utf-8 542.6165ms
+2025-12-17 13:59:44.720 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:59:44.720 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:59:44.721 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:59:44.721 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:59:44.721 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.0185ms
+2025-12-17 13:59:44.722 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.3018ms
+2025-12-17 13:59:44.723 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:59:44.724 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:59:44.768 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:59:44.868 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:59:44.933 -05:00 [INF] Executed DbCommand (40ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:59:44.946 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:59:44.947 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 223.783ms
+2025-12-17 13:59:44.948 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 13:59:44.948 -05:00 [INF] CORS policy execution successful.
+2025-12-17 13:59:44.949 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:59:44.980 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 13:59:45.013 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 13:59:45.013 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 13:59:45.013 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 65.2543ms
+2025-12-17 14:14:06.581 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:06.581 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:06.582 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:06.582 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:06.582 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.2527ms
+2025-12-17 14:14:06.582 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.7244ms
+2025-12-17 14:14:06.585 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:06.585 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:06.586 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:06.805 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:14:06.844 -05:00 [INF] Executed DbCommand (37ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:14:06.844 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:06.844 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 259.3827ms
+2025-12-17 14:14:06.846 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:06.847 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:06.847 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:06.879 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:14:06.911 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:14:06.911 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:06.911 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 65.011ms
+2025-12-17 14:14:22.289 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:22.290 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:22.290 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:22.290 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:22.290 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.2511ms
+2025-12-17 14:14:22.290 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.3057ms
+2025-12-17 14:14:22.293 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:22.293 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:22.294 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:22.325 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:14:22.357 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:14:22.357 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:22.358 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 65.1393ms
+2025-12-17 14:14:22.359 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:14:22.360 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:14:22.360 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:22.391 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:14:22.421 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:14:22.422 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:14:22.422 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 63.1859ms
+2025-12-17 14:15:27.368 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:15:27.368 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:15:27.369 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:15:27.369 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:15:27.370 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.6687ms
+2025-12-17 14:15:27.369 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.0794ms
+2025-12-17 14:15:27.441 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:15:27.444 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:15:27.445 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:15:27.480 -05:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:15:27.512 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:15:27.512 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:15:27.513 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 104.3491ms
+2025-12-17 14:15:27.515 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:15:27.515 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:15:27.515 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:15:27.545 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:15:27.580 -05:00 [INF] Executed DbCommand (34ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:15:27.581 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:15:27.581 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 66.5504ms
+2025-12-17 14:16:15.707 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:16:15.707 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:16:15.707 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:16:15.707 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:16:15.708 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.1699ms
+2025-12-17 14:16:15.708 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.2491ms
+2025-12-17 14:16:15.720 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:16:15.720 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:16:15.722 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:16:15.752 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:16:15.785 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:16:15.786 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:16:15.786 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 65.9765ms
+2025-12-17 14:16:15.788 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:16:15.789 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:16:15.789 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:16:15.823 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:16:15.855 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:16:15.856 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:16:15.856 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 67.7128ms
+2025-12-17 14:17:24.533 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:17:24.533 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:17:24.533 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:17:24.533 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:17:24.534 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.5115ms
+2025-12-17 14:17:24.534 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.5272ms
+2025-12-17 14:17:24.536 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:17:24.536 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:17:24.537 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:17:24.573 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:17:24.609 -05:00 [INF] Executed DbCommand (34ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:17:24.609 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:17:24.610 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 73.9604ms
+2025-12-17 14:17:24.611 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:17:24.612 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:17:24.613 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:17:24.656 -05:00 [INF] Executed DbCommand (42ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:17:24.695 -05:00 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:17:24.696 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:17:24.696 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 85.1422ms
+2025-12-17 14:21:02.673 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:02.673 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:02.674 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:02.674 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:02.674 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.6742ms
+2025-12-17 14:21:02.674 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.686ms
+2025-12-17 14:21:02.677 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:02.677 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:02.678 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:02.713 -05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:21:02.748 -05:00 [INF] Executed DbCommand (34ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:21:02.748 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:02.749 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 72.0915ms
+2025-12-17 14:21:02.751 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:02.752 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:02.752 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:02.783 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:21:02.813 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:21:02.814 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:02.814 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 63.0219ms
+2025-12-17 14:21:17.321 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:17.321 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:17.322 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:17.322 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:17.322 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.7888ms
+2025-12-17 14:21:17.322 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.7788ms
+2025-12-17 14:21:17.324 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:17.325 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:17.325 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:17.355 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:21:17.384 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:21:17.385 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:17.385 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 60.6455ms
+2025-12-17 14:21:17.387 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:21:17.387 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:21:17.387 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:17.418 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:21:17.449 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:21:17.449 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:21:17.449 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 62.5038ms
+2025-12-17 14:22:30.740 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:22:30.740 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:22:30.740 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:22:30.741 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:22:30.742 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.4915ms
+2025-12-17 14:22:30.742 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.9853ms
+2025-12-17 14:22:30.744 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:22:30.744 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:22:30.745 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:22:30.775 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:22:30.805 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:22:30.805 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:22:30.805 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 61.5603ms
+2025-12-17 14:22:30.807 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:22:30.807 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:22:30.808 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:22:30.848 -05:00 [INF] Executed DbCommand (39ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:22:30.878 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:22:30.879 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:22:30.879 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 72.2148ms
+2025-12-17 14:23:18.589 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:23:18.589 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:23:18.591 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:23:18.623 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:23:18.649 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 59.7683ms
+2025-12-17 14:23:18.649 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 59.9511ms
+2025-12-17 14:23:18.651 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:23:18.652 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:23:18.652 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:23:18.688 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:23:18.719 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:23:18.719 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:23:18.719 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 67.7413ms
+2025-12-17 14:23:18.721 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:23:18.721 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:23:18.722 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:23:18.752 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:23:18.781 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:23:18.782 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:23:18.782 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 61.6061ms
+2025-12-17 14:51:58.024 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:51:58.024 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:51:58.025 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:51:58.025 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:51:58.025 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.5704ms
+2025-12-17 14:51:58.025 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.5913ms
+2025-12-17 14:51:58.028 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:51:58.028 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:51:58.028 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:51:58.203 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:51:58.242 -05:00 [INF] Executed DbCommand (38ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:51:58.243 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:51:58.243 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 215.1422ms
+2025-12-17 14:51:58.245 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:51:58.245 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:51:58.245 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:51:58.280 -05:00 [INF] Executed DbCommand (34ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:51:58.311 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:51:58.312 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:51:58.312 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 66.9173ms
+2025-12-17 14:53:00.440 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:53:00.440 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:00.441 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.5574ms
+2025-12-17 14:53:00.441 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:53:00.441 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:00.441 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 0.2304ms
+2025-12-17 14:53:00.443 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:53:00.443 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:00.474 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:00.556 -05:00 [INF] Executed DbCommand (81ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:53:00.606 -05:00 [INF] Executed DbCommand (49ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:53:00.606 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:00.607 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 164.0478ms
+2025-12-17 14:53:00.610 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 14:53:00.610 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:00.610 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:00.644 -05:00 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:53:00.680 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:53:00.680 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:00.680 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 70.8088ms
+2025-12-17 14:53:33.433 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 14:53:33.434 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:33.434 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 14:53:33.434 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:33.434 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 0.7723ms
+2025-12-17 14:53:33.434 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 0.4247ms
+2025-12-17 14:53:33.486 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 14:53:33.487 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:33.487 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:33.524 -05:00 [INF] Executed DbCommand (36ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:53:33.559 -05:00 [INF] Executed DbCommand (35ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:53:33.560 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:33.560 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 200 null application/json; charset=utf-8 73.5731ms
+2025-12-17 14:53:33.562 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 14:53:33.562 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:53:33.562 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:33.594 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 14:53:33.624 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 14:53:33.625 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 14:53:33.625 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 200 null application/json; charset=utf-8 62.9923ms
+2025-12-17 14:54:57.681 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects - null null
+2025-12-17 14:54:57.681 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:54:57.681 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects - 204 null null 0.4403ms
+2025-12-17 14:54:57.683 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/api/projects - application/json 51
+2025-12-17 14:54:57.683 -05:00 [INF] CORS policy execution successful.
+2025-12-17 14:54:57.684 -05:00 [INF] Executing endpoint 'HTTP: POST /api/projects'
+2025-12-17 15:04:29.860 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-17 15:04:30.046 -05:00 [INF] User profile is available. Using 'C:\Users\carrollpl\AppData\Local\ASP.NET\DataProtection-Keys' as key repository and Windows DPAPI to encrypt keys at rest.
+2025-12-17 15:04:30.067 -05:00 [INF] Registering templates from: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web\bin\Debug\net9.0\CodeGenerationContext\Templates
+2025-12-17 15:04:30.068 -05:00 [INF] Registered 9 templates
+2025-12-17 15:04:30.075 -05:00 [INF] Registered 19 endpoints in 518 milliseconds.
+2025-12-17 15:04:30.573 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 15:04:30.574 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 15:04:30.577 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 15:04:30.577 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 15:04:30.577 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 15:04:30.577 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-17 15:04:31.121 -05:00 [INF] Executed DbCommand (51ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT 1
+2025-12-17 15:04:31.179 -05:00 [INF] Executed DbCommand (48ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+
+IF EXISTS
+    (SELECT *
+     FROM [sys].[objects] o
+     WHERE [o].[type] = 'U'
+     AND [o].[is_ms_shipped] = 0
+     AND NOT EXISTS (SELECT *
+         FROM [sys].[extended_properties] AS [ep]
+         WHERE [ep].[major_id] = [o].[object_id]
+             AND [ep].[minor_id] = 0
+             AND [ep].[class] = 1
+             AND [ep].[name] = N'microsoft_database_tools_support'
+    )
+)
+SELECT 1 ELSE SELECT 0
+2025-12-17 15:04:31.383 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [Forms] AS [f]) THEN CAST(1 AS bit)
+    ELSE CAST(0 AS bit)
+END
+2025-12-17 15:04:31.716 -05:00 [INF] Now listening on: https://localhost:60121
+2025-12-17 15:04:31.720 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-17 15:04:31.764 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-17 15:04:31.764 -05:00 [INF] Hosting environment: Development
+2025-12-17 15:04:31.764 -05:00 [INF] Content root path: C:\Users\carrollpl\source\repos\FormDesigner\FormDesigner\src\FormDesignerAPI.Web
+2025-12-17 15:04:32.262 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-17 15:04:32.507 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 255.8093ms
+2025-12-17 15:04:32.511 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-17 15:04:32.549 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 38.2589ms
+2025-12-17 15:04:32.550 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - null null
+2025-12-17 15:04:32.555 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_framework/aspnetcore-browser-refresh.js - 200 16523 application/javascript; charset=utf-8 5.5075ms
+2025-12-17 15:04:32.560 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/_vs/browserLink - null null
+2025-12-17 15:04:32.601 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/_vs/browserLink - 200 null text/javascript; charset=UTF-8 40.7413ms
+2025-12-17 15:04:32.667 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-17 15:04:32.741 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 73.3966ms
+2025-12-17 15:05:11.001 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects - null null
+2025-12-17 15:05:11.005 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:05:11.006 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects - 204 null null 5.2619ms
+2025-12-17 15:05:11.008 -05:00 [INF] Request starting HTTP/2 POST https://localhost:57671/api/projects - application/json 50
+2025-12-17 15:05:11.010 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:05:11.059 -05:00 [INF] Executing endpoint 'HTTP: POST /api/projects'
+2025-12-17 15:05:11.364 -05:00 [INF] Executed DbCommand (53ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime2), @p2='?' (Size = 256), @p3='?' (Size = 2000), @p4='?' (Size = 200), @p5='?' (Size = 50), @p6='?' (DbType = DateTime2), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (Size = 100), @p13='?' (DbType = DateTime2), @p14='?' (Size = 4000), @p15='?' (DbType = DateTime2)], CommandType='"Text"', CommandTimeout='30']
+SET IMPLICIT_TRANSACTIONS OFF;
+SET NOCOUNT ON;
+INSERT INTO [Projects] ([Id], [CreatedAt], [CreatedBy], [Description], [Name], [Status], [UpdatedAt], [UpdatedBy], [CodeGenerationJobIds], [FormIds], [Filter_ActiveOnly], [Filter_CustomFilters], [Filter_FormType], [Filter_FromDate], [Filter_Tags], [Filter_ToDate])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15);
+2025-12-17 15:05:11.386 -05:00 [INF] Executed endpoint 'HTTP: POST /api/projects'
+2025-12-17 15:05:11.388 -05:00 [INF] Request finished HTTP/2 POST https://localhost:57671/api/projects - 200 null application/json; charset=utf-8 380.1688ms
+2025-12-17 15:08:10.273 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 15:08:10.273 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 15:08:10.273 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:10.273 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:10.285 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 9.1714ms
+2025-12-17 15:08:10.285 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=10 - 204 null null 9.2021ms
+2025-12-17 15:08:10.287 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 15:08:10.288 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:10.292 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:10.416 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 15:08:10.507 -05:00 [INF] Executed DbCommand (31ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 15:08:10.525 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:10.526 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 200 null application/json; charset=utf-8 238.3037ms
+2025-12-17 15:08:10.527 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 15:08:10.527 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:10.528 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:10.558 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 15:08:10.589 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 15:08:10.591 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:10.591 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 200 null application/json; charset=utf-8 64.1626ms
+2025-12-17 15:08:13.304 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 15:08:13.304 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:13.305 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:13.339 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 15:08:13.371 -05:00 [INF] Executed DbCommand (30ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 15:08:13.373 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:13.373 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 200 null application/json; charset=utf-8 69.8187ms
+2025-12-17 15:08:13.375 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-17 15:08:13.375 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:13.376 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:13.407 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 15:08:13.437 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 15:08:13.439 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:13.439 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 200 null application/json; charset=utf-8 64.0466ms
+2025-12-17 15:08:15.449 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 15:08:15.449 -05:00 [INF] Request starting HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 15:08:15.449 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:15.449 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:15.450 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.0304ms
+2025-12-17 15:08:15.450 -05:00 [INF] Request finished HTTP/2 OPTIONS https://localhost:57671/api/projects?page=1&pageSize=100 - 204 null null 1.2176ms
+2025-12-17 15:08:15.452 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 15:08:15.452 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:15.453 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:15.483 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 15:08:15.513 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 15:08:15.514 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:15.514 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 62.5998ms
+2025-12-17 15:08:15.516 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - null null
+2025-12-17 15:08:15.517 -05:00 [INF] CORS policy execution successful.
+2025-12-17 15:08:15.517 -05:00 [INF] Executing endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:15.548 -05:00 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT COUNT(*)
+FROM [Projects] AS [p]
+2025-12-17 15:08:15.577 -05:00 [INF] Executed DbCommand (28ms) [Parameters=[@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)], CommandType='"Text"', CommandTimeout='30']
+SELECT [p].[Id], [p].[CreatedAt], [p].[CreatedBy], [p].[Description], [p].[Name], [p].[Status], [p].[UpdatedAt], [p].[UpdatedBy], [p].[CodeGenerationJobIds], [p].[FormIds], [p].[Filter_ActiveOnly], [p].[Filter_CustomFilters], [p].[Filter_FormType], [p].[Filter_FromDate], [p].[Filter_Tags], [p].[Filter_ToDate]
+FROM [Projects] AS [p]
+ORDER BY [p].[UpdatedAt] DESC
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+2025-12-17 15:08:15.578 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects'
+2025-12-17 15:08:15.578 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=100 - 200 null application/json; charset=utf-8 61.6507ms

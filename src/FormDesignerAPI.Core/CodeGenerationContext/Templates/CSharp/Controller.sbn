@@ -1,36 +1,35 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Controller.sbn -}}
 using Microsoft.AspNetCore.Mvc;
-using {{ Namespace }}.Core.Entities;
-using {{ Namespace }}.Core.Interfaces;
-using {{ Namespace }}.Application.DTOs;
+using {{ namespace }}.Core.Entities;
+using {{ namespace }}.Core.Interfaces;
+using {{ namespace }}.Application.DTOs;
 
-namespace {{ Namespace }}.Web.Controllers;
+namespace {{ namespace }}.Web.Controllers;
 
 /// <summary>
-/// API Controller for {{ EntityName }}
-/// Generated on {{ GeneratedDateFormatted }} UTC
+/// API Controller for {{ entity_name }}
+/// Generated on {{ generated_date_formatted }} UTC
 /// </summary>
 [ApiController]
 [Route("api/[controller]")]
-public class {{ EntityName }}Controller : ControllerBase
+public class {{ entity_name }}Controller : ControllerBase
 {
-    private readonly I{{ EntityName }}Repository _repository;
-    private readonly ILogger<{{ EntityName }}Controller> _logger;
+    private readonly I{{ entity_name }}Repository _repository;
+    private readonly ILogger<{{ entity_name }}Controller> _logger;
 
-    public {{ EntityName }}Controller(
-        I{{ EntityName }}Repository repository,
-        ILogger<{{ EntityName }}Controller> logger)
+    public {{ entity_name }}Controller(
+        I{{ entity_name }}Repository repository,
+        ILogger<{{ entity_name }}Controller> logger)
     {
         _repository = repository;
         _logger = logger;
     }
 
     /// <summary>
-    /// Get all {{ EntityNamePlural }}
+    /// Get all {{ entity_name_plural }}
     /// </summary>
     [HttpGet]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public async Task<ActionResult<IEnumerable<{{ EntityName }}>>> GetAll(
+    public async Task<ActionResult<IEnumerable<{{ entity_name }}>>> GetAll(
         CancellationToken cancellationToken)
     {
         var entities = await _repository.GetAllAsync(cancellationToken);
@@ -38,12 +37,12 @@ public class {{ EntityName }}Controller : ControllerBase
     }
 
     /// <summary>
-    /// Get {{ EntityName }} by ID
+    /// Get {{ entity_name }} by ID
     /// </summary>
     [HttpGet("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status200OK)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
-    public async Task<ActionResult<{{ EntityName }}>> GetById(
+    public async Task<ActionResult<{{ entity_name }}>> GetById(
         Guid id,
         CancellationToken cancellationToken)
     {
@@ -56,18 +55,18 @@ public class {{ EntityName }}Controller : ControllerBase
     }
 
     /// <summary>
-    /// Create new {{ EntityName }}
+    /// Create new {{ entity_name }}
     /// </summary>
     [HttpPost]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<ActionResult<{{ EntityName }}>> Create(
-        [FromBody] Create{{ EntityName }}Request request,
+    public async Task<ActionResult<{{ entity_name }}>> Create(
+        [FromBody] Create{{ entity_name }}Request request,
         CancellationToken cancellationToken)
     {
-        var entity = {{ EntityName }}.Create(
-{{~ for field in Fields ~}}
-            request.{{ field.NamePascal }}{{ if !for.last }},{{ end }}
+        var entity = {{ entity_name }}.Create(
+{{~ for field in fields ~}}
+            request.{{ field.name_pascal }}{{ if !for.last }},{{ end }}
 {{~ end ~}},
             "api-user" // TODO: Get from authenticated user
         );
@@ -81,14 +80,14 @@ public class {{ EntityName }}Controller : ControllerBase
     }
 
     /// <summary>
-    /// Update existing {{ EntityName }}
+    /// Update existing {{ entity_name }}
     /// </summary>
     [HttpPut("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]
     [ProducesResponseType(StatusCodes.Status404NotFound)]
     public async Task<IActionResult> Update(
         Guid id,
-        [FromBody] Update{{ EntityName }}Request request,
+        [FromBody] Update{{ entity_name }}Request request,
         CancellationToken cancellationToken)
     {
         var entity = await _repository.GetByIdAsync(id, cancellationToken);
@@ -97,8 +96,8 @@ public class {{ EntityName }}Controller : ControllerBase
             return NotFound();
 
         entity.Update(
-{{~ for field in Fields ~}}
-            request.{{ field.NamePascal }}{{ if !for.last }},{{ end }}
+{{~ for field in fields ~}}
+            request.{{ field.name_pascal }}{{ if !for.last }},{{ end }}
 {{~ end ~}},
             "api-user" // TODO: Get from authenticated user
         );
@@ -109,7 +108,7 @@ public class {{ EntityName }}Controller : ControllerBase
     }
 
     /// <summary>
-    /// Delete {{ EntityName }}
+    /// Delete {{ entity_name }}
     /// </summary>
     [HttpDelete("{id:guid}")]
     [ProducesResponseType(StatusCodes.Status204NoContent)]

@@ -1,4 +1,4 @@
-using FormDesignerAPI.Core.CodeGenerationContext.Aggregates;
+﻿using FormDesignerAPI.Core.CodeGenerationContext.Aggregates;
 using FormDesignerAPI.Core.CodeGenerationContext.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -16,22 +16,16 @@ public class CodeGenerationJobRepository : EfRepository<CodeGenerationJob>, ICod
         _dbContext = dbContext;
     }
 
-    /// <summary>
-    /// Get job with all artifacts eagerly loaded
-    /// </summary>
-    public async Task<CodeGenerationJob?> GetByIdWithArtifactsAsync(
-        Guid id,
-        CancellationToken cancellationToken = default)
-    {
-        return await _dbContext.CodeGenerationJobs
-            .Include(j => j.Artifacts)
-            .FirstOrDefaultAsync(j => j.Id == id, cancellationToken);
-    }
+  public Task<CodeGenerationJob?> GetByIdAsync(Guid id, CancellationToken cancellationToken = default)
+  {
+    return _dbContext.CodeGenerationJobs
+        .FirstOrDefaultAsync(j => j.Id == id, cancellationToken);
+  }
 
-    /// <summary>
-    /// Get all jobs for a specific form definition
-    /// </summary>
-    public async Task<List<CodeGenerationJob>> GetJobsByFormDefinitionIdAsync(
+  /// <summary>
+  /// Get all jobs for a specific form definition
+  /// </summary>
+  public async Task<List<CodeGenerationJob>> GetJobsByFormDefinitionIdAsync(
         Guid formDefinitionId,
         CancellationToken cancellationToken = default)
     {

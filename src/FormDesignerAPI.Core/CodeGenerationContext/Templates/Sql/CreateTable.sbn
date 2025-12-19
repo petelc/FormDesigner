@@ -1,20 +1,19 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/Sql/CreateTable.sbn -}}
 -- ============================================================================
--- Create table for {{ EntityName }}
--- Generated on {{ GeneratedDateFormatted }} UTC
--- Author: {{ Author }}
+-- Create table for {{ entity_name }}
+-- Generated on {{ generated_date_formatted }} UTC
+-- Author: {{ author }}
 -- ============================================================================
 
 -- Drop table if exists (for development - remove in production)
-IF OBJECT_ID('dbo.{{ EntityNamePlural }}', 'U') IS NOT NULL
-    DROP TABLE dbo.{{ EntityNamePlural }};
+IF OBJECT_ID('dbo.{{ entity_name_plural }}', 'U') IS NOT NULL
+    DROP TABLE dbo.{{ entity_name_plural }};
 GO
 
 -- Create table
-CREATE TABLE dbo.{{ EntityNamePlural }} (
+CREATE TABLE dbo.{{ entity_name_plural }} (
     [Id] UNIQUEIDENTIFIER PRIMARY KEY DEFAULT NEWID(),
-{{~ for field in Fields ~}}
-    [{{ field.NamePascal }}] {{ field.SqlType }}{{ if field.Required }} NOT NULL{{ else }} NULL{{ end }},
+{{~ for field in fields ~}}
+    [{{ field.name_pascal }}] {{ field.sql_type }}{{ if field.required }} NOT NULL{{ else }} NULL{{ end }},
 {{~ end ~}}
     [CreatedAt] DATETIME NOT NULL DEFAULT GETUTCDATE(),
     [CreatedBy] NVARCHAR(100) NOT NULL,
@@ -22,26 +21,26 @@ CREATE TABLE dbo.{{ EntityNamePlural }} (
     [UpdatedBy] NVARCHAR(100) NULL,
     
     -- Constraints
-{{~ for field in Fields ~}}
-{{~ if field.Type == "email" ~}}
-    CONSTRAINT CK_{{ EntityNamePlural }}_{{ field.NamePascal }}_Email 
-        CHECK ({{ field.NamePascal }} LIKE '%_@__%.__%'),
+{{~ for field in fields ~}}
+{{~ if field.type == "email" ~}}
+    CONSTRAINT CK_{{ entity_name_plural }}_{{ field.name_pascal }}_Email 
+        CHECK ({{ field.name_pascal }} LIKE '%_@__%.__%'),
 {{~ end ~}}
 {{~ end ~}}
-    CONSTRAINT CK_{{ EntityNamePlural }}_Dates 
+    CONSTRAINT CK_{{ entity_name_plural }}_Dates 
         CHECK (UpdatedAt IS NULL OR UpdatedAt >= CreatedAt)
 );
 GO
 
 -- Indexes
-CREATE INDEX IX_{{ EntityNamePlural }}_CreatedAt 
-    ON dbo.{{ EntityNamePlural }}([CreatedAt] DESC);
+CREATE INDEX IX_{{ entity_name_plural }}_CreatedAt 
+    ON dbo.{{ entity_name_plural }}([CreatedAt] DESC);
 GO
 
-{{~ for field in Fields ~}}
-{{~ if field.Required && (field.Type == "text" || field.Type == "email") ~}}
-CREATE INDEX IX_{{ EntityNamePlural }}_{{ field.NamePascal }} 
-    ON dbo.{{ EntityNamePlural }}([{{ field.NamePascal }}]);
+{{~ for field in fields ~}}
+{{~ if field.required && (field.type == "text" || field.type == "email") ~}}
+CREATE INDEX IX_{{ entity_name_plural }}_{{ field.name_pascal }} 
+    ON dbo.{{ entity_name_plural }}([{{ field.name_pascal }}]);
 GO
 
 {{~ end ~}}
@@ -50,25 +49,25 @@ GO
 -- Comments
 EXEC sys.sp_addextendedproperty 
     @name = N'MS_Description',
-    @value = N'{{ EntityName }} entity table - Generated {{ GeneratedDateFormatted }}',
+    @value = N'{{ entity_name }} entity table - Generated {{ generated_date_formatted }}',
     @level0type = N'SCHEMA', @level0name = N'dbo',
-    @level1type = N'TABLE',  @level1name = N'{{ EntityNamePlural }}';
+    @level1type = N'TABLE',  @level1name = N'{{ entity_name_plural }}';
 GO
 
-{{~ for field in Fields ~}}
+{{~ for field in fields ~}}
 EXEC sys.sp_addextendedproperty 
     @name = N'MS_Description',
-    @value = N'{{ field.Label }}{{ if field.Required }} (Required){{ end }}',
+    @value = N'{{ field.label }}{{ if field.required }} (Required){{ end }}',
     @level0type = N'SCHEMA', @level0name = N'dbo',
-    @level1type = N'TABLE',  @level1name = N'{{ EntityNamePlural }}',
-    @level2type = N'COLUMN', @level2name = N'{{ field.NamePascal }}';
+    @level1type = N'TABLE',  @level1name = N'{{ entity_name_plural }}',
+    @level2type = N'COLUMN', @level2name = N'{{ field.name_pascal }}';
 GO
 
 {{~ end ~}}
 
 -- Grant permissions (adjust as needed)
--- GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.{{ EntityNamePlural }} TO [YourAppRole];
+-- GRANT SELECT, INSERT, UPDATE, DELETE ON dbo.{{ entity_name_plural }} TO [YourAppRole];
 -- GO
 
-PRINT '✓ Table {{ EntityNamePlural }} created successfully';
+PRINT '✓ Table {{ entity_name_plural }} created successfully';
 GO

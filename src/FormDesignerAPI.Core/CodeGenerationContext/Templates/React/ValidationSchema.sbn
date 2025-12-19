@@ -1,74 +1,73 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/React/ValidationSchema.sbn -}}
 import * as yup from 'yup';
 
 /**
- * Yup Validation Schema for {{ EntityName }}
- * Generated on {{ GeneratedDateFormatted }} UTC
- * Author: {{ Author }}
+ * Yup Validation Schema for {{ entity_name }}
+ * Generated on {{ generated_date_formatted }} UTC
+ * Author: {{ author }}
  * 
  * Usage with Formik:
- * <Formik validationSchema={{{ EntityNameCamel }}ValidationSchema} ... >
+ * <Formik validationSchema={{{ entity_name_camel }}ValidationSchema} ... >
  */
 
-export const {{ EntityNameCamel }}ValidationSchema = yup.object().shape({
-{{~ for field in Fields ~}}
-  {{ field.NameCamel }}: yup
-{{~ if field.TypeScriptType == "string" ~}}
+export const {{ entity_name_camel }}ValidationSchema = yup.object().shape({
+{{~ for field in fields ~}}
+  {{ field.name_camel }}: yup
+{{~ if field.typescript_type == "string" ~}}
     .string()
-{{~ if field.Required ~}}
-    .required('{{ field.Label }} is required')
+{{~ if field.required ~}}
+    .required('{{ field.label }} is required')
 {{~ else ~}}
     .nullable()
 {{~ end ~}}
-{{~ if field.MinLength ~}}
-    .min({{ field.MinLength }}, '{{ field.Label }} must be at least {{ field.MinLength }} characters')
+{{~ if field.min_length ~}}
+    .min({{ field.min_length }}, '{{ field.label }} must be at least {{ field.min_length }} characters')
 {{~ end ~}}
-{{~ if field.MaxLength ~}}
-    .max({{ field.MaxLength }}, '{{ field.Label }} cannot exceed {{ field.MaxLength }} characters')
+{{~ if field.max_length ~}}
+    .max({{ field.max_length }}, '{{ field.label }} cannot exceed {{ field.max_length }} characters')
 {{~ end ~}}
-{{~ if field.Type == "email" ~}}
+{{~ if field.type == "email" ~}}
     .email('Invalid email format')
 {{~ end ~}}
-{{~ if field.Type == "url" ~}}
+{{~ if field.type == "url" ~}}
     .url('Invalid URL format')
 {{~ end ~}}
-{{~ if field.Pattern ~}}
-    .matches(/{{ field.Pattern }}/, '{{ field.Label }} format is invalid')
+{{~ if field.pattern ~}}
+    .matches(/{{ field.pattern }}/, '{{ field.label }} format is invalid')
 {{~ end ~}}
-{{~ else if field.TypeScriptType == "number" ~}}
+{{~ else if field.typescript_type == "number" ~}}
     .number()
-{{~ if field.Required ~}}
-    .required('{{ field.Label }} is required')
+{{~ if field.required ~}}
+    .required('{{ field.label }} is required')
 {{~ else ~}}
     .nullable()
 {{~ end ~}}
-{{~ else if field.TypeScriptType == "boolean" ~}}
+{{~ else if field.typescript_type == "boolean" ~}}
     .boolean()
-{{~ if field.Required ~}}
-    .required('{{ field.Label }} is required')
+{{~ if field.required ~}}
+    .required('{{ field.label }} is required')
 {{~ end ~}}
-{{~ else if field.TypeScriptType == "Date" ~}}
+{{~ else if field.typescript_type == "Date" ~}}
     .date()
-{{~ if field.Required ~}}
-    .required('{{ field.Label }} is required')
+{{~ if field.required ~}}
+    .required('{{ field.label }} is required')
 {{~ else ~}}
     .nullable()
 {{~ end ~}}
 {{~ end ~}}
-    .label('{{ field.Label }}'),
+    .label('{{ field.label }}'),
 {{~ end ~}}
 });
 
 /**
  * Type inference from schema
  */
-export type {{ EntityName }}FormValues = yup.InferType<typeof {{ EntityNameCamel }}ValidationSchema>;
+export type {{ entity_name }}FormValues = yup.InferType<typeof {{ entity_name_camel }}ValidationSchema>;
 
 /**
  * Initial values for the form
  */
-export const {{ EntityNameCamel }}InitialValues: {{ EntityName }}FormValues = {
-{{~ for field in Fields ~}}
-  {{ field.NameCamel }}: {{ if field.DefaultValue }}'{{ field.DefaultValue }}'{{ else if field.TypeScriptType == "string" }}''{{ else if field.TypeScriptType == "number" }}0{{ else if field.TypeScriptType == "boolean" }}false{{ else }}null{{ end }},
+export const {{ entity_name_camel }}InitialValues: {{ entity_name }}FormValues = {
+{{~ for field in fields ~}}
+  {{ field.name_camel }}: {{~ if field.default_value ~}}'{{ field.default_value }}'{{~ else if field.typescript_type == "string" ~}}''{{~ else if field.typescript_type == "number" ~}}0{{~ else if field.typescript_type == "boolean" ~}}false{{~ else ~}}null{{~ end ~}},
 {{~ end ~}}
 };

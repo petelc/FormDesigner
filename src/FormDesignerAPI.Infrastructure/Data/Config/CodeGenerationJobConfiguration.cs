@@ -1,4 +1,4 @@
-using FormDesignerAPI.Core.CodeGenerationContext.Aggregates;
+﻿using FormDesignerAPI.Core.CodeGenerationContext.Aggregates;
 using FormDesignerAPI.Core.CodeGenerationContext.ValueObjects;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using Microsoft.EntityFrameworkCore;
@@ -15,25 +15,16 @@ public class CodeGenerationJobConfiguration : IEntityTypeConfiguration<CodeGener
     {
         builder.ToTable("CodeGenerationJobs");
 
-        // Primary key
+        // Primary key - SQL Server uses uniqueidentifier natively
         builder.HasKey(j => j.Id);
         builder.Property(j => j.Id)
-            .HasConversion(
-                id => id.ToString(),
-                id => Guid.Parse(id))
             .IsRequired();
 
-        // Foreign keys
+        // Foreign keys - SQL Server uses uniqueidentifier natively
         builder.Property(j => j.FormDefinitionId)
-            .HasConversion(
-                id => id.ToString(),
-                id => Guid.Parse(id))
             .IsRequired();
 
         builder.Property(j => j.FormRevisionId)
-            .HasConversion(
-                id => id.ToString(),
-                id => Guid.Parse(id))
             .IsRequired();
 
         // Status enum
@@ -66,17 +57,17 @@ public class CodeGenerationJobConfiguration : IEntityTypeConfiguration<CodeGener
             options.Property(o => o.UseFluentAssertions).HasColumnName("Options_UseFluentAssertions");
             options.Property(o => o.DatabaseType).HasColumnName("Options_DatabaseType");
 
-            // Serialize Dictionaries as JSON
+            // Serialize Dictionaries as JSON - use nvarchar(max) for SQL Server
             options.Property(o => o.AdditionalImports)
                 .HasColumnName("Options_AdditionalImports")
-                .HasColumnType("TEXT")
+                .HasColumnType("nvarchar(max)")
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null!),
                     v => JsonSerializer.Deserialize<Dictionary<string, string>>(v, (JsonSerializerOptions)null!) ?? new Dictionary<string, string>());
 
             options.Property(o => o.CustomSettings)
                 .HasColumnName("Options_CustomSettings")
-                .HasColumnType("TEXT")
+                .HasColumnType("nvarchar(max)")
                 .HasConversion(
                     v => JsonSerializer.Serialize(v, (JsonSerializerOptions)null!),
                     v => JsonSerializer.Deserialize<Dictionary<string, object>>(v, (JsonSerializerOptions)null!) ?? new Dictionary<string, object>());
@@ -86,6 +77,7 @@ public class CodeGenerationJobConfiguration : IEntityTypeConfiguration<CodeGener
         builder.Property(j => j.OutputFolderPath).HasMaxLength(500);
         builder.Property(j => j.ZipFilePath).HasMaxLength(500);
         builder.Property(j => j.ZipFileSizeBytes);
+        builder.Property(j => j.ArtifactCount).IsRequired();
 
         builder.Property(j => j.RequestedAt).IsRequired();
         builder.Property(j => j.RequestedBy).IsRequired().HasMaxLength(256);
