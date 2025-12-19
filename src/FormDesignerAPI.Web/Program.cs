@@ -3,11 +3,11 @@ using FormDesignerAPI.Core.Interfaces;
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Infrastructure;
 using FormDesignerAPI.Infrastructure.Identity;
-// using FormDesignerAPI.UseCases.Contributors.Create; // Not yet implemented
 using FormDesignerAPI.UseCases.Forms.Create;
 using FormDesignerAPI.UseCases.Identity.Register;
 using FormDesignerAPI.UseCases.Interfaces;
 using FormDesignerAPI.Web.Configurations;
+using FormDesignerAPI.Web.Services;
 
 
 var builder = WebApplication.CreateBuilder(args);
@@ -34,22 +34,39 @@ builder.AddServiceDefaults();
 builder.Services.AddInfrastructureServices(builder.Configuration, appLogger);
 builder.Services.AddMediatrConfigs();
 
+// Add CORS configuration
+builder.Services.AddCorsConfigs(builder.Configuration);
+
+// Add JWT Authentication & Authorization
+builder.Services.AddJwtAuthentication(builder.Configuration);
+
+// Add HttpContextAccessor and CurrentUserService
+builder.Services.AddHttpContextAccessor();
+builder.Services.AddScoped<IUser, CurrentUserService>();
+
 builder.Services.AddFastEndpoints()
   .SwaggerDocument(o =>
+  {
+    o.ShortSchemaNames = true;
+    
+    // Add JWT Bearer authentication to Swagger
+    o.DocumentSettings = s =>
+    {
+      s.Title = "FormDesigner API";
+      s.Version = "v1";
+      s.Description = "API for form analysis and code generation";
+      
+      // Add JWT Bearer security definition
+      s.AddAuth("Bearer", new()
       {
-        o.ShortSchemaNames = true;
+        Type = NSwag.OpenApiSecuritySchemeType.Http,
+        Scheme = "bearer",
+        BearerFormat = "JWT",
+        Description = "Enter your JWT token in the format: Bearer {your token}"
       });
-      // .AddCommandMiddleware(c =>
-      // {
-      //   c.Register(typeof(CommandLogger<,>));
-      // });
-
-// wire up commands
-// builder.Services.AddTransient<ICommandHandler<CreateContributorCommand2, Result<int>>, CreateContributorCommandHandler2>(); // Not yet implemented
-
-// builder.Services.AddTransient<ICommandHandler<CreateFormCommand2, Result<int>>, CreateFormCommandHandler2>(); // Not yet implemented
-
-// builder.Services.AddTransient<IFormUpdateService, FormUpdateService>(); // Not yet implemented
+    };
+  });
+ 
 
 builder.Services.AddTransient<ICommandHandler<RegisterUserCommand, Result<string>>, RegisterUserHandler>();
 
@@ -71,13 +88,24 @@ else
   app.UseHsts();
 }
 
-// Add authentication and authorization middleware
-// app.UseAuthentication();
-// app.UseAuthorization();
+// IMPORTANT: Middleware order matters!
+// 1. CORS must be before authentication
+app.UseCors(CorsConfig.AllowReactAppPolicy);
 
+// 2. Authentication must be before authorization
+app.UseAuthentication();
+
+// 3. Authorization must be before endpoints
+app.UseAuthorization();
+
+// 4. FastEndpoints (includes routing and endpoint mapping)
 app.UseFastEndpoints();
+
+// 5. Swagger
 app.UseSwaggerGen(); // Includes AddFileServer and static files middleware
-app.UseHttpsRedirection(); // Note this will drop Authorization headers
+
+// 6. HTTPS redirection (Note: This may drop Authorization headers in some scenarios)
+// app.UseHttpsRedirection(); // Commented out - enable only if needed
 
 // Now run async startup tasks (database seeding)
 await app.UseAppMiddlewareAndSeedDatabase();

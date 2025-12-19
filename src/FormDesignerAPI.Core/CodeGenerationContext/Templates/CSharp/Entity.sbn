@@ -1,22 +1,21 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Entity.sbn -}}
 using System;
 using Traxs.SharedKernel;
-using {{ Namespace }}.Core.Interfaces;
+using {{ namespace }}.Core.Interfaces;
 
-namespace {{ Namespace }}.Core.Entities;
+namespace {{ namespace }}.Core.Entities;
 
 /// <summary>
-/// {{ EntityName }} entity
-/// Generated on {{ GeneratedDateFormatted }} UTC
-/// Author: {{ Author }}
+/// {{ entity_name }} entity
+/// Generated on {{ generated_date_formatted }} UTC
+/// Author: {{ author }}
 /// </summary>
-public class {{ EntityName }} : EntityBase<Guid>, IAggregateRoot
+public class {{ entity_name }} : EntityBase<Guid>, IAggregateRoot
 {
-{{~ for field in Fields ~}}
+{{~ for field in fields ~}}
     /// <summary>
-    /// {{ field.Label }}
+    /// {{ field.label }}
     /// </summary>
-    public {{ field.CSharpType }} {{ field.NamePascal }} { get; set; }{{ if field.Required && field.CSharpType == "string" }} = string.Empty;{{ end }}
+    public {{ field.csharp_type }} {{ field.name_pascal }} { get; set; }{{ if field.required && field.csharp_type == "string" }} = string.Empty;{{ end }}
 {{~ end ~}}
 
     public DateTime CreatedAt { get; set; }
@@ -25,22 +24,22 @@ public class {{ EntityName }} : EntityBase<Guid>, IAggregateRoot
     public string? UpdatedBy { get; set; }
 
     // Private constructor for EF Core
-    private {{ EntityName }}() { }
+    private {{ entity_name }}() { }
 
     /// <summary>
-    /// Factory method to create a new {{ EntityName }}
+    /// Factory method to create a new {{ entity_name }}
     /// </summary>
-    public static {{ EntityName }} Create(
-{{~ for field in Fields ~}}
-        {{ field.CSharpType }} {{ field.NameCamel }}{{ if !for.last }},{{ end }}
+    public static {{ entity_name }} Create(
+{{~ for field in fields ~}}
+        {{ field.csharp_type }} {{ field.name_camel }}{{ if !for.last }},{{ end }}
 {{~ end ~}},
         string createdBy)
     {
-        var entity = new {{ EntityName }}
+        var entity = new {{ entity_name }}
         {
             Id = Guid.NewGuid(),
-{{~ for field in Fields ~}}
-            {{ field.NamePascal }} = {{ field.NameCamel }},
+{{~ for field in fields ~}}
+            {{ field.name_pascal }} = {{ field.name_camel }},
 {{~ end ~}}
             CreatedAt = DateTime.UtcNow,
             CreatedBy = createdBy
@@ -50,38 +49,38 @@ public class {{ EntityName }} : EntityBase<Guid>, IAggregateRoot
     }
 
     /// <summary>
-    /// Update the {{ EntityName }}
+    /// Update the {{ entity_name }}
     /// </summary>
     public void Update(
-{{~ for field in Fields ~}}
-        {{ field.CSharpType }} {{ field.NameCamel }}{{ if !for.last }},{{ end }}
+{{~ for field in fields ~}}
+        {{ field.csharp_type }} {{ field.name_camel }}{{ if !for.last }},{{ end }}
 {{~ end ~}},
         string updatedBy)
     {
-{{~ for field in Fields ~}}
-        {{ field.NamePascal }} = {{ field.NameCamel }};
+{{~ for field in fields ~}}
+        {{ field.name_pascal }} = {{ field.name_camel }};
 {{~ end ~}}
         UpdatedAt = DateTime.UtcNow;
         UpdatedBy = updatedBy;
     }
 
-{{~ if Fields | array.size > 0 ~}}
+{{~ if fields | array.size > 0 ~}}
     /// <summary>
     /// Validate the entity
     /// </summary>
     public bool IsValid()
     {
-{{~ for field in Fields ~}}
-{{~ if field.Required && field.CSharpType == "string" ~}}
-        if (string.IsNullOrWhiteSpace({{ field.NamePascal }}))
+{{~ for field in fields ~}}
+{{~ if field.required && field.csharp_type == "string" ~}}
+        if (string.IsNullOrWhiteSpace({{ field.name_pascal }}))
             return false;
 {{~ end ~}}
-{{~ if field.MinLength ~}}
-        if ({{ field.NamePascal }}.Length < {{ field.MinLength }})
+{{~ if field.min_length ~}}
+        if ({{ field.name_pascal }}.Length < {{ field.min_length }})
             return false;
 {{~ end ~}}
-{{~ if field.MaxLength ~}}
-        if ({{ field.NamePascal }}.Length > {{ field.MaxLength }})
+{{~ if field.max_length ~}}
+        if ({{ field.name_pascal }}.Length > {{ field.max_length }})
             return false;
 {{~ end ~}}
 {{~ end ~}}

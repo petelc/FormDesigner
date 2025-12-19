@@ -1,6 +1,7 @@
-using FormDesignerAPI.Core.FormContext.Interfaces;
+﻿using FormDesignerAPI.Core.FormContext.Interfaces;
 using FormDesignerAPI.Core.CodeGenerationContext.Interfaces;
 using FormDesignerAPI.Core.CodeGenerationContext.Services;
+using Microsoft.Extensions.Logging;
 
 namespace FormDesignerAPI.Web.CodeGeneration;
 
@@ -14,7 +15,8 @@ namespace FormDesignerAPI.Web.CodeGeneration;
 public class GenerateCode(
     IFormRepository _formRepository,
     ICodeGenerationJobRepository _jobRepository,
-    CodeGenerationOrchestrator _orchestrator)
+    CodeGenerationOrchestrator _orchestrator,
+    ILogger<GenerateCode> _logger)
     : Endpoint<GenerateCodeRequest, GenerateCodeResponse>
 {
     public override void Configure()
@@ -35,6 +37,8 @@ public class GenerateCode(
         GenerateCodeRequest request,
         CancellationToken cancellationToken)
     {
+        _logger.LogInformation("Generating code for form: {FormId}", request.FormId);
+
         // Retrieve the form with its revisions
         var form = await _formRepository.GetByIdWithRevisionsAsync(
             request.FormId,
@@ -42,6 +46,7 @@ public class GenerateCode(
 
         if (form == null)
         {
+            _logger.LogWarning("Form not found: {FormId}", request.FormId);
             await SendNotFoundAsync(cancellationToken);
             return;
         }
@@ -51,6 +56,27 @@ public class GenerateCode(
 
         // Get the form definition from the current revision
         var formDefinition = currentRevision.Definition;
+
+        _logger.LogInformation(
+            "Form loaded: {FormId}, Revision: {RevisionId}, Fields count: {FieldCount}",
+            form.Id,
+            currentRevision.Id,
+            formDefinition.Fields.Count);
+
+        if (formDefinition.Fields.Count == 0)
+        {
+            _logger.LogWarning(
+                "Form definition has no fields! Schema length: {SchemaLength}",
+                formDefinition.Schema?.Length ?? 0);
+        }
+        else
+        {
+            // Log first few field names for debugging
+            var firstFields = formDefinition.Fields.Take(3).Select(f => f.Name);
+            _logger.LogDebug(
+                "First fields: {Fields}",
+                string.Join(", ", firstFields));
+        }
 
         // Get the current user (for now, use a placeholder)
         var requestedBy = "system"; // TODO: Replace with actual user from authentication

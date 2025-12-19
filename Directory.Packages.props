@@ -54,5 +54,11 @@
     <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.12.0" />
     <PackageVersion Include="Aspire.Hosting.Testing" Version="9.4.1" />
     
+    <!-- JWT Authentication packages - Match MediatR's dependency on Microsoft.IdentityModel.Tokens 8.14.0 -->
+    <PackageVersion Include="System.IdentityModel.Tokens.Jwt" Version="8.14.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.Tokens" Version="8.14.0" />
+    <PackageVersion Include="Microsoft.IdentityModel.JsonWebTokens" Version="8.14.0" />
+    <PackageVersion Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="9.0.0" />
+    
   </ItemGroup>
 </Project>

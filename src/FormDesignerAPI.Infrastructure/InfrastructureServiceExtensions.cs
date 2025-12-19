@@ -2,12 +2,13 @@
 using FormDesignerAPI.Core.Services;
 using FormDesignerAPI.Core.FormContext.Interfaces;
 using FormDesignerAPI.Core.CodeGenerationContext.Interfaces;
+using FormDesignerAPI.Core.ProjectContext.Interfaces;
 using FormDesignerAPI.Core.CodeGenerationContext.Services;
 using FormDesignerAPI.Infrastructure.Data;
 using FormDesignerAPI.Infrastructure.Data.Queries;
+using FormDesignerAPI.Infrastructure.Data.Repositories;
 using FormDesignerAPI.Infrastructure.Identity;
 using FormDesignerAPI.Infrastructure.DocumentIntelligence;
-// using FormDesignerAPI.UseCases.Contributors.List; // Not yet implemented
 using FormDesignerAPI.UseCases.Forms.List;
 using FormDesignerAPI.UseCases.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -22,11 +23,11 @@ public static class InfrastructureServiceExtensions
     ConfigurationManager config,
     ILogger logger)
   {
-    string? connectionString = config.GetConnectionString("SqliteConnection");
+    string? connectionString = config.GetConnectionString("DefaultConnection");
     Guard.Against.Null(connectionString);
 
     services.AddDbContext<AppDbContext>(options =>
-      options.UseSqlite(connectionString));
+      options.UseSqlServer(connectionString));
 
     services.AddIdentity<ApplicationUser, IdentityRole>()
       .AddEntityFrameworkStores<AppDbContext>()
@@ -47,17 +48,18 @@ public static class InfrastructureServiceExtensions
     services.AddScoped<ICodeGenerationJobRepository, CodeGenerationJobRepository>();
     services.AddScoped<ScribanTemplateEngine>();
 
+    // ProjectContext services
+    services.AddScoped<IProjectRepository, ProjectRepository>();
+
     // Register TemplateRepository with template base path
-    // Templates are in the Core project at CodeGenerationContext/Templates
+    // Templates are copied to the output directory from the Core project
     var templateBasePath = Path.Combine(
         AppDomain.CurrentDomain.BaseDirectory,
-        "..", "..", "..", "..", "..",
-        "FormDesignerAPI.Core",
         "CodeGenerationContext",
         "Templates");
     services.AddScoped<TemplateRepository>(sp =>
         new TemplateRepository(
-            Path.GetFullPath(templateBasePath),
+            templateBasePath,
             sp.GetRequiredService<ILogger<TemplateRepository>>()));
 
     // Register CodeArtifactOrganizer with output path

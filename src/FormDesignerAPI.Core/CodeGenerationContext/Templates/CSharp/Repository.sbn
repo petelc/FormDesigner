@@ -1,54 +1,53 @@
-{{- # Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Templates/CSharp/Repository.sbn -}}
 using Microsoft.EntityFrameworkCore;
-using {{ Namespace }}.Core.Entities;
-using {{ Namespace }}.Core.Interfaces;
-using {{ Namespace }}.Infrastructure.Data;
+using {{ namespace }}.Core.Entities;
+using {{ namespace }}.Core.Interfaces;
+using {{ namespace }}.Infrastructure.Data;
 
-namespace {{ Namespace }}.Infrastructure.Repositories;
+namespace {{ namespace }}.Infrastructure.Repositories;
 
 /// <summary>
-/// Repository implementation for {{ EntityName }}
-/// Generated on {{ GeneratedDateFormatted }} UTC
+/// Repository implementation for {{ entity_name }}
+/// Generated on {{ generated_date_formatted }} UTC
 /// </summary>
-public class {{ EntityName }}Repository : I{{ EntityName }}Repository
+public class {{ entity_name }}Repository : I{{ entity_name }}Repository
 {
     private readonly AppDbContext _context;
 
-    public {{ EntityName }}Repository(AppDbContext context)
+    public {{ entity_name }}Repository(AppDbContext context)
     {
         _context = context;
     }
 
-    public async Task<{{ EntityName }}?> GetByIdAsync(
+    public async Task<{{ entity_name }}?> GetByIdAsync(
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return await _context.{{ EntityNamePlural }}
+        return await _context.{{ entity_name_plural }}
             .FirstOrDefaultAsync(e => e.Id == id, cancellationToken);
     }
 
-    public async Task<IEnumerable<{{ EntityName }}>> GetAllAsync(
+    public async Task<IEnumerable<{{ entity_name }}>> GetAllAsync(
         CancellationToken cancellationToken = default)
     {
-        return await _context.{{ EntityNamePlural }}
+        return await _context.{{ entity_name_plural }}
             .OrderByDescending(e => e.CreatedAt)
             .ToListAsync(cancellationToken);
     }
 
-    public async Task<{{ EntityName }}> AddAsync(
-        {{ EntityName }} entity,
+    public async Task<{{ entity_name }}> AddAsync(
+        {{ entity_name }} entity,
         CancellationToken cancellationToken = default)
     {
-        await _context.{{ EntityNamePlural }}.AddAsync(entity, cancellationToken);
+        await _context.{{ entity_name_plural }}.AddAsync(entity, cancellationToken);
         await _context.SaveChangesAsync(cancellationToken);
         return entity;
     }
 
     public async Task UpdateAsync(
-        {{ EntityName }} entity,
+        {{ entity_name }} entity,
         CancellationToken cancellationToken = default)
     {
-        _context.{{ EntityNamePlural }}.Update(entity);
+        _context.{{ entity_name_plural }}.Update(entity);
         await _context.SaveChangesAsync(cancellationToken);
     }
 
@@ -59,20 +58,20 @@ public class {{ EntityName }}Repository : I{{ EntityName }}Repository
         var entity = await GetByIdAsync(id, cancellationToken);
         if (entity != null)
         {
-            _context.{{ EntityNamePlural }}.Remove(entity);
+            _context.{{ entity_name_plural }}.Remove(entity);
             await _context.SaveChangesAsync(cancellationToken);
         }
     }
 
 {{~ # Add custom query methods based on fields ~}}
-{{~ for field in Fields ~}}
-{{~ if field.Type == "email" || field.Type == "text" && field.Name == "email" ~}}
-    public async Task<{{ EntityName }}?> GetByEmailAsync(
+{{~ for field in fields ~}}
+{{~ if field.type == "email" || field.type == "text" && field.name == "email" ~}}
+    public async Task<{{ entity_name }}?> GetByEmailAsync(
         string email,
         CancellationToken cancellationToken = default)
     {
-        return await _context.{{ EntityNamePlural }}
-            .FirstOrDefaultAsync(e => e.{{ field.NamePascal }} == email, cancellationToken);
+        return await _context.{{ entity_name_plural }}
+            .FirstOrDefaultAsync(e => e.{{ field.name_pascal }} == email, cancellationToken);
     }
 {{~ end ~}}
 {{~ end ~}}
@@ -81,7 +80,7 @@ public class {{ EntityName }}Repository : I{{ EntityName }}Repository
         Guid id,
         CancellationToken cancellationToken = default)
     {
-        return await _context.{{ EntityNamePlural }}
+        return await _context.{{ entity_name_plural }}
             .AnyAsync(e => e.Id == id, cancellationToken);
     }
 }

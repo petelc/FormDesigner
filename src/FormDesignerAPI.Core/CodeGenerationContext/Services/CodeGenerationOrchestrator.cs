@@ -1,4 +1,4 @@
-// Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Services/CodeGenerationOrchestrator.cs
+﻿// Save to: src/FormDesignerAPI.Core/CodeGenerationContext/Services/CodeGenerationOrchestrator.cs
 
 using FormDesignerAPI.Core.FormContext.ValueObjects;
 using FormDesignerAPI.Core.CodeGenerationContext.ValueObjects;
@@ -324,59 +324,153 @@ public class CodeGenerationOrchestrator
     string entityName,
     GenerationOptions options)
   {
-    return new
+    // Deduplicate field names by appending numeric suffixes
+    var deduplicatedFields = DeduplicateFieldNames(definition.Fields);
+
+    _logger.LogInformation(
+      "Creating template model with {FieldCount} fields for entity {EntityName}",
+      deduplicatedFields.Count,
+      entityName);
+
+    var mappedFields = deduplicatedFields.Select(f => new Dictionary<string, object?>
+    {
+      // Original field info
+      ["name"] = f.UniqueName,
+      ["type"] = f.Field.Type,
+      ["required"] = f.Field.Required,
+      ["label"] = f.Field.Label ?? ToPascalCase(f.UniqueName),
+      ["placeholder"] = f.Field.Placeholder,
+      ["default_value"] = f.Field.DefaultValue,
+      ["min_length"] = f.Field.MinLength,
+      ["max_length"] = f.Field.MaxLength,
+      ["pattern"] = f.Field.Pattern,
+      ["options"] = f.Field.Options,
+      
+      // Type mappings for different languages
+      ["csharp_type"] = MapToCSharpType(f.Field.Type, f.Field.Required),
+      ["sql_type"] = MapToSqlType(f.Field.Type, f.Field.MaxLength),
+      ["typescript_type"] = MapToTypeScriptType(f.Field.Type),
+      
+      // Naming variations
+      ["name_pascal"] = ToPascalCase(f.UniqueName),
+      ["name_camel"] = ToCamelCase(f.UniqueName),
+      ["name_snake"] = ToSnakeCase(f.UniqueName),
+      
+      // Track if this was renamed
+      ["was_renamed"] = f.WasRenamed,
+      ["original_name"] = f.OriginalName
+    }).ToList();
+
+    // Log first few fields for debugging
+    foreach (var field in mappedFields.Take(3))
+    {
+      _logger.LogInformation(
+        "Sample field: Name={Name}, Type={Type}, CSharpType={CSharpType}, NamePascal={NamePascal}, Label={Label}",
+        field["name"],
+        field["type"],
+        field["csharp_type"],
+        field["name_pascal"],
+        field["label"]);
+    }
+
+    return new Dictionary<string, object?>
     {
       // Entity information
-      EntityName = entityName,
-      EntityNamePlural = Pluralize(entityName),
-      EntityNameCamel = ToCamelCase(entityName),
+      ["entity_name"] = entityName,
+      ["entity_name_plural"] = Pluralize(entityName),
+      ["entity_name_camel"] = ToCamelCase(entityName),
       
       // Project configuration
-      Namespace = options.Namespace,
-      ProjectName = options.ProjectName,
-      Author = options.Author,
+      ["namespace"] = options.Namespace,
+      ["project_name"] = options.ProjectName,
+      ["author"] = options.Author,
       
       // Form fields mapped to template-friendly format
-      Fields = definition.Fields.Select(f => new
-      {
-        // Original field info
-        Name = f.Name,
-        Type = f.Type,
-        Required = f.Required,
-        Label = f.Label ?? ToPascalCase(f.Name),
-        Placeholder = f.Placeholder,
-        DefaultValue = f.DefaultValue,
-        MinLength = f.MinLength,
-        MaxLength = f.MaxLength,
-        Pattern = f.Pattern,
-        Options = f.Options,
-        
-        // Type mappings for different languages
-        CSharpType = MapToCSharpType(f.Type, f.Required),
-        SqlType = MapToSqlType(f.Type, f.MaxLength),
-        TypeScriptType = MapToTypeScriptType(f.Type),
-        
-        // Naming variations
-        NamePascal = ToPascalCase(f.Name),
-        NameCamel = ToCamelCase(f.Name),
-        NameSnake = ToSnakeCase(f.Name)
-      }).ToList(),
+      ["fields"] = mappedFields,
       
       // Generation metadata
-      GeneratedDate = DateTime.UtcNow,
-      GeneratedDateFormatted = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
-      Version = "1.0.0",
+      ["generated_date"] = DateTime.UtcNow,
+      ["generated_date_formatted"] = DateTime.UtcNow.ToString("yyyy-MM-dd HH:mm:ss"),
+      ["version"] = "1.0.0",
       
       // Database configuration
-      DatabaseType = options.DatabaseType,
+      ["database_type"] = options.DatabaseType,
       
       // Test configuration
-      TestFramework = options.TestFramework,
-      UseFluentAssertions = options.UseFluentAssertions,
+      ["test_framework"] = options.TestFramework,
+      ["use_fluent_assertions"] = options.UseFluentAssertions,
       
       // Additional settings
-      CustomSettings = options.CustomSettings
+      ["custom_settings"] = options.CustomSettings
     };
+  }
+
+  /// <summary>
+  /// Deduplicate field names by appending numeric suffixes for duplicates
+  /// </summary>
+  private List<(FormField Field, string UniqueName, string OriginalName, bool WasRenamed)> DeduplicateFieldNames(
+    IReadOnlyList<FormField> fields)
+  {
+    var result = new List<(FormField Field, string UniqueName, string OriginalName, bool WasRenamed)>();
+    var nameCount = new Dictionary<string, int>(StringComparer.OrdinalIgnoreCase);
+    var usedNames = new HashSet<string>(StringComparer.OrdinalIgnoreCase);
+
+    foreach (var field in fields)
+    {
+      var originalName = field.Name;
+      var baseName = originalName;
+      
+      // Track how many times we've seen this name
+      if (!nameCount.ContainsKey(baseName))
+      {
+        nameCount[baseName] = 0;
+      }
+      nameCount[baseName]++;
+
+      string uniqueName;
+      bool wasRenamed = false;
+
+      // If this is the first occurrence, use the original name
+      if (nameCount[baseName] == 1)
+      {
+        uniqueName = baseName;
+      }
+      else
+      {
+        // For duplicates, append a number
+        uniqueName = $"{baseName}{nameCount[baseName]}";
+        wasRenamed = true;
+        
+        _logger.LogWarning(
+          "Duplicate field name detected: '{OriginalName}' renamed to '{UniqueName}'",
+          originalName,
+          uniqueName);
+      }
+
+      // Ensure the unique name is actually unique (in case of name conflicts with appended numbers)
+      var finalUniqueName = uniqueName;
+      var counter = 1;
+      while (usedNames.Contains(finalUniqueName))
+      {
+        counter++;
+        finalUniqueName = $"{baseName}{nameCount[baseName]}{counter}";
+        wasRenamed = true;
+      }
+
+      usedNames.Add(finalUniqueName);
+      result.Add((field, finalUniqueName, originalName, wasRenamed));
+    }
+
+    // Log summary of duplicates
+    var duplicateCount = result.Count(r => r.WasRenamed);
+    if (duplicateCount > 0)
+    {
+      _logger.LogWarning(
+        "Found {Count} duplicate field names that were renamed with numeric suffixes",
+        duplicateCount);
+    }
+
+    return result;
   }
 
   // ==========================================================================
@@ -498,3 +592,4 @@ public class CodeGenerationOrchestrator
     return input + "s";
   }
 }
+
