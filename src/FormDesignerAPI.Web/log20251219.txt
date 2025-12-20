@@ -1,0 +1,64 @@
+2025-12-19 06:01:16.021 -05:00 [WRN] You do not have a valid license key for the Lucky Penny software MediatR. This is allowed for development and testing scenarios. If you are running in production you are required to have a licensed version. Please visit https://luckypennysoftware.com to obtain a valid license.
+2025-12-19 06:01:16.108 -05:00 [INF] User profile is available. Using '/Users/pete/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-12-19 06:01:16.115 -05:00 [INF] Registering templates from: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/bin/Debug/net9.0/CodeGenerationContext/Templates
+2025-12-19 06:01:16.116 -05:00 [INF] Registered 9 templates
+2025-12-19 06:01:16.120 -05:00 [INF] Registered 22 endpoints in 189 milliseconds.
+2025-12-19 06:01:16.397 -05:00 [WRN] The property 'GenerationOptions.AdditionalImports' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-19 06:01:16.397 -05:00 [WRN] The property 'GenerationOptions.CustomSettings' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-19 06:01:16.398 -05:00 [WRN] The property 'Project._codeGenerationJobIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-19 06:01:16.398 -05:00 [WRN] The property 'Project._formIds' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-19 06:01:16.398 -05:00 [WRN] The property 'ProjectFilter.CustomFilters' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-19 06:01:16.398 -05:00 [WRN] The property 'ProjectFilter.Tags' is a collection or enumeration type with a value converter but with no value comparer. Set a value comparer to ensure the collection/enumeration elements are compared correctly.
+2025-12-19 06:01:31.085 -05:00 [ERR] An error occurred seeding the DB. A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server)
+Microsoft.Data.SqlClient.SqlException (0x80131904): A network-related or instance-specific error occurred while establishing a connection to SQL Server. The server was not found or was not accessible. Verify that the instance name is correct and that SQL Server is configured to allow remote connections. (provider: TCP Provider, error: 40 - Could not open a connection to SQL Server)
+   at Microsoft.Data.SqlClient.SqlInternalConnection.OnError(SqlException exception, Boolean breakConnection, Action`1 wrapCloseInAction)
+   at Microsoft.Data.SqlClient.TdsParser.ThrowExceptionAndWarning(TdsParserStateObject stateObj, Boolean callerHasConnectionLock, Boolean asyncClose)
+   at Microsoft.Data.SqlClient.TdsParser.Connect(ServerInfo serverInfo, SqlInternalConnectionTds connHandler, Boolean ignoreSniOpenTimeout, Int64 timerExpire, SqlConnectionString connectionOptions, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.AttemptOneLogin(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean ignoreSniOpenTimeout, TimeoutTimer timeout, Boolean withFailover)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.LoginNoFailover(ServerInfo serverInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString connectionOptions, SqlCredential credential, TimeoutTimer timeout)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds.OpenLoginEnlist(TimeoutTimer timeout, SqlConnectionString connectionOptions, SqlCredential credential, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance)
+   at Microsoft.Data.SqlClient.SqlInternalConnectionTds..ctor(DbConnectionPoolIdentity identity, SqlConnectionString connectionOptions, SqlCredential credential, Object providerInfo, String newPassword, SecureString newSecurePassword, Boolean redirectedUserInstance, SqlConnectionString userConnectionOptions, SessionData reconnectSessionData, Boolean applyTransientFaultHandling, String accessToken, DbConnectionPool pool)
+   at Microsoft.Data.SqlClient.SqlConnectionFactory.CreateConnection(DbConnectionOptions options, DbConnectionPoolKey poolKey, Object poolGroupProviderInfo, DbConnectionPool pool, DbConnection owningConnection, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionFactory.CreatePooledConnection(DbConnectionPool pool, DbConnection owningObject, DbConnectionOptions options, DbConnectionPoolKey poolKey, DbConnectionOptions userOptions)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.CreateObject(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.UserCreateRequest(DbConnection owningObject, DbConnectionOptions userOptions, DbConnectionInternal oldConnection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.TryGetConnection(DbConnection owningObject, UInt32 waitForMultipleObjectsTimeout, Boolean allowCreate, Boolean onlyOneCheckConnection, DbConnectionOptions userOptions, DbConnectionInternal& connection)
+   at Microsoft.Data.ProviderBase.DbConnectionPool.WaitForPendingOpen()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenInternalAsync(Boolean errorsExpected, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalConnection.OpenAsync(CancellationToken cancellationToken, Boolean errorsExpected)
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerDatabaseCreator.<>c__DisplayClass20_0.<<ExistsAsync>b__0>d.MoveNext()
+--- End of stack trace from previous location ---
+   at Microsoft.EntityFrameworkCore.SqlServer.Storage.Internal.SqlServerExecutionStrategy.ExecuteAsync[TState,TResult](TState state, Func`4 operation, Func`4 verifySucceeded, CancellationToken cancellationToken)
+   at Microsoft.EntityFrameworkCore.Storage.RelationalDatabaseCreator.EnsureCreatedAsync(CancellationToken cancellationToken)
+   at FormDesignerAPI.Web.Configurations.MiddlewareConfig.SeedDatabase(WebApplication app) in /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web/Configurations/MiddlewareConfig.cs:line 24
+ClientConnectionId:00000000-0000-0000-0000-000000000000
+2025-12-19 06:01:31.330 -05:00 [INF] Now listening on: https://localhost:53202
+2025-12-19 06:01:31.330 -05:00 [INF] Application started. Press Ctrl+C to shut down.
+2025-12-19 06:01:31.330 -05:00 [INF] Hosting environment: Development
+2025-12-19 06:01:31.330 -05:00 [INF] Content root path: /Users/pete/Development/Projects/FormDesigner/src/FormDesignerAPI.Web
+2025-12-19 06:01:31.803 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger - null null
+2025-12-19 06:01:31.834 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/index.html - null null
+2025-12-19 06:01:31.833 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger - 302 0 null 32.7475ms
+2025-12-19 06:01:31.865 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/index.html - 200 null text/html; charset=utf-8 31.8161ms
+2025-12-19 06:01:31.954 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - null null
+2025-12-19 06:01:31.958 -05:00 [INF] No action descriptors found. This may indicate an incorrectly configured application or missing application parts. To learn more, visit https://aka.ms/aspnet/mvc/app-parts
+2025-12-19 06:01:32.182 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/swagger/v1/swagger.json - 200 null application/json; charset=utf-8 227.5642ms
+2025-12-19 06:06:51.424 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - null null
+2025-12-19 06:06:51.437 -05:00 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-12-19 06:06:51.439 -05:00 [INF] AuthenticationScheme: Bearer was challenged.
+2025-12-19 06:06:51.439 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects?page=1&pageSize=10 - 401 0 null 16.4247ms
+2025-12-19 06:10:06.351 -05:00 [INF] Request starting HTTP/2 GET https://localhost:57671/api/forms - null null
+2025-12-19 06:10:06.357 -05:00 [INF] Executing endpoint 'HTTP: GET /api/forms'
+2025-12-19 06:10:06.667 -05:00 [INF] Executed DbCommand (32ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT [f].[Id], [f].[DefinitionSchema], [f].[IsActive], [f].[Name], [f].[Origin_CreatedAt], [f].[Origin_CreatedBy], [f].[Origin_ReferenceId], [f].[Origin_Type]
+FROM [Forms] AS [f]
+2025-12-19 06:10:06.692 -05:00 [INF] Executed endpoint 'HTTP: GET /api/forms'
+2025-12-19 06:10:06.693 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/forms - 200 null application/json; charset=utf-8 342.101ms
+2025-12-19 06:22:13.480 -05:00 [INF] Application is shutting down...
