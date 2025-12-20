@@ -1,4 +1,5 @@
 using FormDesignerAPI.UseCases.Commands.AnalyzeForm;
+using FormDesignerAPI.UseCases.ProjectContext.AddPdf;
 using FormDesignerAPI.UseCases.ProjectContext.GetById;
 
 namespace FormDesignerAPI.Web.ProjectContext;
@@ -66,7 +67,7 @@ public class UploadPdfToProject(IMediator _mediator, ILogger<UploadPdfToProject>
 
         // TODO: Associate the form with the project
         // You may need to create a command like AddFormToProjectCommand
-        // await _mediator.Send(new AddFormToProjectCommand(request.ProjectId, result.FormId), cancellationToken);
+        await _mediator.Send(new AddFormToProjectCommand(request.ProjectId, result.FormId, "system"), cancellationToken);
 
         // Map result to response
         Response = new UploadPdfToProjectResponse

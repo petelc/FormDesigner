@@ -1496,3 +1496,4 @@ FROM [Projects] AS [p]
 WHERE [p].[Id] = @__p_0
 2025-12-20 11:44:52.138 -05:00 [INF] Executed endpoint 'HTTP: GET /api/projects/{id}'
 2025-12-20 11:44:52.138 -05:00 [INF] Request finished HTTP/2 GET https://localhost:57671/api/projects/f67126c0-469e-42e1-acf4-b0737950478e - 200 null application/json; charset=utf-8 2.8387ms
+2025-12-20 17:55:24.289 -05:00 [INF] Application is shutting down...
