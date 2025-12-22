@@ -4,6 +4,7 @@ using FormDesignerAPI.Core.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Logging;
 
 
 namespace FormDesignerAPI.Infrastructure.Identity;
@@ -13,12 +14,14 @@ public class IdentityTokenClaimService : ITokenClaimService
 {
     private readonly UserManager<ApplicationUser> userManager;
     private readonly AuthSettings _authSettings;
+    private readonly ILogger<IdentityTokenClaimService> _logger;
 
-    public IdentityTokenClaimService(UserManager<ApplicationUser> userManager, IOptions<AuthSettings> authOptions)
+    public IdentityTokenClaimService(UserManager<ApplicationUser> userManager, IOptions<AuthSettings> authOptions, ILogger<IdentityTokenClaimService> logger)
     {
         this.userManager = userManager;
         _authSettings = authOptions.Value;
-        
+        _logger = logger;
+
         if (string.IsNullOrWhiteSpace(_authSettings.JWT_SECRET_KEY))
         {
             throw new ArgumentNullException(nameof(_authSettings.JWT_SECRET_KEY), "JWT_SECRET_KEY is not configured");
@@ -27,16 +30,25 @@ public class IdentityTokenClaimService : ITokenClaimService
 
     public async Task<string> GetTokenAsync(string userName)
     {
+        _logger.LogInformation("Starting token generation for user: {UserName}", userName);
+
         var tokenHandler = new JwtSecurityTokenHandler();
         var key = System.Text.Encoding.ASCII.GetBytes(_authSettings.JWT_SECRET_KEY);
         var user = await userManager.FindByNameAsync(userName);
-        
-        if (user == null) 
+
+        if (user == null)
+        {
+            _logger.LogWarning("User not found: {UserName}", userName);
             throw new UserNotFoundException(userName);
-        
+        }
+
+        _logger.LogInformation("User found: {UserName}, Id: {UserId}", userName, user.Id);
+
         var roles = await userManager.GetRolesAsync(user);
-        var claims = new List<Claim> 
-        { 
+        _logger.LogInformation("User {UserName} has {RoleCount} roles", userName, roles.Count);
+
+        var claims = new List<Claim>
+        {
             new Claim(ClaimTypes.Name, userName),
             new Claim(ClaimTypes.NameIdentifier, user.Id),
             new Claim(JwtRegisteredClaimNames.Sub, user.Id),
@@ -56,11 +68,16 @@ public class IdentityTokenClaimService : ITokenClaimService
             Issuer = _authSettings.JWT_ISSUER,
             Audience = _authSettings.JWT_AUDIENCE,
             SigningCredentials = new SigningCredentials(
-                new SymmetricSecurityKey(key), 
+                new SymmetricSecurityKey(key),
                 SecurityAlgorithms.HmacSha256Signature)
         };
 
         var token = tokenHandler.CreateToken(tokenDescriptor);
-        return tokenHandler.WriteToken(token);
+        var tokenString = tokenHandler.WriteToken(token);
+
+        _logger.LogInformation("Token generated successfully for user: {UserName}, Token length: {TokenLength}",
+            userName, tokenString.Length);
+
+        return tokenString;
     }
 }

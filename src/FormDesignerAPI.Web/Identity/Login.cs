@@ -8,11 +8,11 @@ namespace FormDesignerAPI.Web.Identity;
 /// <summary>
 /// Login a user
 /// </summary>
-public class Login(SignInManager<ApplicationUser> signInManager, ITokenClaimService tokenClaimService) : Endpoint<LoginRequest, LoginResponse>
+public class Login(SignInManager<ApplicationUser> signInManager, ITokenClaimService tokenClaimService, ILogger<Login> logger) : Endpoint<LoginRequest, LoginResponse>
 {
     public override void Configure()
     {
-        Post("/Identity/Login");
+        Post("/Identity/login");
         AllowAnonymous();
         Description(d =>
             d.WithSummary("Login a user.")
@@ -21,19 +21,25 @@ public class Login(SignInManager<ApplicationUser> signInManager, ITokenClaimServ
             .WithTags("Identity"));
     }
 
-    public override async Task<LoginResponse> ExecuteAsync(LoginRequest request, CancellationToken cancellationToken = default)
+    public override async Task HandleAsync(LoginRequest request, CancellationToken cancellationToken = default)
     {
         var response = new LoginResponse(request.CorrelationId);
 
         if (string.IsNullOrEmpty(request.UserName) || string.IsNullOrEmpty(request.Password))
         {
-            throw new ArgumentException("Username and password must not be null or empty.");
+            AddError("Username and password must not be null or empty.");
+            await SendErrorsAsync(cancellation: cancellationToken);
+            return;
         }
 
         // This doesn't count login failures towards account lockout
         // To enable password failures to trigger account lockout, set lockoutOnFailure: true
         //var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
+        logger.LogInformation("Attempting login for user: {UserName}", request.UserName);
         var result = await signInManager.PasswordSignInAsync(request.UserName, request.Password, isPersistent: false, lockoutOnFailure: false);
+
+        logger.LogInformation("Login attempt result for {UserName}: Succeeded={Succeeded}, IsLockedOut={IsLockedOut}, IsNotAllowed={IsNotAllowed}, RequiresTwoFactor={RequiresTwoFactor}",
+            request.UserName, result.Succeeded, result.IsLockedOut, result.IsNotAllowed, result.RequiresTwoFactor);
 
         response.Result = result.Succeeded;
         response.IsLockedOut = result.IsLockedOut;
@@ -43,10 +49,22 @@ public class Login(SignInManager<ApplicationUser> signInManager, ITokenClaimServ
 
         if (result.Succeeded)
         {
-            response.Token = await tokenClaimService.GetTokenAsync(request.UserName);
+            try
+            {
+                logger.LogInformation("Generating token for user: {UserName}", request.UserName);
+                response.Token = await tokenClaimService.GetTokenAsync(request.UserName);
+                logger.LogInformation("Token generated successfully for user: {UserName}. Token length: {TokenLength}",
+                    request.UserName, response.Token?.Length ?? 0);
+            }
+            catch (Exception ex)
+            {
+                logger.LogError(ex, "Failed to generate token for user: {UserName}", request.UserName);
+                AddError($"Failed to generate authentication token: {ex.Message}");
+                await SendErrorsAsync(cancellation: cancellationToken);
+                return;
+            }
         }
 
-        return response;
-
+        await SendAsync(response, cancellation: cancellationToken);
     }
 }

@@ -16,6 +16,7 @@
   <ItemGroup>
     <Folder Include="Identity/Authorized/" />
     <Folder Include="Identity/Role/GetAllRoles/" />
+    <Folder Include="ProjectContext/AddPdf/" />
   </ItemGroup>
 
   <ItemGroup>
