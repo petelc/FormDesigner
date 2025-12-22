@@ -6,7 +6,7 @@ import * as yup from 'yup';
  * Author: {{ author }}
  * 
  * Usage with Formik:
- * <Formik validationSchema={{{ entity_name_camel }}ValidationSchema} ... >
+ * <Formik validationSchema={{ '{' }}{{ entity_name_camel }}ValidationSchema} ... >
  */
 
 export const {{ entity_name_camel }}ValidationSchema = yup.object().shape({

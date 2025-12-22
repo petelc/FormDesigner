@@ -1,6 +1,7 @@
 using FormDesignerAPI.UseCases.Commands.AnalyzeForm;
 using FormDesignerAPI.UseCases.ProjectContext.AddPdf;
 using FormDesignerAPI.UseCases.ProjectContext.GetById;
+using FormDesignerAPI.UseCases.Interfaces;
 
 namespace FormDesignerAPI.Web.ProjectContext;
 
@@ -11,7 +12,7 @@ namespace FormDesignerAPI.Web.ProjectContext;
 /// Uploads a PDF form, extracts its structure using Document Intelligence,
 /// creates a Form aggregate, and associates it with the specified project.
 /// </remarks>
-public class UploadPdfToProject(IMediator _mediator, ILogger<UploadPdfToProject> _logger)
+public class UploadPdfToProject(IMediator _mediator, IUser _currentUser, ILogger<UploadPdfToProject> _logger)
     : Endpoint<UploadPdfToProjectRequest, UploadPdfToProjectResponse>
 {
     public override void Configure()
@@ -65,9 +66,8 @@ public class UploadPdfToProject(IMediator _mediator, ILogger<UploadPdfToProject>
         _logger.LogInformation("Form {FormId} created from PDF {FileName} for project {ProjectId}",
             result.FormId, result.FileName, request.ProjectId);
 
-        // TODO: Associate the form with the project
-        // You may need to create a command like AddFormToProjectCommand
-        await _mediator.Send(new AddFormToProjectCommand(request.ProjectId, result.FormId, "system"), cancellationToken);
+        // Associate the form with the project and update status to PDF_UPLOADED
+        await _mediator.Send(new AddFormToProjectCommand(request.ProjectId, result.FormId, _currentUser.Id!), cancellationToken);
 
         // Map result to response
         Response = new UploadPdfToProjectResponse

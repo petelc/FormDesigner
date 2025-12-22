@@ -22,6 +22,8 @@ public class AddFormToProjectHandler : IRequestHandler<AddFormToProjectCommand, 
         }
 
         project.AddForm(request.FormId);
+        project.MarkPdfUploaded(request.UpdatedBy);
+
         await _repository.UpdateAsync(project, cancellationToken);
         await _repository.SaveChangesAsync(cancellationToken);
         return Result.Success(true);
